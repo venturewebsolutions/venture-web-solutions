@@ -1,0 +1,65 @@
+---
+import { url } from '../../utils'
+import Marquee from '../Marquee/Marquee.astro'
+import MarqueeGroup from '../Marquee/MarqueeGroup.astro'
+
+const groups = 5
+---
+
+<section id="ready-to-work-together">
+  <h2 class="sr-only">Ready to work together?</h2>
+
+  <a
+    href={url('/project-planner/')}
+    style={`--cursor-url: url(${url('/cursor.svg')});`}
+    class="link"
+  >
+    <Marquee class="marquee">
+      <MarqueeGroup groups={groups} class="marquee-group">
+        <p class="text">Ready to work together?</p>
+        <div class="dot"></div>
+      </MarqueeGroup>
+    </Marquee>
+
+    <Marquee reverse aria-hidden class="marquee">
+      <MarqueeGroup groups={groups} class="marquee-group">
+        <p class="text">Ready to work together?</p>
+        <div class="dot"></div>
+      </MarqueeGroup>
+    </Marquee>
+  </a>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .link {
+    cursor:
+      var(--cursor-url) 56.5 56.5,
+      pointer;
+  }
+
+  .marquee {
+    --marquee-gap: var(--spacing-5xl);
+  }
+
+  .marquee-group {
+    gap: var(--spacing-5xl);
+    align-items: center;
+  }
+
+  .dot {
+    --size: #{linear(rem(35px), rem(60px))};
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--colour-primary);
+    border-radius: 50%;
+  }
+
+  .text {
+    @include font-display-expressive-xl;
+    color: var(--colour-text-muted);
+    white-space: nowrap;
+  }
+</style>

@@ -1,0 +1,116 @@
+---
+import '../../assets/styles/shared.scss'
+import Footer from '../../components/Footer/Footer.astro'
+import Nav from '../../components/Nav/Nav.astro'
+import { SITE_NAME } from '../../consts'
+import { url } from '../../utils'
+
+export interface Props {
+  title: string
+  description: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Meta tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+
+    <!-- Sitemap -->
+    <link rel="sitemap" href={url('/sitemap-index.xml')} />
+
+    <!-- Fonts -->
+    <!-- <link
+      rel="preload"
+      href={(await import('../assets/fonts/poppins-v22-latin-regular.woff2'))
+        .default}
+      as="font"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={(await import('../assets/fonts/poppins-v22-latin-600.woff2'))
+        .default}
+      as="font"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={(
+        await import('../assets/fonts/libre-caslon-text-v5-latin-700.woff2')
+      ).default}
+      as="font"
+      crossorigin
+    /> -->
+    <slot name="fonts" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="en_GB" />
+    <!-- <meta
+      property="og:image"
+      content={url('/images/home-services-image-og.webp')}
+    />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:image:width" content="1500" />
+    <meta property="og:image:height" content="1500" />
+    <meta
+      property="og:image:alt"
+      content="A senior talking to her helper in the park"
+    /> -->
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="twitter:domain" content={Astro.url.host} />
+    <meta property="twitter:url" content={Astro.url} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <!-- <meta
+      name="twitter:image"
+      content={url('/images/home-services-image-og.webp')}
+    /> -->
+
+    <!-- Favicons & Manifests -->
+    <!-- <link
+      rel="icon"
+      type="image/png"
+      href={url('/images/favicon/favicon-96x96.png')}
+      sizes="96x96"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href={url('/images/favicon/favicon.svg')}
+    />
+    <link rel="shortcut icon" href={url('/images/favicon/favicon.ico')} />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href={url('/images/favicon/apple-touch-icon.png')}
+    />
+    <link rel="manifest" href={url('/site.webmanifest')} />
+    <meta name="apple-mobile-web-app-title" content="Maggi Maid" />
+    <meta name="theme-color" content="#eceee9" /> -->
+
+    <slot name="head" />
+  </head>
+  <body>
+    <Nav />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

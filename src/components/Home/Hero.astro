@@ -1,0 +1,131 @@
+---
+import { url } from '../../utils'
+import Button from '../Button/Button.astro'
+import Squiggle from '../Squiggle/Squiggle.astro'
+---
+
+<header id="hero">
+  <div class="hero-video">
+    <video src="/7513671-uhd_3840_2160_24fps.mp4" autoplay muted loop></video>
+  </div>
+
+  <div class="hero-content section container">
+    <p class="caption">Hi, we’re Venture Web Solutions 👋</p>
+    <h1 class="title">
+      A web
+      <span class="title-highlight">design agency</span>
+      for small,
+      <span class="squiggle-container">
+        <span>ambitious</span>
+        <span class="squiggle">
+          <Squiggle />
+        </span>
+      </span> businesses
+    </h1>
+    <p class="subtitle">
+      We build fast, great-looking websites with affordable pricing, 24/7
+      support, and unlimited edits.
+    </p>
+    <div class="buttons">
+      <Button variant="secondary" href={url('/portfolio/')} arrow>
+        See our work
+      </Button>
+      <Button variant="secondary-outline" href={url('/contact/')} arrow>
+        Get in touch
+      </Button>
+    </div>
+  </div>
+</header>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    background: linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--colour-surface-base) 75%, transparent),
+      color-mix(in srgb, var(--colour-surface-base) 75%, transparent)
+    );
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--colour-surface-base) 0%, transparent),
+        color-mix(in srgb, var(--colour-surface-base) 100%, transparent)
+      );
+    }
+  }
+
+  .hero-content {
+    display: grid;
+  }
+
+  .title {
+    @include font-h1;
+    color: var(--colour-text-contrast);
+    max-width: #{em(745px, 72px)};
+    margin-top: var(--spacing-xl);
+  }
+
+  .title-highlight {
+    color: var(--colour-primary);
+  }
+
+  .subtitle {
+    max-width: #{em(419px, 16px)};
+    margin-inline: auto;
+    margin-top: var(--spacing-xl);
+  }
+
+  .squiggle-container {
+    position: relative;
+  }
+
+  .squiggle {
+    position: absolute;
+    bottom: -0.15em;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    pointer-events: none;
+    color: var(--colour-primary);
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-4xl);
+  }
+</style>

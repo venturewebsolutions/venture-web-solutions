@@ -1,14 +1,30 @@
 {
   "name": "venture-web-solutions",
   "type": "module",
-  "version": "0.0.1",
+  "author": "Jordan Walker",
+  "contributors": [
+    "Daniela Pinzon Guzman"
+  ],
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier --write '**/*.{html,css,scss,js,mjs,json,md,astro}'"
   },
   "dependencies": {
-    "astro": "^5.17.1"
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.18.0",
+    "dotenv": "^17.2.3",
+    "gsap": "^3.14.2",
+    "lodash": "^4.17.23",
+    "sass": "^1.97.3",
+    "swiper": "^12.1.2"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.17.23",
+    "@types/node": "^25.2.0",
+    "prettier": "^3.8.1",
+    "prettier-plugin-astro": "^0.14.1"
   }
 }

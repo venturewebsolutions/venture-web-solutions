@@ -1,0 +1,44 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import range from 'lodash/range'
+import { cn } from '../../lib/class-names'
+
+type Props = HTMLAttributes<'div'> & {
+  groups?: number
+}
+
+const { groups, class: className, ...props } = Astro.props
+---
+
+{
+  range(Math.max(0, groups ?? 1)).map((i) => (
+    <div
+      {...props}
+      class:list={cn('marquee-group', className)}
+      aria-hidden={i > 0}
+    >
+      <slot />
+    </div>
+  ))
+}
+
+<style lang="scss">
+  .marquee-group {
+    display: flex;
+    flex-wrap: nowrap;
+
+    width: max-content;
+
+    animation: scroll var(--marquee-duration, 40s) linear infinite
+      var(--marquee-direction, normal);
+  }
+
+  @keyframes scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--marquee-gap, 0px)));
+    }
+  }
+</style>

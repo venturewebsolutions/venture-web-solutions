@@ -1,0 +1,106 @@
+@use 'functions' as *;
+
+:root {
+  // Colours
+  --colour-sky-blue: #51dbea;
+
+  --colour-green: #c7f3ad;
+
+  --colour-ivory: #f7f7f0;
+
+  --colour-grey: #c9c9c9;
+
+  --colour-blue-grey: #b4c3cd;
+
+  --colour-slate: #4b5763;
+
+  --colour-navy-blue-70: #2d2e3c;
+  --colour-navy-blue-80: #252837;
+  --colour-navy-blue-90: #1c1d2c;
+
+  // Typography
+  --font-family-zalando-sans: 'Zalando Sans', sans-serif;
+  --font-family-libre-caslon-text: 'Libre Caslon Text', serif;
+
+  --font-size-10: #{rem(10px)};
+  --font-size-12: #{rem(12px)};
+  --font-size-14: #{rem(14px)};
+  --font-size-16: #{rem(16px)};
+  --font-size-20: #{rem(20px)};
+  --font-size-24: #{rem(24px)};
+  --font-size-32: #{rem(32px)};
+  --font-size-48: #{rem(48px)};
+  --font-size-50: #{rem(50px)};
+  --font-size-60: #{rem(60px)};
+  --font-size-68: #{rem(68px)};
+  --font-size-72: #{rem(72px)};
+  --font-size-75: #{rem(75px)};
+  --font-size-78: #{rem(78px)};
+  --font-size-106: #{rem(106px)};
+  --font-size-118: #{rem(118px)};
+  --font-size-168: #{rem(168px)};
+
+  --font-weight-400: 400;
+  --font-weight-500: 500;
+  --font-weight-600: 600;
+  --font-weight-700: 700;
+  --font-weight-900: 900;
+
+  --line-height-90: 90%;
+  --line-height-100: 100%;
+  --line-height-110: 110%;
+  --line-height-112: 112%;
+  --line-height-120: 120%;
+  --line-height-121: 121%;
+  --line-height-123: 123%;
+  --line-height-125: 125%;
+  --line-height-130: 130%;
+  --line-height-131: 131%;
+  --line-height-135: 135%;
+  --line-height-136: 136%;
+  --line-height-140: 140%;
+  --line-height-150: 150%;
+  --line-height-160: 160%;
+
+  --letter-spacing--1-2: #{em(-1.2%)};
+  --letter-spacing-0: #{em(0%)};
+  --letter-spacing-1: #{em(1%)};
+  --letter-spacing-1-5: #{em(1.5%)};
+  --letter-spacing-1-6: #{em(1.6%)};
+  --letter-spacing-2: #{em(2%)};
+  --letter-spacing-3: #{em(3%)};
+
+  // Borders
+  --border-width-1: 1px;
+  --border-width-2: 2px;
+
+  --border-radius-8: 8px;
+  --border-radius-16: 16px;
+  --border-radius-24: 24px;
+  --border-radius-32: 32px;
+
+  // Spacing
+  --spacing-2: #{rem(2px)};
+  --spacing-4: #{rem(4px)};
+  --spacing-6: #{rem(6px)};
+  --spacing-8: #{rem(8px)};
+  --spacing-10: #{rem(10px)};
+  --spacing-16: #{rem(16px)};
+  --spacing-20: #{rem(20px)};
+  --spacing-24: #{rem(24px)};
+  --spacing-28: #{rem(28px)};
+  --spacing-32: #{rem(32px)};
+  --spacing-38: #{rem(38px)};
+  --spacing-40: #{rem(40px)};
+  --spacing-48: #{rem(48px)};
+  --spacing-56: #{rem(56px)};
+  --spacing-64: #{rem(64px)};
+  --spacing-72: #{rem(72px)};
+  --spacing-80: #{rem(80px)};
+  --spacing-88: #{rem(88px)};
+  --spacing-96: #{rem(96px)};
+  --spacing-104: #{rem(104px)};
+  --spacing-120: #{rem(120px)};
+  --spacing-128: #{rem(128px)};
+  --spacing-160: #{rem(160px)};
+}

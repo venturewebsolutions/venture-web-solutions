@@ -1,0 +1,133 @@
+---
+import { url } from '../../utils'
+import Button from '../Button/Button.astro'
+import UpRightArrowIcon from '../Icons/UpRightArrowIcon.astro'
+import faqs from '../../data/faqs.json'
+import Disclosure from '../Disclosure/Disclosure.astro'
+import DisclosurePanel from '../Disclosure/DisclosurePanel.astro'
+import DisclosureTrigger from '../Disclosure/DisclosureTrigger.astro'
+---
+
+<section id="faqs" class="section container">
+  <div>
+    <header class="header">
+      <p class="caption">FAQs</p>
+      <h2 class="h2">Have questions?</h2>
+    </header>
+
+    <p class="intro-text">
+      We’ve got answers! Dive into our FAQ to discover how our web design
+      services work and what we can create for you. Wondering about something
+      specific? Check below — and if it’s not there, just reach out!.
+    </p>
+
+    <div class="button-wrapper">
+      <Button variant="secondary-outline" href={url('/faqs/')} arrow>
+        Check all FAQs
+      </Button>
+    </div>
+  </div>
+
+  <div class="questions">
+    {
+      faqs.map((faq) => (
+        <section>
+          <Disclosure class="faq">
+            <h3>
+              <DisclosureTrigger class="faq-trigger">
+                <span class="faq-question">{faq.question}</span>
+
+                <div class="faq-arrow">
+                  <UpRightArrowIcon class="faq-arrow-icon" />
+                </div>
+              </DisclosureTrigger>
+            </h3>
+
+            <DisclosurePanel>
+              <p class="faq-answer">{faq.answer}</p>
+            </DisclosurePanel>
+          </Disclosure>
+        </section>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #faqs {
+    display: grid;
+    justify-content: space-between;
+    gap: var(--spacing-5xl);
+  }
+
+  .intro-text {
+    margin-top: var(--spacing-m);
+  }
+
+  .button-wrapper {
+    margin-top: var(--spacing-xl);
+  }
+
+  .questions {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .faq {
+    --disclosure-transition-timing-function: var(--transition-ease-default);
+    --disclosure-transition-duration: var(--transition-duration-default);
+
+    --padding-block: var(--spacing-m);
+    --padding-inline: var(--spacing-xl);
+
+    border-radius: var(--border-radius-m);
+    background-color: color-mix(
+      in srgb,
+      var(--colour-surface-200) 20%,
+      transparent
+    );
+    color: var(--colour-text-contrast);
+  }
+
+  .faq-trigger {
+    padding-inline: var(--padding-inline);
+    padding-block: var(--padding-block);
+  }
+
+  .faq-question {
+    @include font-h4;
+    text-align: left;
+  }
+
+  .faq-arrow {
+    padding: 0.65625rem;
+    background-color: var(--colour-tertiary);
+    color: var(--colour-text-on-tertiary);
+    border-radius: 50%;
+    transition: transform var(--transition-duration-default)
+      var(--transition-ease-default);
+
+    .faq[data-expanded] & {
+      transform: rotateZ(180deg);
+    }
+  }
+
+  .faq-arrow-icon {
+    width: 0.375rem;
+    height: 0.375rem;
+  }
+
+  .faq-answer {
+    padding-inline: var(--padding-inline);
+    padding-bottom: var(--padding-block);
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    #faqs {
+      grid-template-columns: minmax(0, rem(456px)) minmax(0, rem(737px));
+    }
+  }
+</style>

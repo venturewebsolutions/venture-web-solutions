@@ -1,0 +1,330 @@
+---
+import { Image } from 'astro:assets'
+import Button, { type ButtonVariant } from '../Button/Button.astro'
+import CircleCheckIcon from '../Icons/CircleCheckIcon.astro'
+import CircleCrossIcon from '../Icons/CircleCrossIcon.astro'
+import { url } from '../../utils'
+import Badge from '../Badge/Badge.astro'
+
+const cards = [
+  {
+    title: 'Subscription',
+    badge: 'Popular',
+    subtitle: '6-month minimum',
+    price: {
+      value: '£100',
+      frequency: '/month',
+      subtext: null,
+    },
+    summary:
+      'Best for: small businesses who want ongoing support and predictable costs.',
+    features: [
+      { description: '5-page website', included: true },
+      { description: 'Hosting & domain', included: true },
+      { description: 'Performance optimisation', included: true },
+      { description: 'SEO essentials', included: true },
+      { description: 'Copywriting', included: true },
+      { description: 'Custom-coded development', included: true },
+      { description: 'Fully responsive design', included: true },
+      { description: 'Money back guarantee', included: true },
+      { description: 'Unlimited edits', included: true },
+      { description: '24/7 support', included: true },
+      { description: 'Lifetime updates', included: true },
+    ],
+    button: {
+      variant: undefined,
+    },
+    addOns: [
+      'Extra pages: £75 per page',
+      'CMS collections: £250 each',
+      'Internationalisation: £500 for the first extra language, then £250 per additional language',
+    ],
+    hasGlow: true,
+  },
+  {
+    title: 'Lump Sum',
+    badge: null,
+    subtitle: null,
+    price: {
+      value: '£2000',
+      frequency: null,
+      subtext: '+ £25 /month for hosting',
+    },
+    summary:
+      'Best for: businesses who prefer a one-time payment and full ownership.',
+    features: [
+      { description: '5-page website', included: true },
+      { description: 'Hosting & domain', included: true },
+      { description: 'Performance optimisation', included: true },
+      { description: 'SEO essentials', included: true },
+      { description: 'Copywriting', included: true },
+      { description: 'Custom-coded development', included: true },
+      { description: 'Fully responsive design', included: true },
+      { description: 'Money back guarantee', included: true },
+      { description: 'Unlimited edits', included: false },
+      { description: '24/7 support', included: false },
+      { description: 'Lifetime updates', included: false },
+    ],
+    button: {
+      variant: 'secondary' as ButtonVariant,
+    },
+    addOns: [
+      'Unlimited edits: £50 per month',
+      'Extra pages: £75 per page',
+      'CMS collections: £250 each',
+      'Internationalisation: £500 for the first extra language, then £250 per additional language',
+    ],
+    hasGlow: false,
+  },
+]
+---
+
+<section id="pricing" class="section container">
+  <header class="header">
+    <p class="caption">Pricing</p>
+    <h2 class="h2">Choose your plan</h2>
+  </header>
+
+  <div class="cards">
+    {
+      cards.map((card) => (
+        <section class="card">
+          {card.hasGlow ? (
+            <Image
+              src={
+                import('../../assets/images/pricing-card-background-glow.png')
+              }
+              alt=""
+              class="card-background"
+            />
+          ) : (
+            <Image
+              src={import('../../assets/images/pricing-card-background.png')}
+              alt=""
+              class="card-background"
+            />
+          )}
+
+          <div class="card-header">
+            <div class="card-header-header">
+              <div class="card-badge-wrapper">
+                {card.badge && (
+                  <Badge variant="primary" size="l">
+                    {card.badge}
+                  </Badge>
+                )}
+              </div>
+
+              <div class="card-heading">
+                <h3 class="card-title">{card.title}</h3>
+
+                {card.subtitle && <p class="card-subtitle">{card.subtitle}</p>}
+              </div>
+            </div>
+
+            <p>
+              <span class="card-price-value">{card.price.value}</span>
+              {card.price.frequency && (
+                <span class="card-price-frequency">{card.price.frequency}</span>
+              )}
+              {card.price.subtext && (
+                <span class="card-price-subtext">{card.price.subtext}</span>
+              )}
+            </p>
+
+            <p class="card-summary">{card.summary}</p>
+          </div>
+
+          <hr class="card-divider" />
+
+          <div class="card-content">
+            <ul class="card-features">
+              {card.features.map((feature) => (
+                <li
+                  class:list={[
+                    'card-feature',
+                    !feature.included && 'card-feature-excluded',
+                  ]}
+                >
+                  {feature.included ? <CircleCheckIcon /> : <CircleCrossIcon />}
+                  <span>{feature.description}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Button
+              variant={card.button.variant}
+              href={url('/project-planner/')}
+            >
+              Let's get started
+            </Button>
+          </div>
+
+          <hr class="card-divider" />
+
+          <div class="card-footer">
+            <p class="card-footer-heading">Add-ons:</p>
+
+            <ul class="card-footer-list">
+              {card.addOns.map((addOn) => (
+                <li class="card-footer-list-item">
+                  <span>•</span>
+                  <span>{addOn}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #pricing {
+    display: grid;
+    gap: var(--spacing-5xl);
+  }
+
+  .cards {
+    display: grid;
+    row-gap: var(--spacing-2xl);
+    justify-content: center;
+    max-width: rem(1170px);
+    margin-inline: auto;
+  }
+
+  .card {
+    display: grid;
+    justify-content: start;
+    align-items: baseline;
+    padding: var(--spacing-2xl);
+    border: var(--border-width-s) solid var(--colour-primary);
+    border-radius: var(--border-radius-xl);
+    color: var(--colour-text-contrast);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-header {
+    grid-row: 1 / span 4;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: var(--spacing-m);
+    padding-bottom: var(--spacing-m);
+  }
+
+  .card-header-header {
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: var(--spacing-m);
+  }
+
+  .card-title {
+    @include font-h3;
+    flex: 1;
+  }
+
+  .card-price-value {
+    @include font-display-numeral-m;
+    color: var(--colour-primary);
+  }
+
+  .card-price-frequency {
+    @include font-h3;
+  }
+
+  .card-price-subtext {
+    white-space: nowrap;
+  }
+
+  .card-content {
+    grid-row: 6 / span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: var(--spacing-xl);
+    padding-top: var(--spacing-m);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .card-features {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .card-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .card-feature-excluded {
+    opacity: 0.6;
+  }
+
+  .card-footer {
+    display: grid;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-m);
+  }
+
+  .card-footer-list {
+    margin-left: var(--spacing-xs);
+  }
+
+  .card-footer-list-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-s);
+  }
+
+  .card-divider {
+    color: var(--colour-surface-200);
+    border-top-width: 2px;
+  }
+
+  .card-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(9, auto);
+      row-gap: 0;
+      column-gap: var(--spacing-2xl);
+    }
+
+    .card {
+      grid-row: 1 / -1;
+      grid-template-rows: subgrid;
+    }
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .card-header-header {
+      grid-template-columns: 1fr auto;
+      column-gap: var(--spacing-m);
+    }
+
+    .card-heading {
+      grid-row: 1 / span 2;
+    }
+
+    .card-badge-wrapper {
+      order: 1;
+      grid-row: 1 / span 2;
+    }
+  }
+</style>

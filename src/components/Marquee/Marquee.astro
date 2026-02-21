@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '../../lib/class-names'
+
+type Props = HTMLAttributes<'div'> & {
+  reverse?: boolean
+}
+
+const { class: className, reverse, ...props } = Astro.props
+---
+
+<div {...props} class:list={cn('marquee', className)} data-reverse={reverse}>
+  <slot />
+</div>
+
+<style lang="scss">
+  .marquee {
+    display: flex;
+    gap: var(--marquee-gap, 0px);
+    overflow: hidden;
+  }
+
+  .marquee[data-reverse='true'] {
+    --marquee-direction: reverse;
+  }
+</style>

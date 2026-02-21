@@ -1,0 +1,55 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '../../lib/class-names'
+
+type Props = HTMLAttributes<'div'> & {
+  variant: 'primary' | 'tertiary'
+  size: 's' | 'l'
+}
+
+const { variant, size, class: className, ...props } = Astro.props
+---
+
+<div
+  {...props}
+  class:list={cn('badge', className)}
+  data-variant={variant}
+  data-size={size}
+>
+  <slot />
+</div>
+
+<style lang="scss">
+  @use 'mixins' as *;
+
+  .badge {
+    display: inline-block;
+    border-width: var(--border-width-s);
+    border-style: solid;
+  }
+
+  // Variants
+  .badge[data-variant='primary'] {
+    border-color: var(--colour-primary);
+    color: var(--colour-primary);
+  }
+
+  .badge[data-variant='tertiary'] {
+    background-color: var(--colour-tertiary);
+    border-color: var(--colour-tertiary);
+    color: var(--colour-text-on-tertiary);
+  }
+
+  // Sizes
+  .badge[data-size='s'] {
+    @include font-meta-secondary;
+    padding: var(--spacing-3xs) var(--spacing-xs);
+    border-radius: var(--border-radius-s);
+  }
+
+  .badge[data-size='l'] {
+    @include font-action;
+    padding: var(--spacing-s) var(--spacing-3xl);
+    border-radius: var(--border-radius-l);
+  }
+</style>

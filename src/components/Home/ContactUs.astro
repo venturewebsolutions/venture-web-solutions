@@ -1,0 +1,224 @@
+---
+import { url } from '../../utils'
+import Button from '../Button/Button.astro'
+---
+
+<section id="contact-us" class="container section">
+  <div class="content">
+    <header class="header">
+      <h2 class="h2"><span class="italic">Still</span> have a question?</h2>
+      <hr class="heading-underline" />
+    </header>
+
+    <div class="content">
+      <p>
+        Okay, not a problem! For general enquires just reach out using this form
+        and we’ll get back to you as soon as possible. If you're ready with your
+        project details, feel free to explore our project planner for a clearer,
+        more structured process.
+      </p>
+
+      <div class="email-link-wrapper">
+        <p>Hate contact forms?</p>
+
+        <a href="mailto:hello@venturewebsolutions.co.uk" class="email-link">
+          hello@venturewebsolutions.co.uk
+        </a>
+      </div>
+
+      <Button href={url('/project-planner/')} arrow>
+        Explore project planner
+      </Button>
+    </div>
+  </div>
+
+  <form action="" class="form">
+    <div class="form-fields">
+      <div class="form-field">
+        <label for="contact-form-name" class="form-label">Your Name*</label>
+        <input
+          id="contact-form-name"
+          name="name"
+          type="text"
+          required
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="contact-form-email" class="form-label">Your Email*</label>
+        <input
+          id="contact-form-email"
+          name="email"
+          type="text"
+          required
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="contact-form-phone-number" class="form-label">
+          Phone Number
+        </label>
+        <input
+          name="phone-number"
+          id="contact-form-phone-number"
+          type="text"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-field">
+        <label for="contact-form-preferred-contact-method" class="form-label">
+          Preferred Contact Method*
+        </label>
+        <select
+          id="contact-form-preferred-contact-method"
+          name="preferred-contact-method"
+          required
+          class="form-input"
+        >
+          <option value="" disabled selected hidden class="form-option">
+            Please select an option
+          </option>
+          <option value="email" class="form-option">Email</option>
+          <option value="phone" class="form-option">Phone</option>
+          <option value="either" class="form-option">Either</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="contact-form-message" class="form-label"> Message* </label>
+        <textarea
+          id="contact-form-message"
+          name="message"
+          required
+          rows="3"
+          placeholder="How can we help you today?"
+          class="form-input"></textarea>
+      </div>
+    </div>
+
+    <div class="form-footer">
+      <p class="disclaimer">
+        By submitting this form I accept the Privacy Policy of this site.
+      </p>
+
+      <Button type="submit" variant="form" arrow>Submit form</Button>
+    </div>
+  </form>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #contact-us {
+    display: grid;
+    gap: var(--spacing-5xl);
+  }
+
+  .header {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .h2 {
+    @include font-h2;
+
+    .italic {
+      @include font-h2-italic;
+    }
+  }
+
+  .heading-underline {
+    border-top-width: 1px;
+    max-width: rem(88px);
+  }
+
+  .content-wrapper {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-xl);
+    justify-items: start;
+  }
+
+  .email-link-wrapper {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .email-link {
+    @include font-link-md;
+    color: var(--colour-text-contrast);
+    text-decoration: underline;
+    text-underline-offset: 0.375em;
+  }
+
+  .form {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .form-fields {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .form-field {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .form-label {
+    display: block;
+    @include font-body-medium;
+    color: var(--colour-text-contrast);
+  }
+
+  .form-input {
+    @include font-body;
+    padding: var(--spacing-xs) var(--spacing-m);
+    background-color: var(--colour-surface-50);
+    border: var(--border-width-s) solid var(--colour-text-contrast);
+    border-radius: var(--border-radius-s);
+    color: var(--colour-text-contrast);
+  }
+
+  .form-input::placeholder,
+  select.form-input:invalid {
+    @include font-body-italic;
+    color: var(--colour-text-primary);
+  }
+
+  .form-option {
+    @include font-body;
+    color: var(--colour-text-contrast);
+  }
+
+  .form-footer {
+    display: grid;
+    gap: var(--spacing-xl);
+    justify-items: start;
+  }
+
+  .disclaimer {
+    @include font-body-italic;
+  }
+
+  @media screen and (min-width: rem(1200px)) {
+    #contact-us {
+      grid-template-columns: minmax(0, rem(679px)) minmax(0, rem(502px));
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .form {
+      order: -1;
+    }
+  }
+</style>

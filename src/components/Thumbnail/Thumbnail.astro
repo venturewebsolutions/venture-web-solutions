@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '../../lib/class-names'
+
+type Props = HTMLAttributes<'div'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<div {...props} class:list={cn('thumbnail', className)}>
+  <slot />
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .thumbnail {
+    position: relative;
+  }
+</style>

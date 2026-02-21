@@ -1,0 +1,89 @@
+@mixin font-body {
+  font: var(--font-body);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin font-body-medium {
+  font: var(--font-body-medium);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin font-body-italic {
+  font: var(--font-body-italic);
+  letter-spacing: var(--letter-spacing-body);
+}
+
+@mixin font-caption {
+  font: var(--font-caption);
+  letter-spacing: var(--letter-spacing-caption);
+}
+
+@mixin font-action {
+  font: var(--font-action);
+  letter-spacing: var(--letter-spacing-action);
+}
+
+@mixin font-meta-primary {
+  font: var(--font-meta-primary);
+  letter-spacing: var(--letter-spacing-meta-primary);
+}
+
+@mixin font-meta-secondary {
+  font: var(--font-meta-secondary);
+  letter-spacing: var(--letter-spacing-meta-secondary);
+}
+
+@mixin font-h1 {
+  font: var(--font-h1);
+  letter-spacing: var(--letter-spacing-h1);
+}
+
+@mixin font-h2 {
+  font: var(--font-h2);
+  letter-spacing: var(--letter-spacing-h2);
+}
+
+@mixin font-h2-italic {
+  font: var(--font-h2-italic);
+  letter-spacing: var(--letter-spacing-h2-italic);
+}
+
+@mixin font-h3 {
+  font: var(--font-h3);
+  letter-spacing: var(--letter-spacing-h3);
+}
+
+@mixin font-h4 {
+  font: var(--font-h4);
+  letter-spacing: var(--letter-spacing-h4);
+}
+
+@mixin font-link-md {
+  font: var(--font-link-md);
+  letter-spacing: var(--letter-spacing-link-md);
+}
+
+@mixin font-display-numeral-xl {
+  font: var(--font-display-numeral-xl);
+  letter-spacing: var(--letter-spacing-display-numeral-xl);
+}
+
+@mixin font-display-numeral-m {
+  font: var(--font-display-numeral-m);
+  letter-spacing: var(--letter-spacing-display-numeral-m);
+}
+
+@mixin font-display-expressive-xl {
+  font: var(--font-display-expressive-xl);
+  letter-spacing: var(--letter-spacing-display-expressive-xl);
+}
+
+@mixin font-footer-brand-display {
+  font: var(--font-footer-brand-display);
+  letter-spacing: var(--letter-spacing-footer-brand-display);
+}
+
+@mixin font-footer-legal {
+  font: var(--font-footer-legal);
+  letter-spacing: var(--letter-spacing-footer-legal);
+}

@@ -1,0 +1,305 @@
+---
+import { Image } from 'astro:assets'
+import PlayIcon from '../Icons/PlayIcon.astro'
+import { url } from '../../utils'
+import NavigationButton from '../NavigationButton/NavigationButton.astro'
+import Thumbnail from '../Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '../Thumbnail/ThumbnailCaption.astro'
+
+const testimonial = {
+  client: 'Maggi Maid',
+  videoSrc: url('/testimonial-video-maggi-maid.mp4#t=0.001'),
+  videoType: 'video/mp4',
+  thumbnailImageSrc:
+    import('../../assets/images/testimonial-thumbnail-maggi-maid.png'),
+  avatarImageSrc: import('../../assets/images/maggi-maid-avatar.png'),
+  authorName: 'Margaret W.',
+  authorPosition: 'Maggi Maid founder',
+  quote:
+    'Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.',
+}
+const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
+---
+
+<section id="testimonials" class="section container">
+  <header class="header">
+    <p class="caption">Client testimonials</p>
+    <h2 class="title">Voice of our happy clients</h2>
+  </header>
+
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {
+        testimonials.map((testimonial) => (
+          <div class="swiper-slide">
+            <div class="testimonial">
+              <Thumbnail>
+                <button
+                  class="thumbnail-media-wrapper"
+                  aria-label={`Play ${testimonial.client} testimonial video`}
+                >
+                  <video
+                    playsinline
+                    muted
+                    preload="none"
+                    class="thumbnail-video"
+                  >
+                    <source
+                      src={testimonial.videoSrc}
+                      type={testimonial.videoType}
+                    />
+                  </video>
+
+                  <Image
+                    src={testimonial.thumbnailImageSrc}
+                    alt={`${testimonial.client} testimonial`}
+                  />
+                  <PlayIcon class="play-icon" />
+                </button>
+
+                <ThumbnailCaption
+                  position="top left"
+                  class="thumbnail-caption swiper-no-swiping"
+                >
+                  <div class="client-info">
+                    <Image
+                      src={testimonial.avatarImageSrc}
+                      alt={`${testimonial.client} avatar`}
+                      class="client-avatar"
+                    />
+                    <div>
+                      <p class="client-name">{testimonial.authorName}</p>
+                      <p class="client-description">
+                        {testimonial.authorPosition}
+                      </p>
+                    </div>
+                  </div>
+                </ThumbnailCaption>
+              </Thumbnail>
+
+              <p class="quote swiper-no-swiping">“{testimonial.quote}”</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="navigation">
+    <NavigationButton dir="left" class="swiper-button-prev" />
+    <div class="swiper-pagination"></div>
+    <NavigationButton dir="right" class="swiper-button-next" />
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #testimonials {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .header {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .title {
+    @include font-h2;
+    color: var(--colour-text-contrast);
+  }
+
+  .testimonial {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .thumbnail-media-wrapper {
+    border-radius: var(--border-radius-l);
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+
+    &:hover {
+      .play-icon {
+        --scale: 1.1;
+      }
+    }
+
+    &.active {
+      .play-icon {
+        display: none;
+      }
+    }
+  }
+
+  .play-icon {
+    --scale: 1;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--scale));
+    transition: transform var(--transition-duration-default)
+      var(--transition-ease-default);
+  }
+
+  .thumbnail-video {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-m);
+  }
+
+  .client-info {
+    --padding: var(--spacing-s);
+
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-xs);
+    padding-right: calc(var(--padding));
+    padding-bottom: calc(var(--padding));
+    max-width: calc(rem(132px) + var(--padding));
+  }
+
+  .client-avatar {
+    width: 43px;
+    height: 43px;
+    border-radius: var(--border-radius-s);
+    object-fit: cover;
+  }
+
+  .client-name {
+    @include font-meta-primary;
+    color: var(--colour-text-contrast);
+  }
+
+  .client-description {
+    @include font-meta-secondary;
+    color: var(--colour-text-primary);
+  }
+
+  .swiper {
+    max-width: 100%;
+  }
+
+  .swiper-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-s);
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+
+    :global(.swiper-pagination-bullet) {
+      --size: 12px;
+
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background-color: var(--colour-secondary);
+      opacity: 0.4;
+    }
+
+    :global(.swiper-pagination-bullet-active) {
+      opacity: 1;
+    }
+
+    :global(.swiper-button-disabled) {
+      opacity: 0.4;
+      cursor: default;
+    }
+  }
+</style>
+
+<script>
+  import 'swiper/css'
+  import Swiper from 'swiper/bundle'
+  import { Navigation, Pagination } from 'swiper/modules'
+
+  window.addEventListener('load', () => {
+    const wrappers = document.querySelectorAll(
+      '#testimonials .thumbnail-media-wrapper',
+    )
+
+    for (const wrapper of wrappers) {
+      const video = wrapper.querySelector('video')!
+
+      let started = false
+
+      wrapper.addEventListener('mouseenter', () => {
+        if (!started) {
+          video.play()
+        }
+      })
+
+      wrapper.addEventListener('mouseleave', () => {
+        if (!started) {
+          video.pause()
+          video.currentTime = 0
+        }
+      })
+
+      wrapper.addEventListener('click', () => {
+        if (!started) {
+          video.pause()
+          video.currentTime = 0
+          video.muted = false
+          video.controls = true
+
+          setTimeout(() => {
+            video.play()
+          }, 0)
+
+          wrapper.classList.add('active')
+
+          started = true
+        }
+      })
+
+      video.addEventListener('ended', () => {
+        video.pause()
+        video.currentTime = 0
+        video.muted = true
+        video.controls = false
+
+        wrapper.classList.remove('active')
+
+        started = false
+      })
+    }
+
+    new Swiper('#testimonials .swiper', {
+      modules: [Navigation, Pagination],
+
+      slidesPerView: 1,
+      spaceBetween: 32,
+
+      breakpoints: {
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+        },
+      },
+
+      pagination: {
+        el: '#testimonials .swiper-pagination',
+      },
+
+      navigation: {
+        nextEl: '#testimonials .swiper-button-next',
+        prevEl: '#testimonials .swiper-button-prev',
+      },
+    })
+  })
+</script>

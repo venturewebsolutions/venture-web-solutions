@@ -1,0 +1,123 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import UpRightArrowIcon from '../Icons/UpRightArrowIcon.astro'
+import { cn } from '../../lib/class-names'
+
+export type ButtonVariant = 'secondary' | 'secondary-outline' | 'ghost' | 'form'
+
+type BaseProps = {
+  variant?: ButtonVariant
+  size?: 'lg' | 'link'
+  arrow?: boolean
+  disabled?: boolean
+}
+
+type ButtonProps = HTMLAttributes<'button'> & BaseProps
+
+type LinkProps = HTMLAttributes<'a'> &
+  BaseProps & {
+    href: string
+  }
+
+type Props = ButtonProps | LinkProps
+
+const {
+  variant,
+  size,
+  arrow,
+  disabled,
+  class: className,
+  ...props
+} = Astro.props
+---
+
+{
+  'href' in props ? (
+    <a
+      {...props}
+      href={disabled ? undefined : props.href}
+      class:list={cn('button', className)}
+      data-variant={variant}
+      data-size={size}
+    >
+      <slot />
+      {arrow && <UpRightArrowIcon class="arrow" />}
+    </a>
+  ) : (
+    <button
+      {...props}
+      class:list={cn('button', className)}
+      data-variant={variant}
+      data-size={size}
+    >
+      <slot />
+      {arrow && <UpRightArrowIcon class="arrow" />}
+    </button>
+  )
+}
+
+<style lang="scss">
+  @use 'mixins' as *;
+
+  .button {
+    @include font-action;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em;
+    cursor: pointer;
+
+    // Default Size
+    padding: 0.625em 1.25em;
+    border: var(--border-width-m) solid;
+
+    // Default Variant
+    background-color: var(--colour-primary);
+    border-color: var(--colour-primary);
+    color: var(--colour-text-on-primary);
+    border-radius: var(--border-radius-xl);
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    height: 0.8125em;
+    width: 0.625em;
+  }
+
+  // Variants
+  .button[data-variant='secondary'] {
+    background-color: var(--colour-secondary);
+    border-color: var(--colour-secondary);
+    color: var(--colour-text-on-secondary);
+  }
+
+  .button[data-variant='secondary-outline'] {
+    background-color: transparent;
+    border-color: var(--colour-secondary);
+    color: var(--colour-secondary);
+  }
+
+  .button[data-variant='ghost'] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--colour-text-contrast);
+  }
+
+  .button[data-variant='form'] {
+    background-color: transparent;
+    border-color: var(--colour-secondary);
+    color: var(--colour-secondary);
+    border-radius: var(--border-radius-s);
+  }
+
+  // Sizes
+  .button[data-size='lg'] {
+    padding: var(--spacing-m) var(--spacing-xl);
+  }
+
+  .button[data-size='link'] {
+    padding: 0;
+    border: 0;
+  }
+</style>

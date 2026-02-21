@@ -1,0 +1,113 @@
+---
+import { url } from '../../utils'
+import Button from '../Button/Button.astro'
+---
+
+<section id="about-us" class="section container">
+  <h2 class="sr-only">About Us</h2>
+
+  <div class="column-1">
+    <p class="title">
+      We’re an independent web design agency, dedicated to bringing professional
+      websites to small businesses.
+    </p>
+    <div class="images">
+      <img src={url('/jordan.svg')} alt="Venture Web Solutions team at work" />
+      <img src={url('/daniela.png')} alt="Venture Web Solutions team at work" />
+    </div>
+  </div>
+
+  <div class="column-2">
+    <p class="paragraph-1">
+      We want to break the barriers for small but ambitious businesses to expand
+      into the digital world and grow their business online. Based in York and
+      working with clients anywhere in the UK, we support companies that want to
+      succeed online but don’t have the budget of larger organisations. We
+      believe that great websites shouldn’t be reserved only for big businesses!
+    </p>
+    <div class="button-1">
+      <Button variant="secondary" href={url('/about/')} arrow>
+        Who we are
+      </Button>
+    </div>
+    <p class="paragraph-2">Pssst… want to meet the team behind the scenes?</p>
+    <div class="button-2">
+      <Button variant="ghost" size="link" href={url('/team/')} arrow>
+        Meet the team
+      </Button>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #about-us {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .column-1 {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .title {
+    @include font-h2;
+    color: var(--colour-text-contrast);
+  }
+
+  .images {
+    display: flex;
+    align-items: start;
+    gap: var(--spacing-xs);
+  }
+
+  .column-2 {
+    display: grid;
+    justify-items: start;
+    align-items: center;
+    gap: var(--spacing-2xl) var(--spacing-xl);
+  }
+
+  @media screen and (min-width: rem(931px)) {
+    #about-us {
+      grid-template-columns: repeat(2, auto);
+      gap: var(--spacing-4xl);
+    }
+
+    .column-1 {
+      order: 1;
+    }
+
+    .title {
+      max-width: #{em(683px, 48px)};
+    }
+
+    .column-2 {
+      grid-template-columns: auto 1fr;
+      grid-template-areas:
+        'p1 p1'
+        'p2 p2'
+        'b1 b2';
+    }
+
+    .paragraph-1 {
+      max-width: #{em(535px, 16px)};
+      grid-area: p1;
+    }
+
+    .paragraph-2 {
+      grid-area: p2;
+    }
+
+    .button-1 {
+      grid-area: b1;
+    }
+
+    .button-2 {
+      grid-area: b2;
+    }
+  }
+</style>

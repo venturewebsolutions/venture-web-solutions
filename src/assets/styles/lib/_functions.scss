@@ -1,0 +1,52 @@
+@use 'sass:math';
+
+$minvw: 23.4375rem; // 375px
+$maxvw: 90rem; // 1440px
+
+@function px($value) {
+  @if math.unit($value) == 'px' {
+    @return $value;
+  }
+
+  @if math.unit($value) == 'rem' {
+    @return $value * 16px;
+  }
+
+  @error 'Unsupported unit: #{$value}';
+}
+
+@function rem($value) {
+  @if (math.unit($value) == 'rem') {
+    @return $value;
+  }
+
+  @if (math.unit($value) == 'px') {
+    @return math.div($value, 16px) * 1rem;
+  }
+
+  @error 'Unsupported unit: #{$value}';
+}
+
+@function em($value, $base: null) {
+  @if (math.unit($value) == '%' and $base == null) {
+    @return math.div($value, 100%) * 1em;
+  }
+
+  @if (math.unit($value) == math.unit($base)) {
+    @return math.div($value, $base) * 1em;
+  }
+
+  @error 'Unsupported units: value=#{$value}, base=#{$base}';
+}
+
+@function linear($y1, $y2) {
+  $slope: #{calc($y2 - $y1) / calc($maxvw - $minvw)};
+  $intercept: calc($y1 - ($slope * $minvw));
+  $value: calc($intercept + $slope * 100vw);
+
+  @return clamp(min($y1, $y2), #{$value}, max($y1, $y2));
+}
+
+@function font($weight, $size, $line-height, $family, $style: normal) {
+  @return #{$style} #{$weight} #{$size} / #{$line-height} #{$family};
+}

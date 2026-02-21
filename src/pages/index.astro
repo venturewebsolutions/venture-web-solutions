@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import AboutUs from '../components/Home/AboutUs.astro'
+import Blog from '../components/Home/Blog.astro'
+import ContactUs from '../components/Home/ContactUs.astro'
+import FAQs from '../components/Home/FAQs.astro'
+import Hero from '../components/Home/Hero.astro'
+import HowItWorks from '../components/Home/HowItWorks.astro'
+import OurWork from '../components/Home/OurWork.astro'
+import Performance from '../components/Home/Performance.astro'
+import Pricing from '../components/Home/Pricing.astro'
+import ReadyToWorkTogether from '../components/Home/ReadyToWorkTogether.astro'
+import Testimonials from '../components/Home/Testimonials.astro'
+import WhatWeOffer from '../components/Home/WhatWeOffer.astro'
+import Layout from '../components/Layout/Layout.astro'
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="Welcome to Venture Web Solutions"
+  description="Your partner in digital success."
+>
+  <Hero />
+  <AboutUs />
+  <WhatWeOffer />
+  <Performance />
+  <OurWork />
+  <Testimonials />
+  <HowItWorks />
+  <Pricing />
+  <FAQs />
+  <ContactUs />
+  <ReadyToWorkTogether />
+  <Blog />
 </Layout>

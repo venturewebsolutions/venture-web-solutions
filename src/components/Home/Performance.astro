@@ -1,0 +1,160 @@
+---
+import { Image } from 'astro:assets'
+---
+
+<section id="performance" class="section container">
+  <header class="header">
+    <p class="caption">Performance</p>
+    <h2 class="h2">Unparalleled performance with hand-coded websites</h2>
+  </header>
+
+  <Image
+    src={import('../../assets/images/performance-screenshot.png')}
+    alt="Screenshot of Google PageSpeed Insights showing a perfect score of 100 for both mobile and desktop performance"
+    class="image"
+  />
+
+  <div class="content">
+    <p>
+      We say no to WordPress and page builders, and so should you!. They’re
+      slow, clunky, and poorly optimised, and that could be costing you
+      customers.
+    </p>
+
+    <figure class="quotation">
+      <div class="quotation-mark">
+        <Image src={import('../../assets/images/quotation-mark.png')} alt="" />
+      </div>
+      <div class="quotation-content">
+        <blockquote cite="https://support.google.com/adsense/answer/7450973">
+          <p class="quotation-quote">
+            53% of visits are likely to be abandoned if pages take longer than 3
+            seconds to load.
+          </p>
+        </blockquote>
+        <figcaption class="quotation-caption">
+          — <cite class="quotation-citation">Google</cite>
+        </figcaption>
+      </div>
+    </figure>
+
+    <p>
+      A slow site doesn’t just frustrate visitors — it hurts your business.
+      That’s why we hand-code all of our websites from scratch — every last
+      line! This way, we don’t drag your site down with bloated code designed
+      for millions of people. Instead, our sites are written just for you, so we
+      can get as close to Google’s 100/100 PageSpeed Insights scores as humanly
+      possible, ensuring you never lose a customer due to a slow website, and
+      helping you rank higher in Google’s search results.
+    </p>
+
+    <div class="footer">
+      <p>Don’t believe us?</p>
+      <!-- TODO: update link -->
+      <a
+        href="https://pagespeed.web.dev/analysis/https-maggimaid-co-uk/bybh084vp3?form_factor=desktop"
+        target="_blank"
+        class="link"
+      >
+        See for yourself!
+      </a>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #performance {
+    display: grid;
+    grid-template-areas:
+      'header'
+      'image'
+      'content';
+    align-items: start;
+    justify-content: space-between;
+    gap: var(--spacing-2xl);
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+  .h2 {
+    max-width: #{rem(571px)};
+  }
+
+  .image {
+    grid-area: image;
+  }
+
+  .content {
+    grid-area: content;
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .quotation {
+    display: flex;
+    gap: var(--spacing-m);
+  }
+
+  .quotation-mark {
+    width: rem(42px);
+    flex-shrink: 0;
+  }
+
+  .quotation-content {
+    display: grid;
+    gap: var(--spacing-3xs);
+  }
+
+  .quotation-quote {
+    @include font-body-italic;
+  }
+
+  .quotation-caption {
+    text-align: right;
+  }
+
+  .quotation-citation {
+    font-style: inherit;
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+  }
+
+  .link {
+    @include font-body-medium;
+    text-decoration: underline;
+    color: var(--colour-text-contrast);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    #performance {
+      grid-template-columns: minmax(0, rem(648px)) minmax(0, rem(571px));
+      grid-template-areas:
+        'image header'
+        'image content';
+    }
+
+    .image {
+      position: sticky;
+      top: var(--spacing-2xl);
+    }
+  }
+
+  @media screen and (min-width: rem(1267px)) {
+    #performance {
+      align-items: center;
+    }
+
+    .image {
+      position: static;
+    }
+  }
+</style>

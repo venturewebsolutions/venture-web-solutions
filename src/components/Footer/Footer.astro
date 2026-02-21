@@ -1,0 +1,349 @@
+---
+import { url } from '../../utils'
+import Button from '../Button/Button.astro'
+import EnvelopeIcon from '../Icons/EnvelopeIcon.astro'
+import FacebookIcon from '../Icons/FacebookIcon.astro'
+import InstagramIcon from '../Icons/InstagramIcon.astro'
+import LinkedInIcon from '../Icons/LinkedInIcon.astro'
+import TelephoneIcon from '../Icons/TelephoneIcon.astro'
+import Logo from '../Logo/Logo.astro'
+import SocialMediaLink from '../SocialMediaLink/SocialMediaLink.astro'
+
+const lists = [
+  {
+    heading: 'Learn',
+    links: [
+      {
+        text: 'About',
+        icon: null,
+        href: url('/about/'),
+      },
+      {
+        text: 'Testimonials',
+        icon: null,
+        href: url('/testimonials/'),
+      },
+      {
+        text: 'Process',
+        icon: null,
+        href: url('/process/'),
+      },
+      {
+        text: 'FAQs',
+        icon: null,
+        href: url('/faqs/'),
+      },
+      {
+        text: 'Blog',
+        icon: null,
+        href: url('/blog/'),
+      },
+    ],
+  },
+  {
+    heading: 'Explore',
+    links: [
+      {
+        text: 'Home',
+        icon: null,
+        href: url('/'),
+      },
+      {
+        text: 'Work',
+        icon: null,
+        href: url('/work/'),
+      },
+      {
+        text: 'Pricing',
+        icon: null,
+        href: url('/pricing/'),
+      },
+      {
+        text: 'Contact',
+        icon: null,
+        href: url('/contact/'),
+      },
+    ],
+  },
+  {
+    heading: 'Get in touch',
+    links: [
+      {
+        text: '07454 747 488',
+        icon: TelephoneIcon,
+        href: 'tel:+447454747488',
+      },
+      {
+        text: 'hello@venturewebsolutions.co.uk',
+        icon: EnvelopeIcon,
+        href: 'mailto:hello@venturewebsolutions.co.uk',
+      },
+    ],
+  },
+]
+---
+
+<footer id="footer" class="container section">
+  <div class="content">
+    <div class="intro">
+      <div class="header">
+        <p class="heading h2">Like what you see?</p>
+        <Button href={url('/project-planner/')} arrow class="header-link">
+          Start a project
+        </Button>
+      </div>
+
+      <div class="social-badges">
+        <a
+          href="#"
+          aria-label="Visit Venture Web Solutions on LinkedIn"
+          target="_blank"
+        >
+          <SocialMediaLink>
+            <LinkedInIcon />
+          </SocialMediaLink>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Visit Venture Web Solutions on Facebook"
+          target="_blank"
+        >
+          <SocialMediaLink>
+            <FacebookIcon />
+          </SocialMediaLink>
+        </a>
+
+        <a
+          href="#"
+          aria-label="Visit Venture Web Solutions on Instagram"
+          target="_blank"
+        >
+          <SocialMediaLink>
+            <InstagramIcon />
+          </SocialMediaLink>
+        </a>
+      </div>
+    </div>
+
+    <div class="lists">
+      {
+        lists.map((list) => (
+          <div class="list-wrapper">
+            <ul class="list">
+              <li class="list-heading">{list.heading}</li>
+              {list.links.map(({ text, icon: Icon, href }) => (
+                <li class="list-item">
+                  <a href={href} class="list-link">
+                    {Icon && <Icon class="list-icon" />}
+                    <span>{text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <p class="banner">
+    <span class="banner-segment">
+      <span class="banner-text">Venture</span>
+    </span>
+    <span class="banner-segment">
+      <span class="banner-text">Web</span>
+    </span>
+    <span class="banner-segment">
+      <span class="banner-text">Solutions</span>
+      <span class="banner-dot" aria-hidden="true"></span>
+    </span>
+  </p>
+
+  <div class="footer-legal">
+    <Logo />
+
+    <div class="footer-legal-text">
+      <div class="footer-legal-group">
+        <p>Web Design & Development York</p>
+        <div class="footer-legal-bullet"></div>
+        <p>Company Reg Number 16725023</p>
+      </div>
+
+      <div class="footer-legal-group">
+        <p>All Rights Reserved</p>
+        <div class="footer-legal-bullet"></div>
+        <a href={url('/privacy-policy/')}>Privacy Policy</a>
+        <div class="footer-legal-bullet"></div>
+        <a href={url('/terms-and-conditions/')}>Terms & Conditions</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-4xl);
+    overflow-x: hidden;
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-3xl);
+  }
+
+  .intro {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-m);
+  }
+
+  .heading {
+    flex: 0 0 4.45625em;
+  }
+
+  .header-link {
+    flex-shrink: 0;
+  }
+
+  .social-badges {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .lists {
+    display: flex;
+    gap: var(--spacing-3xl);
+    flex-wrap: wrap;
+  }
+
+  .list-wrapper {
+    padding-left: var(--spacing-xl);
+    border-left: var(--border-width-s) solid
+      color-mix(in srgb, var(--colour-secondary) 30%, transparent);
+
+    &:not(:last-child) {
+      flex: 1;
+    }
+  }
+
+  .list {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .list-heading {
+    @include font-body-medium;
+    color: var(--colour-text-contrast);
+  }
+
+  .list-link {
+    @include font-link-md;
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-m);
+  }
+
+  .list-icon {
+    display: none;
+    width: 0.875em;
+    height: auto;
+  }
+
+  .banner-segment {
+    white-space: nowrap;
+  }
+
+  .banner-text {
+    @include font-footer-brand-display;
+    opacity: 0.1;
+  }
+
+  .banner-dot {
+    --size: #{linear(rem(14px), rem(22px))};
+
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background-color: var(--colour-primary);
+    opacity: 0.45;
+  }
+
+  .footer-legal {
+    @include font-footer-legal;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-m);
+    opacity: 0.5;
+  }
+
+  .footer-legal-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+
+  .footer-legal-group {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-xs);
+  }
+
+  .footer-legal-bullet {
+    --size: #{rem(8px)};
+
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: currentColor;
+  }
+
+  @media screen and (min-width: rem(375px)) {
+    .list-icon {
+      display: initial;
+    }
+  }
+
+  @media screen and (min-width: rem(1210px)) {
+    .content {
+      grid-template-columns: auto 1fr;
+      gap: var(--spacing-9xl);
+    }
+  }
+
+  @media screen and (min-width: rem(800px)) {
+    .footer-legal-text {
+      flex-direction: row;
+      justify-content: space-between;
+      flex: 1;
+    }
+  }
+
+  @media screen and (min-width: rem(931px)) {
+    .footer-legal {
+      flex-direction: row;
+      align-items: center;
+      gap: var(--spacing-xl);
+    }
+
+    .footer-legal-text {
+      margin-top: rem(8px);
+    }
+  }
+</style>

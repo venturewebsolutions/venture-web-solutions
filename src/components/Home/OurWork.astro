@@ -1,0 +1,284 @@
+---
+import { Image } from 'astro:assets'
+import { url } from '../../utils'
+
+const projects = [
+  {
+    name: 'Maggi Maid',
+    image: import('../../assets/images/project-screenshot-maggi-maid.png'),
+    slug: 'maggi-maid',
+  },
+  {
+    name: "Stefano's Pizzeria",
+    image: import('../../assets/images/project-screenshot-stefanos.png'),
+    slug: 'stefanos',
+  },
+  {
+    name: 'SOS Party Rental',
+    image:
+      import('../../assets/images/project-screenshot-sos-party-rental.png'),
+    slug: 'sos-party-rental',
+  },
+  {
+    name: "Poplett's Dog Grooming",
+    image: import('../../assets/images/project-screenshot-popletts.png'),
+    slug: 'popletts',
+  },
+  {
+    name: 'MD Loft Storage',
+    image: import('../../assets/images/project-screenshot-md-loft-storage.png'),
+    slug: 'md-loft-storage',
+  },
+]
+---
+
+<section id="our-work" class="section container">
+  <div class="surface">
+    <div class="content">
+      <div class="header">
+        <h2 class="caption">Our Work</h2>
+      </div>
+
+      <div id="title-carousel">
+        <div class="titles">
+          {
+            projects.map((project) => (
+              <a
+                href={url(`/portfolio/${project.slug}`)}
+                class="title"
+                data-project={project.slug}
+              >
+                {project.name}
+              </a>
+            ))
+          }
+        </div>
+
+        <div class="title-carousel-overlay"></div>
+      </div>
+    </div>
+
+    <div id="image-carousel">
+      <div class="images">
+        {
+          projects.map((project) => (
+            <section class="image-card" data-project={project.slug}>
+              <a href={url(`/portfolio/${project.slug}`)} class="image-link">
+                <Image
+                  src={project.image}
+                  alt={`${project.name} project screenshot`}
+                  style={`--cursor-url: url(${url('/cursor.svg')});`}
+                  class="image"
+                />
+                <div class="image-footer">
+                  <h3 class="image-caption">{project.name}</h3>
+                </div>
+              </a>
+            </section>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .surface {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  #title-carousel {
+    display: none;
+  }
+
+  #image-carousel {
+    position: relative;
+  }
+
+  .images {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .image-card {
+    border-radius: var(--border-radius-m);
+    overflow: hidden;
+
+    transition: filter var(--transition-duration-default)
+      var(--transition-ease-default);
+
+    &:hover,
+    &.active {
+      filter: blur(2px);
+    }
+  }
+
+  .image-link {
+    display: block;
+  }
+
+  .image {
+    display: block;
+    width: 100%;
+    cursor:
+      var(--cursor-url) 56.5 56.5,
+      pointer;
+  }
+
+  .image-footer {
+    padding: var(--spacing-xs) var(--spacing-m);
+    background: var(--colour-surface-100);
+  }
+
+  .image-caption {
+    @include font-h4;
+    color: var(--colour-text-contrast);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    #our-work {
+      display: grid;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .surface {
+      background: var(--colour-surface-100);
+      border-radius: var(--border-radius-l);
+      padding: var(--spacing-4xl);
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-4xl);
+      overflow: hidden;
+      min-height: calc(100vh - var(--spacing-section) * 2);
+    }
+
+    .content {
+      display: grid;
+      align-content: space-between;
+    }
+
+    #title-carousel {
+      display: initial;
+      position: relative;
+    }
+
+    .titles {
+      display: grid;
+      gap: var(--spacing-2xl);
+      padding-block: 0.5em;
+    }
+
+    .title {
+      @include font-h2;
+
+      color: var(--colour-text-contrast);
+      transition: transform var(--transition-duration-default)
+        var(--transition-ease-default);
+
+      &:hover,
+      &.active {
+        transform: translateX(0.75rem);
+      }
+    }
+
+    .title-carousel-overlay {
+      @include font-h2;
+
+      --spotlight-background: color-mix(
+        in srgb,
+        var(--colour-surface-100) 100%,
+        transparent
+      );
+      --spotlight-foreground: color-mix(
+        in srgb,
+        var(--colour-surface-100) 20%,
+        transparent
+      );
+      --spotlight-size: 20%;
+      --spotlight-position: 10%;
+
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        var(--spotlight-background) 0%,
+        var(--spotlight-foreground)
+          calc(var(--spotlight-position) - var(--spotlight-size) / 2),
+        rgba(0, 0, 0, 0) var(--spotlight-position),
+        var(--spotlight-foreground)
+          calc(var(--spotlight-position) + var(--spotlight-size) / 2),
+        var(--spotlight-background) 100%
+      );
+      pointer-events: none;
+    }
+
+    .images {
+      position: absolute;
+    }
+
+    .image-footer {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  window.addEventListener('load', () => {
+    const mm = gsap.matchMedia()
+
+    const imageCarousel = document.querySelector('#image-carousel')!
+    const titleCarousel = document.querySelector('#title-carousel')!
+
+    const imageCards = imageCarousel.querySelectorAll(
+      '.image-card',
+    ) as NodeListOf<HTMLDivElement>
+
+    mm.add('(min-width: 48rem)', () => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: '.surface',
+            start: '50% 50%',
+            end: () => `+=${imageCarousel.scrollHeight}`,
+            scrub: true,
+            pin: '#our-work',
+          },
+        })
+        .to('.images', { bottom: 0, ease: 'none' }, 0)
+        .to('.title-carousel-overlay', { '--spotlight-position': '90%' }, 0)
+    })
+
+    for (const imageCard of imageCards) {
+      const project = imageCard.dataset.project
+
+      const title = titleCarousel.querySelector(
+        `.title[data-project="${project}"]`,
+      )!
+
+      imageCard.addEventListener('mouseenter', () => {
+        title.classList.add('active')
+      })
+
+      imageCard.addEventListener('mouseleave', () => {
+        title.classList.remove('active')
+      })
+
+      title.addEventListener('mouseenter', () => {
+        imageCard.classList.add('active')
+      })
+
+      title.addEventListener('mouseleave', () => {
+        imageCard.classList.remove('active')
+      })
+    }
+  })
+</script>

@@ -1,0 +1,59 @@
+@use 'functions' as *;
+
+:root {
+  // Colours
+  --colour-primary: var(--colour-sky-blue);
+  --colour-secondary: var(--colour-blue-grey);
+  --colour-tertiary: var(--colour-slate);
+  --colour-accent: var(--colour-green);
+
+  --colour-neutral-10: var(--colour-ivory);
+  --colour-neutral-20: var(--colour-grey);
+  --colour-neutral-30: var(--colour-blue-grey);
+  --colour-neutral-70: var(--colour-slate);
+  --colour-neutral-90: var(--colour-navy-blue-70);
+  --colour-neutral-95: var(--colour-navy-blue-80);
+  --colour-neutral-100: var(--colour-navy-blue-90);
+
+  // Typography
+  --font-family-base: var(--font-family-zalando-sans);
+  --font-family-display: var(--font-family-libre-caslon-text);
+
+  --font-weight-regular: var(--font-weight-400);
+  --font-weight-medium: var(--font-weight-500);
+  --font-weight-semibold: var(--font-weight-600);
+  --font-weight-bold: var(--font-weight-700);
+  --font-weight-black: var(--font-weight-900);
+
+  // Borders
+  --border-width-s: var(--border-width-1);
+  --border-width-m: var(--border-width-2);
+
+  --border-radius-s: var(--border-radius-8);
+  --border-radius-m: var(--border-radius-16);
+  --border-radius-l: var(--border-radius-24);
+  --border-radius-xl: var(--border-radius-32);
+
+  // Spacing
+  --spacing-3xs: var(--spacing-4);
+  --spacing-2xs: var(--spacing-6);
+  --spacing-xs: var(--spacing-8);
+  --spacing-s: var(--spacing-10);
+  --spacing-m: var(--spacing-16);
+  --spacing-l: var(--spacing-20);
+  --spacing-xl: var(--spacing-24);
+  --spacing-2xl: #{linear(var(--spacing-28), var(--spacing-32))};
+  --spacing-3xl: #{linear(var(--spacing-32), var(--spacing-40))};
+  --spacing-4xl: #{linear(var(--spacing-40), var(--spacing-56))};
+  --spacing-5xl: #{linear(var(--spacing-48), var(--spacing-64))};
+  --spacing-6xl: #{linear(var(--spacing-56), var(--spacing-80))};
+  --spacing-7xl: #{linear(var(--spacing-72), var(--spacing-104))};
+  --spacing-8xl: #{linear(var(--spacing-88), var(--spacing-120))};
+  --spacing-9xl: #{linear(var(--spacing-96), var(--spacing-128))};
+  --spacing-10xl: #{linear(var(--spacing-120), var(--spacing-160))};
+
+  // Transitions
+  --transition-duration-default: 0.6s;
+
+  --transition-ease-default: cubic-bezier(0.135, 0.9, 0.15, 1);
+}

@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import RightArrowIcon from '../Icons/RightArrowIcon.astro'
+import LeftArrowIcon from '../Icons/LeftArrowIcon.astro'
+
+interface Props extends HTMLAttributes<'button'> {
+  dir: 'left' | 'right'
+}
+
+const { dir, ...props } = Astro.props
+---
+
+<button {...props}>
+  {dir === 'left' ? <LeftArrowIcon /> : <RightArrowIcon />}
+</button>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  button {
+    background-color: var(--colour-surface-100);
+    border-radius: 50%;
+    padding: rem(14px);
+    cursor: pointer;
+  }
+</style>

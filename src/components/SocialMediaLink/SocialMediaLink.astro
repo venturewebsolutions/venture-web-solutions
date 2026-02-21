@@ -1,0 +1,39 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '../../lib/class-names'
+import UpRightArrowIcon from '../Icons/UpRightArrowIcon.astro'
+
+type Props = HTMLAttributes<'div'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<div {...props} class:list={cn('social-media-link', className)}>
+  <slot />
+  <UpRightArrowIcon class="arrow" />
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .social-media-link {
+    @include font-action;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-m);
+    padding: var(--spacing-2xs) var(--spacing-s);
+    border-width: var(--border-width-s);
+    border-style: solid;
+    border-color: var(--colour-secondary);
+    border-radius: var(--border-radius-m);
+    background-color: var(--colour-secondary);
+    color: var(--colour-text-on-secondary);
+  }
+
+  .arrow {
+    flex-shrink: 0;
+    height: rem(6px);
+    width: rem(6px);
+  }
+</style>

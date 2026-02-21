@@ -1,0 +1,107 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '../../lib/class-names'
+
+type Props = HTMLAttributes<'div'> & {
+  position: 'top left' | 'bottom left' | 'top right' | 'bottom right'
+}
+
+const { class: className, position, ...props } = Astro.props
+---
+
+<div
+  {...props}
+  class:list={cn('thumbnail-caption', className)}
+  data-position={position}
+>
+  <slot />
+
+  <svg width="0" height="0">
+    <defs>
+      <clipPath
+        id="thumbnail-caption-clip-path"
+        clipPathUnits="objectBoundingBox"
+      >
+        <path d="M 0,0 L 0,1 L 1,1 Q 0,1 0,0 Z"></path>
+      </clipPath>
+    </defs>
+  </svg>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .thumbnail-caption {
+    position: absolute;
+    background-color: var(--background-color);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: var(--border-radius);
+      height: var(--border-radius);
+      background-color: var(--background-color);
+      clip-path: url('#thumbnail-caption-clip-path');
+    }
+  }
+
+  .thumbnail-caption[data-position='bottom left'] {
+    border-top-right-radius: var(--border-radius);
+    bottom: 0;
+    left: 0;
+
+    &::before {
+      bottom: 0;
+      left: 100%;
+    }
+
+    &::after {
+      left: 0;
+      bottom: 100%;
+    }
+  }
+
+  .thumbnail-caption[data-position='top left'] {
+    border-bottom-right-radius: var(--border-radius);
+    top: 0;
+    left: 0;
+
+    &::before,
+    &::after {
+      transform: rotateZ(90deg);
+    }
+
+    &::before {
+      top: 0;
+      left: 100%;
+    }
+
+    &::after {
+      top: 100%;
+      left: 0;
+    }
+  }
+
+  .thumbnail-caption[data-position='top right'] {
+    border-bottom-left-radius: var(--border-radius);
+    top: 0;
+    right: 0;
+
+    &::before,
+    &::after {
+      transform: rotateZ(180deg);
+    }
+
+    &::before {
+      top: 0;
+      right: 100%;
+    }
+
+    &::after {
+      top: 100%;
+      right: 0;
+    }
+  }
+</style>

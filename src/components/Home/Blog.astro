@@ -1,18 +1,18 @@
 ---
 import { Image } from 'astro:assets'
-import { url } from '../../utils'
-import Button from '../Button/Button.astro'
-import Thumbnail from '../Thumbnail/Thumbnail.astro'
-import ThumbnailCaption from '../Thumbnail/ThumbnailCaption.astro'
-import Badge from '../Badge/Badge.astro'
+import { url } from '@/utils'
+import Button from '@/components/Button/Button.astro'
+import Thumbnail from '@/components/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/Thumbnail/ThumbnailCaption.astro'
+import Badge from '@/components/Badge/Badge.astro'
 
 const posts = [
   {
     title:
       'Why page speed shapes first impressions: How a slow site can cost you future customers',
-    image: import('../../assets/images/person-typing-on-laptop.jpg'),
+    image: import('@/assets/images/person-typing-on-laptop.jpg'),
     readTimeMinutes: 10,
-    avatar: import('../../assets/images/jordan-avatar.png'),
+    avatar: import('@/assets/images/jordan-avatar.png'),
     author: 'Jordan',
     topic: 'Blog topic',
     url: url('/blog/posts/why-page-speed-shapes-first-impressions'),
@@ -20,9 +20,9 @@ const posts = [
   {
     title:
       'Custom website design vs templates: Which is better for your business?',
-    image: import('../../assets/images/person-drawing-wireframes.jpg'),
+    image: import('@/assets/images/person-drawing-wireframes.jpg'),
     readTimeMinutes: 8,
-    avatar: import('../../assets/images/daniela-avatar.png'),
+    avatar: import('@/assets/images/daniela-avatar.png'),
     author: 'Daniela',
     topic: 'Blog topic',
     url: url('/blog/posts/custom-website-design-vs-templates'),
@@ -30,9 +30,9 @@ const posts = [
   {
     title:
       'The power of hand-coded websites: Why writing your own code dramatically boosts performance',
-    image: import('../../assets/images/person-writing-code.jpg'),
+    image: import('@/assets/images/person-writing-code.jpg'),
     readTimeMinutes: 5,
-    avatar: import('../../assets/images/jordan-avatar.png'),
+    avatar: import('@/assets/images/jordan-avatar.png'),
     author: 'Jordan',
     topic: 'Blog topic',
     url: url('/blog/posts/the-power-of-hand-coded-websites'),

@@ -1,10 +1,10 @@
 ---
 import { Image } from 'astro:assets'
-import Button, { type ButtonVariant } from '../Button/Button.astro'
-import CircleCheckIcon from '../Icons/CircleCheckIcon.astro'
-import CircleCrossIcon from '../Icons/CircleCrossIcon.astro'
-import { url } from '../../utils'
-import Badge from '../Badge/Badge.astro'
+import Button, { type ButtonVariant } from '@/components/Button/Button.astro'
+import CircleCheckIcon from '@/components/Icons/CircleCheckIcon.astro'
+import CircleCrossIcon from '@/components/Icons/CircleCrossIcon.astro'
+import { url } from '@/utils'
+import Badge from '@/components/Badge/Badge.astro'
 
 const cards = [
   {
@@ -91,15 +91,13 @@ const cards = [
         <section class="card">
           {card.hasGlow ? (
             <Image
-              src={
-                import('../../assets/images/pricing-card-background-glow.png')
-              }
+              src={import('@/assets/images/pricing-card-background-glow.png')}
               alt=""
               class="card-background"
             />
           ) : (
             <Image
-              src={import('../../assets/images/pricing-card-background.png')}
+              src={import('@/assets/images/pricing-card-background.png')}
               alt=""
               class="card-background"
             />

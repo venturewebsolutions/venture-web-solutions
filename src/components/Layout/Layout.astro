@@ -1,9 +1,9 @@
 ---
-import '../../assets/styles/shared.scss'
-import Footer from '../../components/Footer/Footer.astro'
-import Nav from '../../components/Nav/Nav.astro'
-import { SITE_NAME } from '../../consts'
-import { url } from '../../utils'
+import '@/assets/styles/shared.scss'
+import Footer from '@/components/Footer/Footer.astro'
+import Nav from '@/components/Nav/Nav.astro'
+import { SITE_NAME } from '@/consts'
+import { url } from '@/utils'
 
 export interface Props {
   title: string
@@ -30,14 +30,14 @@ const { title, description } = Astro.props
     <!-- Fonts -->
     <!-- <link
       rel="preload"
-      href={(await import('../assets/fonts/poppins-v22-latin-regular.woff2'))
+      href={(await import('@/assets/fonts/poppins-v22-latin-regular.woff2'))
         .default}
       as="font"
       crossorigin
     />
     <link
       rel="preload"
-      href={(await import('../assets/fonts/poppins-v22-latin-600.woff2'))
+      href={(await import('@/assets/fonts/poppins-v22-latin-600.woff2'))
         .default}
       as="font"
       crossorigin
@@ -45,7 +45,7 @@ const { title, description } = Astro.props
     <link
       rel="preload"
       href={(
-        await import('../assets/fonts/libre-caslon-text-v5-latin-700.woff2')
+        await import('@/assets/fonts/libre-caslon-text-v5-latin-700.woff2')
       ).default}
       as="font"
       crossorigin

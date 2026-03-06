@@ -1,18 +1,18 @@
 ---
 import { Image } from 'astro:assets'
-import PlayIcon from '../Icons/PlayIcon.astro'
-import { url } from '../../utils'
-import NavigationButton from '../NavigationButton/NavigationButton.astro'
-import Thumbnail from '../Thumbnail/Thumbnail.astro'
-import ThumbnailCaption from '../Thumbnail/ThumbnailCaption.astro'
+import PlayIcon from '@/components/Icons/PlayIcon.astro'
+import { url } from '@/utils'
+import NavigationButton from '@/components/NavigationButton/NavigationButton.astro'
+import Thumbnail from '@/components/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/Thumbnail/ThumbnailCaption.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
   videoSrc: url('/testimonial-video-maggi-maid.mp4#t=0.001'),
   videoType: 'video/mp4',
   thumbnailImageSrc:
-    import('../../assets/images/testimonial-thumbnail-maggi-maid.png'),
-  avatarImageSrc: import('../../assets/images/maggi-maid-avatar.png'),
+    import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
+  avatarImageSrc: import('@/assets/images/maggi-maid-avatar.png'),
   authorName: 'Margaret W.',
   authorPosition: 'Maggi Maid founder',
   quote:

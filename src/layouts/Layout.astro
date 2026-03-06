@@ -1,9 +1,9 @@
 ---
 import '@/assets/styles/shared.scss'
-import Footer from '@/components/Footer/Footer.astro'
-import Nav from '@/components/Nav/Nav.astro'
-import { SITE_NAME } from '@/consts'
-import { url } from '@/utils'
+import Footer from '@/components/sections/shared/Footer/Footer.astro'
+import Nav from '@/components/sections/shared/Nav/Nav.astro'
+import { SITE_NAME } from '@/config'
+import { url } from '@/lib/url'
 
 export interface Props {
   title: string

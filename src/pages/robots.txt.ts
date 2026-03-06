@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro'
-import { url } from '@/utils'
+import { url } from '@/lib/url'
 
 const getContent = (sitemapURL: string) => `
 User-agent: *

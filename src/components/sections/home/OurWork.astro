@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import { url } from '@/utils'
+import { url } from '@/lib/url'
 
 const projects = [
   {
@@ -15,8 +15,7 @@ const projects = [
   },
   {
     name: 'SOS Party Rental',
-    image:
-      import('@/assets/images/project-screenshot-sos-party-rental.png'),
+    image: import('@/assets/images/project-screenshot-sos-party-rental.png'),
     slug: 'sos-party-rental',
   },
   {

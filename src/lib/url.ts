@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { SITE, BASE } from './config'
+import { SITE, BASE } from '@/config'
 
 export const url = (pathname: string) => {
   const parts: string[] = []

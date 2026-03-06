@@ -34,8 +34,8 @@ const cards = [
       {
         cards.map(({ icon: Icon, title, paragraph }) => (
           <section class="card">
-            <div class="card-icon">
-              <Icon class="card-icon-bg" />
+            <div class="card-icon-wrapper">
+              <Icon class="card-icon" />
             </div>
             <h3 class="card-title">{title}</h3>
             <p class="card-paragraph">{paragraph}</p>
@@ -79,13 +79,13 @@ const cards = [
     border-radius: var(--border-radius-m);
   }
 
-  .card-icon {
+  .card-icon-wrapper {
     display: flex;
     justify-content: center;
-    color: var(--colour-text-contrast);
   }
 
-  .card-icon-bg {
+  .card-icon {
+    color: var(--colour-text-contrast);
     fill: var(--colour-surface-base);
   }
 

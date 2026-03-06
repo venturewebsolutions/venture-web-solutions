@@ -5,6 +5,9 @@ import { url } from '@/lib/url'
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import Swiper from '@/components/headless/Swiper/Swiper.astro'
+import SwiperWrapper from '@/components/headless/Swiper/SwiperWrapper.astro'
+import SwiperSlide from '@/components/headless/Swiper/SwiperSlide.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
@@ -27,11 +30,32 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     <h2 class="title">Voice of our happy clients</h2>
   </header>
 
-  <div class="swiper">
-    <div class="swiper-wrapper">
+  <Swiper
+    options={{
+      slidesPerView: 1,
+      spaceBetween: 32,
+
+      breakpoints: {
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+        },
+      },
+
+      pagination: {
+        el: '#testimonials .swiper-pagination',
+      },
+
+      navigation: {
+        nextEl: '#testimonials .swiper-button-next',
+        prevEl: '#testimonials .swiper-button-prev',
+      },
+    }}
+  >
+    <SwiperWrapper>
       {
         testimonials.map((testimonial) => (
-          <div class="swiper-slide">
+          <SwiperSlide>
             <div class="testimonial">
               <Thumbnail>
                 <button
@@ -79,11 +103,11 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 
               <p class="quote swiper-no-swiping">“{testimonial.quote}”</p>
             </div>
-          </div>
+          </SwiperSlide>
         ))
       }
-    </div>
-  </div>
+    </SwiperWrapper>
+  </Swiper>
 
   <div class="navigation">
     <NavigationButton dir="left" class="swiper-button-prev" />
@@ -186,10 +210,6 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     color: var(--colour-text-primary);
   }
 
-  .swiper {
-    max-width: 100%;
-  }
-
   .swiper-pagination {
     display: flex;
     align-items: center;
@@ -223,10 +243,6 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 </style>
 
 <script>
-  import 'swiper/css'
-  import Swiper from 'swiper/bundle'
-  import { Navigation, Pagination } from 'swiper/modules'
-
   window.addEventListener('load', () => {
     const wrappers = document.querySelectorAll(
       '#testimonials .thumbnail-media-wrapper',
@@ -278,28 +294,5 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
         started = false
       })
     }
-
-    new Swiper('#testimonials .swiper', {
-      modules: [Navigation, Pagination],
-
-      slidesPerView: 1,
-      spaceBetween: 32,
-
-      breakpoints: {
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 32,
-        },
-      },
-
-      pagination: {
-        el: '#testimonials .swiper-pagination',
-      },
-
-      navigation: {
-        nextEl: '#testimonials .swiper-button-next',
-        prevEl: '#testimonials .swiper-button-prev',
-      },
-    })
   })
 </script>

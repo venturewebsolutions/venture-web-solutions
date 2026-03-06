@@ -1,5 +1,8 @@
 ---
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
+import Swiper from '@/components/headless/Swiper/Swiper.astro'
+import SwiperWrapper from '@/components/headless/Swiper/SwiperWrapper.astro'
+import SwiperSlide from '@/components/headless/Swiper/SwiperSlide.astro'
 
 const steps = [
   {
@@ -34,11 +37,29 @@ const steps = [
     <p>It’s simple (we promise)!</p>
   </div>
 
-  <div class="steps swiper">
-    <div class="swiper-wrapper">
+  <Swiper
+    class="steps"
+    options={{
+      slidesPerView: 1,
+      spaceBetween: 32,
+
+      breakpoints: {
+        1024: {
+          slidesPerView: 2,
+          spaceBetween: 32,
+        },
+      },
+
+      navigation: {
+        nextEl: '#how-it-works .swiper-button-next',
+        prevEl: '#how-it-works .swiper-button-prev',
+      },
+    }}
+  >
+    <SwiperWrapper>
       {
         steps.map((step, i) => (
-          <div class="swiper-slide">
+          <SwiperSlide>
             <section class="step">
               <div class="step-surface">
                 <p class="step-number">
@@ -52,11 +73,11 @@ const steps = [
                 </p>
               </div>
             </section>
-          </div>
+          </SwiperSlide>
         ))
       }
-    </div>
-  </div>
+    </SwiperWrapper>
+  </Swiper>
 
   <div class="navigation">
     <NavigationButton dir="left" class="swiper-button-prev" />
@@ -81,10 +102,6 @@ const steps = [
     grid-area: intro;
     display: grid;
     gap: var(--spacing-m);
-  }
-
-  .swiper {
-    max-width: 100%;
   }
 
   .steps {
@@ -163,30 +180,3 @@ const steps = [
     }
   }
 </style>
-
-<script>
-  import 'swiper/css'
-  import Swiper from 'swiper/bundle'
-  import { Navigation, Pagination } from 'swiper/modules'
-
-  window.addEventListener('load', () => {
-    new Swiper('#how-it-works .swiper', {
-      modules: [Navigation, Pagination],
-
-      slidesPerView: 1,
-      spaceBetween: 32,
-
-      breakpoints: {
-        1024: {
-          slidesPerView: 2,
-          spaceBetween: 32,
-        },
-      },
-
-      navigation: {
-        nextEl: '#how-it-works .swiper-button-next',
-        prevEl: '#how-it-works .swiper-button-prev',
-      },
-    })
-  })
-</script>

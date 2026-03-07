@@ -228,6 +228,7 @@ const projects = [
 </style>
 
 <script>
+  import { onImagesLoaded } from '@/lib/images'
   import { gsap } from 'gsap'
   import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -243,19 +244,23 @@ const projects = [
       '.image-card',
     ) as NodeListOf<HTMLDivElement>
 
-    mm.add('(min-width: 48rem)', () => {
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: '.surface',
-            start: '50% 50%',
-            end: () => `+=${imageCarousel.scrollHeight}`,
-            scrub: true,
-            pin: '#our-work',
-          },
-        })
-        .to('.images', { bottom: 0, ease: 'none' }, 0)
-        .to('.title-carousel-overlay', { '--spotlight-position': '90%' }, 0)
+    const images = imageCarousel.querySelectorAll<HTMLImageElement>('.image')
+
+    onImagesLoaded(images, () => {
+      mm.add('(min-width: 48rem)', () => {
+        gsap
+          .timeline({
+            scrollTrigger: {
+              trigger: '.surface',
+              start: '50% 50%',
+              end: () => `+=${imageCarousel.scrollHeight}`,
+              scrub: true,
+              pin: '#our-work',
+            },
+          })
+          .to('.images', { bottom: 0, ease: 'none' }, 0)
+          .to('.title-carousel-overlay', { '--spotlight-position': '90%' }, 0)
+      })
     })
 
     for (const imageCard of imageCards) {

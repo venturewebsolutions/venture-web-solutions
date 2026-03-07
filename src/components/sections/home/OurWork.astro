@@ -68,6 +68,8 @@ const projects = [
                   alt={`${project.name} project screenshot`}
                   style={`--cursor-url: url(${url('/cursor.svg')});`}
                   class="image"
+                  widths={[525, 708, 1030, 1416]}
+                  sizes="(min-width: 48rem) min(40vw, 525px), 100vw"
                 />
                 <div class="image-footer">
                   <h3 class="image-caption">{project.name}</h3>

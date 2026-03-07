@@ -63,6 +63,8 @@ const posts = [
                 alt="Blog post thumnail"
                 class="thumbnail-image"
                 style={`--cursor-url: url(${url('/cursor.svg')});`}
+                widths={[216, 343, 432, 520, 708, 832, 1416]}
+                sizes="(min-width: 48rem) min(30vw, 416px), 100vw"
               />
             </a>
 
@@ -74,6 +76,8 @@ const posts = [
                 src={post.avatar}
                 alt={`${post.author} avatar`}
                 class="avatar"
+                widths={[43, 86]}
+                sizes="43px"
               />
             </ThumbnailCaption>
 

@@ -2,11 +2,31 @@
 import { url } from '@/lib/url'
 import Button from '@/components/ui/Button/Button.astro'
 import Squiggle from '@/components/ui/Squiggle/Squiggle.astro'
+import { Image } from 'astro:assets'
+import LazyVideo from '@/components/headless/LazyVideo/LazyVideo.astro'
 ---
 
 <header id="hero">
-  <div class="hero-video">
-    <video src="/7513671-uhd_3840_2160_24fps.mp4" autoplay muted loop></video>
+  <div class="hero-background">
+    <Image
+      src={import('@/assets/images/hero.png')}
+      alt=""
+      widths={[
+        400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600,
+        2800,
+      ]}
+      sizes="100vw"
+      class="hero-image"
+      loading="eager"
+    />
+
+    <LazyVideo
+      src={import('@/assets/videos/hero.mp4')}
+      autoplay
+      muted
+      loop
+      class="hero-video"
+    />
   </div>
 
   <div class="hero-content section container">
@@ -55,7 +75,7 @@ import Squiggle from '@/components/ui/Squiggle/Squiggle.astro'
     );
   }
 
-  .hero-video {
+  .hero-background {
     position: absolute;
     top: 0;
     left: 0;
@@ -63,12 +83,6 @@ import Squiggle from '@/components/ui/Squiggle/Squiggle.astro'
     height: 100%;
     overflow: hidden;
     z-index: -1;
-
-    video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
 
     &::after {
       content: '';
@@ -82,6 +96,22 @@ import Squiggle from '@/components/ui/Squiggle/Squiggle.astro'
         color-mix(in srgb, var(--colour-surface-base) 0%, transparent),
         color-mix(in srgb, var(--colour-surface-base) 100%, transparent)
       );
+    }
+  }
+
+  .hero-image {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+  }
+
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    object-fit: cover;
+
+    &:not([data-loaded]) {
+      display: none;
     }
   }
 

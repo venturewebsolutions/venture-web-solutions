@@ -1,6 +1,7 @@
 ---
 import { url } from '@/lib/url'
 import Button from '@/components/ui/Button/Button.astro'
+import { Image } from 'astro:assets'
 ---
 
 <section id="about-us" class="section container">
@@ -12,8 +13,20 @@ import Button from '@/components/ui/Button/Button.astro'
       websites to small businesses.
     </p>
     <div class="images">
-      <img src={url('/jordan.svg')} alt="Venture Web Solutions team at work" />
-      <img src={url('/daniela.png')} alt="Venture Web Solutions team at work" />
+      <Image
+        src={import('@/assets/images/jordan-avatar.png')}
+        alt="Jordan, Venture Web Solutions co-founder"
+        widths={[46]}
+        sizes="46px"
+        width="46"
+      />
+      <Image
+        src={import('@/assets/images/daniela-avatar.png')}
+        alt="Daniela, Venture Web Solutions co-founder"
+        widths={[46, 92]}
+        sizes="46px"
+        width="46"
+      />
     </div>
   </div>
 

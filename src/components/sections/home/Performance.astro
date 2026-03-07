@@ -12,6 +12,8 @@ import { Image } from 'astro:assets'
     src={import('@/assets/images/performance-screenshot.png')}
     alt="Screenshot of Google PageSpeed Insights showing a perfect score of 100 for both mobile and desktop performance"
     class="image"
+    widths={[343, 500, 686, 1000, 1372]}
+    sizes="(min-width: 48rem) min(50vw, 648px), 100vw"
   />
 
   <div class="content">
@@ -23,7 +25,12 @@ import { Image } from 'astro:assets'
 
     <figure class="quotation">
       <div class="quotation-mark">
-        <Image src={import('@/assets/images/quotation-mark.png')} alt="" />
+        <Image
+          src={import('@/assets/images/quotation-mark.png')}
+          alt=""
+          widths={[42, 84]}
+          sizes="42px"
+        />
       </div>
       <div class="quotation-content">
         <blockquote cite="https://support.google.com/adsense/answer/7450973">

@@ -77,6 +77,8 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                   <Image
                     src={testimonial.thumbnailImageSrc}
                     alt={`${testimonial.client} testimonial`}
+                    widths={[365, 416, 730, 857, 1714]}
+                    sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
                   />
                   <PlayIcon class="play-icon" />
                 </button>
@@ -90,6 +92,8 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                       src={testimonial.avatarImageSrc}
                       alt={`${testimonial.client} avatar`}
                       class="client-avatar"
+                      widths={[43, 86]}
+                      sizes="43px"
                     />
                     <div>
                       <p class="client-name">{testimonial.authorName}</p>

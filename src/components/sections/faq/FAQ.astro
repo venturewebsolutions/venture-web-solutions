@@ -1,0 +1,84 @@
+---
+import FAQList from '@/components/ui/FAQList/FAQList.astro'
+import topics from '@/data/faqs.json'
+---
+
+<div id="faq" class="container section">
+  <header class="left">
+    <div class="header">
+      <p class="caption">FAQ’s</p>
+      <h1 class="h2">The not-so-boring FAQ</h1>
+    </div>
+
+    <p>
+      Got questions? We’ve got answers! Dive into our FAQ to discover how our
+      web design services work and what we can create for you. Wondering about
+      something specific? Check below — and if it’s not there, just reach out!.
+    </p>
+  </header>
+
+  <div class="right">
+    <div class="topics">
+      {
+        topics.map((topic) => (
+          <section class="topic">
+            <h2 class="topic-name">{topic.name}</h2>
+
+            <FAQList faqs={topic.faqs} />
+          </section>
+        ))
+      }
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #faq {
+    display: grid;
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .left {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .topics {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .topic {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .topic-name {
+    @include font-h3;
+    color: var(--colour-text-contrast);
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    #faq {
+      grid-template-columns: repeat(2, auto);
+      gap: var(--spacing-4xl);
+      justify-content: space-between;
+    }
+
+    .left {
+      max-width: rem(456px);
+    }
+
+    .right {
+      max-width: rem(737px);
+    }
+
+    .topics {
+      gap: var(--spacing-4xl);
+    }
+  }
+</style>

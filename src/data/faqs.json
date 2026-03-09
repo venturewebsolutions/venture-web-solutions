@@ -1,30 +1,51 @@
 [
   {
-    "question": "How does the subscription work?",
-    "answer": "Our subscription plan is designed to be low commitment and flexible. It lasts for a minimum of 6 months, and after that, it’s month-to-month — you can cancel anytime. Once you cancel, the website stops being serviced, and we retain ownership (otherwise the model wouldn’t work for anyone!). The subscription starts only when you’re happy with the design, giving you confidence that what we build is exactly what you want."
+    "name": "Monthly subscription",
+    "faqs": [
+      {
+        "question": "How does the subscription work?",
+        "answer": "Our subscription plan is designed to be low commitment and flexible. It lasts for a minimum of 6 months, and after that, it’s month-to-month — you can cancel anytime. Once you cancel, the website stops being serviced, and we retain ownership (otherwise the model wouldn’t work for anyone!). The subscription starts only when you’re happy with the design, giving you confidence that what we build is exactly what you want.",
+        "featured": true
+      },
+      {
+        "question": "What’s included in the subscription?",
+        "answer": "A lot! You get a professionally designed, hand-coded 5-page website, hosting, a domain, unlimited edits, 24/7 support, lifetime design updates every 3 years, technical SEO optimisation, copywriting for your included pages, and a custom-coded build that’s fast, accessible, and secure. Add-ons are also available for extra pages, CMS collections, and internationalisation (multi-language support). The idea is that it comes with everything you need to look professional online and support your business as it grows.",
+        "featured": true
+      },
+      {
+        "question": "Why is the subscription only £100/month? What’s the catch?",
+        "answer": "No catch. The idea is to form long-term relationships with our customers so that it pays off over time and works for everyone — our customers get an excellent level of service at a manageable cost, and we get a steady, reliable cash flow. There are no tricks, it just means we have to absorb the risk that comes with offering a subscription with such a low minimum commitment (6 months) and try our best to deliver something exceptional so that our customers stay with us for the long term — and that’s a risk we’re willing to take!",
+        "featured": true
+      },
+      {
+        "question": "Do I really get 24/7 support? Even evenings and weekends?",
+        "answer": "Yes! Call, text, or email us whenever you need help. We’re a small business too, so we understand that your website doesn’t keep office hours.",
+        "featured": true
+      },
+      {
+        "question": "What counts as an “unlimited edit”?",
+        "answer": "Mostly updates to existing content — things like swapping images, updating text, changing prices, updating opening hours, adding testimonials, etc. Bigger changes — like adding new pages, redesigning entire page sections, or building new features — cost extra, but we’ll always give you a clear price before we start.",
+        "featured": true
+      },
+      {
+        "question": "How do I ask for changes or edits later on?",
+        "answer": "You can send us an email to our support email address. It would land in our ticketing system and be placed into a queue. We aim to be quick, clear, and helpful every step of the way.",
+        "featured": true
+      },
+      {
+        "question": "What is the minimum commitment?",
+        "answer": "The minimum subscription is 6 months. After that, you’ll switch to month-to-month and you can cancel whenever you like. This gives you enough time to see your website in action and decide if it works for you, without feeling locked in.",
+        "featured": true
+      }
+    ]
   },
   {
-    "question": "What’s included in the subscription?",
-    "answer": "A lot! You get a professionally designed, hand-coded 5-page website, hosting, a domain, unlimited edits, 24/7 support, lifetime design updates every 3 years, technical SEO optimisation, copywriting for your included pages, and a custom-coded build that’s fast, accessible, and secure. Add-ons are also available for extra pages, CMS collections, and internationalisation (multi-language support). The idea is that it comes with everything you need to look professional online and support your business as it grows."
-  },
-  {
-    "question": "Why is the subscription only £100/month? What’s the catch?",
-    "answer": "No catch. The idea is to form long-term relationships with our customers so that it pays off over time and works for everyone — our customers get an excellent level of service at a manageable cost, and we get a steady, reliable cash flow. There are no tricks, it just means we have to absorb the risk that comes with offering a subscription with such a low minimum commitment (6 months) and try our best to deliver something exceptional so that our customers stay with us for the long term — and that’s a risk we’re willing to take!"
-  },
-  {
-    "question": "Do I really get 24/7 support? Even evenings and weekends?",
-    "answer": "Yes! Call, text, or email us whenever you need help. We’re a small business too, so we understand that your website doesn’t keep office hours."
-  },
-  {
-    "question": "What counts as an “unlimited edit”?",
-    "answer": "Mostly updates to existing content — things like swapping images, updating text, changing prices, updating opening hours, adding testimonials, etc. Bigger changes — like adding new pages, redesigning entire page sections, or building new features — cost extra, but we’ll always give you a clear price before we start."
-  },
-  {
-    "question": "How do I ask for changes or edits later on?",
-    "answer": "You can send us an email to our support email address. It would land in our ticketing system and be placed into a queue. We aim to be quick, clear, and helpful every step of the way."
-  },
-  {
-    "question": "What is the minimum commitment?",
-    "answer": "The minimum subscription is 6 months. After that, you’ll switch to month-to-month and you can cancel whenever you like. This gives you enough time to see your website in action and decide if it works for you, without feeling locked in."
+    "name": "Lump sum",
+    "faqs": [
+      {
+        "question": "Can I have unlimited edits if I pay a lump sum?",
+        "answer": "Absolutely! We offer unlimited edits as a pay-monthly add-on for lump sum customers."
+      }
+    ]
   }
 ]

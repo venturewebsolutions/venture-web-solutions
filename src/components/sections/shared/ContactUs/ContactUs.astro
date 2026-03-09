@@ -1,9 +1,15 @@
 ---
 import { url } from '@/lib/url'
 import Button from '@/components/ui/Button/Button.astro'
+
+type Props = {
+  reversed?: boolean
+}
+
+const { reversed } = Astro.props
 ---
 
-<section id="contact-us" class="container section">
+<section id="contact-us" class="container section" data-reversed={reversed}>
   <div class="content">
     <header class="header">
       <h2 class="h2"><span class="italic">Still</span> have a question?</h2>
@@ -148,8 +154,10 @@ import Button from '@/components/ui/Button/Button.astro'
   }
 
   .email-link-wrapper {
-    display: grid;
+    display: flex;
     gap: var(--spacing-m);
+    align-items: baseline;
+    flex-wrap: wrap;
   }
 
   .email-link {
@@ -212,13 +220,17 @@ import Button from '@/components/ui/Button/Button.astro'
 
   @media screen and (min-width: rem(1200px)) {
     #contact-us {
-      grid-template-columns: minmax(0, rem(679px)) minmax(0, rem(502px));
+      grid-template-columns: minmax(0, rem(502px)) minmax(0, rem(679px));
       justify-content: space-between;
       align-items: start;
-    }
 
-    .form {
-      order: -1;
+      &[data-reversed] {
+        grid-template-columns: minmax(0, rem(679px)) minmax(0, rem(502px));
+
+        .form {
+          order: -1;
+        }
+      }
     }
   }
 </style>

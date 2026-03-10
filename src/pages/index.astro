@@ -1,16 +1,16 @@
 ---
 import AboutUs from '@/components/sections/home/AboutUs.astro'
 import Blog from '@/components/sections/home/Blog.astro'
-import FAQs from '@/components/sections/home/FAQs.astro'
 import Hero from '@/components/sections/home/Hero.astro'
-import HowItWorks from '@/components/sections/home/HowItWorks.astro'
 import OurWork from '@/components/sections/home/OurWork.astro'
 import Performance from '@/components/sections/home/Performance.astro'
 import Pricing from '@/components/sections/home/Pricing.astro'
 import ReadyToWorkTogether from '@/components/sections/home/ReadyToWorkTogether.astro'
-import Testimonials from '@/components/sections/home/Testimonials.astro'
 import WhatWeOffer from '@/components/sections/home/WhatWeOffer.astro'
-import ContactUs from '@/components/sections/shared/ContactUs/ContactUs.astro'
+import ContactUs from '@/components/sections/shared/ContactUs.astro'
+import FAQ from '@/components/sections/shared/FAQ.astro'
+import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
+import Testimonials from '@/components/sections/shared/Testimonials.astro'
 import Layout from '@/layouts/Layout.astro'
 ---
 
@@ -26,8 +26,8 @@ import Layout from '@/layouts/Layout.astro'
   <Testimonials />
   <HowItWorks />
   <Pricing />
-  <FAQs />
-  <ContactUs reversed />
+  <FAQ />
+  <ContactUs reversed headingUnderline />
   <ReadyToWorkTogether />
   <Blog />
 </Layout>

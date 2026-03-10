@@ -1,0 +1,24 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PricingSection from '@/components/sections/pricing/Pricing.astro'
+import ContactUs from '@/components/sections/shared/ContactUs.astro'
+import FAQ from '@/components/sections/shared/FAQ.astro'
+import Testimonials from '@/components/sections/shared/Testimonials.astro'
+import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
+---
+
+<Layout title="Pricing (TODO)" description="TODO">
+  <PricingSection />
+  <Testimonials />
+  <HowItWorks />
+  <FAQ />
+  <ContactUs reversed>
+    <Fragment slot="heading">Get in touch!</Fragment>
+    <Fragment slot="paragraph">
+      Have a question about our pricing? Get in touch using this form and we’ll
+      respond as soon as we can – usually within 24 hours. If you're ready with
+      your project details, feel free to explore our project planner for a
+      clearer, more structured process.
+    </Fragment>
+  </ContactUs>
+</Layout>

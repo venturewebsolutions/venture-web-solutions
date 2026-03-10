@@ -21,6 +21,11 @@
   color: var(--colour-text-contrast);
 }
 
+.h2-italic {
+  @include font-h2-italic;
+  color: var(--colour-text-contrast);
+}
+
 .caption {
   @include font-caption;
 

@@ -4,24 +4,35 @@ import Button from '@/components/ui/Button/Button.astro'
 
 type Props = {
   reversed?: boolean
+  headingUnderline?: boolean
 }
 
-const { reversed } = Astro.props
+const { reversed, headingUnderline } = Astro.props
 ---
 
-<section id="contact-us" class="container section" data-reversed={reversed}>
-  <div class="content">
+<section
+  id="contact-us"
+  class="container section"
+  data-reversed={reversed || undefined}
+>
+  <div class="content-wrapper">
     <header class="header">
-      <h2 class="h2"><span class="italic">Still</span> have a question?</h2>
-      <hr class="heading-underline" />
+      <h2 class="h2">
+        <slot name="heading">
+          <span class="h2-italic">Still</span> have a question?
+        </slot>
+      </h2>
+      {headingUnderline && <hr class="heading-underline" />}
     </header>
 
     <div class="content">
       <p>
-        Okay, not a problem! For general enquires just reach out using this form
-        and we’ll get back to you as soon as possible. If you're ready with your
-        project details, feel free to explore our project planner for a clearer,
-        more structured process.
+        <slot name="paragraph">
+          Okay, not a problem! For general enquires just reach out using this
+          form and we’ll get back to you as soon as possible. If you're ready
+          with your project details, feel free to explore our project planner
+          for a clearer, more structured process.
+        </slot>
       </p>
 
       <div class="email-link-wrapper">
@@ -127,14 +138,6 @@ const { reversed } = Astro.props
   .header {
     display: grid;
     gap: var(--spacing-xs);
-  }
-
-  .h2 {
-    @include font-h2;
-
-    .italic {
-      @include font-h2-italic;
-    }
   }
 
   .heading-underline {

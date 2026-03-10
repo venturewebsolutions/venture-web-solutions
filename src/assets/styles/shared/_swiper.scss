@@ -1,0 +1,29 @@
+.swiper {
+  max-width: 100%;
+}
+
+.swiper-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-s);
+}
+
+.swiper-pagination-bullet {
+  --size: 12px;
+
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: var(--colour-secondary);
+  opacity: 0.4;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.swiper-button-disabled {
+  opacity: 0.4;
+  cursor: default;
+}

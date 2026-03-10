@@ -5,9 +5,6 @@ import { url } from '@/lib/url'
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
-import Swiper from '@/components/headless/Swiper/Swiper.astro'
-import SwiperWrapper from '@/components/headless/Swiper/SwiperWrapper.astro'
-import SwiperSlide from '@/components/headless/Swiper/SwiperSlide.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
@@ -21,6 +18,7 @@ const testimonial = {
   quote:
     'Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.',
 }
+
 const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 ---
 
@@ -30,32 +28,11 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     <h2 class="title">Voice of our happy clients</h2>
   </header>
 
-  <Swiper
-    options={{
-      slidesPerView: 1,
-      spaceBetween: 32,
-
-      breakpoints: {
-        1024: {
-          slidesPerView: 3,
-          spaceBetween: 32,
-        },
-      },
-
-      pagination: {
-        el: '#testimonials .swiper-pagination',
-      },
-
-      navigation: {
-        nextEl: '#testimonials .swiper-button-next',
-        prevEl: '#testimonials .swiper-button-prev',
-      },
-    }}
-  >
-    <SwiperWrapper>
+  <div class="swiper">
+    <div class="swiper-wrapper">
       {
         testimonials.map((testimonial) => (
-          <SwiperSlide>
+          <div class="swiper-slide">
             <div class="testimonial">
               <Thumbnail>
                 <button
@@ -107,11 +84,11 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 
               <p class="quote swiper-no-swiping">“{testimonial.quote}”</p>
             </div>
-          </SwiperSlide>
+          </div>
         ))
       }
-    </SwiperWrapper>
-  </Swiper>
+    </div>
+  </div>
 
   <div class="navigation">
     <NavigationButton dir="left" class="swiper-button-prev" />
@@ -214,39 +191,44 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     color: var(--colour-text-primary);
   }
 
-  .swiper-pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-s);
-  }
-
   .navigation {
     display: flex;
     justify-content: space-between;
-
-    :global(.swiper-pagination-bullet) {
-      --size: 12px;
-
-      width: var(--size);
-      height: var(--size);
-      border-radius: 50%;
-      background-color: var(--colour-secondary);
-      opacity: 0.4;
-    }
-
-    :global(.swiper-pagination-bullet-active) {
-      opacity: 1;
-    }
-
-    :global(.swiper-button-disabled) {
-      opacity: 0.4;
-      cursor: default;
-    }
   }
 </style>
 
 <script>
+  import 'swiper/css'
+  import Swiper from 'swiper/bundle'
+  import { Navigation, Pagination } from 'swiper/modules'
+
+  // Swiper
+  window.addEventListener('load', () => {
+    new Swiper('#testimonials .swiper', {
+      modules: [Navigation, Pagination],
+
+      slidesPerView: 1,
+      spaceBetween: 32,
+
+      breakpoints: {
+        1024: {
+          slidesPerView: 3,
+          spaceBetween: 32,
+        },
+      },
+
+      navigation: {
+        nextEl: '#testimonials .swiper-button-next',
+        prevEl: '#testimonials .swiper-button-prev',
+      },
+
+      pagination: {
+        el: '#testimonials .swiper-pagination',
+      },
+    })
+  })
+
+  // Videos
   window.addEventListener('load', () => {
     const wrappers = document.querySelectorAll(
       '#testimonials .thumbnail-media-wrapper',

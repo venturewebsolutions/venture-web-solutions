@@ -1,8 +1,12 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
+type VideoModule = {
+  default: string
+}
+
 type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
-  src: string | Promise<typeof import('*.mp4')>
+  src: string | Promise<VideoModule>
 }
 
 const { src, ...props } = Astro.props

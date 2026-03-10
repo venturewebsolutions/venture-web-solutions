@@ -56,6 +56,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                     alt={`${testimonial.client} testimonial`}
                     widths={[365, 416, 730, 857, 1714]}
                     sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
+                    class="thumbnail-image"
                   />
                   <PlayIcon class="play-icon" />
                 </button>
@@ -152,9 +153,15 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
       var(--transition-ease-default);
   }
 
+  .thumbnail-image {
+    aspect-ratio: 421/419;
+    object-fit: cover;
+  }
+
   .thumbnail-video {
     position: absolute;
-    inset: 0;
+    width: 100%;
+    height: 100%;
     object-fit: cover;
   }
 

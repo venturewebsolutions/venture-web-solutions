@@ -2,9 +2,9 @@
 import FAQ from '@/components/sections/faq/FAQ.astro'
 import ContactUs from '@/components/sections/shared/ContactUs.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { getFaqTopics } from '@/lib/collections'
 
-const topics = (await getCollection('faqTopics')).map((topic) => ({
+const topics = (await getFaqTopics()).map((topic) => ({
   name: topic.data.name,
   faqs: topic.data.faqs.map((faq) => ({
     question: faq.question,

@@ -33,6 +33,7 @@ const faqTopics = defineCollection({
         featured: z.boolean().optional(),
       }),
     ),
+    order: z.number(),
   }),
 })
 

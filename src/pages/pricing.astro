@@ -5,9 +5,9 @@ import ContactUs from '@/components/sections/shared/ContactUs.astro'
 import FAQ from '@/components/sections/shared/FAQ.astro'
 import Testimonials from '@/components/sections/shared/Testimonials.astro'
 import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
-import { getCollection } from 'astro:content'
+import { getFaqTopics } from '@/lib/collections'
 
-const faqs = (await getCollection('faqTopics'))
+const faqs = (await getFaqTopics())
   .flatMap((topic) => topic.data.faqs)
   .filter((faq) => faq.featured)
   .map((faq) => ({

@@ -38,7 +38,8 @@
         "answer": "The minimum subscription is 6 months. After that, you’ll switch to month-to-month and you can cancel whenever you like. This gives you enough time to see your website in action and decide if it works for you, without feeling locked in.",
         "featured": true
       }
-    ]
+    ],
+    "order": 1
   },
   {
     "id": "lump-sum",
@@ -48,6 +49,7 @@
         "question": "Can I have unlimited edits if I pay a lump sum?",
         "answer": "Absolutely! We offer unlimited edits as a pay-monthly add-on for lump sum customers."
       }
-    ]
+    ],
+    "order": 2
   }
 ]

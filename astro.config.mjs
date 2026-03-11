@@ -14,7 +14,6 @@ export default defineConfig({
       devSourcemap: true,
       preprocessorOptions: {
         scss: {
-          api: 'modern-compiler',
           loadPaths: [
             fileURLToPath(new URL('./src/assets/styles/lib/', import.meta.url)),
           ],

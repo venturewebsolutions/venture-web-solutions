@@ -12,11 +12,10 @@ import FAQ from '@/components/sections/shared/FAQ.astro'
 import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
 import Testimonials from '@/components/sections/shared/Testimonials.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getBlogPosts } from '@/lib/collections'
+import { getBlogPosts, getFaqTopics } from '@/lib/collections'
 import { url } from '@/lib/url'
-import { getCollection } from 'astro:content'
 
-const faqs = (await getCollection('faqTopics'))
+const faqs = (await getFaqTopics())
   .flatMap((topic) => topic.data.faqs)
   .filter((faq) => faq.featured)
   .map((faq) => ({

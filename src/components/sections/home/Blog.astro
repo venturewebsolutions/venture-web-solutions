@@ -1,43 +1,15 @@
 ---
-import { Image } from 'astro:assets'
-import { url } from '@/lib/url'
 import Button from '@/components/ui/Button/Button.astro'
-import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
-import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
-import Badge from '@/components/ui/Badge/Badge.astro'
+import BlogPostGrid, {
+  type BlogPost,
+} from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
+import { url } from '@/lib/url'
 
-const posts = [
-  {
-    title:
-      'Why page speed shapes first impressions: How a slow site can cost you future customers',
-    image: import('@/assets/images/person-typing-on-laptop.jpg'),
-    readTimeMinutes: 10,
-    avatar: import('@/assets/images/jordan-avatar.png'),
-    author: 'Jordan',
-    topic: 'Blog topic',
-    url: url('/blog/posts/why-page-speed-shapes-first-impressions'),
-  },
-  {
-    title:
-      'Custom website design vs templates: Which is better for your business?',
-    image: import('@/assets/images/person-drawing-wireframes.jpg'),
-    readTimeMinutes: 8,
-    avatar: import('@/assets/images/daniela-avatar.png'),
-    author: 'Daniela',
-    topic: 'Blog topic',
-    url: url('/blog/posts/custom-website-design-vs-templates'),
-  },
-  {
-    title:
-      'The power of hand-coded websites: Why writing your own code dramatically boosts performance',
-    image: import('@/assets/images/person-writing-code.jpg'),
-    readTimeMinutes: 5,
-    avatar: import('@/assets/images/jordan-avatar.png'),
-    author: 'Jordan',
-    topic: 'Blog topic',
-    url: url('/blog/posts/the-power-of-hand-coded-websites'),
-  },
-]
+type Props = {
+  posts: BlogPost[]
+}
+
+const { posts } = Astro.props
 ---
 
 <section id="blog" class="container section">
@@ -52,55 +24,7 @@ const posts = [
     </Button>
   </div>
 
-  <div class="posts">
-    {
-      posts.map((post) => (
-        <section class="post">
-          <Thumbnail>
-            <a href={post.url} aria-label={post.title}>
-              <Image
-                src={post.image}
-                alt="Blog post thumnail"
-                class="thumbnail-image"
-                style={`--cursor-url: url(${url('/cursor.svg')});`}
-                widths={[216, 343, 432, 520, 708, 832, 1416]}
-                sizes="(min-width: 48rem) min(30vw, 416px), 100vw"
-              />
-            </a>
-
-            <ThumbnailCaption
-              position="bottom left"
-              class="thumbnail-caption thumbnail-caption-avatar"
-            >
-              <Image
-                src={post.avatar}
-                alt={`${post.author} avatar`}
-                class="avatar"
-                widths={[43, 86]}
-                sizes="43px"
-              />
-            </ThumbnailCaption>
-
-            <ThumbnailCaption
-              position="top right"
-              class="thumbnail-caption thumbnail-caption-badge"
-            >
-              <Badge variant="tertiary" size="s">
-                {post.topic}
-              </Badge>
-            </ThumbnailCaption>
-          </Thumbnail>
-
-          <div class="post-summary">
-            <p class="post-caption caption">{post.readTimeMinutes} mins read</p>
-            <a href={post.url}>
-              <h3 class="post-title">{post.title}</h3>
-            </a>
-          </div>
-        </section>
-      ))
-    }
-  </div>
+  <BlogPostGrid posts={posts} blogPostTitleTag="h3" />
 </section>
 
 <style lang="scss">
@@ -122,76 +46,11 @@ const posts = [
     max-width: rem(535px);
   }
 
-  .posts {
-    display: grid;
-    gap: var(--spacing-2xl);
-  }
-
-  .post {
-    display: grid;
-    gap: var(--spacing-m);
-  }
-
-  .thumbnail-image {
-    border-radius: var(--border-radius-m);
-    width: 100%;
-    aspect-ratio: 421/238;
-    object-fit: cover;
-    cursor:
-      var(--cursor-url) 56.5 56.5,
-      pointer;
-  }
-
-  .thumbnail-caption {
-    --background-color: var(--colour-surface-base);
-    --border-radius: var(--border-radius-s);
-  }
-
-  .thumbnail-caption-avatar {
-    --padding: #{rem(10px)};
-
-    padding-top: var(--padding);
-    padding-right: var(--padding);
-  }
-
-  .thumbnail-caption-badge {
-    --padding: #{rem(8px)};
-
-    padding-bottom: var(--padding);
-    padding-left: var(--padding);
-  }
-
-  .avatar {
-    width: rem(43px);
-    height: rem(43px);
-  }
-
-  .post-summary {
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
-  .post-caption {
-    @include font-body;
-  }
-
-  .post-title {
-    @include font-h4;
-  }
-
   @media screen and (min-width: rem(1024px)) {
     .intro {
       grid-template-columns: 1fr auto;
       justify-content: space-between;
       align-items: end;
-    }
-  }
-
-  @media screen and (min-width: rem(768px)) {
-    .posts {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--spacing-2xl);
-      align-items: start;
     }
   }
 </style>

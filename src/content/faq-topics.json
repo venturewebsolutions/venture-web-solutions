@@ -1,5 +1,6 @@
 [
   {
+    "id": "monthly-subscription",
     "name": "Monthly subscription",
     "faqs": [
       {
@@ -40,6 +41,7 @@
     ]
   },
   {
+    "id": "lump-sum",
     "name": "Lump sum",
     "faqs": [
       {

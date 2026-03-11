@@ -12,6 +12,28 @@ import FAQ from '@/components/sections/shared/FAQ.astro'
 import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
 import Testimonials from '@/components/sections/shared/Testimonials.astro'
 import Layout from '@/layouts/Layout.astro'
+import { getBlogPosts } from '@/lib/collections'
+import { url } from '@/lib/url'
+import { getCollection } from 'astro:content'
+
+const faqs = (await getCollection('faqTopics'))
+  .flatMap((topic) => topic.data.faqs)
+  .filter((faq) => faq.featured)
+  .map((faq) => ({
+    question: faq.question,
+    answer: faq.answer,
+  }))
+
+const posts = (await getBlogPosts())
+  .filter((posts) => posts.data.featured)
+  .map((post) => ({
+    title: post.data.title,
+    topic: post.data.topic,
+    url: url(`/blog/posts/${post.id}/`),
+    thumbnail: post.data.thumbnail,
+    author: post.data.author,
+    readTimeMinutes: post.data.readTimeMinutes,
+  }))
 ---
 
 <Layout
@@ -26,8 +48,8 @@ import Layout from '@/layouts/Layout.astro'
   <Testimonials />
   <HowItWorks />
   <Pricing />
-  <FAQ />
+  <FAQ faqs={faqs} />
   <ContactUs reversed headingUnderline />
   <ReadyToWorkTogether />
-  <Blog />
+  <Blog posts={posts} />
 </Layout>

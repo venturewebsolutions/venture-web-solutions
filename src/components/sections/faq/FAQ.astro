@@ -1,6 +1,16 @@
 ---
-import FAQList from '@/components/ui/FAQList/FAQList.astro'
-import topics from '@/data/faqs.json'
+import FAQList, { type FAQ } from '@/components/ui/FAQList/FAQList.astro'
+
+export type FAQTopic = {
+  name: string
+  faqs: FAQ[]
+}
+
+type Props = {
+  topics: FAQTopic[]
+}
+
+const { topics } = Astro.props
 ---
 
 <div id="faq" class="container section">

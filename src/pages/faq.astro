@@ -2,9 +2,18 @@
 import FAQ from '@/components/sections/faq/FAQ.astro'
 import ContactUs from '@/components/sections/shared/ContactUs.astro'
 import Layout from '@/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const topics = (await getCollection('faqTopics')).map((topic) => ({
+  name: topic.data.name,
+  faqs: topic.data.faqs.map((faq) => ({
+    question: faq.question,
+    answer: faq.answer,
+  })),
+}))
 ---
 
 <Layout title="FAQ (TODO)" description="TODO">
-  <FAQ />
+  <FAQ topics={topics} />
   <ContactUs headingUnderline />
 </Layout>

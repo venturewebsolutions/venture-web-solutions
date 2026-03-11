@@ -1,12 +1,13 @@
 ---
 import Button from '@/components/ui/Button/Button.astro'
-import FAQList from '@/components/ui/FAQList/FAQList.astro'
-import topics from '@/data/faqs.json'
+import FAQList, { type FAQ } from '@/components/ui/FAQList/FAQList.astro'
 import { url } from '@/lib/url'
 
-const featuredFaqs = topics
-  .flatMap((item) => item.faqs)
-  .filter((faq) => faq.featured)
+type Props = {
+  faqs: FAQ[]
+}
+
+const { faqs } = Astro.props
 ---
 
 <section id="faq" class="section container">
@@ -29,7 +30,7 @@ const featuredFaqs = topics
     </div>
   </div>
 
-  <FAQList faqs={featuredFaqs} />
+  <FAQList faqs={faqs} />
 </section>
 
 <style lang="scss">

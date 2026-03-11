@@ -4,11 +4,11 @@ import PlayIcon from '@/components/icons/PlayIcon.astro'
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import VideoSource from '@/components/headless/VideoSource/VideoSource.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
-  videoSrc: (await import('@/assets/videos/testimonial-video-maggi-maid.mp4'))
-    .default,
+  videoSrc: import('@/assets/videos/testimonial-video-maggi-maid.mp4'),
   videoType: 'video/mp4',
   thumbnailImageSrc:
     import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
@@ -45,9 +45,10 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                     preload="none"
                     class="thumbnail-video"
                   >
-                    <source
-                      src={`${testimonial.videoSrc}#t=0.001`}
+                    <VideoSource
+                      src={testimonial.videoSrc}
                       type={testimonial.videoType}
+                      hash="t=0.001"
                     />
                   </video>
 

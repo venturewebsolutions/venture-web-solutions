@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type VideoModule = {
+  default: string
+}
+
+type Props = Omit<HTMLAttributes<'source'>, 'src'> & {
+  src: string | Promise<VideoModule>
+  hash?: string
+}
+
+const { src: _, hash, ...props } = Astro.props
+
+let src =
+  typeof Astro.props.src === 'string'
+    ? Astro.props.src
+    : (await Astro.props.src).default
+
+if (hash) {
+  src += `#${hash}`
+}
+---
+
+<source {...props} src={src} />

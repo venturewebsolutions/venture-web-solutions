@@ -1,14 +1,14 @@
 ---
 import { Image } from 'astro:assets'
 import PlayIcon from '@/components/icons/PlayIcon.astro'
-import { url } from '@/lib/url'
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
-  videoSrc: url('/testimonial-video-maggi-maid.mp4#t=0.001'),
+  videoSrc: (await import('@/assets/videos/testimonial-video-maggi-maid.mp4'))
+    .default,
   videoType: 'video/mp4',
   thumbnailImageSrc:
     import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
@@ -46,7 +46,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                     class="thumbnail-video"
                   >
                     <source
-                      src={testimonial.videoSrc}
+                      src={`${testimonial.videoSrc}#t=0.001`}
                       type={testimonial.videoType}
                     />
                   </video>

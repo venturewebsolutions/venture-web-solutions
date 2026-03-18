@@ -5,13 +5,14 @@ import { url } from '@/lib/url'
 
 type Props = {
   faqs: FAQ[]
+  reversed?: true
 }
 
-const { faqs } = Astro.props
+const { faqs, reversed } = Astro.props
 ---
 
-<section id="faq" class="section container">
-  <div>
+<section id="faq" class="section container" data-reversed={reversed}>
+  <div class="content">
     <header class="header">
       <p class="caption">FAQs</p>
       <h2 class="h2">Have questions?</h2>
@@ -41,6 +42,10 @@ const { faqs } = Astro.props
     display: grid;
     justify-content: space-between;
     gap: var(--spacing-5xl);
+
+    &[data-reversed] > .content {
+      order: 1;
+    }
   }
 
   .intro-text {
@@ -54,6 +59,10 @@ const { faqs } = Astro.props
   @media screen and (min-width: rem(1024px)) {
     #faq {
       grid-template-columns: minmax(0, rem(456px)) minmax(0, rem(737px));
+
+      &[data-reversed] {
+        grid-template-columns: minmax(0, rem(737px)) minmax(0, rem(456px));
+      }
     }
   }
 </style>

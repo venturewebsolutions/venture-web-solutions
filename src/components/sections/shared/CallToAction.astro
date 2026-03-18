@@ -1,0 +1,84 @@
+---
+import Button from '@/components/ui/Button/Button.astro'
+import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<section {...props} class:list={cn('section container', className)}>
+  <div class="surface">
+    <div class="left">
+      <h2 class="h2">Start a project</h2>
+
+      <Button href={url('/project-planner/')} arrow>
+        <span class="button-text-s">Project planner</span>
+        <span class="button-text-l">Explore project planner</span>
+      </Button>
+    </div>
+
+    <div class="right">
+      <p class="text">
+        If you already know what you need and you’re ready to dive in, our
+        project planner is the best place to start. It’s a more structured way
+        to share your details so we can hit the ground running.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .surface {
+    background-color: var(--colour-surface-100);
+    padding: var(--spacing-4xl-5xl) var(--spacing-2xl-7xl);
+    border-radius: var(--border-radius-m);
+    display: grid;
+    gap: var(--spacing-3xl);
+  }
+
+  .left {
+    display: grid;
+    gap: var(--spacing-xl-4xl);
+    justify-items: center;
+  }
+
+  .button-text-l {
+    display: none;
+  }
+
+  @media screen and (min-width: rem(350px)) {
+    .button-text-s {
+      display: none;
+    }
+
+    .button-text-l {
+      display: initial;
+    }
+  }
+
+  @media screen and (min-width: rem(701px)) {
+    .surface {
+      max-width: rem(1120px);
+      margin-inline: auto;
+      padding: var(--spacing-4xl-5xl) var(--spacing-2xl-7xl);
+      border-radius: var(--border-radius-l);
+      grid-template-columns: repeat(2, auto);
+      align-items: center;
+      gap: var(--spacing-7xl);
+    }
+
+    .left {
+      justify-items: start;
+    }
+
+    .text {
+      max-width: rem(456px);
+    }
+  }
+</style>

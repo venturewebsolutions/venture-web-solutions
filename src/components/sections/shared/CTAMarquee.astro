@@ -1,29 +1,36 @@
 ---
-import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
 import Marquee from '@/components/headless/Marquee/Marquee.astro'
 import MarqueeGroup from '@/components/headless/Marquee/MarqueeGroup.astro'
+import { url } from '@/lib/url'
 
-const groups = 5
+type Props = HTMLAttributes<'section'> & {
+  text: string
+  href: string
+  groups: number
+}
+
+const { text, href, groups, ...props } = Astro.props
 ---
 
-<section id="ready-to-work-together">
-  <h2 class="sr-only">Ready to work together?</h2>
+<section {...props}>
+  <h2 class="sr-only">{text}</h2>
 
   <a
-    href={url('/project-planner/')}
+    href={href}
     style={`--cursor-url: url(${url('/cursor.svg')});`}
     class="link"
   >
     <Marquee class="marquee">
       <MarqueeGroup groups={groups} class="marquee-group">
-        <p class="text">Ready to work together?</p>
+        <p class="text">{text}</p>
         <div class="dot"></div>
       </MarqueeGroup>
     </Marquee>
 
     <Marquee reverse aria-hidden class="marquee">
       <MarqueeGroup groups={groups} class="marquee-group">
-        <p class="text">Ready to work together?</p>
+        <p class="text">{text}</p>
         <div class="dot"></div>
       </MarqueeGroup>
     </Marquee>

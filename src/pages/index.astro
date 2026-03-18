@@ -5,9 +5,9 @@ import Hero from '@/components/sections/home/Hero.astro'
 import OurWork from '@/components/sections/home/OurWork.astro'
 import Performance from '@/components/sections/home/Performance.astro'
 import Pricing from '@/components/sections/home/Pricing.astro'
-import ReadyToWorkTogether from '@/components/sections/home/ReadyToWorkTogether.astro'
 import WhatWeOffer from '@/components/sections/home/WhatWeOffer.astro'
 import ContactUs from '@/components/sections/shared/ContactUs.astro'
+import CTAMarquee from '@/components/sections/shared/CTAMarquee.astro'
 import FAQ from '@/components/sections/shared/FAQ.astro'
 import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
 import Testimonials from '@/components/sections/shared/Testimonials.astro'
@@ -49,6 +49,11 @@ const posts = (await getBlogPosts())
   <Pricing />
   <FAQ faqs={faqs} />
   <ContactUs reversed headingUnderline />
-  <ReadyToWorkTogether />
+  <CTAMarquee
+    id="ready-to-work-together"
+    text="Ready to work together?"
+    href={url('/project-planner/')}
+    groups={5}
+  />
   <Blog posts={posts} />
 </Layout>

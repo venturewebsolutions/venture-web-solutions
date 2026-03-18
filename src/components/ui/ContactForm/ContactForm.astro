@@ -1,0 +1,141 @@
+---
+import Button from '@/components/ui/Button/Button.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'form'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<form {...props} class:list={cn('form', className)}>
+  <div class="form-fields">
+    <div class="form-field">
+      <label for="contact-form-name" class="form-label">Your Name*</label>
+      <input
+        id="contact-form-name"
+        name="name"
+        type="text"
+        required
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="contact-form-email" class="form-label">Your Email*</label>
+      <input
+        id="contact-form-email"
+        name="email"
+        type="text"
+        required
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="contact-form-phone-number" class="form-label">
+        Phone Number
+      </label>
+      <input
+        name="phone-number"
+        id="contact-form-phone-number"
+        type="text"
+        class="form-input"
+      />
+    </div>
+
+    <div class="form-field">
+      <label for="contact-form-preferred-contact-method" class="form-label">
+        Preferred Contact Method*
+      </label>
+      <select
+        id="contact-form-preferred-contact-method"
+        name="preferred-contact-method"
+        required
+        class="form-input"
+      >
+        <option value="" disabled selected hidden class="form-option">
+          Please select an option
+        </option>
+        <option value="email" class="form-option">Email</option>
+        <option value="phone" class="form-option">Phone</option>
+        <option value="either" class="form-option">Either</option>
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="contact-form-message" class="form-label"> Message* </label>
+      <textarea
+        id="contact-form-message"
+        name="message"
+        required
+        rows="3"
+        placeholder="How can we help you today?"
+        class="form-input"></textarea>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <p class="disclaimer">
+      By submitting this form I accept the Privacy Policy of this site.
+    </p>
+
+    <Button type="submit" variant="form" arrow>Submit form</Button>
+  </div>
+</form>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .form {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .form-fields {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .form-field {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .form-label {
+    display: block;
+    @include font-body-medium;
+    color: var(--colour-text-contrast);
+  }
+
+  .form-input {
+    @include font-body;
+    padding: var(--spacing-xs) var(--spacing-m);
+    background-color: var(--colour-surface-50);
+    border: var(--border-width-s) solid var(--colour-text-contrast);
+    border-radius: var(--border-radius-s);
+    color: var(--colour-text-contrast);
+  }
+
+  .form-input::placeholder,
+  select.form-input:invalid {
+    @include font-body-italic;
+    color: var(--colour-text-primary);
+  }
+
+  .form-option {
+    @include font-body;
+    color: var(--colour-text-contrast);
+  }
+
+  .form-footer {
+    display: grid;
+    gap: var(--spacing-xl);
+    justify-items: start;
+  }
+
+  .disclaimer {
+    @include font-body-italic;
+  }
+</style>

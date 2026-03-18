@@ -52,6 +52,10 @@
   --spacing-9xl: #{linear(var(--spacing-96), var(--spacing-128))};
   --spacing-10xl: #{linear(var(--spacing-120), var(--spacing-160))};
 
+  --spacing-xl-4xl: #{linear(var(--spacing-24), var(--spacing-56))};
+  --spacing-2xl-7xl: #{linear(var(--spacing-28), var(--spacing-104))};
+  --spacing-4xl-5xl: #{linear(var(--spacing-40), var(--spacing-64))};
+
   // Transitions
   --transition-duration-default: 0.6s;
 

@@ -1,22 +1,22 @@
 ---
 import FAQList, { type FAQ } from '@/components/ui/FAQList/FAQList.astro'
 
-export type FAQTopic = {
-  name: string
+export type FAQGroup = {
+  heading: string
   faqs: FAQ[]
 }
 
 type Props = {
-  topics: FAQTopic[]
+  groups: FAQGroup[]
 }
 
-const { topics } = Astro.props
+const { groups } = Astro.props
 ---
 
 <div id="faq" class="container section">
-  <header class="left">
+  <div class="left">
     <div class="header">
-      <p class="caption">FAQ’s</p>
+      <p class="caption">FAQs</p>
       <h1 class="h2">The not-so-boring FAQ</h1>
     </div>
 
@@ -25,16 +25,16 @@ const { topics } = Astro.props
       web design services work and what we can create for you. Wondering about
       something specific? Check below — and if it’s not there, just reach out!.
     </p>
-  </header>
+  </div>
 
   <div class="right">
-    <div class="topics">
+    <div class="faq-groups">
       {
-        topics.map((topic) => (
-          <section class="topic">
-            <h2 class="topic-name">{topic.name}</h2>
+        groups.map((group) => (
+          <section class="faq-group">
+            <h2 class="faq-group-heading">{group.heading}</h2>
 
-            <FAQList faqs={topic.faqs} />
+            <FAQList faqs={group.faqs} />
           </section>
         ))
       }
@@ -48,26 +48,26 @@ const { topics } = Astro.props
 
   #faq {
     display: grid;
-    gap: var(--spacing-2xl);
-    align-items: start;
+    gap: var(--spacing-5xl);
   }
 
   .left {
     display: grid;
+    justify-items: start;
     gap: var(--spacing-xl);
   }
 
-  .topics {
+  .faq-groups {
     display: grid;
     gap: var(--spacing-2xl);
   }
 
-  .topic {
+  .faq-group {
     display: grid;
     gap: var(--spacing-xl);
   }
 
-  .topic-name {
+  .faq-group-heading {
     @include font-h3;
     color: var(--colour-text-contrast);
   }
@@ -77,6 +77,7 @@ const { topics } = Astro.props
       grid-template-columns: repeat(2, auto);
       gap: var(--spacing-4xl);
       justify-content: space-between;
+      align-items: start;
     }
 
     .left {
@@ -87,7 +88,7 @@ const { topics } = Astro.props
       max-width: rem(737px);
     }
 
-    .topics {
+    .faq-groups {
       gap: var(--spacing-4xl);
     }
   }

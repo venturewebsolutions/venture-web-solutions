@@ -11,27 +11,31 @@ type Props = {
 const { faqs, reversed } = Astro.props
 ---
 
-<section id="faq" class="section container" data-reversed={reversed}>
-  <div class="content">
-    <header class="header">
+<section
+  id="faq"
+  class="section container"
+  data-reversed={reversed || undefined}
+>
+  <div class="left">
+    <div class="header">
       <p class="caption">FAQs</p>
       <h2 class="h2">Have questions?</h2>
-    </header>
+    </div>
 
-    <p class="intro-text">
+    <p>
       We’ve got answers! Dive into our FAQ to discover how our web design
       services work and what we can create for you. Wondering about something
       specific? Check below — and if it’s not there, just reach out!.
     </p>
 
-    <div class="button-wrapper">
-      <Button variant="secondary-outline" href={url('/faq/')} arrow>
-        Check all FAQs
-      </Button>
-    </div>
+    <Button variant="secondary-outline" href={url('/faq/')} arrow>
+      Check all FAQs
+    </Button>
   </div>
 
-  <FAQList faqs={faqs} />
+  <div class="right">
+    <FAQList faqs={faqs} />
+  </div>
 </section>
 
 <style lang="scss">
@@ -40,29 +44,33 @@ const { faqs, reversed } = Astro.props
 
   #faq {
     display: grid;
-    justify-content: space-between;
     gap: var(--spacing-5xl);
-
-    &[data-reversed] > .content {
-      order: 1;
-    }
   }
 
-  .intro-text {
-    margin-top: var(--spacing-m);
-  }
-
-  .button-wrapper {
-    margin-top: var(--spacing-xl);
+  .left {
+    display: grid;
+    justify-items: start;
+    gap: var(--spacing-xl);
   }
 
   @media screen and (min-width: rem(1024px)) {
     #faq {
-      grid-template-columns: minmax(0, rem(456px)) minmax(0, rem(737px));
+      grid-template-columns: repeat(2, auto);
+      gap: var(--spacing-4xl);
+      justify-content: space-between;
+      align-items: start;
 
-      &[data-reversed] {
-        grid-template-columns: minmax(0, rem(737px)) minmax(0, rem(456px));
+      &[data-reversed] > .left {
+        order: 1;
       }
+    }
+
+    .left {
+      max-width: rem(456px);
+    }
+
+    .right {
+      max-width: rem(737px);
     }
   }
 </style>

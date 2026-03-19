@@ -8,16 +8,11 @@ import Badge from '@/components/ui/Badge/Badge.astro'
 import type { HeadingTag } from '@/lib/types'
 
 type Props = {
-  // sectionHeadingTag: HeadingTag
   cardHeadingTag: HeadingTag
   fullWidth?: boolean
 }
 
-const {
-  // sectionHeadingTag: SectionHeadingTag,
-  cardHeadingTag: CardHeadingTag,
-  fullWidth,
-} = Astro.props
+const { cardHeadingTag: CardHeadingTag, fullWidth } = Astro.props
 
 const cardBackgroundImageSizes = fullWidth
   ? '(min-width: 48rem) min(50vw, 640px), 100vw'

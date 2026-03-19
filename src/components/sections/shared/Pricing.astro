@@ -1,0 +1,46 @@
+---
+import PricingCards from '@/components/ui/PricingCards/PricingCards.astro'
+import type { HeadingTag } from '@/lib/types'
+import type { HTMLTag } from 'astro/types'
+
+type Props = {
+  tag?: HTMLTag
+  sectionHeading?: string
+  sectionHeadingTag?: HeadingTag
+  cardHeadingTag?: HeadingTag
+  fullWidth?: boolean
+}
+
+const {
+  tag: Tag = 'section',
+  sectionHeading = 'Choose your plan',
+  sectionHeadingTag: SectionHeadingTag = 'h2',
+  cardHeadingTag = 'h3',
+  fullWidth = false,
+} = Astro.props
+---
+
+<Tag id="pricing" class="section container">
+  <div class="header">
+    <p class="caption">Pricing</p>
+    <SectionHeadingTag class="heading h2">
+      {sectionHeading}
+    </SectionHeadingTag>
+  </div>
+
+  <PricingCards cardHeadingTag={cardHeadingTag} fullWidth={fullWidth} />
+</Tag>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #pricing {
+    display: grid;
+    gap: var(--spacing-5xl);
+  }
+
+  .heading {
+    max-width: rem(567px);
+  }
+</style>

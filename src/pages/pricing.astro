@@ -1,8 +1,8 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import PricingSection from '@/components/sections/pricing/Pricing.astro'
 import ContactUs from '@/components/sections/shared/ContactUs.astro'
 import FAQ from '@/components/sections/shared/FAQ.astro'
+import PricingSection from '@/components/sections/shared/Pricing.astro'
 import Testimonials from '@/components/sections/shared/Testimonials.astro'
 import HowItWorks from '@/components/sections/shared/HowItWorks.astro'
 import { getFaqTopics } from '@/lib/collections'
@@ -17,7 +17,13 @@ const faqs = (await getFaqTopics())
 ---
 
 <Layout title="Pricing (TODO)" description="TODO">
-  <PricingSection />
+  <PricingSection
+    tag="header"
+    sectionHeading="Affordable web design for small businesses"
+    sectionHeadingTag="h1"
+    cardHeadingTag="h2"
+    fullWidth
+  />
   <Testimonials />
   <HowItWorks />
   <FAQ faqs={faqs} />

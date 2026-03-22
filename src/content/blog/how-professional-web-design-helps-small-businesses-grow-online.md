@@ -1,16 +1,16 @@
 ---
-title: 'Custom website design vs templates'
-summary: 'Custom website design vs templates: Which is better for your business?'
+title: 'How professional web design helps small businesses grow online'
+summary: 'How professional web design helps small businesses grow online'
 topic: 'Web Design'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-2.jpg'
+  image: '@/assets/images/blog-post-thumbnail-1.jpg'
   description: ''
 author:
   name: 'Daniela'
   avatar: '@/assets/images/daniela-avatar.png'
-readTimeMinutes: 8
-publishedDate: '2026-01-03'
-featured: true
+readTimeMinutes: 6
+publishedDate: '2026-01-01'
+featured: false
 ---
 
 ## Why Page Speed Shapes First Impressions

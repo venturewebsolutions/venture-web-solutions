@@ -1,15 +1,15 @@
 ---
 title: 'Why page speed shapes first impressions'
 summary: 'Why page speed shapes first impressions: How a slow site can cost you future customers'
-topic: 'Development'
+topic: 'Web Development'
 thumbnail:
-  image: '@/assets/images/person-typing-on-laptop.png'
+  image: '@/assets/images/blog-post-thumbnail-3.png'
   description: ''
 author:
   name: 'Jordan'
   avatar: '@/assets/images/jordan-avatar.png'
 readTimeMinutes: 10
-publishedDate: '2025-03-01'
+publishedDate: '2026-01-06'
 featured: true
 ---
 

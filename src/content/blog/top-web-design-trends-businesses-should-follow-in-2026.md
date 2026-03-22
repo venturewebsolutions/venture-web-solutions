@@ -1,16 +1,16 @@
 ---
-title: 'Custom website design vs templates'
-summary: 'Custom website design vs templates: Which is better for your business?'
+title: 'Top web design trends businesses should follow in 2026'
+summary: 'Top web design trends businesses should follow in 2026'
 topic: 'Web Design'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-2.jpg'
+  image: '@/assets/images/blog-post-thumbnail-3.png'
   description: ''
 author:
   name: 'Daniela'
   avatar: '@/assets/images/daniela-avatar.png'
-readTimeMinutes: 8
-publishedDate: '2026-01-03'
-featured: true
+readTimeMinutes: 12
+publishedDate: '2026-01-02'
+featured: false
 ---
 
 ## Why Page Speed Shapes First Impressions

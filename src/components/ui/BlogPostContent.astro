@@ -20,10 +20,11 @@ const { Content } = await render(post)
   .wrapper :global(h2) {
     @include font-h3;
     color: var(--colour-text-contrast);
+    padding-top: var(--spacing-xl);
     margin-bottom: var(--spacing-xl);
 
     &:not(:first-child) {
-      margin-top: var(--spacing-5xl);
+      margin-top: calc(var(--spacing-5xl) - var(--spacing-xl));
     }
   }
 

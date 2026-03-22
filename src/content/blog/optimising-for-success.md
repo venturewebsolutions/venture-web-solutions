@@ -1,16 +1,16 @@
 ---
-title: 'Custom website design vs templates'
-summary: 'Custom website design vs templates: Which is better for your business?'
-topic: 'Web Design'
+title: 'Optimising for success'
+summary: 'Optimising for success: How clean code architecture elevates speed, SEO, and user trust'
+topic: 'Web Development'
 thumbnail:
   image: '@/assets/images/blog-post-thumbnail-2.jpg'
   description: ''
 author:
-  name: 'Daniela'
-  avatar: '@/assets/images/daniela-avatar.png'
-readTimeMinutes: 8
-publishedDate: '2026-01-03'
-featured: true
+  name: 'Jordan'
+  avatar: '@/assets/images/jordan-avatar.png'
+readTimeMinutes: 4
+publishedDate: '2026-01-04'
+featured: false
 ---
 
 ## Why Page Speed Shapes First Impressions

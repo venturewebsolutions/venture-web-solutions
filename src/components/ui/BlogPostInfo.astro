@@ -29,7 +29,7 @@ const { post, class: className, ...props } = Astro.props
 
     <div class="author-info">
       <p>Written by</p>
-      <p class="author-name">Jordan Walker</p>
+      <p class="author-name">{post.data.author.name}</p>
       <p>Co-Founder</p>
     </div>
   </div>

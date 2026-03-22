@@ -3,7 +3,7 @@ import BlogPostGrid from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts } from '@/lib/collections'
 
-const posts = (await getBlogPosts()).slice(0, 3)
+const posts = await getBlogPosts()
 ---
 
 <Layout title="Blog (TODO)" description="TODO">

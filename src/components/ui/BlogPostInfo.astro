@@ -1,0 +1,116 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import ClockIcon from '@/components/icons/ClockIcon.astro'
+import SocialMediaLink from '@/components/ui/SocialMediaLink/SocialMediaLink.astro'
+import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
+import FacebookIcon from '@/components/icons/FacebookIcon.astro'
+import InstagramIcon from '@/components/icons/InstagramIcon.astro'
+
+type Props = HTMLAttributes<'div'> & {
+  post: CollectionEntry<'blog'>
+}
+
+const { post, class: className, ...props } = Astro.props
+---
+
+<div class:list={cn('post-info', className)} {...props}>
+  <div class="author">
+    <Image
+      src={post.data.author.avatar}
+      alt={post.data.author.name}
+      class="author-avatar"
+      widths={[65, 130]}
+      sizes="65px"
+      width="65"
+    />
+
+    <div class="author-info">
+      <p>Written by</p>
+      <p class="author-name">Jordan Walker</p>
+      <p>Co-Founder</p>
+    </div>
+  </div>
+
+  <div class="published-date">
+    <ClockIcon />
+
+    <p>
+      {
+        post.data.publishedDate.toLocaleDateString('en-GB', {
+          dateStyle: 'medium',
+        })
+      }
+    </p>
+  </div>
+
+  <div class="social-links">
+    <a
+      href="#"
+      aria-label={`Visit ${post.data.author.name}'s LinkedIn page`}
+      target="_blank"
+    >
+      <SocialMediaLink>
+        <LinkedInIcon />
+      </SocialMediaLink>
+    </a>
+
+    <a
+      href="#"
+      aria-label={`Visit ${post.data.author.name}'s Facebook page`}
+      target="_blank"
+    >
+      <SocialMediaLink>
+        <FacebookIcon />
+      </SocialMediaLink>
+    </a>
+
+    <a
+      href="#"
+      aria-label={`Visit ${post.data.author.name}'s Instagram page`}
+      target="_blank"
+    >
+      <SocialMediaLink>
+        <InstagramIcon />
+      </SocialMediaLink>
+    </a>
+  </div>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .post-info {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .author {
+    display: flex;
+    gap: var(--spacing-m);
+    align-items: center;
+  }
+
+  .author-info {
+    @include font-caption;
+  }
+
+  .author-name {
+    color: var(--colour-text-contrast);
+  }
+
+  .published-date {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+</style>

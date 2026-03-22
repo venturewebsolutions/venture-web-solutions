@@ -1,11 +1,12 @@
-import _ from 'lodash'
+import trim from 'lodash/trim'
+import trimStart from 'lodash/trimStart'
 import { SITE, BASE } from '@/config'
 
 export const url = (pathname: string) => {
   const parts: string[] = []
 
-  const site = _.trim(SITE, '/')
-  const base = _.trim(BASE, '/')
+  const site = trim(SITE, '/')
+  const base = trim(BASE, '/')
 
   if (site) {
     parts.push(site)
@@ -18,7 +19,7 @@ export const url = (pathname: string) => {
     parts.push('/')
   }
 
-  parts.push(_.trimStart(pathname, '/'))
+  parts.push(trimStart(pathname, '/'))
 
   return parts.join('')
 }

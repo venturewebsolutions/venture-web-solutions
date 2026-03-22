@@ -28,7 +28,7 @@ const cards = [
 <section id="what-we-offer" class="section container">
   <div class="header">
     <p class="caption">What we offer</p>
-    <h2 class="title">Professional websites, £100 per month</h2>
+    <h2 class="title h2">Professional websites, £100 per month</h2>
 
     <div class="cards">
       {
@@ -50,14 +50,7 @@ const cards = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .header {
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
   .title {
-    @include font-h2;
-    color: var(--colour-text-contrast);
     max-width: #{rem(534px)};
   }
 

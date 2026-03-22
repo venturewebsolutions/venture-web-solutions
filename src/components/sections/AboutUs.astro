@@ -8,7 +8,7 @@ import { Image } from 'astro:assets'
   <h2 class="sr-only">About Us</h2>
 
   <div class="column-1">
-    <p class="title">
+    <p class="h2">
       We’re an independent web design agency, dedicated to bringing professional
       websites to small businesses.
     </p>
@@ -64,11 +64,6 @@ import { Image } from 'astro:assets'
   .column-1 {
     display: grid;
     gap: var(--spacing-2xl);
-  }
-
-  .title {
-    @include font-h2;
-    color: var(--colour-text-contrast);
   }
 
   .images {

@@ -44,7 +44,7 @@ const projects = [
             projects.map((project) => (
               <a
                 href={url(`/portfolio/${project.slug}`)}
-                class="title"
+                class="h2"
                 data-project={project.slug}
               >
                 {project.name}
@@ -174,9 +174,6 @@ const projects = [
     }
 
     .title {
-      @include font-h2;
-
-      color: var(--colour-text-contrast);
       transition: transform var(--transition-duration-default)
         var(--transition-ease-default);
 

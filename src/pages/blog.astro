@@ -2,16 +2,8 @@
 import BlogPostGrid from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts } from '@/lib/collections'
-import { url } from '@/lib/url'
 
-const posts = (await getBlogPosts()).slice(0, 3).map((post) => ({
-  title: post.data.title,
-  topic: post.data.topic,
-  url: url(`/blog/posts/${post.id}/`),
-  thumbnail: post.data.thumbnail,
-  author: post.data.author,
-  readTimeMinutes: post.data.readTimeMinutes,
-}))
+const posts = (await getBlogPosts()).slice(0, 3)
 ---
 
 <Layout title="Blog (TODO)" description="TODO">

@@ -1,12 +1,11 @@
 ---
 import Button from '@/components/ui/Button/Button.astro'
-import BlogPostGrid, {
-  type BlogPost,
-} from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
+import BlogPostGrid from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
 import { url } from '@/lib/url'
+import type { CollectionEntry } from 'astro:content'
 
 type Props = {
-  posts: BlogPost[]
+  posts: CollectionEntry<'blog'>[]
 }
 
 const { posts } = Astro.props

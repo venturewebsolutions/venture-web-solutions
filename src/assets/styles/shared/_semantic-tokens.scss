@@ -28,6 +28,7 @@
   // Borders
   --border-width-s: var(--border-width-1);
   --border-width-m: var(--border-width-2);
+  --border-width-l: var(--border-width-3);
 
   --border-radius-s: var(--border-radius-8);
   --border-radius-m: var(--border-radius-16);
@@ -52,6 +53,7 @@
   --spacing-9xl: #{linear(var(--spacing-96), var(--spacing-128))};
   --spacing-10xl: #{linear(var(--spacing-120), var(--spacing-160))};
 
+  --spacing-m-xl: #{linear(var(--spacing-16), var(--spacing-24))};
   --spacing-xl-4xl: #{linear(var(--spacing-24), var(--spacing-56))};
   --spacing-2xl-7xl: #{linear(var(--spacing-28), var(--spacing-104))};
   --spacing-4xl-5xl: #{linear(var(--spacing-40), var(--spacing-64))};

@@ -5,24 +5,10 @@ import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { url } from '@/lib/url'
 import type { HeadingTag } from '@/lib/types'
-
-export type BlogPost = {
-  title: string
-  topic: string
-  url: string
-  thumbnail: {
-    image: ImageMetadata
-    description: string
-  }
-  author: {
-    name: string
-    avatar: ImageMetadata
-  }
-  readTimeMinutes: number
-}
+import type { CollectionEntry } from 'astro:content'
 
 type Props = {
-  posts: BlogPost[]
+  posts: CollectionEntry<'blog'>[]
   blogPostTitleTag: HeadingTag
 }
 
@@ -34,10 +20,10 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
     posts.map((post) => (
       <section class="post">
         <Thumbnail>
-          <a href={url(`/blog/posts/${post.url}/`)} aria-label={post.title}>
+          <a href={url(`/blog/${post.id}/`)} aria-label={post.data.title}>
             <Image
-              src={post.thumbnail.image}
-              alt={post.thumbnail.description}
+              src={post.data.thumbnail.image}
+              alt={post.data.thumbnail.description}
               class="thumbnail-image"
               style={`--cursor-url: url(${url('/cursor.svg')});`}
               widths={[216, 343, 432, 520, 708, 832, 1416]}
@@ -47,11 +33,11 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
 
           <ThumbnailCaption
             position="bottom left"
-            class="thumbnail-caption thumbnail-caption-avatar"
+            class="thumbnail-caption thumbnail-caption-bottom-left"
           >
             <Image
-              src={post.author.avatar}
-              alt={`${post.author.name} avatar`}
+              src={post.data.author.avatar}
+              alt={`${post.data.author.name} avatar`}
               class="avatar"
               widths={[43, 86]}
               sizes="43px"
@@ -60,18 +46,22 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
 
           <ThumbnailCaption
             position="top right"
-            class="thumbnail-caption thumbnail-caption-badge"
+            class="thumbnail-caption thumbnail-caption-top-right"
           >
             <Badge variant="tertiary" size="s">
-              {post.topic}
+              {post.data.topic}
             </Badge>
           </ThumbnailCaption>
         </Thumbnail>
 
         <div class="post-summary">
-          <p class="post-caption caption">{post.readTimeMinutes} mins read</p>
-          <a href={`/blog/posts/${post.url}/`}>
-            <BlogPostTitleTag class="post-title">{post.title}</BlogPostTitleTag>
+          <p class="post-caption caption">
+            {post.data.readTimeMinutes} mins read
+          </p>
+          <a href={`/blog/${post.id}/`}>
+            <BlogPostTitleTag class="post-title">
+              {post.data.summary}
+            </BlogPostTitleTag>
           </a>
         </div>
       </section>
@@ -106,20 +96,15 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
   .thumbnail-caption {
     --background-color: var(--colour-surface-base);
     --border-radius: var(--border-radius-s);
+    --inverted-border-radius: var(--border-radius-m);
   }
 
-  .thumbnail-caption-avatar {
+  .thumbnail-caption-bottom-left {
     --padding: #{rem(10px)};
-
-    padding-top: var(--padding);
-    padding-right: var(--padding);
   }
 
-  .thumbnail-caption-badge {
+  .thumbnail-caption-top-right {
     --padding: #{rem(8px)};
-
-    padding-bottom: var(--padding);
-    padding-left: var(--padding);
   }
 
   .avatar {
@@ -136,7 +121,7 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
     @include font-body;
   }
 
-  .post-title {
+  .post-summary {
     @include font-h4;
   }
 

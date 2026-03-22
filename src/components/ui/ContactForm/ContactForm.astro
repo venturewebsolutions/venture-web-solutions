@@ -1,4 +1,5 @@
 ---
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon.astro'
 import Button from '@/components/ui/Button/Button.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
@@ -48,19 +49,22 @@ const { class: className, ...props } = Astro.props
       <label for="contact-form-preferred-contact-method" class="form-label">
         Preferred Contact Method*
       </label>
-      <select
-        id="contact-form-preferred-contact-method"
-        name="preferred-contact-method"
-        required
-        class="form-input"
-      >
-        <option value="" disabled selected hidden class="form-option">
-          Please select an option
-        </option>
-        <option value="email" class="form-option">Email</option>
-        <option value="phone" class="form-option">Phone</option>
-        <option value="either" class="form-option">Either</option>
-      </select>
+      <div class="form-select">
+        <select
+          id="contact-form-preferred-contact-method"
+          name="preferred-contact-method"
+          required
+          class="form-input"
+        >
+          <option value="" disabled selected hidden class="form-option">
+            Please select an option
+          </option>
+          <option value="email" class="form-option">Email</option>
+          <option value="phone" class="form-option">Phone</option>
+          <option value="either" class="form-option">Either</option>
+        </select>
+        <ChevronDownIcon class="form-select-chevron" />
+      </div>
     </div>
 
     <div class="form-field">
@@ -116,10 +120,34 @@ const { class: className, ...props } = Astro.props
     border: var(--border-width-s) solid var(--colour-text-contrast);
     border-radius: var(--border-radius-s);
     color: var(--colour-text-contrast);
+    width: 100%;
+    appearance: none;
+  }
+
+  .form-select {
+    --chevron-width: 1rem;
+
+    display: grid;
+    align-items: center;
+  }
+
+  select.form-input {
+    padding-right: calc(var(--spacing-m) * 2 + var(--chevron-width));
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+
+  .form-select-chevron {
+    width: var(--chevron-width);
+    height: auto;
+    margin-right: var(--spacing-m);
+    grid-row-start: 1;
+    grid-column-start: 1;
+    justify-self: end;
   }
 
   .form-input::placeholder,
-  select.form-input:invalid {
+  .form-input:invalid {
     @include font-body-italic;
     color: var(--colour-text-primary);
   }

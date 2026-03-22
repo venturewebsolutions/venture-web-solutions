@@ -25,7 +25,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 <section id="testimonials" class="section container">
   <header class="header">
     <p class="caption">Client testimonials</p>
-    <h2 class="title">Voice of our happy clients</h2>
+    <h2 class="h2">Voice of our happy clients</h2>
   </header>
 
   <div class="swiper">
@@ -108,16 +108,6 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     gap: var(--spacing-2xl);
   }
 
-  .header {
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
-  .title {
-    @include font-h2;
-    color: var(--colour-text-contrast);
-  }
-
   .testimonial {
     display: grid;
     gap: var(--spacing-xl);
@@ -169,17 +159,15 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
   .thumbnail-caption {
     --background-color: var(--colour-surface-base);
     --border-radius: var(--border-radius-m);
+    --inverted-border-radius: var(--border-radius-l);
+    --padding: var(--spacing-s);
   }
 
   .client-info {
-    --padding: var(--spacing-s);
-
     display: flex;
     align-items: start;
     gap: var(--spacing-xs);
-    padding-right: calc(var(--padding));
-    padding-bottom: calc(var(--padding));
-    max-width: calc(rem(132px) + var(--padding));
+    max-width: rem(132px);
   }
 
   .client-avatar {

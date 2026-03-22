@@ -23,16 +23,7 @@ const faqs = (await getFaqTopics())
     answer: faq.answer,
   }))
 
-const posts = (await getBlogPosts())
-  .filter((posts) => posts.data.featured)
-  .map((post) => ({
-    title: post.data.title,
-    topic: post.data.topic,
-    url: url(`/blog/posts/${post.id}/`),
-    thumbnail: post.data.thumbnail,
-    author: post.data.author,
-    readTimeMinutes: post.data.readTimeMinutes,
-  }))
+const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
 ---
 
 <Layout

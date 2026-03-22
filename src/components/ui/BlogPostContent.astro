@@ -1,0 +1,44 @@
+---
+import { render, type CollectionEntry } from 'astro:content'
+
+type Props = {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+const { Content } = await render(post)
+---
+
+<div class="wrapper">
+  <Content />
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .wrapper :global(h2) {
+    @include font-h3;
+    color: var(--colour-text-contrast);
+    margin-bottom: var(--spacing-xl);
+
+    &:not(:first-child) {
+      margin-top: var(--spacing-5xl);
+    }
+  }
+
+  .wrapper :global(p) {
+    margin-top: var(--spacing-l);
+
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-xl);
+  }
+
+  .wrapper :global(p img) {
+    width: 0;
+    flex: 1;
+    object-fit: cover;
+    border-radius: var(--border-radius-l);
+  }
+</style>

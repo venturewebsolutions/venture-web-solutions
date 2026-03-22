@@ -1,0 +1,105 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'> & {
+  links: Link[]
+}
+
+const { links, class: className, ...props } = Astro.props
+
+type Link = {
+  href: string
+  text: string
+}
+---
+
+<div class:list={cn('toc', className)} {...props}>
+  <p class="toc-heading">Contents</p>
+
+  <ul>
+    {
+      links.map((link) => (
+        <li>
+          <a href={link.href} class="toc-link" data-href={link.href}>
+            {link.text}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .toc {
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-l);
+    padding-block: var(--spacing-xl);
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .toc-heading {
+    @include font-h4;
+    padding-inline: var(--spacing-xl);
+  }
+
+  .toc-list {
+    display: grid;
+    gap: var(--spacing-3xs);
+  }
+
+  .toc-link {
+    display: block;
+    padding-block: var(--spacing-xs);
+    padding-inline: var(--spacing-xl);
+    color: var(--colour-text-contrast);
+
+    &:hover,
+    &.active {
+      @include font-body-italic;
+      border-left: var(--border-width-l) solid var(--colour-text-contrast);
+      padding-right: calc(var(--spacing-xl) - var(--border-width-l));
+    }
+  }
+</style>
+
+<script>
+  const tocs = document.querySelectorAll<HTMLElement>('.toc')
+
+  for (const toc of tocs) {
+    const links = toc.querySelectorAll<HTMLAnchorElement>(`.toc-link`)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id')
+
+            for (const link of links) {
+              link.classList.remove('active')
+            }
+
+            const link = toc.querySelector(`.toc-link[href="#${id}"]`)
+
+            link?.classList.add('active')
+          }
+        })
+      },
+      {
+        rootMargin: '0px 0px -80% 0px',
+        threshold: 0,
+      },
+    )
+
+    for (const link of links) {
+      const href = link.dataset.href!
+      const target = document.querySelector<HTMLElement>(href)!
+
+      observer.observe(target)
+    }
+  }
+</script>

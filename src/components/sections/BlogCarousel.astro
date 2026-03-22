@@ -1,0 +1,233 @@
+---
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import Badge from '@/components/ui/Badge/Badge.astro'
+import Button from '@/components/ui/Button/Button.astro'
+import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import type { HeadingTag } from '@/lib/types'
+import { url } from '@/lib/url'
+
+type Props = {
+  posts: CollectionEntry<'blog'>[]
+  blogPostHeadingTag: HeadingTag
+}
+
+const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
+---
+
+<section class="section container" data-component="blog-carousel">
+  <div class="intro">
+    <div class="header">
+      <p class="caption">Blog</p>
+      <h2 class="h2">Also worth reading</h2>
+    </div>
+
+    <Button href={url('/blog/')} variant="secondary-outline" arrow>
+      Explore the Blog
+    </Button>
+  </div>
+
+  <div class="swiper">
+    <div class="swiper-wrapper">
+      {
+        posts.map((post) => (
+          <div class="swiper-slide">
+            <section class="post">
+              <Thumbnail>
+                <a href={url(`/blog/${post.id}/`)} aria-label={post.data.title}>
+                  <Image
+                    src={post.data.thumbnail.image}
+                    alt={post.data.thumbnail.description}
+                    class="thumbnail-image"
+                    style={`--cursor-url: url(${url('/cursor.svg')});`}
+                    widths={[216, 343, 432, 520, 708, 832, 1416]}
+                    sizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+                  />
+                </a>
+
+                <ThumbnailCaption
+                  position="bottom left"
+                  class="thumbnail-caption thumbnail-caption-bottom-left"
+                >
+                  <Image
+                    src={post.data.author.avatar}
+                    alt={`${post.data.author.name} avatar`}
+                    class="avatar"
+                    widths={[43, 86]}
+                    sizes="43px"
+                  />
+                </ThumbnailCaption>
+
+                <ThumbnailCaption
+                  position="top right"
+                  class="thumbnail-caption thumbnail-caption-top-right swiper-no-swiping"
+                >
+                  <Badge variant="tertiary" size="s">
+                    {post.data.topic}
+                  </Badge>
+                </ThumbnailCaption>
+              </Thumbnail>
+
+              <div class="post-summary swiper-no-swiping">
+                <p class="post-caption caption">
+                  {post.data.readTimeMinutes} mins read
+                </p>
+                <a href={`/blog/${post.id}/`}>
+                  <BlogPostHeadingTag class="post-title">
+                    {post.data.summary}
+                  </BlogPostHeadingTag>
+                </a>
+              </div>
+            </section>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="navigation">
+    <NavigationButton dir="left" class="swiper-button-prev" />
+    <NavigationButton dir="right" class="swiper-button-next" />
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    row-gap: var(--spacing-3xl);
+    justify-items: start;
+    align-items: start;
+  }
+
+  .intro {
+    display: grid;
+    gap: var(--spacing-xl);
+    justify-items: start;
+  }
+
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-m-xl);
+  }
+
+  .post {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .thumbnail-image {
+    border-radius: var(--border-radius-m);
+    width: 100%;
+    aspect-ratio: 421/238;
+    object-fit: cover;
+    cursor:
+      var(--cursor-url) 56.5 56.5,
+      pointer;
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-s);
+    --inverted-border-radius: var(--border-radius-m);
+  }
+
+  .thumbnail-caption-bottom-left {
+    --padding: #{rem(10px)};
+  }
+
+  .thumbnail-caption-top-right {
+    --padding: #{rem(8px)};
+  }
+
+  .avatar {
+    width: rem(43px);
+    height: rem(43px);
+  }
+
+  .post-summary {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .post-caption {
+    @include font-body;
+  }
+
+  .post-summary {
+    @include font-h4;
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .section {
+      grid-template-columns: auto 1fr;
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+        'intro carousel'
+        'navigation carousel';
+      row-gap: 0;
+      justify-content: space-between;
+    }
+
+    .intro {
+      max-width: rem(307px);
+      grid-area: intro;
+    }
+
+    .swiper {
+      grid-area: carousel;
+    }
+
+    .navigation {
+      grid-area: navigation;
+      align-self: end;
+    }
+  }
+</style>
+
+<script>
+  import 'swiper/css'
+  import Swiper from 'swiper/bundle'
+  import { Navigation, Pagination } from 'swiper/modules'
+
+  // Swiper
+  window.addEventListener('load', () => {
+    const components = document.querySelectorAll<HTMLElement>(
+      '[data-component="blog-carousel"]',
+    )
+
+    for (const component of components) {
+      const container = component.querySelector<HTMLElement>('.swiper')!
+      const nextEl = component.querySelector<HTMLElement>(
+        '.swiper-button-next',
+      )!
+      const prevEl = component.querySelector<HTMLElement>(
+        '.swiper-button-prev',
+      )!
+
+      new Swiper(container, {
+        modules: [Navigation, Pagination],
+
+        slidesPerView: 1,
+        spaceBetween: 32,
+
+        breakpoints: {
+          768: {
+            slidesPerView: 2,
+            spaceBetween: 32,
+          },
+        },
+
+        navigation: {
+          nextEl,
+          prevEl,
+        },
+      })
+    }
+  })
+</script>

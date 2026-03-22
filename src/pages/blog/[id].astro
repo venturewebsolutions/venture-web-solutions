@@ -1,0 +1,202 @@
+---
+import ClockIcon from '@/components/icons/ClockIcon.astro'
+import BlogCarousel from '@/components/sections/BlogCarousel.astro'
+import BlogPostContent from '@/components/ui/BlogPostContent.astro'
+import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
+import ProgressBar from '@/components/ui/ProgressBar.astro'
+import TableOfContents from '@/components/ui/TableOfContents.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import Layout from '@/layouts/Layout.astro'
+import { Image } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import range from 'lodash/range'
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog')
+
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }))
+}
+
+const { post } = Astro.props
+
+const otherPosts = (await getCollection('blog')).filter((p) => p.id !== post.id)
+
+type Heading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+const headings = (post.rendered?.metadata?.headings ?? []) as Heading[]
+
+const links = headings.map((heading) => ({
+  href: `#${heading.slug}`,
+  text: heading.text,
+}))
+---
+
+<Layout title={`Post (TODO): ${post.data.title}`} description="TODO">
+  <div id="hero" class="section container">
+    <div class="header header-mobile">
+      <p class="caption">{post.data.topic}</p>
+      <h1 class="h2">{post.data.title}</h1>
+    </div>
+
+    <Thumbnail>
+      <Image
+        src={post.data.thumbnail.image}
+        alt={post.data.thumbnail.description}
+        class="thumbnail-image"
+        widths={range(312, 1312 + 200, 200)}
+        sizes="min(100vw, 90rem)"
+      />
+
+      <ThumbnailCaption
+        position="top left"
+        class="thumbnail-caption thumbnail-caption-top-left"
+      >
+        <div class="header header-desktop">
+          <p class="caption">{post.data.topic}</p>
+          <h1 class="h2">{post.data.title}</h1>
+        </div>
+      </ThumbnailCaption>
+
+      <ThumbnailCaption
+        position="bottom right"
+        class="thumbnail-caption thumbnail-caption-bottom-right"
+      >
+        <BlogPostInfo post={post} />
+      </ThumbnailCaption>
+    </Thumbnail>
+
+    <div class="blog-post-info-mobile">
+      <BlogPostInfo post={post} />
+    </div>
+  </div>
+
+  <div class="section container grid">
+    <div class="toc-wrapper">
+      <TableOfContents links={links} />
+
+      <ProgressBar contents="#content-wrapper" />
+
+      <div class="read-time">
+        <ClockIcon />
+
+        <p>{post.data.readTimeMinutes} mins read</p>
+      </div>
+    </div>
+
+    <div class="article">
+      <div id="content-wrapper">
+        <BlogPostContent post={post} />
+      </div>
+
+      <hr class="divider" />
+
+      <BlogPostInfo post={post} />
+    </div>
+  </div>
+
+  <BlogCarousel posts={otherPosts} blogPostHeadingTag="h3" />
+</Layout>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #hero {
+    display: grid;
+    gap: var(--spacing-l);
+  }
+
+  .thumbnail-image {
+    width: 100%;
+    aspect-ratio: 1328/686;
+    object-fit: cover;
+    object-position: 0% 13%;
+    border-radius: var(--border-radius-m);
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-m);
+    --inverted-border-radius: var(--border-radius-l);
+
+    display: none;
+  }
+
+  .thumbnail-caption-top-left {
+    --padding: var(--spacing-2xl);
+    max-width: calc(rem(606px) + var(--padding));
+  }
+
+  .thumbnail-caption-bottom-right {
+    --padding: var(--spacing-xl);
+  }
+
+  .grid {
+    display: grid;
+    gap: var(--spacing-3xl);
+  }
+
+  .toc-wrapper {
+    max-width: rem(378px);
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .read-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+
+  .article {
+    max-width: rem(720px);
+  }
+
+  .divider {
+    margin-block: var(--spacing-3xl);
+    color: var(--text-colour-contrast);
+    opacity: 0.2;
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .grid {
+      grid-template-columns: auto auto;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .toc-wrapper {
+      position: sticky;
+      top: var(--spacing-xl);
+    }
+  }
+
+  @media screen and (min-width: rem(931px)) {
+    .thumbnail-caption-bottom-right {
+      display: initial;
+    }
+
+    .blog-post-info-mobile {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: rem(1440px)) {
+    .thumbnail-caption-top-left {
+      display: initial;
+    }
+
+    .header-mobile {
+      display: none;
+    }
+  }
+</style>

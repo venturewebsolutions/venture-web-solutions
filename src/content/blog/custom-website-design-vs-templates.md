@@ -1,5 +1,6 @@
 ---
-title: 'Custom website design vs templates: Which is better for your business?'
+title: 'Custom website design vs templates'
+summary: 'Custom website design vs templates: Which is better for your business?'
 topic: 'Blog topic'
 thumbnail:
   image: '@/assets/images/person-drawing-wireframes.jpg'

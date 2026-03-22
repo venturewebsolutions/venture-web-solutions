@@ -1,5 +1,6 @@
 ---
-title: 'The power of hand-coded websites: Why writing your own code dramatically boosts performance'
+title: 'The power of hand-coded websites'
+summary: 'The power of hand-coded websites: Why writing your own code dramatically boosts performance'
 topic: 'Blog topic'
 thumbnail:
   image: '@/assets/images/person-writing-code.jpg'

@@ -1,0 +1,61 @@
+---
+import { Image } from 'astro:assets'
+
+type Props = {
+  citation: string
+}
+
+const { citation } = Astro.props
+---
+
+<figure class="quotation">
+  <div class="quotation-mark">
+    <Image
+      src={import('@/assets/images/quotation-mark.png')}
+      alt=""
+      widths={[42, 84]}
+      sizes="42px"
+      width="42"
+    />
+  </div>
+  <div class="quotation-content">
+    <blockquote cite="https://support.google.com/adsense/answer/7450973">
+      <p class="quotation-quote"><slot /></p>
+    </blockquote>
+    <figcaption class="quotation-caption">
+      — <cite class="quotation-citation">{citation}</cite>
+    </figcaption>
+  </div>
+</figure>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .quotation {
+    display: flex;
+    gap: var(--spacing-m);
+  }
+
+  .quotation-mark {
+    width: rem(42px);
+    flex-shrink: 0;
+  }
+
+  .quotation-content {
+    display: grid;
+    gap: var(--spacing-3xs);
+  }
+
+  .quotation-quote {
+    @include font-body-italic;
+  }
+
+  .quotation-caption {
+    text-align: right;
+  }
+
+  .quotation-citation {
+    font-style: inherit;
+  }
+</style>

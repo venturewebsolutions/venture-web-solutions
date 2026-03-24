@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import SectionHeader from '../ui/SectionHeader.astro'
+import Quote from '../ui/Quote.astro'
 ---
 
 <section id="performance" class="section container">
@@ -23,27 +24,10 @@ import SectionHeader from '../ui/SectionHeader.astro'
       customers.
     </p>
 
-    <figure class="quotation">
-      <div class="quotation-mark">
-        <Image
-          src={import('@/assets/images/quotation-mark.png')}
-          alt=""
-          widths={[42, 84]}
-          sizes="42px"
-        />
-      </div>
-      <div class="quotation-content">
-        <blockquote cite="https://support.google.com/adsense/answer/7450973">
-          <p class="quotation-quote">
-            53% of visits are likely to be abandoned if pages take longer than 3
-            seconds to load.
-          </p>
-        </blockquote>
-        <figcaption class="quotation-caption">
-          — <cite class="quotation-citation">Google</cite>
-        </figcaption>
-      </div>
-    </figure>
+    <Quote citation="Google">
+      53% of visits are likely to be abandoned if pages take longer than 3
+      seconds to load.
+    </Quote>
 
     <p>
       A slow site doesn’t just frustrate visitors — it hurts your business.
@@ -97,33 +81,6 @@ import SectionHeader from '../ui/SectionHeader.astro'
     grid-area: content;
     display: grid;
     gap: var(--spacing-2xl);
-  }
-
-  .quotation {
-    display: flex;
-    gap: var(--spacing-m);
-  }
-
-  .quotation-mark {
-    width: rem(42px);
-    flex-shrink: 0;
-  }
-
-  .quotation-content {
-    display: grid;
-    gap: var(--spacing-3xs);
-  }
-
-  .quotation-quote {
-    @include font-body-italic;
-  }
-
-  .quotation-caption {
-    text-align: right;
-  }
-
-  .quotation-citation {
-    font-style: inherit;
   }
 
   .footer {

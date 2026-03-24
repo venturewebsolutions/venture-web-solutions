@@ -7,6 +7,7 @@ import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import VideoSource from '@/components/headless/VideoSource/VideoSource.astro'
 import SectionHeader from '../ui/SectionHeader.astro'
 import Avatar from '../ui/Avatar.astro'
+import TestimonialCard from '../ui/TestimonialCard.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
@@ -37,57 +38,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
       {
         testimonials.map((testimonial) => (
           <div class="swiper-slide">
-            <div class="testimonial">
-              <Thumbnail>
-                <button
-                  class="thumbnail-media-wrapper"
-                  aria-label={`Play ${testimonial.client}'s testimonial video`}
-                >
-                  <video
-                    playsinline
-                    muted
-                    preload="none"
-                    class="thumbnail-video"
-                  >
-                    <VideoSource
-                      src={testimonial.video.src}
-                      type={testimonial.video.type}
-                      hash="t=0.001"
-                    />
-                  </video>
-
-                  <Image
-                    src={testimonial.thumbnail}
-                    alt=""
-                    widths={[365, 416, 730, 857, 1714]}
-                    sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
-                    class="thumbnail-image"
-                  />
-                  <PlayIcon class="play-icon" />
-                </button>
-
-                <ThumbnailCaption
-                  position="top left"
-                  class="thumbnail-caption swiper-no-swiping"
-                >
-                  <div class="client-info">
-                    <Avatar
-                      src={testimonial.avatar}
-                      alt={`${testimonial.author}, ${testimonial.client}`}
-                      width={43}
-                    />
-                    <div>
-                      <p class="client-name">{testimonial.author.name}</p>
-                      <p class="client-description">
-                        {testimonial.author.position}
-                      </p>
-                    </div>
-                  </div>
-                </ThumbnailCaption>
-              </Thumbnail>
-
-              <p class="quote swiper-no-swiping">“{testimonial.quote}”</p>
-            </div>
+            <TestimonialCard {...testimonial} />
           </div>
         ))
       }
@@ -108,78 +59,6 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
   #testimonials {
     display: grid;
     gap: var(--spacing-2xl);
-  }
-
-  .testimonial {
-    display: grid;
-    gap: var(--spacing-xl);
-  }
-
-  .thumbnail-media-wrapper {
-    border-radius: var(--border-radius-l);
-    overflow: hidden;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-      .play-icon {
-        --scale: 1.1;
-      }
-    }
-
-    &.active {
-      .play-icon {
-        display: none;
-      }
-    }
-  }
-
-  .play-icon {
-    --scale: 1;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(var(--scale));
-    transition: transform var(--transition-duration-default)
-      var(--transition-ease-default);
-  }
-
-  .thumbnail-image {
-    aspect-ratio: 421/419;
-    object-fit: cover;
-  }
-
-  .thumbnail-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .thumbnail-caption {
-    --background-color: var(--colour-surface-base);
-    --border-radius: var(--border-radius-m);
-    --inverted-border-radius: var(--border-radius-l);
-    --padding: var(--spacing-s);
-  }
-
-  .client-info {
-    display: flex;
-    align-items: start;
-    gap: var(--spacing-xs);
-    max-width: rem(132px);
-  }
-
-  .client-name {
-    @include font-meta-primary;
-    color: var(--colour-text-contrast);
-  }
-
-  .client-description {
-    @include font-meta-secondary;
-    color: var(--colour-text-primary);
   }
 
   .navigation {
@@ -217,59 +96,5 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
         el: '#testimonials .swiper-pagination',
       },
     })
-  })
-
-  // Videos
-  window.addEventListener('load', () => {
-    const wrappers = document.querySelectorAll(
-      '#testimonials .thumbnail-media-wrapper',
-    )
-
-    for (const wrapper of wrappers) {
-      const video = wrapper.querySelector('video')!
-
-      let started = false
-
-      wrapper.addEventListener('mouseenter', () => {
-        if (!started) {
-          video.play()
-        }
-      })
-
-      wrapper.addEventListener('mouseleave', () => {
-        if (!started) {
-          video.pause()
-          video.currentTime = 0
-        }
-      })
-
-      wrapper.addEventListener('click', () => {
-        if (!started) {
-          video.pause()
-          video.currentTime = 0
-          video.muted = false
-          video.controls = true
-
-          setTimeout(() => {
-            video.play()
-          }, 0)
-
-          wrapper.classList.add('active')
-
-          started = true
-        }
-      })
-
-      video.addEventListener('ended', () => {
-        video.pause()
-        video.currentTime = 0
-        video.muted = true
-        video.controls = false
-
-        wrapper.classList.remove('active')
-
-        started = false
-      })
-    }
   })
 </script>

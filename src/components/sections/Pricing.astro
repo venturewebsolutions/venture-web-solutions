@@ -1,8 +1,8 @@
 ---
-import PricingCards from '@/components/ui/PricingCards/PricingCards.astro'
+import PricingCards from '@/components/ui/PricingCards.astro'
 import type { HeadingLevel } from '@/lib/types'
 import type { HTMLTag, Polymorphic } from 'astro/types'
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 
 type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{

@@ -1,16 +1,16 @@
 ---
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
-import Badge from '@/components/ui/Badge/Badge.astro'
-import Button from '@/components/ui/Button/Button.astro'
-import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import NavigationButton from '@/components/ui/NavigationButton.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import type { HeadingTag } from '@/lib/types'
 import { url } from '@/lib/url'
-import SectionHeader from '../ui/SectionHeader.astro'
-import Eyebrow from '../ui/Eyebrow.astro'
-import Avatar from '../ui/Avatar.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import Eyebrow from '@/components/ui/Eyebrow.astro'
+import Avatar from '@/components/ui/Avatar.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]

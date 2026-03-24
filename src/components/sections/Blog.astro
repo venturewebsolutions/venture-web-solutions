@@ -1,9 +1,9 @@
 ---
-import Button from '@/components/ui/Button/Button.astro'
-import BlogPostGrid from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
+import Button from '@/components/ui/Button.astro'
+import BlogPostGrid from '@/components/ui/BlogPostGrid.astro'
 import { url } from '@/lib/url'
 import type { CollectionEntry } from 'astro:content'
-import SectionHeader from '../ui/SectionHeader.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]

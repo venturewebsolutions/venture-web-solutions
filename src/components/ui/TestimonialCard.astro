@@ -2,11 +2,11 @@
 import { Image } from 'astro:assets'
 import VideoSource, {
   type VideoModule,
-} from '../headless/VideoSource/VideoSource.astro'
-import Thumbnail from './Thumbnail/Thumbnail.astro'
-import PlayIcon from '../icons/PlayIcon.astro'
-import ThumbnailCaption from './Thumbnail/ThumbnailCaption.astro'
-import Avatar from './Avatar.astro'
+} from '@/components/headless/VideoSource.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import PlayIcon from '@/components/icons/PlayIcon.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import Avatar from '@/components/ui/Avatar.astro'
 
 type Props = {
   client: string

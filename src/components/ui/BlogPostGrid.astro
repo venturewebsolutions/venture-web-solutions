@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets'
-import Badge from '@/components/ui/Badge/Badge.astro'
+import Badge from '@/components/ui/Badge.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { url } from '@/lib/url'
 import type { HeadingTag } from '@/lib/types'
 import type { CollectionEntry } from 'astro:content'
-import Avatar from '../Avatar.astro'
+import Avatar from '@/components/ui/Avatar.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]

@@ -10,6 +10,7 @@ import type { HeadingTag } from '@/lib/types'
 import { url } from '@/lib/url'
 import SectionHeader from '../ui/SectionHeader.astro'
 import Eyebrow from '../ui/Eyebrow.astro'
+import Avatar from '../ui/Avatar.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
@@ -50,12 +51,10 @@ const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
                   position="bottom left"
                   class="thumbnail-caption thumbnail-caption-bottom-left"
                 >
-                  <Image
+                  <Avatar
                     src={post.data.author.avatar}
-                    alt={`${post.data.author.name} avatar`}
-                    class="avatar"
-                    widths={[43, 86]}
-                    sizes="43px"
+                    alt={post.data.author.name}
+                    width={43}
                   />
                 </ThumbnailCaption>
 
@@ -144,11 +143,6 @@ const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
 
   .thumbnail-caption-top-right {
     --padding: #{rem(8px)};
-  }
-
-  .avatar {
-    width: rem(43px);
-    height: rem(43px);
   }
 
   .post-summary {

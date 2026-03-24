@@ -1,0 +1,34 @@
+---
+import { Image } from 'astro:assets'
+
+type Props = {
+  src: ImageMetadata | Promise<{ default: ImageMetadata }>
+  alt: string
+  width: number
+}
+
+const { src: _, alt, width } = Astro.props
+
+const src =
+  Astro.props.src instanceof Promise
+    ? (await Astro.props.src).default
+    : Astro.props.src
+---
+
+<Image
+  src={src}
+  alt={alt}
+  widths={[width, width * 2]}
+  sizes={`${width}px`}
+  width={width}
+  class="avatar"
+/>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .avatar {
+    border-radius: var(--border-radius-s);
+  }
+</style>

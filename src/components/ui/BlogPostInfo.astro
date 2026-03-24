@@ -1,13 +1,13 @@
 ---
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import ClockIcon from '@/components/icons/ClockIcon.astro'
 import SocialMediaLink from '@/components/ui/SocialMediaLink/SocialMediaLink.astro'
 import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
 import FacebookIcon from '@/components/icons/FacebookIcon.astro'
 import InstagramIcon from '@/components/icons/InstagramIcon.astro'
+import Avatar from './Avatar.astro'
 
 type Props = HTMLAttributes<'div'> & {
   post: CollectionEntry<'blog'>
@@ -18,13 +18,10 @@ const { post, class: className, ...props } = Astro.props
 
 <div class:list={cn('post-info', className)} {...props}>
   <div class="author">
-    <Image
+    <Avatar
       src={post.data.author.avatar}
       alt={post.data.author.name}
-      class="author-avatar"
-      widths={[65, 130]}
-      sizes="65px"
-      width="65"
+      width={65}
     />
 
     <div class="author-info">

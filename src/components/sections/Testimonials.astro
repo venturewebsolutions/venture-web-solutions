@@ -6,16 +6,20 @@ import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import VideoSource from '@/components/headless/VideoSource/VideoSource.astro'
 import SectionHeader from '../ui/SectionHeader.astro'
+import Avatar from '../ui/Avatar.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
-  videoSrc: import('@/assets/videos/testimonial-video-maggi-maid.mp4'),
-  videoType: 'video/mp4',
-  thumbnailImageSrc:
-    import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
-  avatarImageSrc: import('@/assets/images/maggi-maid-avatar.png'),
-  authorName: 'Margaret W.',
-  authorPosition: 'Maggi Maid founder',
+  video: {
+    src: import('@/assets/videos/testimonial-video-maggi-maid.mp4'),
+    type: 'video/mp4',
+  },
+  thumbnail: import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
+  avatar: import('@/assets/images/maggi-maid-avatar.png'),
+  author: {
+    name: 'Margaret W.',
+    position: 'Maggi Maid founder',
+  },
   quote:
     'Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.',
 }
@@ -37,7 +41,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
               <Thumbnail>
                 <button
                   class="thumbnail-media-wrapper"
-                  aria-label={`Play ${testimonial.client} testimonial video`}
+                  aria-label={`Play ${testimonial.client}'s testimonial video`}
                 >
                   <video
                     playsinline
@@ -46,15 +50,15 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                     class="thumbnail-video"
                   >
                     <VideoSource
-                      src={testimonial.videoSrc}
-                      type={testimonial.videoType}
+                      src={testimonial.video.src}
+                      type={testimonial.video.type}
                       hash="t=0.001"
                     />
                   </video>
 
                   <Image
-                    src={testimonial.thumbnailImageSrc}
-                    alt={`${testimonial.client} testimonial`}
+                    src={testimonial.thumbnail}
+                    alt=""
                     widths={[365, 416, 730, 857, 1714]}
                     sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
                     class="thumbnail-image"
@@ -67,17 +71,15 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
                   class="thumbnail-caption swiper-no-swiping"
                 >
                   <div class="client-info">
-                    <Image
-                      src={testimonial.avatarImageSrc}
-                      alt={`${testimonial.client} avatar`}
-                      class="client-avatar"
-                      widths={[43, 86]}
-                      sizes="43px"
+                    <Avatar
+                      src={testimonial.avatar}
+                      alt={`${testimonial.author}, ${testimonial.client}`}
+                      width={43}
                     />
                     <div>
-                      <p class="client-name">{testimonial.authorName}</p>
+                      <p class="client-name">{testimonial.author.name}</p>
                       <p class="client-description">
-                        {testimonial.authorPosition}
+                        {testimonial.author.position}
                       </p>
                     </div>
                   </div>
@@ -168,13 +170,6 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
     align-items: start;
     gap: var(--spacing-xs);
     max-width: rem(132px);
-  }
-
-  .client-avatar {
-    width: 43px;
-    height: 43px;
-    border-radius: var(--border-radius-s);
-    object-fit: cover;
   }
 
   .client-name {

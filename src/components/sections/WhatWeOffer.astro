@@ -3,23 +3,24 @@ import ConfirmUserIcon from '@/components/icons/ConfirmUserIcon.astro'
 import CycleIcon from '@/components/icons/CycleIcon.astro'
 import EditUserIcon from '@/components/icons/EditUserIcon.astro'
 import SectionHeader from '../ui/SectionHeader.astro'
+import BenefitCard from '../ui/BenefitCard.astro'
 
 const cards = [
   {
     icon: EditUserIcon,
-    title: 'Unlimited edits',
+    heading: 'Unlimited edits',
     paragraph:
       "Don't worry about making small tweaks to your website — we don't charge a penny. Want to update your opening hours, swap out an image, or update the copy? Just send us a message and we'll get it done, pronto!",
   },
   {
     icon: CycleIcon,
-    title: 'Lifetime updates',
+    heading: 'Lifetime updates',
     paragraph:
       "Times change, and so do design trends. We'll keep your website looking fresh with a free design update every 3 years. We won't let your website fall behind!",
   },
   {
     icon: ConfirmUserIcon,
-    title: '24/7 support',
+    heading: '24/7 support',
     paragraph:
       "Call us, text us, or email us any time. We're on your side so we're happy to help. And yes, that includes evenings and weekends!",
   },
@@ -33,14 +34,10 @@ const cards = [
 
   <div class="cards">
     {
-      cards.map(({ icon: Icon, title, paragraph }) => (
-        <section class="card">
-          <div class="card-icon-wrapper">
-            <Icon class="card-icon" />
-          </div>
-          <h3 class="card-title">{title}</h3>
-          <p class="card-paragraph">{paragraph}</p>
-        </section>
+      cards.map(({ icon, heading, paragraph }) => (
+        <BenefitCard heading={heading} icon={icon}>
+          {paragraph}
+        </BenefitCard>
       ))
     }
   </div>
@@ -62,29 +59,5 @@ const cards = [
     @media screen and (min-width: rem(1024px)) {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
-
-  .card {
-    display: grid;
-    gap: var(--spacing-m);
-    background-color: var(--colour-surface-100);
-    padding: var(--spacing-6xl) var(--spacing-4xl);
-    border-radius: var(--border-radius-m);
-  }
-
-  .card-icon-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
-  .card-icon {
-    color: var(--colour-text-contrast);
-    fill: var(--colour-surface-base);
-  }
-
-  .card-title {
-    @include font-h4;
-    color: var(--colour-text-contrast);
-    text-align: center;
   }
 </style>

@@ -1,0 +1,46 @@
+---
+import type { HeadingLevel, HeadingTag } from '@/lib/types'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = {
+  heading: string
+  level?: HeadingLevel
+  icon: (_props: HTMLAttributes<'svg'>) => any
+}
+
+const { heading, level = 3, icon: Icon } = Astro.props
+
+const Heading = `h${level}` as HeadingTag
+---
+
+<section class="card">
+  <Icon class="card-icon" />
+  <Heading class="card-heading">{heading}</Heading>
+  <p class="card-paragraph"><slot /></p>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .card {
+    display: grid;
+    gap: var(--spacing-m);
+    justify-items: center;
+    align-content: start;
+    background-color: var(--colour-surface-100);
+    padding: var(--spacing-6xl) var(--spacing-4xl);
+    border-radius: var(--border-radius-m);
+  }
+
+  .card-icon {
+    color: var(--colour-text-contrast);
+    fill: var(--colour-surface-base);
+  }
+
+  .card-heading {
+    @include font-h4;
+    color: var(--colour-text-contrast);
+    text-align: center;
+  }
+</style>

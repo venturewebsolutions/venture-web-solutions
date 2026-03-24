@@ -17,23 +17,14 @@ const faqs = (await getFaqTopics())
 ---
 
 <Layout title="Pricing (TODO)" description="TODO">
-  <PricingSection
-    tag="header"
-    sectionHeading="Affordable web design for small businesses"
-    sectionHeadingTag="h1"
-    cardHeadingTag="h2"
-    fullWidth
-  />
+  <PricingSection as="header" level={1} fullWidth />
   <Testimonials />
   <HowItWorks />
   <FAQ faqs={faqs} />
-  <ContactUs reversed>
-    <Fragment slot="heading">Get in touch!</Fragment>
-    <Fragment slot="paragraph">
-      Have a question about our pricing? Get in touch using this form and we’ll
-      respond as soon as we can – usually within 24 hours. If you're ready with
-      your project details, feel free to explore our project planner for a
-      clearer, more structured process.
-    </Fragment>
+  <ContactUs heading="Get in touch!" reversed>
+    Have a question about our pricing? Get in touch using this form and we’ll
+    respond as soon as we can – usually within 24 hours. If you're ready with
+    your project details, feel free to explore our project planner for a
+    clearer, more structured process.
   </ContactUs>
 </Layout>

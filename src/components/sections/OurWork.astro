@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets'
 import { url } from '@/lib/url'
+import Eyebrow from '../ui/Eyebrow.astro'
 
 const projects = [
   {
@@ -34,9 +35,7 @@ const projects = [
 <section id="our-work" class="section container">
   <div class="surface">
     <div class="content">
-      <div class="header">
-        <h2 class="caption">Our Work</h2>
-      </div>
+      <Eyebrow as="h2">Our Work</Eyebrow>
 
       <div id="title-carousel">
         <div class="titles">
@@ -44,7 +43,7 @@ const projects = [
             projects.map((project) => (
               <a
                 href={url(`/portfolio/${project.slug}`)}
-                class="h2"
+                class="title h2"
                 data-project={project.slug}
               >
                 {project.name}

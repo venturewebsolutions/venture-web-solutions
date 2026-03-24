@@ -4,6 +4,7 @@ import BlogCarousel from '@/components/sections/BlogCarousel.astro'
 import BlogPostContent from '@/components/ui/BlogPostContent.astro'
 import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
 import ProgressBar from '@/components/ui/ProgressBar.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import TableOfContents from '@/components/ui/TableOfContents.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
@@ -41,10 +42,9 @@ const links = headings.map((heading) => ({
 
 <Layout title={`Post (TODO): ${post.data.title}`} description="TODO">
   <div id="hero" class="section container">
-    <div class="header header-mobile">
-      <p class="caption">{post.data.topic}</p>
-      <h1 class="h2">{post.data.title}</h1>
-    </div>
+    <SectionHeader eyebrow={post.data.topic} level={1} class="header-mobile">
+      {post.data.title}
+    </SectionHeader>
 
     <Thumbnail>
       <Image
@@ -59,10 +59,13 @@ const links = headings.map((heading) => ({
         position="top left"
         class="thumbnail-caption thumbnail-caption-top-left"
       >
-        <div class="header header-desktop">
-          <p class="caption">{post.data.topic}</p>
-          <p class="h2">{post.data.title}</p>
-        </div>
+        <SectionHeader
+          eyebrow={post.data.topic}
+          level="p"
+          class="header-desktop"
+        >
+          {post.data.title}
+        </SectionHeader>
       </ThumbnailCaption>
 
       <ThumbnailCaption

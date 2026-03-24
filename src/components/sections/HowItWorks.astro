@@ -1,5 +1,6 @@
 ---
 import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.astro'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 const steps = [
   {
@@ -27,10 +28,8 @@ const steps = [
 
 <section id="how-it-works" class="section container">
   <div class="intro">
-    <header class="header">
-      <p class="caption">Steps</p>
-      <h2 class="h2">How it works</h2>
-    </header>
+    <SectionHeader eyebrow="Steps">How it works</SectionHeader>
+
     <p>It’s simple (we promise)!</p>
   </div>
 

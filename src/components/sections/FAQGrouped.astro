@@ -1,5 +1,6 @@
 ---
 import FAQList, { type FAQ } from '@/components/ui/FAQList/FAQList.astro'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 export type FAQGroup = {
   heading: string
@@ -15,10 +16,9 @@ const { groups } = Astro.props
 
 <div id="faq" class="container section">
   <div class="left">
-    <div class="header">
-      <p class="caption">FAQs</p>
-      <h1 class="h2">The not-so-boring FAQ</h1>
-    </div>
+    <SectionHeader eyebrow="FAQs" level={1}>
+      The not-so-boring FAQ
+    </SectionHeader>
 
     <p>
       Got questions? We’ve got answers! Dive into our FAQ to discover how our

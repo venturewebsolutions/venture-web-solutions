@@ -11,11 +11,6 @@
   padding-block: var(--spacing-section);
 }
 
-.header {
-  display: grid;
-  gap: var(--spacing-xs);
-}
-
 .h2 {
   @include font-h2;
   color: var(--colour-text-contrast);
@@ -24,22 +19,4 @@
 .h2-italic {
   @include font-h2-italic;
   color: var(--colour-text-contrast);
-}
-
-.caption {
-  @include font-caption;
-
-  &::before {
-    --bullet-size: 0.5em;
-
-    content: '';
-    display: inline-block;
-    width: var(--bullet-size);
-    height: var(--bullet-size);
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: var(--spacing-xs);
-    margin-top: calc(-1 * var(--bullet-size) / 2);
-    background-color: currentColor;
-  }
 }

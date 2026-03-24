@@ -8,6 +8,8 @@ import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import type { HeadingTag } from '@/lib/types'
 import { url } from '@/lib/url'
+import SectionHeader from '../ui/SectionHeader.astro'
+import Eyebrow from '../ui/Eyebrow.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
@@ -19,10 +21,7 @@ const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
 
 <section class="section container" data-component="blog-carousel">
   <div class="intro">
-    <div class="header">
-      <p class="caption">Blog</p>
-      <h2 class="h2">Also worth reading</h2>
-    </div>
+    <SectionHeader eyebrow="Blog">Also worth reading</SectionHeader>
 
     <Button href={url('/blog/')} variant="secondary-outline" arrow>
       Explore the Blog
@@ -71,9 +70,11 @@ const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
               </Thumbnail>
 
               <div class="post-summary swiper-no-swiping">
-                <p class="post-caption caption">
-                  {post.data.readTimeMinutes} mins read
-                </p>
+                <Eyebrow>
+                  <span class="post-caption">
+                    {post.data.readTimeMinutes} mins read
+                  </span>
+                </Eyebrow>
                 <a href={`/blog/${post.id}/`}>
                   <BlogPostHeadingTag class="post-title">
                     {post.data.summary}

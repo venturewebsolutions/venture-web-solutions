@@ -2,6 +2,7 @@
 import Button from '@/components/ui/Button/Button.astro'
 import FAQList, { type FAQ } from '@/components/ui/FAQList/FAQList.astro'
 import { url } from '@/lib/url'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 type Props = {
   faqs: FAQ[]
@@ -17,10 +18,7 @@ const { faqs, reversed } = Astro.props
   data-reversed={reversed || undefined}
 >
   <div class="left">
-    <div class="header">
-      <p class="caption">FAQs</p>
-      <h2 class="h2">Have questions?</h2>
-    </div>
+    <SectionHeader eyebrow="FAQs">Have questions?</SectionHeader>
 
     <p>
       We’ve got answers! Dive into our FAQ to discover how our web design

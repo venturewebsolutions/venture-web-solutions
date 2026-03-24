@@ -1,12 +1,12 @@
 ---
 import { Image } from 'astro:assets'
+import SectionHeader from '../ui/SectionHeader.astro'
 ---
 
 <section id="performance" class="section container">
-  <header class="header">
-    <p class="caption">Performance</p>
-    <h2 class="h2">Unparalleled performance with hand-coded websites</h2>
-  </header>
+  <SectionHeader eyebrow="Performance" class="header">
+    Unparalleled performance with hand-coded websites
+  </SectionHeader>
 
   <Image
     src={import('@/assets/images/performance-screenshot.png')}
@@ -86,9 +86,6 @@ import { Image } from 'astro:assets'
 
   .header {
     grid-area: header;
-  }
-
-  .h2 {
     max-width: #{rem(571px)};
   }
 

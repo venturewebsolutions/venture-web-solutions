@@ -5,14 +5,16 @@ import CircleCheckIcon from '@/components/icons/CircleCheckIcon.astro'
 import CircleCrossIcon from '@/components/icons/CircleCrossIcon.astro'
 import { url } from '@/lib/url'
 import Badge from '@/components/ui/Badge/Badge.astro'
-import type { HeadingTag } from '@/lib/types'
+import type { HeadingLevel, HeadingTag } from '@/lib/types'
 
 type Props = {
-  cardHeadingTag: HeadingTag
+  level: HeadingLevel
   fullWidth?: boolean
 }
 
-const { cardHeadingTag: CardHeadingTag, fullWidth } = Astro.props
+const { level, fullWidth } = Astro.props
+
+const CardHeadingTag = `h${level}` as HeadingTag
 
 const cardBackgroundImageSizes = fullWidth
   ? '(min-width: 48rem) min(50vw, 640px), 100vw'

@@ -3,6 +3,7 @@ import Button from '@/components/ui/Button/Button.astro'
 import BlogPostGrid from '@/components/ui/BlogPostGrid/BlogPostGrid.astro'
 import { url } from '@/lib/url'
 import type { CollectionEntry } from 'astro:content'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
@@ -13,10 +14,9 @@ const { posts } = Astro.props
 
 <section id="blog" class="container section">
   <div class="intro">
-    <header class="header">
-      <p class="caption">Blog</p>
-      <h2 class="title h2">What have we been writing about recently?</h2>
-    </header>
+    <SectionHeader eyebrow="Blog" class="header">
+      What have we been writing about recently?
+    </SectionHeader>
 
     <Button variant="secondary-outline" href={url('/blog/')} arrow>
       Explore the Blog
@@ -41,7 +41,7 @@ const { posts } = Astro.props
     justify-items: start;
   }
 
-  .title {
+  .header {
     max-width: rem(535px);
   }
 

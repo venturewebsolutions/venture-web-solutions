@@ -1,0 +1,30 @@
+---
+import type { HeadingLevel, HeadingTag } from '@/lib/types'
+import Eyebrow from './Eyebrow.astro'
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/class-names'
+
+type Props = HTMLAttributes<'header'> & {
+  eyebrow: string
+  level?: HeadingLevel | 'p'
+}
+
+const { eyebrow, level = 2, class: className, ...props } = Astro.props
+
+const Heading = (level === 'p' ? 'p' : `h${level}`) as HeadingTag | 'p'
+---
+
+<header class:list={cn('header', className)} {...props}>
+  <Eyebrow>{eyebrow}</Eyebrow>
+  <Heading class="h2"><slot /></Heading>
+</header>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .header {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+</style>

@@ -2,6 +2,7 @@
 import ConfirmUserIcon from '@/components/icons/ConfirmUserIcon.astro'
 import CycleIcon from '@/components/icons/CycleIcon.astro'
 import EditUserIcon from '@/components/icons/EditUserIcon.astro'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 const cards = [
   {
@@ -26,23 +27,22 @@ const cards = [
 ---
 
 <section id="what-we-offer" class="section container">
-  <div class="header">
-    <p class="caption">What we offer</p>
-    <h2 class="title h2">Professional websites, £100 per month</h2>
+  <SectionHeader eyebrow="What we offer" class="header">
+    Professional websites, £100 per month
+  </SectionHeader>
 
-    <div class="cards">
-      {
-        cards.map(({ icon: Icon, title, paragraph }) => (
-          <section class="card">
-            <div class="card-icon-wrapper">
-              <Icon class="card-icon" />
-            </div>
-            <h3 class="card-title">{title}</h3>
-            <p class="card-paragraph">{paragraph}</p>
-          </section>
-        ))
-      }
-    </div>
+  <div class="cards">
+    {
+      cards.map(({ icon: Icon, title, paragraph }) => (
+        <section class="card">
+          <div class="card-icon-wrapper">
+            <Icon class="card-icon" />
+          </div>
+          <h3 class="card-title">{title}</h3>
+          <p class="card-paragraph">{paragraph}</p>
+        </section>
+      ))
+    }
   </div>
 </section>
 
@@ -50,7 +50,7 @@ const cards = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .title {
+  .header {
     max-width: #{rem(534px)};
   }
 

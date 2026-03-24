@@ -1,34 +1,37 @@
 ---
 import PricingCards from '@/components/ui/PricingCards/PricingCards.astro'
-import type { HeadingTag } from '@/lib/types'
-import type { HTMLTag } from 'astro/types'
+import type { HeadingLevel } from '@/lib/types'
+import type { HTMLTag, Polymorphic } from 'astro/types'
+import SectionHeader from '../ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
 
-type Props = {
-  tag?: HTMLTag
-  sectionHeading?: string
-  sectionHeadingTag?: HeadingTag
-  cardHeadingTag?: HeadingTag
+type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{
+  as: Tag
+}> & {
+  heading?: string
+  level?: HeadingLevel
   fullWidth?: boolean
 }
 
 const {
-  tag: Tag = 'section',
-  sectionHeading = 'Choose your plan',
-  sectionHeadingTag: SectionHeadingTag = 'h2',
-  cardHeadingTag = 'h3',
+  as: Tag = 'section',
+  heading = 'Choose your plan',
+  level = 2,
   fullWidth = false,
-} = Astro.props
+  class: className,
+  ...props
+} = Astro.props as Props
 ---
 
-<Tag id="pricing" class="section container">
-  <div class="header">
-    <p class="caption">Pricing</p>
-    <SectionHeadingTag class="heading h2">
-      {sectionHeading}
-    </SectionHeadingTag>
-  </div>
+<Tag id="pricing" class:list={cn('section container', className)} {...props}>
+  <SectionHeader eyebrow="Pricing" level={level} class="header">
+    {heading}
+  </SectionHeader>
 
-  <PricingCards cardHeadingTag={cardHeadingTag} fullWidth={fullWidth} />
+  <PricingCards
+    level={Math.min(level + 1, 6) as HeadingLevel}
+    fullWidth={fullWidth}
+  />
 </Tag>
 
 <style lang="scss">
@@ -40,7 +43,7 @@ const {
     gap: var(--spacing-5xl);
   }
 
-  .heading {
+  .header {
     max-width: rem(567px);
   }
 </style>

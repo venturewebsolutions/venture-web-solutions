@@ -8,14 +8,14 @@ const posts = await getBlogPosts()
 
 <Layout title="Blog (TODO)" description="TODO">
   <div class="container section">
-    <div class="header">
+    <header class="header">
       <h1 class="h2">Blog</h1>
       <p class="subheading">
         Here’s where we keep all our little secrets about web design,
         development, and related topics — tips, tricks, and things we wish we
         knew sooner!
       </p>
-    </div>
+    </header>
 
     <BlogPostGrid posts={posts} blogPostTitleTag="h2" />
   </div>
@@ -31,6 +31,7 @@ const posts = await getBlogPosts()
   }
 
   .header {
+    display: grid;
     gap: var(--spacing-m);
   }
 

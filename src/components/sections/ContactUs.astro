@@ -4,11 +4,12 @@ import ContactForm from '@/components/ui/ContactForm/ContactForm.astro'
 import { url } from '@/lib/url'
 
 type Props = {
-  reversed?: boolean
+  heading?: string
   headingUnderline?: boolean
+  reversed?: boolean
 }
 
-const { reversed, headingUnderline } = Astro.props
+const { heading, headingUnderline, reversed } = Astro.props
 ---
 
 <section
@@ -19,16 +20,20 @@ const { reversed, headingUnderline } = Astro.props
   <div class="content-wrapper">
     <header class="header">
       <h2 class="h2">
-        <slot name="heading">
-          <span class="h2-italic">Still</span> have a question?
-        </slot>
+        {
+          heading ?? (
+            <>
+              <span class="h2-italic">Still</span> have a question?
+            </>
+          )
+        }
       </h2>
       {headingUnderline && <hr class="heading-underline" />}
     </header>
 
     <div class="content">
       <p>
-        <slot name="paragraph">
+        <slot>
           Okay, not a problem! For general enquires just reach out using this
           form and we’ll get back to you as soon as possible. If you're ready
           with your project details, feel free to explore our project planner
@@ -63,6 +68,11 @@ const { reversed, headingUnderline } = Astro.props
   #contact-us {
     display: grid;
     gap: var(--spacing-5xl);
+  }
+
+  .header {
+    display: grid;
+    gap: var(--spacing-xs);
   }
 
   .heading-underline {

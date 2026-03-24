@@ -4,6 +4,7 @@ import CTAMarquee from '@/components/sections/CTAMarquee.astro'
 import FAQ from '@/components/sections/FAQ.astro'
 import Button from '@/components/ui/Button/Button.astro'
 import ContactForm from '@/components/ui/ContactForm/ContactForm.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getFaqTopics } from '@/lib/collections'
 import { url } from '@/lib/url'
@@ -20,10 +21,9 @@ const faqs = (await getFaqTopics())
 <Layout title="Contact (TODO)" description="TODO">
   <div id="contact-us" class="container section">
     <div class="content-wrapper">
-      <div class="header">
-        <p class="caption">Contact</p>
-        <h1 class="h2">We'd love to hear from you</h1>
-      </div>
+      <SectionHeader eyebrow="Contact" level={1}>
+        We'd love to hear from you
+      </SectionHeader>
 
       <div class="content">
         <p>

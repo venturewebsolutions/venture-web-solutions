@@ -5,6 +5,7 @@ import NavigationButton from '@/components/ui/NavigationButton/NavigationButton.
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import VideoSource from '@/components/headless/VideoSource/VideoSource.astro'
+import SectionHeader from '../ui/SectionHeader.astro'
 
 const testimonial = {
   client: 'Maggi Maid',
@@ -23,10 +24,9 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
 ---
 
 <section id="testimonials" class="section container">
-  <header class="header">
-    <p class="caption">Client testimonials</p>
-    <h2 class="h2">Voice of our happy clients</h2>
-  </header>
+  <SectionHeader eyebrow="Client testimonials">
+    Voice of our happy clients
+  </SectionHeader>
 
   <div class="swiper">
     <div class="swiper-wrapper">

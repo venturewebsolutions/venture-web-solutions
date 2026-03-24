@@ -1,0 +1,72 @@
+---
+import type { HeadingLevel, HeadingTag } from '@/lib/types'
+
+type Props = {
+  step: number
+  heading: string
+  level: HeadingLevel
+}
+
+const { step, heading, level } = Astro.props
+
+const Heading = `h${level}` as HeadingTag
+---
+
+<section class="step-card">
+  <div class="step-surface">
+    <p class="step-number">
+      <span class="swiper-no-swiping">{step}</span>
+    </p>
+    <Heading class="step-title">
+      <span class="swiper-no-swiping">{heading}</span>
+    </Heading>
+    <p class="step-content">
+      <span class="swiper-no-swiping"><slot /></span>
+    </p>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .step-card {
+    --padding-block: var(--spacing-s);
+
+    @include font-display-numeral-xl;
+
+    --negative-margin: calc(
+      1em * calc(var(--line-height-display-numeral-xl) / 100%) / 2
+    );
+
+    padding-top: calc(var(--negative-margin) + var(--padding-block));
+    padding-bottom: var(--padding-block);
+    height: 100%;
+  }
+
+  .step-surface {
+    @include font-body;
+
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-m);
+    display: grid;
+    gap: var(--spacing-m);
+    align-content: start;
+    padding-inline: var(--spacing-2xl);
+    padding-bottom: var(--spacing-6xl);
+    height: 100%;
+  }
+
+  .step-number {
+    @include font-display-numeral-xl;
+    color: var(--colour-text-contrast);
+    text-align: center;
+    margin-top: calc(-1 * var(--negative-margin));
+  }
+
+  .step-title {
+    @include font-h4;
+    color: var(--colour-text-contrast);
+    text-align: center;
+  }
+</style>

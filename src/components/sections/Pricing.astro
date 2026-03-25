@@ -1,20 +1,17 @@
 ---
-import type { HTMLTag, Polymorphic } from 'astro/types'
+import type { HTMLAttributes } from 'astro/types'
 import type { ButtonVariant } from '@/components/ui/Button.astro'
 import PricingCard from '@/components/ui/PricingCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 
-type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{
-  as: Tag
-}> & {
+type Props = HTMLAttributes<'section'> & {
   heading?: string
   level?: number
   fullWidth?: boolean
 }
 
 const {
-  as: Tag = 'section',
   heading = 'Choose your plan',
   level = 2,
   fullWidth = false,
@@ -108,7 +105,11 @@ const cards = [
 ]
 ---
 
-<Tag id="pricing" class:list={cn('section container', className)} {...props}>
+<section
+  id="pricing"
+  class:list={cn('section container', className)}
+  {...props}
+>
   <SectionHeader eyebrow="Pricing" level={level} class="header">
     {heading}
   </SectionHeader>
@@ -116,7 +117,7 @@ const cards = [
   <div class="pricing-grid" data-full-width={fullWidth || undefined}>
     {cards.map((card) => <PricingCard {...card} class="pricing-card" />)}
   </div>
-</Tag>
+</section>
 
 <style lang="scss">
   @use 'functions' as *;

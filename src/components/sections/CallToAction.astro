@@ -9,7 +9,7 @@ type Props = HTMLAttributes<'section'>
 const { class: className, ...props } = Astro.props
 ---
 
-<section {...props} class:list={cn('section container', className)}>
+<section class:list={cn('section container', className)} {...props}>
   <div class="surface">
     <div class="left">
       <h2 class="h2">Start a project</h2>

@@ -1,15 +1,13 @@
 ---
-import type { HeadingLevel, HeadingTag } from '@/lib/types'
+import Heading from '@/components/headless/Heading.astro'
 
 type Props = {
   step: number
   heading: string
-  level: HeadingLevel
+  level: number
 }
 
 const { step, heading, level } = Astro.props
-
-const Heading = `h${level}` as HeadingTag
 ---
 
 <section class="step-card">
@@ -17,7 +15,7 @@ const Heading = `h${level}` as HeadingTag
     <p class="step-number">
       <span class="swiper-no-swiping">{step}</span>
     </p>
-    <Heading class="step-title">
+    <Heading level={level} class="step-title">
       <span class="swiper-no-swiping">{heading}</span>
     </Heading>
     <p class="step-content">

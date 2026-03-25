@@ -42,9 +42,11 @@ const links = headings.map((heading) => ({
 
 <Layout title={`Post (TODO): ${post.data.title}`} description="TODO">
   <div id="hero" class="section container">
-    <SectionHeader eyebrow={post.data.topic} level={1} class="header-mobile">
-      {post.data.title}
-    </SectionHeader>
+    <div class="header-mobile">
+      <SectionHeader eyebrow={post.data.topic} level={1}>
+        {post.data.title}
+      </SectionHeader>
+    </div>
 
     <Thumbnail>
       <Image
@@ -59,13 +61,11 @@ const links = headings.map((heading) => ({
         position="top left"
         class="thumbnail-caption thumbnail-caption-top-left"
       >
-        <SectionHeader
-          eyebrow={post.data.topic}
-          level="p"
-          class="header-desktop"
-        >
-          {post.data.title}
-        </SectionHeader>
+        <div class="header-desktop">
+          <SectionHeader eyebrow={post.data.topic} level={1}>
+            {post.data.title}
+          </SectionHeader>
+        </div>
       </ThumbnailCaption>
 
       <ThumbnailCaption
@@ -105,7 +105,7 @@ const links = headings.map((heading) => ({
     </div>
   </div>
 
-  <BlogCarousel posts={otherPosts} blogPostHeadingTag="h3" />
+  <BlogCarousel posts={otherPosts} blogPostHeadingLevel={3} />
 </Layout>
 
 <style lang="scss">
@@ -115,6 +115,10 @@ const links = headings.map((heading) => ({
   #hero {
     display: grid;
     gap: var(--spacing-l);
+  }
+
+  .header-desktop {
+    display: none;
   }
 
   .thumbnail-image {
@@ -200,6 +204,10 @@ const links = headings.map((heading) => ({
 
     .header-mobile {
       display: none;
+    }
+
+    .header-desktop {
+      display: block;
     }
   }
 </style>

@@ -1,18 +1,18 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
-import Badge from '@/components/ui/Badge.astro'
-import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
+import Heading from '@/components/headless/Heading.astro'
 import CircleCheckIcon from '@/components/icons/CircleCheckIcon.astro'
 import CircleCrossIcon from '@/components/icons/CircleCrossIcon.astro'
-import type { HeadingLevel, HeadingTag } from '@/lib/types'
-import { url } from '@/lib/url'
-import type { HTMLAttributes } from 'astro/types'
+import Badge from '@/components/ui/Badge.astro'
+import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
 import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
 
 type Props = HTMLAttributes<'section'> & {
   heading: {
     text: string
-    level: HeadingLevel
+    level: number
   }
   subheading: string | null
   price: {
@@ -49,8 +49,6 @@ const {
   class: className,
   ...props
 } = Astro.props
-
-const Heading = `h${heading.level}` as HeadingTag
 ---
 
 <section class:list={cn('card', className)} {...props}>
@@ -87,7 +85,9 @@ const Heading = `h${heading.level}` as HeadingTag
       </div>
 
       <div class="card-heading">
-        <Heading class="card-title">{heading.text}</Heading>
+        <Heading level={heading.level} class="card-title">
+          {heading.text}
+        </Heading>
 
         {subheading && <p>{subheading}</p>}
       </div>

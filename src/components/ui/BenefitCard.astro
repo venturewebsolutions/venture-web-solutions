@@ -1,21 +1,19 @@
 ---
-import type { HeadingLevel, HeadingTag } from '@/lib/types'
 import type { HTMLAttributes } from 'astro/types'
+import Heading from '@/components/headless/Heading.astro'
 
 type Props = {
   heading: string
-  level?: HeadingLevel
+  level?: number
   icon: (_props: HTMLAttributes<'svg'>) => any
 }
 
 const { heading, level = 3, icon: Icon } = Astro.props
-
-const Heading = `h${level}` as HeadingTag
 ---
 
 <section class="card">
   <Icon class="card-icon" />
-  <Heading class="card-heading">{heading}</Heading>
+  <Heading level={level} class="card-heading">{heading}</Heading>
   <p class="card-paragraph"><slot /></p>
 </section>
 

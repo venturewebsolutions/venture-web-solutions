@@ -4,13 +4,12 @@ import type { ButtonVariant } from '@/components/ui/Button.astro'
 import PricingCard from '@/components/ui/PricingCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
-import type { HeadingLevel } from '@/lib/types'
 
 type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{
   as: Tag
 }> & {
   heading?: string
-  level?: HeadingLevel
+  level?: number
   fullWidth?: boolean
 }
 
@@ -34,7 +33,7 @@ const cards = [
   {
     heading: {
       text: 'Subscription',
-      level: Math.min(level + 1, 6) as HeadingLevel,
+      level: level + 1,
     },
     subheading: '6-month minimum',
     price: {
@@ -71,7 +70,7 @@ const cards = [
   {
     heading: {
       text: 'Lump Sum',
-      level: Math.min(level + 1, 6) as HeadingLevel,
+      level: level + 1,
     },
     subheading: null,
     price: {

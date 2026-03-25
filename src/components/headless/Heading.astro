@@ -1,14 +1,13 @@
 ---
-import type { HeadingTag } from '@/lib/types'
-import type { HTMLAttributes } from 'astro/types'
+import clamp from 'lodash/clamp'
 
-type Props = HTMLAttributes<'h1'> & {
+type Props = astroHTML.JSX.HTMLAttributes & {
   level: number
 }
 
 const { level, ...props } = Astro.props
 
-const Tag = `h${Math.max(Math.min(level, 6), 1)}` as HeadingTag
+const Tag = `h${clamp(level, 1, 6)}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 ---
 
-<Tag {...props}><slot /> </Tag>
+<Tag {...props}><slot /></Tag>

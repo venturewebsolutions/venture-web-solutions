@@ -1,23 +1,23 @@
 ---
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import Heading from '@/components/headless/Heading.astro'
+import Avatar from '@/components/ui/Avatar.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Button from '@/components/ui/Button.astro'
+import Eyebrow from '@/components/ui/Eyebrow.astro'
 import NavigationButton from '@/components/ui/NavigationButton.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
-import type { HeadingTag } from '@/lib/types'
 import { url } from '@/lib/url'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
-import Eyebrow from '@/components/ui/Eyebrow.astro'
-import Avatar from '@/components/ui/Avatar.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
-  blogPostHeadingTag: HeadingTag
+  blogPostHeadingLevel: number
 }
 
-const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
+const { posts, blogPostHeadingLevel } = Astro.props
 ---
 
 <section class="section container" data-component="blog-carousel">
@@ -75,9 +75,9 @@ const { posts, blogPostHeadingTag: BlogPostHeadingTag } = Astro.props
                   </span>
                 </Eyebrow>
                 <a href={`/blog/${post.id}/`}>
-                  <BlogPostHeadingTag class="post-title">
+                  <Heading level={blogPostHeadingLevel} class="post-title">
                     {post.data.summary}
-                  </BlogPostHeadingTag>
+                  </Heading>
                 </a>
               </div>
             </section>

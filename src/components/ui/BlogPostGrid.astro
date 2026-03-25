@@ -1,19 +1,19 @@
 ---
 import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import Heading from '@/components/headless/Heading.astro'
+import Avatar from '@/components/ui/Avatar.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { url } from '@/lib/url'
-import type { HeadingTag } from '@/lib/types'
-import type { CollectionEntry } from 'astro:content'
-import Avatar from '@/components/ui/Avatar.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
-  blogPostTitleTag: HeadingTag
+  blogPostHeadingLevel: number
 }
 
-const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
+const { posts, blogPostHeadingLevel } = Astro.props
 ---
 
 <div class="posts">
@@ -58,9 +58,9 @@ const { posts, blogPostTitleTag: BlogPostTitleTag } = Astro.props
             {post.data.readTimeMinutes} mins read
           </p>
           <a href={`/blog/${post.id}/`}>
-            <BlogPostTitleTag class="post-title">
+            <Heading level={blogPostHeadingLevel} class="post-title">
               {post.data.summary}
-            </BlogPostTitleTag>
+            </Heading>
           </a>
         </div>
       </section>

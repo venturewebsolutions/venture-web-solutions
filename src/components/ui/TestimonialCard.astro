@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets'
+import Heading from '@/components/headless/Heading.astro'
 import VideoSource, {
   type VideoModule,
 } from '@/components/headless/VideoSource.astro'
-import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import PlayIcon from '@/components/icons/PlayIcon.astro'
-import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import Avatar from '@/components/ui/Avatar.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 
 type Props = {
   client: string
@@ -26,7 +27,7 @@ type Props = {
 const { client, video, thumbnail, avatar, author, quote } = Astro.props
 ---
 
-<div class="testimonial-card">
+<section class="testimonial-card">
   <Thumbnail>
     <button
       class="thumbnail-media-wrapper"
@@ -63,7 +64,7 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
   </Thumbnail>
 
   <p class="quote swiper-no-swiping">“{quote}”</p>
-</div>
+</section>
 
 <style lang="scss">
   @use 'functions' as *;

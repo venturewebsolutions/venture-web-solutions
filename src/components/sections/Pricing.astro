@@ -1,9 +1,10 @@
 ---
-import PricingCards from '@/components/ui/PricingCards.astro'
-import type { HeadingLevel } from '@/lib/types'
 import type { HTMLTag, Polymorphic } from 'astro/types'
+import type { ButtonVariant } from '@/components/ui/Button.astro'
+import PricingCard from '@/components/ui/PricingCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
+import type { HeadingLevel } from '@/lib/types'
 
 type Props<Tag extends HTMLTag = 'section'> = Polymorphic<{
   as: Tag
@@ -21,6 +22,91 @@ const {
   class: className,
   ...props
 } = Astro.props as Props
+
+const background = {
+  widths: [340, 569, 640, 708, 1138, 1280, 1416],
+  sizes: fullWidth
+    ? '(min-width: 48rem) min(50vw, 640px), 100vw'
+    : '(min-width: 48rem) min(50vw, 569px), 100vw',
+}
+
+const cards = [
+  {
+    heading: {
+      text: 'Subscription',
+      level: Math.min(level + 1, 6) as HeadingLevel,
+    },
+    subheading: '6-month minimum',
+    price: {
+      value: 100,
+      monthly: true,
+      subtext: null,
+    },
+    summary:
+      'Best for: small businesses who want ongoing support and predictable costs.',
+    features: [
+      { description: '5-page website', included: true },
+      { description: 'Hosting & domain', included: true },
+      { description: 'Performance optimisation', included: true },
+      { description: 'SEO essentials', included: true },
+      { description: 'Copywriting', included: true },
+      { description: 'Custom-coded development', included: true },
+      { description: 'Fully responsive design', included: true },
+      { description: 'Money back guarantee', included: true },
+      { description: 'Unlimited edits', included: true },
+      { description: '24/7 support', included: true },
+      { description: 'Lifetime updates', included: true },
+    ],
+    addOns: [
+      'Extra pages: £75 per page',
+      'CMS collections: £250 each',
+      'Internationalisation: £500 for the first extra language, then £250 per additional language',
+    ],
+    popular: true,
+    background,
+    button: {
+      variant: null,
+    },
+  },
+  {
+    heading: {
+      text: 'Lump Sum',
+      level: Math.min(level + 1, 6) as HeadingLevel,
+    },
+    subheading: null,
+    price: {
+      value: 2000,
+      monthly: false,
+      subtext: '+ £25 /month for hosting',
+    },
+    summary:
+      'Best for: businesses who prefer a one-time payment and full ownership.',
+    features: [
+      { description: '5-page website', included: true },
+      { description: 'Hosting & domain', included: true },
+      { description: 'Performance optimisation', included: true },
+      { description: 'SEO essentials', included: true },
+      { description: 'Copywriting', included: true },
+      { description: 'Custom-coded development', included: true },
+      { description: 'Fully responsive design', included: true },
+      { description: 'Money back guarantee', included: true },
+      { description: 'Unlimited edits', included: false },
+      { description: '24/7 support', included: false },
+      { description: 'Lifetime updates', included: false },
+    ],
+    addOns: [
+      'Unlimited edits: £50 per month',
+      'Extra pages: £75 per page',
+      'CMS collections: £250 each',
+      'Internationalisation: £500 for the first extra language, then £250 per additional language',
+    ],
+    popular: false,
+    background,
+    button: {
+      variant: 'secondary' as ButtonVariant,
+    },
+  },
+]
 ---
 
 <Tag id="pricing" class:list={cn('section container', className)} {...props}>
@@ -28,10 +114,9 @@ const {
     {heading}
   </SectionHeader>
 
-  <PricingCards
-    level={Math.min(level + 1, 6) as HeadingLevel}
-    fullWidth={fullWidth}
-  />
+  <div class="pricing-grid" data-full-width={fullWidth || undefined}>
+    {cards.map((card) => <PricingCard {...card} class="pricing-card" />)}
+  </div>
 </Tag>
 
 <style lang="scss">
@@ -45,5 +130,30 @@ const {
 
   .header {
     max-width: rem(567px);
+  }
+
+  .pricing-grid {
+    display: grid;
+    row-gap: var(--spacing-2xl);
+    justify-content: center;
+    margin-inline: auto;
+
+    &:not([data-full-width]) {
+      max-width: rem(1170px);
+    }
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(9, auto);
+      row-gap: 0;
+      column-gap: var(--spacing-2xl);
+    }
+
+    .pricing-card {
+      grid-row: 1 / -1;
+      grid-template-rows: subgrid;
+    }
   }
 </style>

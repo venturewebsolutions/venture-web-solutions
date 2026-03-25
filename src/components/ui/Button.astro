@@ -6,7 +6,7 @@ import { cn } from '@/lib/class-names'
 export type ButtonVariant = 'secondary' | 'secondary-outline' | 'ghost' | 'form'
 
 type BaseProps = {
-  variant?: ButtonVariant
+  variant?: ButtonVariant | null
   size?: 'lg' | 'link'
   arrow?: boolean
   disabled?: boolean
@@ -37,7 +37,7 @@ const {
       {...props}
       href={disabled ? undefined : props.href}
       class:list={cn('button', className)}
-      data-variant={variant}
+      data-variant={variant ?? undefined}
       data-size={size}
     >
       <slot />
@@ -47,7 +47,7 @@ const {
     <button
       {...props}
       class:list={cn('button', className)}
-      data-variant={variant}
+      data-variant={variant ?? undefined}
       data-size={size}
     >
       <slot />

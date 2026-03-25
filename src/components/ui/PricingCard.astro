@@ -1,0 +1,267 @@
+---
+import { Image } from 'astro:assets'
+import Badge from '@/components/ui/Badge.astro'
+import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
+import CircleCheckIcon from '@/components/icons/CircleCheckIcon.astro'
+import CircleCrossIcon from '@/components/icons/CircleCrossIcon.astro'
+import type { HeadingLevel, HeadingTag } from '@/lib/types'
+import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/class-names'
+
+type Props = HTMLAttributes<'section'> & {
+  heading: {
+    text: string
+    level: HeadingLevel
+  }
+  subheading: string | null
+  price: {
+    value: number
+    monthly: boolean
+    subtext: string | null
+  }
+  summary: string
+  features: {
+    description: string
+    included: boolean
+  }[]
+  addOns: string[]
+  popular: boolean
+  background: {
+    widths: number[]
+    sizes: string
+  }
+  button: {
+    variant: ButtonVariant | null
+  }
+}
+
+const {
+  heading,
+  subheading,
+  price,
+  summary,
+  features,
+  addOns,
+  background,
+  button,
+  popular,
+  class: className,
+  ...props
+} = Astro.props
+
+const Heading = `h${heading.level}` as HeadingTag
+---
+
+<section class:list={cn('card', className)} {...props}>
+  {
+    popular ? (
+      <Image
+        src={import('@/assets/images/pricing-card-background-glow.png')}
+        alt=""
+        class="card-background"
+        widths={background.widths}
+        sizes={background.sizes}
+      />
+    ) : (
+      <Image
+        src={import('@/assets/images/pricing-card-background.png')}
+        alt=""
+        class="card-background"
+        widths={background.widths}
+        sizes={background.sizes}
+      />
+    )
+  }
+
+  <div class="card-header">
+    <div class="card-header-header">
+      <div class="card-badge-wrapper">
+        {
+          popular && (
+            <Badge variant="primary" size="l">
+              Popular
+            </Badge>
+          )
+        }
+      </div>
+
+      <div class="card-heading">
+        <Heading class="card-title">{heading.text}</Heading>
+
+        {subheading && <p>{subheading}</p>}
+      </div>
+    </div>
+
+    <p>
+      <span class="card-price-value">£{price.value}</span>
+      {price.monthly && <span class="card-price-monthly">/month</span>}
+      {price.subtext && <span class="card-price-subtext">{price.subtext}</span>}
+    </p>
+
+    <p class="card-summary">{summary}</p>
+  </div>
+
+  <hr class="card-divider" />
+
+  <div class="card-content">
+    <ul class="card-features">
+      {
+        features.map((feature) => (
+          <li
+            class:list={[
+              'card-feature',
+              !feature.included && 'card-feature-excluded',
+            ]}
+          >
+            {feature.included ? <CircleCheckIcon /> : <CircleCrossIcon />}
+            <span>{feature.description}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <Button variant={button.variant} href={url('/project-planner/')}>
+      Let's get started
+    </Button>
+  </div>
+
+  <hr class="card-divider" />
+
+  <div class="card-footer">
+    <p class="card-footer-heading">Add-ons:</p>
+
+    <ul class="card-footer-list">
+      {
+        addOns.map((addOn) => (
+          <li class="card-footer-list-item">
+            <span>•</span>
+            <span>{addOn}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .card {
+    display: grid;
+    justify-content: start;
+    align-items: baseline;
+    padding: var(--spacing-2xl);
+    border: var(--border-width-s) solid var(--colour-primary);
+    border-radius: var(--border-radius-xl);
+    color: var(--colour-text-contrast);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-header {
+    grid-row: 1 / span 4;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: var(--spacing-m);
+    padding-bottom: var(--spacing-m);
+  }
+
+  .card-header-header {
+    grid-row: 1 / span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    row-gap: var(--spacing-m);
+  }
+
+  .card-title {
+    @include font-h3;
+    flex: 1;
+  }
+
+  .card-price-value {
+    @include font-display-numeral-m;
+    color: var(--colour-primary);
+  }
+
+  .card-price-frequency {
+    @include font-h3;
+  }
+
+  .card-price-subtext {
+    white-space: nowrap;
+  }
+
+  .card-content {
+    grid-row: 6 / span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: var(--spacing-xl);
+    padding-top: var(--spacing-m);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .card-features {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .card-feature {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .card-feature-excluded {
+    opacity: 0.6;
+  }
+
+  .card-footer {
+    display: grid;
+    gap: var(--spacing-xs);
+    padding-top: var(--spacing-m);
+  }
+
+  .card-footer-list {
+    margin-left: var(--spacing-xs);
+  }
+
+  .card-footer-list-item {
+    display: flex;
+    align-items: baseline;
+    gap: var(--spacing-s);
+  }
+
+  .card-divider {
+    color: var(--colour-surface-200);
+    border-top-width: 2px;
+  }
+
+  .card-background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .card-header-header {
+      grid-template-columns: 1fr auto;
+      column-gap: var(--spacing-m);
+    }
+
+    .card-heading {
+      grid-row: 1 / span 2;
+    }
+
+    .card-badge-wrapper {
+      order: 1;
+      grid-row: 1 / span 2;
+    }
+  }
+</style>

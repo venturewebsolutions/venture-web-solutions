@@ -11,7 +11,7 @@ type Props = HTMLAttributes<'header'> & {
 
 const { eyebrow, level = 2, class: className, ...props } = Astro.props
 
-const Heading = (level === 'p' ? 'p' : `h${level}`) as HeadingTag | 'p'
+const Heading = level === 'p' ? 'p' : (`h${level}` as HeadingTag)
 ---
 
 <header class:list={cn('header', className)} {...props}>

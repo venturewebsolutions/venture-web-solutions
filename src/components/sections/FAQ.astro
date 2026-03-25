@@ -1,15 +1,39 @@
 ---
+import Heading from '@/components/headless/Heading.astro'
 import Button from '@/components/ui/Button.astro'
-import FAQList, { type FAQ } from '@/components/ui/FAQList.astro'
-import { url } from '@/lib/url'
+import FAQItem from '@/components/ui/FAQItem.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import type { HeadingLevel } from '@/lib/types'
+import { url } from '@/lib/url'
 
-type Props = {
+export type FAQGroup = {
+  heading: string
   faqs: FAQ[]
+}
+
+export type FAQ = {
+  question: string
+  answer: string
+}
+
+type BaseProps = {
+  heading?: string
+  level?: HeadingLevel
+  link?: true
   reversed?: true
 }
 
-const { faqs, reversed } = Astro.props
+type Props = BaseProps &
+  (
+    | {
+        faqs: FAQ[]
+      }
+    | {
+        groups: FAQGroup[]
+      }
+  )
+
+const { heading = 'Have questions?', level = 2, link, reversed } = Astro.props
 ---
 
 <section
@@ -18,21 +42,55 @@ const { faqs, reversed } = Astro.props
   data-reversed={reversed || undefined}
 >
   <div class="left">
-    <SectionHeader eyebrow="FAQs">Have questions?</SectionHeader>
+    <SectionHeader eyebrow="FAQs" level={level}>{heading}</SectionHeader>
 
     <p>
-      We’ve got answers! Dive into our FAQ to discover how our web design
-      services work and what we can create for you. Wondering about something
-      specific? Check below — and if it’s not there, just reach out!.
+      <slot>
+        We’ve got answers! Dive into our FAQ to discover how our web design
+        services work and what we can create for you. Wondering about something
+        specific? Check below — and if it’s not there, just reach out!.
+      </slot>
     </p>
 
-    <Button variant="secondary-outline" href={url('/faq/')} arrow>
-      Check all FAQs
-    </Button>
+    {
+      link && (
+        <Button variant="secondary-outline" href={url('/faq/')} arrow>
+          Check all FAQs
+        </Button>
+      )
+    }
   </div>
 
   <div class="right">
-    <FAQList faqs={faqs} />
+    {
+      'faqs' in Astro.props && (
+        <div class="faq-list">
+          {Astro.props.faqs.map((faq) => (
+            <FAQItem question={faq.question} level={level + 1}>
+              {faq.answer}
+            </FAQItem>
+          ))}
+        </div>
+      )
+    }
+    {
+      'groups' in Astro.props &&
+        Astro.props.groups.map((group) => (
+          <section class="faq-group">
+            <Heading level={level + 1} class="h3">
+              {group.heading}
+            </Heading>
+
+            <div class="faq-list">
+              {group.faqs.map((faq) => (
+                <FAQItem question={faq.question} level={level + 2}>
+                  {faq.answer}
+                </FAQItem>
+              ))}
+            </div>
+          </section>
+        ))
+    }
   </div>
 </section>
 
@@ -49,6 +107,21 @@ const { faqs, reversed } = Astro.props
     display: grid;
     justify-items: start;
     gap: var(--spacing-xl);
+  }
+
+  .right {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .faq-group {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .faq-list {
+    display: grid;
+    gap: var(--spacing-m);
   }
 
   @media screen and (min-width: rem(1024px)) {
@@ -69,6 +142,7 @@ const { faqs, reversed } = Astro.props
 
     .right {
       max-width: rem(737px);
+      gap: var(--spacing-4xl);
     }
   }
 </style>

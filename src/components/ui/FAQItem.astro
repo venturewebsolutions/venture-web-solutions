@@ -2,52 +2,38 @@
 import Disclosure from '@/components/headless/Disclosure/Disclosure.astro'
 import DisclosurePanel from '@/components/headless/Disclosure/DisclosurePanel.astro'
 import DisclosureTrigger from '@/components/headless/Disclosure/DisclosureTrigger.astro'
+import Heading from '@/components/headless/Heading.astro'
 import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
 
-export type FAQ = {
-  question: string
-  answer: string
-}
-
 type Props = {
-  faqs: FAQ[]
+  question: string
+  level: number
 }
 
-const { faqs } = Astro.props
+const { question, level } = Astro.props
 ---
 
-<div class="faqs">
-  {
-    faqs.map((faq) => (
-      <section>
-        <Disclosure class="faq">
-          <h3>
-            <DisclosureTrigger class="faq-trigger">
-              <span class="faq-question">{faq.question}</span>
+<section>
+  <Disclosure class="faq">
+    <Heading level={level}>
+      <DisclosureTrigger class="faq-trigger">
+        <span class="faq-question">{question}</span>
 
-              <div class="faq-arrow">
-                <UpRightArrowIcon class="faq-arrow-icon" />
-              </div>
-            </DisclosureTrigger>
-          </h3>
+        <div class="faq-arrow">
+          <UpRightArrowIcon class="faq-arrow-icon" />
+        </div>
+      </DisclosureTrigger>
+    </Heading>
 
-          <DisclosurePanel>
-            <p class="faq-answer">{faq.answer}</p>
-          </DisclosurePanel>
-        </Disclosure>
-      </section>
-    ))
-  }
-</div>
+    <DisclosurePanel>
+      <p class="faq-answer"><slot /></p>
+    </DisclosurePanel>
+  </Disclosure>
+</section>
 
 <style lang="scss">
   @use 'functions' as *;
   @use 'mixins' as *;
-
-  .faqs {
-    display: grid;
-    gap: var(--spacing-m);
-  }
 
   .faq {
     --disclosure-transition-timing-function: var(--transition-ease-default);

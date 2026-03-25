@@ -20,3 +20,8 @@
   @include font-h2-italic;
   color: var(--colour-text-contrast);
 }
+
+.h3 {
+  @include font-h3;
+  color: var(--colour-text-contrast);
+}

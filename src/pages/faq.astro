@@ -1,6 +1,6 @@
 ---
 import ContactUs from '@/components/sections/ContactUs.astro'
-import FAQGrouped from '@/components/sections/FAQGrouped.astro'
+import FAQ from '@/components/sections/FAQ.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getFaqTopics } from '@/lib/collections'
 
@@ -14,6 +14,10 @@ const groups = (await getFaqTopics()).map((topic) => ({
 ---
 
 <Layout title="FAQ (TODO)" description="TODO">
-  <FAQGrouped groups={groups} />
+  <FAQ groups={groups} heading="The not-so-boring FAQ" level={1}>
+    Got questions? We’ve got answers! Dive into our FAQ to discover how our web
+    design services work and what we can create for you. Wondering about
+    something specific? Check below — and if it’s not there, just reach out!.
+  </FAQ>
   <ContactUs headingUnderline />
 </Layout>

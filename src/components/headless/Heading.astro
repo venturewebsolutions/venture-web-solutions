@@ -1,0 +1,14 @@
+---
+import type { HeadingTag } from '@/lib/types'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'h1'> & {
+  level: number
+}
+
+const { level, ...props } = Astro.props
+
+const Tag = `h${Math.max(Math.min(level, 6), 1)}` as HeadingTag
+---
+
+<Tag {...props}><slot /> </Tag>

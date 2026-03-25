@@ -13,7 +13,7 @@ const { heading, level = 3, icon: Icon } = Astro.props
 
 <section class="card">
   <Icon class="card-icon" />
-  <Heading level={level} class="card-heading">{heading}</Heading>
+  <Heading level={level} class="card-heading h4">{heading}</Heading>
   <p class="card-paragraph"><slot /></p>
 </section>
 
@@ -37,8 +37,6 @@ const { heading, level = 3, icon: Icon } = Astro.props
   }
 
   .card-heading {
-    @include font-h4;
-    color: var(--colour-text-contrast);
     text-align: center;
   }
 </style>

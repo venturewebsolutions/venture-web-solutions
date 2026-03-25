@@ -81,12 +81,12 @@ const { id, name, required, placeholder, autocomplete, label, options } =
 
   .form-input::placeholder,
   .form-input:invalid {
-    @include font-body-italic;
+    @include font(body-italic);
     color: var(--colour-text-primary);
   }
 
   .form-option {
-    @include font-body;
+    @include font(body);
     color: var(--colour-text-contrast);
   }
 </style>

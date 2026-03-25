@@ -15,7 +15,7 @@ const { step, heading, level } = Astro.props
     <p class="step-number">
       <span class="swiper-no-swiping">{step}</span>
     </p>
-    <Heading level={level} class="step-title">
+    <Heading level={level} class="step-title h4">
       <span class="swiper-no-swiping">{heading}</span>
     </Heading>
     <p class="step-content">
@@ -31,7 +31,7 @@ const { step, heading, level } = Astro.props
   .step-card {
     --padding-block: var(--spacing-s);
 
-    @include font-display-numeral-xl;
+    @include font(display-numeral-xl);
 
     --negative-margin: calc(
       1em * calc(var(--line-height-display-numeral-xl) / 100%) / 2
@@ -43,7 +43,7 @@ const { step, heading, level } = Astro.props
   }
 
   .step-surface {
-    @include font-body;
+    @include font(body);
 
     background-color: var(--colour-surface-100);
     border-radius: var(--border-radius-m);
@@ -56,15 +56,13 @@ const { step, heading, level } = Astro.props
   }
 
   .step-number {
-    @include font-display-numeral-xl;
+    @include font(display-numeral-xl);
     color: var(--colour-text-contrast);
     text-align: center;
     margin-top: calc(-1 * var(--negative-margin));
   }
 
   .step-title {
-    @include font-h4;
-    color: var(--colour-text-contrast);
     text-align: center;
   }
 </style>

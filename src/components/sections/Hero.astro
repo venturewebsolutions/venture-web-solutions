@@ -33,7 +33,7 @@ import Eyebrow from '@/components/ui/Eyebrow.astro'
   <div class="hero-content section container">
     <Eyebrow>Hi, we’re Venture Web Solutions 👋</Eyebrow>
 
-    <h1 class="title">
+    <h1 class="title h1">
       A web
       <span class="title-highlight">design agency</span>
       for small,
@@ -122,8 +122,6 @@ import Eyebrow from '@/components/ui/Eyebrow.astro'
   }
 
   .title {
-    @include font-h1;
-    color: var(--colour-text-contrast);
     max-width: #{em(745px, 72px)};
     margin-top: var(--spacing-xl);
   }

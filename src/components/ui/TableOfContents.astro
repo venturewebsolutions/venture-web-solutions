@@ -43,7 +43,7 @@ type Link = {
   }
 
   .toc-heading {
-    @include font-h4;
+    @include font(h4);
     padding-inline: var(--spacing-xl);
   }
 
@@ -60,7 +60,7 @@ type Link = {
 
     &:hover,
     &.active {
-      @include font-body-italic;
+      @include font(body-italic);
       border-left: var(--border-width-l) solid var(--colour-text-contrast);
       padding-right: calc(var(--spacing-xl) - var(--border-width-l));
     }

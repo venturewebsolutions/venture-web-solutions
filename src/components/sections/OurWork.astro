@@ -71,7 +71,7 @@ const projects = [
                   sizes="(min-width: 48rem) min(40vw, 525px), 100vw"
                 />
                 <div class="image-footer">
-                  <h3 class="image-caption">{project.name}</h3>
+                  <h3 class="h4">{project.name}</h3>
                 </div>
               </a>
             </section>
@@ -134,11 +134,6 @@ const projects = [
     background: var(--colour-surface-100);
   }
 
-  .image-caption {
-    @include font-h4;
-    color: var(--colour-text-contrast);
-  }
-
   @media screen and (min-width: rem(768px)) {
     #our-work {
       display: grid;
@@ -183,7 +178,7 @@ const projects = [
     }
 
     .title-carousel-overlay {
-      @include font-h2;
+      @include font(h2);
 
       --spotlight-background: color-mix(
         in srgb,

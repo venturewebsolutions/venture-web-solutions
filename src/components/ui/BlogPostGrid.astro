@@ -113,11 +113,11 @@ const { posts, blogPostHeadingLevel } = Astro.props
   }
 
   .post-read-time {
-    @include font-body;
+    @include font(body);
   }
 
   .post-summary {
-    @include font-h4;
+    @include font(h4);
   }
 
   @media screen and (min-width: rem(768px)) {

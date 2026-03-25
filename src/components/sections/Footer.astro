@@ -246,12 +246,12 @@ const lists = [
   }
 
   .list-heading {
-    @include font-body-medium;
+    @include font(body-medium);
     color: var(--colour-text-contrast);
   }
 
   .list-link {
-    @include font-link-md;
+    @include font(link-md);
     display: flex;
     align-items: baseline;
     gap: var(--spacing-m);
@@ -268,7 +268,7 @@ const lists = [
   }
 
   .banner-text {
-    @include font-footer-brand-display;
+    @include font(footer-brand-display);
     opacity: 0.1;
   }
 
@@ -284,7 +284,7 @@ const lists = [
   }
 
   .footer-legal {
-    @include font-footer-legal;
+    @include font(footer-legal);
 
     display: flex;
     flex-direction: column;

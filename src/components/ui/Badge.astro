@@ -42,13 +42,13 @@ const { variant, size, class: className, ...props } = Astro.props
 
   // Sizes
   .badge[data-size='s'] {
-    @include font-meta-secondary;
+    @include font(meta-secondary);
     padding: var(--spacing-3xs) var(--spacing-xs);
     border-radius: var(--border-radius-s);
   }
 
   .badge[data-size='l'] {
-    @include font-action;
+    @include font(action);
     padding: var(--spacing-s) var(--spacing-3xl);
     border-radius: var(--border-radius-l);
   }

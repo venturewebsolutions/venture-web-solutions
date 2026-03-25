@@ -18,7 +18,7 @@ const { class: className, ...props } = Astro.props
   @use 'mixins' as *;
 
   .social-media-link {
-    @include font-action;
+    @include font(action);
     display: inline-flex;
     align-items: center;
     gap: var(--spacing-m);

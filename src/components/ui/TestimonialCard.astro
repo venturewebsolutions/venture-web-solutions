@@ -133,12 +133,12 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
   }
 
   .client-name {
-    @include font-meta-primary;
+    @include font(meta-primary);
     color: var(--colour-text-contrast);
   }
 
   .client-description {
-    @include font-meta-secondary;
+    @include font(meta-secondary);
     color: var(--colour-text-primary);
   }
 </style>

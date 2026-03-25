@@ -18,7 +18,7 @@ const { Content } = await render(post)
   @use 'mixins' as *;
 
   .wrapper :global(h2) {
-    @include font-h3;
+    @include font(h3);
     color: var(--colour-text-contrast);
     margin-bottom: var(--spacing-xl);
 

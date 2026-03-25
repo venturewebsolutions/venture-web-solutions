@@ -1,0 +1,13 @@
+<div class="form-field">
+  <slot />
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .form-field {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+</style>

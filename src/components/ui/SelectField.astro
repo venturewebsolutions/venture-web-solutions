@@ -1,0 +1,92 @@
+---
+import ChevronDownIcon from '@/components/icons/ChevronDownIcon.astro'
+import FormField from '@/components/ui/FormField.astro'
+import FormLabel from '@/components/ui/FormLabel.astro'
+import type { AutocompleteValue } from '@/lib/types'
+
+type Option = {
+  value: astroHTML.JSX.OptionHTMLAttributes['value']
+  text: string
+}
+
+type Props = {
+  id: string
+  name: string
+  required?: boolean
+  placeholder?: string
+  autocomplete?: AutocompleteValue
+  label: string
+  options: Option[]
+}
+
+const { id, name, required, placeholder, autocomplete, label, options } =
+  Astro.props
+---
+
+<FormField>
+  <FormLabel for={id} required={required}>
+    {label}
+  </FormLabel>
+  <div class="form-select">
+    <select
+      id={id}
+      name={name}
+      required={required}
+      autocomplete={autocomplete}
+      class="form-input"
+    >
+      {
+        placeholder && (
+          <option value="" disabled selected hidden class="form-option">
+            {placeholder}
+          </option>
+        )
+      }
+      {
+        options.map((option) => (
+          <option value={option.value} class="form-option">
+            {option.text}
+          </option>
+        ))
+      }
+    </select>
+    <ChevronDownIcon class="form-select-chevron" />
+  </div>
+</FormField>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .form-select {
+    --chevron-width: 1rem;
+
+    display: grid;
+    align-items: center;
+  }
+
+  .form-input {
+    grid-row-start: 1;
+    grid-column-start: 1;
+  }
+
+  .form-select-chevron {
+    width: var(--chevron-width);
+    height: auto;
+    margin-right: var(--spacing-m);
+    grid-row-start: 1;
+    grid-column-start: 1;
+    justify-self: end;
+  }
+
+  .form-input::placeholder,
+  .form-input:invalid {
+    @include font-body-italic;
+    color: var(--colour-text-primary);
+  }
+
+  .form-option {
+    @include font-body;
+    color: var(--colour-text-contrast);
+  }
+</style>

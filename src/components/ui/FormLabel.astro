@@ -1,0 +1,23 @@
+---
+type Props = {
+  for: string
+  required?: boolean
+}
+
+const { for: fur, required } = Astro.props
+---
+
+<label for={fur} class="form-label">
+  <slot />{required && '*'}
+</label>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .form-label {
+    display: block;
+    @include font-body-medium;
+    color: var(--colour-text-contrast);
+  }
+</style>

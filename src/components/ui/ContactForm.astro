@@ -1,8 +1,10 @@
 ---
-import ChevronDownIcon from '@/components/icons/ChevronDownIcon.astro'
-import Button from '@/components/ui/Button.astro'
-import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
+import Button from '@/components/ui/Button.astro'
+import InputField from '@/components/ui/InputField.astro'
+import SelectField from '@/components/ui/SelectField.astro'
+import TextareaField from '@/components/ui/TextareaField.astro'
+import { cn } from '@/lib/class-names'
 
 type Props = HTMLAttributes<'form'>
 
@@ -11,72 +13,54 @@ const { class: className, ...props } = Astro.props
 
 <form {...props} class:list={cn('form', className)}>
   <div class="form-fields">
-    <div class="form-field">
-      <label for="contact-form-name" class="form-label">Your Name*</label>
-      <input
-        id="contact-form-name"
-        name="name"
-        type="text"
-        required
-        class="form-input"
-      />
-    </div>
+    <InputField
+      id="context-form-name"
+      name="name"
+      type="text"
+      required
+      autocomplete="name"
+      label="Your Name"
+    />
 
-    <div class="form-field">
-      <label for="contact-form-email" class="form-label">Your Email*</label>
-      <input
-        id="contact-form-email"
-        name="email"
-        type="text"
-        required
-        class="form-input"
-      />
-    </div>
+    <InputField
+      id="context-form-email"
+      name="email"
+      type="email"
+      required
+      autocomplete="email"
+      label="Your Email"
+    />
 
-    <div class="form-field">
-      <label for="contact-form-phone-number" class="form-label">
-        Phone Number
-      </label>
-      <input
-        name="phone-number"
-        id="contact-form-phone-number"
-        type="text"
-        class="form-input"
-      />
-    </div>
+    <InputField
+      id="context-form-phone-number"
+      name="phone-number"
+      type="tel"
+      required
+      autocomplete="tel"
+      label="Phone Number"
+    />
 
-    <div class="form-field">
-      <label for="contact-form-preferred-contact-method" class="form-label">
-        Preferred Contact Method*
-      </label>
-      <div class="form-select">
-        <select
-          id="contact-form-preferred-contact-method"
-          name="preferred-contact-method"
-          required
-          class="form-input"
-        >
-          <option value="" disabled selected hidden class="form-option">
-            Please select an option
-          </option>
-          <option value="email" class="form-option">Email</option>
-          <option value="phone" class="form-option">Phone</option>
-          <option value="either" class="form-option">Either</option>
-        </select>
-        <ChevronDownIcon class="form-select-chevron" />
-      </div>
-    </div>
+    <SelectField
+      id="contact-form-preferred-contact-method"
+      name="preferred-contact-method"
+      required
+      placeholder="Please select an option"
+      label="Preferred Contact Method"
+      autocomplete="cont"
+      options={[
+        { value: 'email', text: 'Email' },
+        { value: 'phone', text: 'Phone' },
+        { value: 'either', text: 'Either' },
+      ]}
+    />
 
-    <div class="form-field">
-      <label for="contact-form-message" class="form-label"> Message* </label>
-      <textarea
-        id="contact-form-message"
-        name="message"
-        required
-        rows="3"
-        placeholder="How can we help you today?"
-        class="form-input"></textarea>
-    </div>
+    <TextareaField
+      id="contact-form-message"
+      name="message"
+      required
+      placeholder="How can we help you today?"
+      label="Message"
+    />
   </div>
 
   <div class="form-footer">
@@ -100,61 +84,6 @@ const { class: className, ...props } = Astro.props
   .form-fields {
     display: grid;
     gap: var(--spacing-xl);
-  }
-
-  .form-field {
-    display: grid;
-    gap: var(--spacing-xs);
-  }
-
-  .form-label {
-    display: block;
-    @include font-body-medium;
-    color: var(--colour-text-contrast);
-  }
-
-  .form-input {
-    @include font-body;
-    padding: var(--spacing-xs) var(--spacing-m);
-    background-color: var(--colour-surface-50);
-    border: var(--border-width-s) solid var(--colour-text-contrast);
-    border-radius: var(--border-radius-s);
-    color: var(--colour-text-contrast);
-    width: 100%;
-    appearance: none;
-  }
-
-  .form-select {
-    --chevron-width: 1rem;
-
-    display: grid;
-    align-items: center;
-  }
-
-  select.form-input {
-    padding-right: calc(var(--spacing-m) * 2 + var(--chevron-width));
-    grid-row-start: 1;
-    grid-column-start: 1;
-  }
-
-  .form-select-chevron {
-    width: var(--chevron-width);
-    height: auto;
-    margin-right: var(--spacing-m);
-    grid-row-start: 1;
-    grid-column-start: 1;
-    justify-self: end;
-  }
-
-  .form-input::placeholder,
-  .form-input:invalid {
-    @include font-body-italic;
-    color: var(--colour-text-primary);
-  }
-
-  .form-option {
-    @include font-body;
-    color: var(--colour-text-contrast);
   }
 
   .form-footer {

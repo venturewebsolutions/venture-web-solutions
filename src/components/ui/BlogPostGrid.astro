@@ -1,12 +1,13 @@
 ---
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import Heading from '@/components/headless/Heading.astro'
 import Avatar from '@/components/ui/Avatar.astro'
 import Badge from '@/components/ui/Badge.astro'
+import Eyebrow from '@/components/ui/Eyebrow.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { url } from '@/lib/url'
+import { Image } from 'astro:assets'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
@@ -54,9 +55,9 @@ const { posts, blogPostHeadingLevel } = Astro.props
         </Thumbnail>
 
         <div class="post-summary">
-          <p class="post-caption caption">
+          <Eyebrow class="post-read-time">
             {post.data.readTimeMinutes} mins read
-          </p>
+          </Eyebrow>
           <a href={`/blog/${post.id}/`}>
             <Heading level={blogPostHeadingLevel} class="post-title">
               {post.data.summary}
@@ -111,7 +112,7 @@ const { posts, blogPostHeadingLevel } = Astro.props
     gap: var(--spacing-xs);
   }
 
-  .post-caption {
+  .post-read-time {
     @include font-body;
   }
 

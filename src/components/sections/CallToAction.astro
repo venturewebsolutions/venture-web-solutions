@@ -10,7 +10,7 @@ const { class: className, ...props } = Astro.props
 ---
 
 <section class:list={cn('section container', className)} {...props}>
-  <div class="surface">
+  <div class="card">
     <div class="left">
       <h2 class="h2">Start a project</h2>
 
@@ -34,7 +34,7 @@ const { class: className, ...props } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .surface {
+  .card {
     background-color: var(--colour-surface-100);
     padding: var(--spacing-4xl-5xl) var(--spacing-2xl-7xl);
     border-radius: var(--border-radius-m);
@@ -63,7 +63,7 @@ const { class: className, ...props } = Astro.props
   }
 
   @media screen and (min-width: rem(701px)) {
-    .surface {
+    .card {
       max-width: rem(1120px);
       margin-inline: auto;
       padding: var(--spacing-4xl-5xl) var(--spacing-2xl-7xl);

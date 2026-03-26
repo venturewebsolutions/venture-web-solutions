@@ -2,8 +2,9 @@
 
 :root {
   // Colours
-  --colour-divider: var(--colour-neutral-70);
-  --colour-border: var(--colour-neutral-70);
+  --colour-divider-primary: var(--colour-neutral-70);
+
+  --colour-border-contrast: var(--colour-neutral-10);
 
   --colour-surface-base: var(--colour-neutral-100);
   --colour-surface-50: var(--colour-neutral-95);

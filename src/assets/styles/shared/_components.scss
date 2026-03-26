@@ -40,7 +40,7 @@
   @include font(body);
   padding: var(--spacing-xs) var(--spacing-m);
   background-color: var(--colour-surface-50);
-  border: var(--border-width-s) solid var(--colour-text-contrast);
+  border: var(--border-width-s) solid var(--colour-border-contrast);
   border-radius: var(--border-radius-s);
   color: var(--colour-text-contrast);
   width: 100%;

@@ -1,13 +1,10 @@
 ---
-import { url } from '@/lib/url'
-import Button from '@/components/ui/Button.astro'
 import EnvelopeIcon from '@/components/icons/EnvelopeIcon.astro'
-import FacebookIcon from '@/components/icons/FacebookIcon.astro'
-import InstagramIcon from '@/components/icons/InstagramIcon.astro'
-import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
 import TelephoneIcon from '@/components/icons/TelephoneIcon.astro'
+import Button from '@/components/ui/Button.astro'
 import Logo from '@/components/ui/Logo.astro'
-import SocialMediaLink from '@/components/ui/SocialMediaLink.astro'
+import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
+import { url } from '@/lib/url'
 
 const lists = [
   {
@@ -94,35 +91,21 @@ const lists = [
       </div>
 
       <div class="social-links">
-        <a
+        <SocialMediaBadge
+          platform="linkedin"
           href="#"
           aria-label="Visit Venture Web Solutions on LinkedIn"
-          target="_blank"
-        >
-          <SocialMediaLink>
-            <LinkedInIcon />
-          </SocialMediaLink>
-        </a>
-
-        <a
+        />
+        <SocialMediaBadge
+          platform="facebook"
           href="#"
           aria-label="Visit Venture Web Solutions on Facebook"
-          target="_blank"
-        >
-          <SocialMediaLink>
-            <FacebookIcon />
-          </SocialMediaLink>
-        </a>
-
-        <a
+        />
+        <SocialMediaBadge
+          platform="instagram"
           href="#"
           aria-label="Visit Venture Web Solutions on Instagram"
-          target="_blank"
-        >
-          <SocialMediaLink>
-            <InstagramIcon />
-          </SocialMediaLink>
-        </a>
+        />
       </div>
     </div>
 

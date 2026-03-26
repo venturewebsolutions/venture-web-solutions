@@ -1,17 +1,30 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
-import { cn } from '@/lib/class-names'
+import FacebookIcon from '@/components/icons/FacebookIcon.astro'
+import InstagramIcon from '@/components/icons/InstagramIcon.astro'
+import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
 import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
 
-type Props = HTMLAttributes<'div'>
+type Props = {
+  platform: 'facebook' | 'instagram' | 'linkedin'
+  href: string
+  'aria-label': string
+}
 
-const { class: className, ...props } = Astro.props
+const { platform, ...props } = Astro.props
+
+const icons = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+  linkedin: LinkedInIcon,
+}
+
+const Icon = icons[platform]
 ---
 
-<div {...props} class:list={cn('social-media-link', className)}>
-  <slot />
+<a target="_blank" class="social-media-link" {...props}>
+  <Icon />
   <UpRightArrowIcon class="arrow" />
-</div>
+</a>
 
 <style lang="scss">
   @use 'functions' as *;

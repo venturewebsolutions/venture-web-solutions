@@ -1,13 +1,10 @@
 ---
-import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
 import type { CollectionEntry } from 'astro:content'
 import ClockIcon from '@/components/icons/ClockIcon.astro'
-import SocialMediaLink from '@/components/ui/SocialMediaLink.astro'
-import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
-import FacebookIcon from '@/components/icons/FacebookIcon.astro'
-import InstagramIcon from '@/components/icons/InstagramIcon.astro'
 import Avatar from '@/components/ui/Avatar.astro'
+import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
+import { cn } from '@/lib/class-names'
 
 type Props = HTMLAttributes<'div'> & {
   post: CollectionEntry<'blog'>
@@ -44,35 +41,21 @@ const { post, class: className, ...props } = Astro.props
   </div>
 
   <div class="social-links">
-    <a
+    <SocialMediaBadge
+      platform="linkedin"
       href="#"
       aria-label={`Visit ${post.data.author.name}'s LinkedIn page`}
-      target="_blank"
-    >
-      <SocialMediaLink>
-        <LinkedInIcon />
-      </SocialMediaLink>
-    </a>
-
-    <a
+    />
+    <SocialMediaBadge
+      platform="facebook"
       href="#"
       aria-label={`Visit ${post.data.author.name}'s Facebook page`}
-      target="_blank"
-    >
-      <SocialMediaLink>
-        <FacebookIcon />
-      </SocialMediaLink>
-    </a>
-
-    <a
+    />
+    <SocialMediaBadge
+      platform="instagram"
       href="#"
       aria-label={`Visit ${post.data.author.name}'s Instagram page`}
-      target="_blank"
-    >
-      <SocialMediaLink>
-        <InstagramIcon />
-      </SocialMediaLink>
-    </a>
+    />
   </div>
 </div>
 

@@ -1,0 +1,86 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'> & {
+  contents: string
+  marginTop?: number
+  marginBottom?: number
+}
+
+const {
+  contents,
+  marginTop = 50,
+  marginBottom = 200,
+  class: className,
+  ...props
+} = Astro.props
+---
+
+<div
+  class:list={cn('scroll-progress-bar', className)}
+  data-contents={contents}
+  data-margin-top={marginTop}
+  data-margin-bottom={marginBottom}
+  {...props}
+>
+  <div class="filler"></div>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .scroll-progress-bar {
+    --progress: 0;
+
+    width: 100%;
+    height: 2px;
+    background-color: white;
+  }
+
+  .filler {
+    width: 100%;
+    height: 100%;
+    background-color: var(--colour-primary);
+    transform-origin: left;
+    transform: scaleX(clamp(0, var(--progress), 1));
+    transition: transform 0.05s linear;
+  }
+</style>
+
+<script>
+  import debounce from 'lodash/debounce'
+
+  const bars = document.querySelectorAll<HTMLElement>('.scroll-progress-bar')
+
+  for (const bar of bars) {
+    const contents = document.querySelector<HTMLElement>(bar.dataset.contents!)!
+    const marginTop = +bar.dataset.marginTop!
+    const marginBottom = +bar.dataset.marginBottom!
+
+    let offsetTop = contents.offsetTop
+    let scrollHeight = contents.scrollHeight
+
+    function update() {
+      const scrolled = window.scrollY - offsetTop + marginTop
+      const scrollable = scrollHeight - marginBottom
+
+      const progress = scrolled / scrollable
+
+      bar.style.setProperty('--progress', progress.toString())
+    }
+
+    window.addEventListener(
+      'resize',
+      debounce(() => {
+        offsetTop = contents.offsetTop
+        scrollHeight = contents.scrollHeight
+
+        update()
+      }, 100),
+    )
+
+    window.addEventListener('scroll', update, { passive: true })
+  }
+</script>

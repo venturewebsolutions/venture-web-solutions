@@ -10,7 +10,7 @@ type Props = {
   required?: boolean
   placeholder?: string
   autocomplete?: AutocompleteValue
-  label: string
+  label?: string
 }
 
 const { id, name, type, required, placeholder, autocomplete, label } =
@@ -18,9 +18,13 @@ const { id, name, type, required, placeholder, autocomplete, label } =
 ---
 
 <FormField>
-  <FormLabel for={id} required={required}>
-    {label}
-  </FormLabel>
+  {
+    label && (
+      <FormLabel for={id} required={required}>
+        {label}
+      </FormLabel>
+    )
+  }
   <input
     id={id}
     name={name}

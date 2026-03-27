@@ -15,7 +15,7 @@ type Props = {
   required?: boolean
   placeholder?: string
   autocomplete?: AutocompleteValue
-  label: string
+  label?: string
   options: Option[]
 }
 
@@ -24,9 +24,13 @@ const { id, name, required, placeholder, autocomplete, label, options } =
 ---
 
 <FormField>
-  <FormLabel for={id} required={required}>
-    {label}
-  </FormLabel>
+  {
+    label && (
+      <FormLabel for={id} required={required}>
+        {label}
+      </FormLabel>
+    )
+  }
   <div class="form-select">
     <select
       id={id}

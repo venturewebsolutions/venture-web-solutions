@@ -9,16 +9,20 @@ type Props = {
   required?: boolean
   placeholder?: string
   autocomplete?: AutocompleteValue
-  label: string
+  label?: string
 }
 
 const { id, name, required, placeholder, autocomplete, label } = Astro.props
 ---
 
 <FormField>
-  <FormLabel for={id} required={required}>
-    {label}
-  </FormLabel>
+  {
+    label && (
+      <FormLabel for={id} required={required}>
+        {label}
+      </FormLabel>
+    )
+  }
   <textarea
     id={id}
     name={name}

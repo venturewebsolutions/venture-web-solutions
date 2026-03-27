@@ -45,4 +45,9 @@
   color: var(--colour-text-contrast);
   width: 100%;
   appearance: none;
+
+  &::placeholder {
+    @include font(body-italic);
+    color: var(--colour-text-primary);
+  }
 }

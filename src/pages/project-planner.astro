@@ -1,0 +1,376 @@
+---
+import Video from '@/components/headless/Video.astro'
+import HowItWorks from '@/components/sections/HowItWorks.astro'
+import Button from '@/components/ui/Button.astro'
+import InputField from '@/components/ui/InputField.astro'
+import SelectField from '@/components/ui/SelectField.astro'
+import StepProgressBar from '@/components/ui/StepProgressBar.astro'
+import TextareaField from '@/components/ui/TextareaField.astro'
+import Layout from '@/layouts/Layout.astro'
+---
+
+<Layout title="Project Planner (TODO)" description="TODO">
+  <section id="project-planner" class="section container">
+    <div class="video-wrapper">
+      <Video
+        src={import('@/assets/videos/project-planner.mp4')}
+        autoplay
+        muted
+        loop
+        class="video"
+      />
+
+      <p class="video-caption">
+        Jordan and Daniela, the humans behind the brand
+      </p>
+    </div>
+
+    <form action="#" method="post" class="content">
+      <div class="step-info">
+        <StepProgressBar
+          class="step-progress-bar"
+          data-step={1}
+          data-steps={3}
+        />
+
+        <p class="step-info-text">Step <span class="step-counter">1</span>/3</p>
+      </div>
+
+      <div class="step active" data-step="1">
+        <div class="step-header">
+          <h1 class="h3">Your new venture starts here</h1>
+
+          <p>
+            Share a few details below and we’ll take it from there — you’ll
+            usually hear back from us within 24 hours. See you soon!
+          </p>
+        </div>
+
+        <div class="step-form">
+          <InputField
+            id="project-planner-name-input"
+            name="name"
+            type="text"
+            required
+            placeholder="Name*"
+            autocomplete="name"
+          />
+
+          <InputField
+            id="project-planner-email-input"
+            name="email"
+            type="email"
+            required
+            placeholder="Email Address*"
+            autocomplete="email"
+          />
+
+          <InputField
+            id="project-planner-phone-number-input"
+            name="phone-number"
+            type="tel"
+            placeholder="Phone Number"
+            autocomplete="tel"
+          />
+
+          <InputField
+            id="project-planner-business-name-input"
+            name="business-name"
+            type="text"
+            placeholder="Business Name"
+            autocomplete="organization"
+          />
+        </div>
+      </div>
+
+      <div class="step" data-step="2">
+        <div class="step-header">
+          <p class="h3">Tell us about your project</p>
+
+          <p>
+            Share a few details about your project, goals, and timeline. Feel
+            free to include as much detail as possible to help us better
+            understand your needs.
+          </p>
+        </div>
+
+        <div class="step-form">
+          <TextareaField
+            id="project-planner-details-input"
+            name="details"
+            required
+            placeholder="Please provide information about your project"
+          />
+        </div>
+      </div>
+
+      <div class="step" data-step="3">
+        <div class="step-header">
+          <p class="h3">How should we reach you?</p>
+
+          <p>
+            Let us know how you’d prefer to be contacted. Choose email, phone,
+            or either — whatever works best for you.
+          </p>
+        </div>
+
+        <div class="step-form">
+          <SelectField
+            id="project-planner-preferred-contact-method-input"
+            name="preferred-contact-method"
+            required
+            placeholder="Preferred Contact Method*"
+            options={[
+              { value: 'email', text: 'Email' },
+              { value: 'phone', text: 'Phone' },
+              { value: 'either', text: 'Either' },
+            ]}
+          />
+
+          <p>
+            We’ll only use this info to understand your project — no spam, ever.
+          </p>
+        </div>
+      </div>
+
+      <div class="buttons">
+        <div class="previous-step-button-wrapper hidden">
+          <Button type="button" variant="ghost" class="previous-step-button">
+            Back
+          </Button>
+        </div>
+
+        <Button type="button" class="next-step-button">
+          <div class="next-step-button-text">Next step</div>
+        </Button>
+      </div>
+    </form>
+  </section>
+
+  <HowItWorks
+    id="process"
+    eyebrow="Process"
+    heading="What happens next?"
+    steps={[
+      {
+        heading: 'We’ll be in touch',
+        text: 'We’ll respond within 24 hours to arrange a quick discovery call.',
+      },
+      {
+        heading: 'Discovery & Planning',
+        text: 'We’ll chat about your business, your goals, and make sure we’re a good fit. If everyone’s happy, we’ll send over a contract.',
+      },
+      {
+        heading: 'Design',
+        text: 'We’ll design your website and handle the copy. You’ll only move forward once you’re genuinely happy.',
+      },
+      {
+        heading: 'Development & Launch',
+        text: 'We’ll hand-code your site, show you a preview, and put it live once you give the thumbs up.',
+      },
+      {
+        heading: 'Ongoing support',
+        text: 'Once your site is live, we’re always here when you need us.',
+      },
+    ]}
+  />
+</Layout>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #project-planner {
+    display: grid;
+    align-items: center;
+    row-gap: var(--spacing-5xl);
+  }
+
+  .video-wrapper {
+    border-radius: var(--border-radius-l);
+    overflow: hidden;
+    position: relative;
+    order: 1;
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    #project-planner {
+      grid-template-columns: repeat(2, auto);
+      column-gap: var(--spacing-5xl);
+    }
+
+    .video-wrapper {
+      max-width: 453px;
+      order: unset;
+    }
+  }
+
+  .video {
+    aspect-ratio: 453/760;
+    object-fit: cover;
+  }
+
+  .video-caption {
+    @include font(body-medium);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--colour-text-contrast);
+    padding: var(--spacing-s) var(--spacing-2xl);
+    background-color: color-mix(
+      in srgb,
+      var(--colour-surface-base) 75%,
+      transparent
+    );
+    text-align: center;
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-3xl);
+    max-width: rem(648px);
+  }
+
+  .step-info {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .step-info-text {
+    @include font(body-medium);
+    color: var(--colour-text-contrast);
+  }
+
+  .step {
+    display: grid;
+    gap: var(--spacing-2xl);
+
+    &:not(.active) {
+      display: none;
+    }
+  }
+
+  .step-header {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .step-form {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .buttons {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .previous-step-button-wrapper.hidden {
+    display: none;
+  }
+</style>
+
+<script>
+  const inputs = document.querySelectorAll<HTMLInputElement>(
+    '#project-planner input',
+  )
+  const steps = document.querySelectorAll<HTMLElement>('#project-planner .step')
+  const progressBar = document.querySelector<HTMLElement>(
+    '#project-planner .step-progress-bar',
+  )!
+  const stepCounter = document.querySelector<HTMLElement>(
+    '#project-planner .step-counter',
+  )!
+  const previousStepButtonWrapper = document.querySelector<HTMLButtonElement>(
+    '#project-planner .previous-step-button-wrapper',
+  )!
+  const previousStepButton = document.querySelector<HTMLButtonElement>(
+    '#project-planner .previous-step-button',
+  )!
+  const nextStepButton = document.querySelector<HTMLButtonElement>(
+    '#project-planner .next-step-button',
+  )!
+  const nextStepButtonText = document.querySelector<HTMLButtonElement>(
+    '#project-planner .next-step-button-text',
+  )!
+
+  function updateStep(currentStep: number) {
+    for (const step of steps) {
+      if (step.dataset.step === `${currentStep}`) {
+        step.classList.add('active')
+      } else {
+        step.classList.remove('active')
+      }
+    }
+
+    if (currentStep === 1) {
+      previousStepButtonWrapper.classList.add('hidden')
+    } else {
+      previousStepButtonWrapper.classList.remove('hidden')
+    }
+
+    if (currentStep === 3) {
+      nextStepButtonText.innerText = 'Send enquiry'
+      nextStepButton.type = 'submit'
+    } else {
+      nextStepButtonText.innerText = 'Next step'
+      nextStepButton.type = 'button'
+    }
+
+    progressBar.dataset.step = `${currentStep}`
+    stepCounter.innerText = `${currentStep}`
+  }
+
+  let currentStep = 1
+
+  function previousStep() {
+    if (currentStep > 0) {
+      updateStep(--currentStep)
+    }
+  }
+
+  function nextStep() {
+    if (currentStep < 3) {
+      const step = steps
+        .values()
+        .find((step) => step.dataset.step === `${currentStep}`)!
+
+      const fields = step.querySelectorAll<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >('input, select, textarea')
+
+      let valid = true
+
+      for (const field of fields) {
+        if (!field.reportValidity()) {
+          valid = false
+          break
+        }
+      }
+
+      if (valid) {
+        updateStep(++currentStep)
+      }
+    }
+  }
+
+  for (const input of inputs) {
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        nextStep()
+      }
+    })
+  }
+
+  previousStepButton.addEventListener('click', previousStep)
+
+  nextStepButton.addEventListener('click', (e) => {
+    if (currentStep < 3) {
+      e.preventDefault()
+
+      nextStep()
+    }
+  })
+</script>

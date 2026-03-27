@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type VideoModule = {
+  default: string
+}
+
+type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
+  src: string | Promise<VideoModule>
+  lazy?: true
+}
+
+const { src: _, lazy, ...props } = Astro.props
+
+const src =
+  typeof Astro.props.src === 'string'
+    ? Astro.props.src
+    : (await Astro.props.src).default
+---
+
+<video {...props} src={lazy ? undefined : src} data-src={src} data-lazy={lazy}>
+  <slot />
+</video>
+
+<script>
+  window.addEventListener('load', () => {
+    const videos =
+      document.querySelectorAll<HTMLVideoElement>('video[data-lazy]')
+
+    for (const video of videos) {
+      video.addEventListener('loadeddata', () => {
+        video.setAttribute('data-loaded', '')
+      })
+
+      video.src = video.dataset.src!
+    }
+  })
+</script>

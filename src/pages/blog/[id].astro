@@ -3,7 +3,7 @@ import ClockIcon from '@/components/icons/ClockIcon.astro'
 import BlogCarousel from '@/components/sections/BlogCarousel.astro'
 import BlogPostContent from '@/components/ui/BlogPostContent.astro'
 import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
-import ProgressBar from '@/components/ui/ProgressBar.astro'
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import TableOfContents from '@/components/ui/TableOfContents.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
@@ -85,7 +85,7 @@ const links = headings.map((heading) => ({
     <div class="toc-wrapper">
       <TableOfContents links={links} />
 
-      <ProgressBar contents="#content-wrapper" />
+      <ScrollProgressBar contents="#content-wrapper" />
 
       <div class="read-time">
         <ClockIcon />

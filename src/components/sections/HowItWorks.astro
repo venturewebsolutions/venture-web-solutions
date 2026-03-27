@@ -2,8 +2,27 @@
 import NavigationButton from '@/components/ui/NavigationButton.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import StepCard from '@/components/ui/StepCard.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
 
-const steps = [
+type Props = HTMLAttributes<'section'> & {
+  eyebrow?: string
+  heading?: string
+  steps?: {
+    heading: string
+    text: string
+  }[]
+}
+
+const {
+  eyebrow = 'Steps',
+  heading = 'How it works',
+  steps: _,
+  class: className,
+  ...props
+} = Astro.props
+
+const steps = Astro.props.steps ?? [
   {
     heading: 'Discovery & Planning',
     text: 'We’ll have a chat about your business, your goals with the website, and make sure we can help you achieve them. If everyone’s happy, we’ll send over a contract so we can get started!',
@@ -27,9 +46,12 @@ const steps = [
 ]
 ---
 
-<section id="how-it-works" class="section container">
+<section
+  class:list={cn('how-it-works section container', className)}
+  {...props}
+>
   <div class="intro">
-    <SectionHeader eyebrow="Steps">How it works</SectionHeader>
+    <SectionHeader eyebrow={eyebrow}>{heading}</SectionHeader>
 
     <p>It’s simple (we promise)!</p>
   </div>
@@ -58,7 +80,7 @@ const steps = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #how-it-works {
+  .how-it-works {
     display: grid;
     gap: var(--spacing-2xl);
     grid-template-areas:
@@ -84,7 +106,7 @@ const steps = [
   }
 
   @media screen and (min-width: rem(1024px)) {
-    #how-it-works {
+    .how-it-works {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
         'intro steps steps'
@@ -107,7 +129,7 @@ const steps = [
   import { Navigation } from 'swiper/modules'
 
   window.addEventListener('load', () => {
-    new Swiper('#how-it-works .swiper', {
+    new Swiper('.how-it-works .swiper', {
       modules: [Navigation],
 
       slidesPerView: 1,
@@ -121,8 +143,8 @@ const steps = [
       },
 
       navigation: {
-        nextEl: '#how-it-works .swiper-button-next',
-        prevEl: '#how-it-works .swiper-button-prev',
+        nextEl: '.how-it-works .swiper-button-next',
+        prevEl: '.how-it-works .swiper-button-prev',
       },
     })
   })

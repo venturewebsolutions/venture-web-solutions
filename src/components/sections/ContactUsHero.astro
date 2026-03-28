@@ -1,0 +1,127 @@
+---
+import Button from '@/components/ui/Button.astro'
+import ContactForm from '@/components/ui/ContactForm.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+---
+
+<section id="hero" class="container section">
+  <div>
+    <SectionHeader eyebrow="Contact" level={1} class="header">
+      We'd love to hear from you
+    </SectionHeader>
+
+    <div class="content">
+      <p>
+        Got a question, an idea, or just want to say hello? Reach out using any
+        of the options below and we’ll get back to you as soon as we can —
+        usually within 24 hours.
+      </p>
+
+      <div class="contact-options">
+        <p>Hate contact forms?</p>
+
+        <ul class="contact-options-list">
+          <li class="contact-option">
+            <a
+              href="mailto:hello@venturewebsolutions.co.uk"
+              class="contact-option-link underline"
+            >
+              hello@venturewebsolutions.co.uk
+            </a>
+          </li>
+
+          <li class="contact-option">
+            <a href="tel:+447454747455" class="contact-option-link">
+              07454 747 488
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="whatsapp-card">
+        <p class="nowrap">Prefer WhatsApp?</p>
+
+        <Button
+          href="https://wa.me/+447454747488"
+          target="_blank"
+          variant="secondary-outline"
+          arrow
+        >
+          Let's talk!
+        </Button>
+      </div>
+    </div>
+  </div>
+
+  <ContactForm />
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  #hero {
+    display: grid;
+    gap: var(--spacing-5xl);
+  }
+
+  .header {
+    margin-bottom: var(--spacing-m);
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .contact-options {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .contact-options-list {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .contact-option {
+    color: var(--colour-text-contrast);
+
+    &::before {
+      --size: #{rem(10px)};
+
+      content: '';
+      display: inline-block;
+      width: var(--size);
+      height: var(--size);
+      border-radius: 50%;
+      background-color: currentColor;
+      margin-right: var(--spacing-xs);
+    }
+  }
+
+  .whatsapp-card {
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-m);
+    padding: var(--spacing-m) var(--spacing-xl);
+    display: grid;
+    gap: var(--spacing-s);
+    align-items: center;
+    max-width: max-content;
+  }
+
+  @media screen and (min-width: rem(376px)) {
+    .whatsapp-card {
+      grid-template-columns: repeat(2, auto);
+      gap: var(--spacing-l);
+    }
+  }
+
+  @media screen and (min-width: rem(1200px)) {
+    #hero {
+      grid-template-columns: minmax(0, rem(502px)) minmax(0, rem(679px));
+      justify-content: space-between;
+      align-items: start;
+    }
+  }
+</style>

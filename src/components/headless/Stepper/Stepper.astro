@@ -1,0 +1,168 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'> & {
+  'data-current-step'?: number
+}
+
+const { 'data-current-step': currentStep = 1, style: _, ...props } = Astro.props
+
+const style = [
+  `--stepper-current-step: ${currentStep};`,
+  Astro.props.style ?? '',
+]
+  .filter((x) => x !== '')
+  .join(' ')
+---
+
+<div
+  data-stepper
+  data-current-step={currentStep}
+  data-first-step={currentStep === 1 ? '' : undefined}
+  style={style}
+  {...props}
+>
+  <slot />
+</div>
+
+<script>
+  import type { StepperStepChangeEvent } from './stepper'
+
+  const steppers = document.querySelectorAll<HTMLElement>('[data-stepper]')
+
+  for (const stepper of steppers) {
+    const steps = stepper.querySelectorAll<HTMLElement>('[data-step]')
+    const inputs = stepper.querySelectorAll<HTMLInputElement>('input')
+    const nextButtons = stepper.querySelectorAll<HTMLButtonElement>(
+      'button[data-next-step]',
+    )
+    const previousButtons = stepper.querySelectorAll<HTMLButtonElement>(
+      'button[data-previous-step]',
+    )
+
+    function getCurrentStep(): number {
+      return Number(stepper.getAttribute('data-current-step'))
+    }
+
+    function setCurrentStep(currentStep: number) {
+      stepper.setAttribute('data-current-step', `${currentStep}`)
+    }
+
+    function validateCurrentStep(): boolean {
+      const currentStep = getCurrentStep()
+
+      const step = steps[currentStep - 1]
+      if (!step) return false
+
+      const fields = step.querySelectorAll<
+        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+      >('input, select, textarea')
+
+      for (const field of fields) {
+        if (!field.reportValidity()) {
+          return false
+        }
+      }
+
+      return true
+    }
+
+    function nextStep(): void {
+      const currentStep = getCurrentStep()
+
+      if (currentStep >= steps.length) {
+        return
+      }
+
+      if (!validateCurrentStep()) {
+        return
+      }
+
+      setCurrentStep(currentStep + 1)
+    }
+
+    function previousStep(): void {
+      const currentStep = getCurrentStep()
+
+      if (currentStep <= 1) {
+        return
+      }
+
+      setCurrentStep(currentStep - 1)
+    }
+
+    function onStepChanged(currentStep: number): void {
+      stepper.style.setProperty('--stepper-current-step', `${currentStep}`)
+
+      if (currentStep === 1) {
+        stepper.setAttribute('data-first-step', '')
+      } else {
+        stepper.removeAttribute('data-first-step')
+      }
+
+      if (currentStep === steps.length) {
+        stepper.setAttribute('data-last-step', '')
+      } else {
+        stepper.removeAttribute('data-last-step')
+      }
+
+      for (const [i, el] of steps.entries()) {
+        if (i + 1 === currentStep) {
+          el.setAttribute('data-current-step', '')
+        } else {
+          el.removeAttribute('data-current-step')
+        }
+      }
+
+      stepper.dispatchEvent(
+        new CustomEvent<StepperStepChangeEvent>('stepper:step-change', {
+          detail: { currentStep },
+        }),
+      )
+    }
+
+    for (const button of nextButtons) {
+      button.addEventListener('click', nextStep)
+    }
+
+    for (const button of previousButtons) {
+      button.addEventListener('click', previousStep)
+    }
+
+    for (const input of inputs) {
+      input.addEventListener('keydown', (e) => {
+        if (e.key !== 'Enter') return
+
+        const currentStep = getCurrentStep()
+
+        if (currentStep >= steps.length) {
+          return
+        }
+
+        e.preventDefault()
+        nextStep()
+      })
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'data-current-step'
+        ) {
+          const currentStep = getCurrentStep()
+
+          if (currentStep !== Number(mutation.oldValue)) {
+            onStepChanged(currentStep)
+          }
+        }
+      }
+    })
+
+    observer.observe(stepper, {
+      attributes: true,
+      attributeFilter: ['data-current-step'],
+      attributeOldValue: true,
+    })
+  }
+</script>

@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'span'>
+---
+
+<span data-stepper-counter {...Astro.props}>1</span>
+
+<script>
+  const counters = document.querySelectorAll<HTMLElement>(
+    '[data-stepper-counter]',
+  )
+
+  for (const counter of counters) {
+    const stepper = counter.closest('[data-stepper]')
+
+    stepper?.addEventListener('stepper:step-change', (e) => {
+      counter.innerText = `${e.detail.currentStep}`
+    })
+  }
+</script>

@@ -1,6 +1,6 @@
 ---
 import AboutUs from '@/components/sections/AboutUs.astro'
-import Blog from '@/components/sections/Blog.astro'
+import BlogShowcaseGrid from '@/components/sections/BlogShowcaseGrid.astro'
 import ContactUs from '@/components/sections/ContactUs.astro'
 import CTAMarquee from '@/components/sections/CTAMarquee.astro'
 import FAQ from '@/components/sections/FAQ.astro'
@@ -46,5 +46,5 @@ const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
     href={url('/project-planner/')}
     groups={5}
   />
-  <Blog posts={posts} />
+  <BlogShowcaseGrid posts={posts} />
 </Layout>

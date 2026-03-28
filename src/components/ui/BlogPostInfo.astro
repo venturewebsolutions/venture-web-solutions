@@ -1,10 +1,10 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
-import type { CollectionEntry } from 'astro:content'
-import ClockIcon from '@/components/icons/ClockIcon.astro'
 import Avatar from '@/components/ui/Avatar.astro'
+import PublishedDate from '@/components/ui/PublishedDate.astro'
 import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
 import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import type { CollectionEntry } from 'astro:content'
 
 type Props = HTMLAttributes<'div'> & {
   post: CollectionEntry<'blog'>
@@ -28,17 +28,7 @@ const { post, class: className, ...props } = Astro.props
     </div>
   </div>
 
-  <div class="published-date">
-    <ClockIcon />
-
-    <p>
-      {
-        post.data.publishedDate.toLocaleDateString('en-GB', {
-          dateStyle: 'medium',
-        })
-      }
-    </p>
-  </div>
+  <PublishedDate date={post.data.publishedDate} />
 
   <div class="social-links">
     <SocialMediaBadge
@@ -80,12 +70,6 @@ const { post, class: className, ...props } = Astro.props
 
   .author-name {
     color: var(--colour-text-contrast);
-  }
-
-  .published-date {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-2xs);
   }
 
   .social-links {

@@ -14,10 +14,9 @@ import { url } from '@/lib/url'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
-  blogPostHeadingLevel: number
 }
 
-const { posts, blogPostHeadingLevel } = Astro.props
+const { posts } = Astro.props
 ---
 
 <section id="blog" class="section container" data-component="blog-carousel">
@@ -75,7 +74,7 @@ const { posts, blogPostHeadingLevel } = Astro.props
                   </span>
                 </Eyebrow>
                 <a href={`/blog/${post.id}/`}>
-                  <Heading level={blogPostHeadingLevel} class="post-title">
+                  <Heading level={3} class="post-title">
                     {post.data.summary}
                   </Heading>
                 </a>

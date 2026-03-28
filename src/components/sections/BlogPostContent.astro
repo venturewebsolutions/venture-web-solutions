@@ -1,0 +1,85 @@
+---
+import BlogPostBody from '@/components/ui/BlogPostBody.astro'
+import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
+import ReadTime from '@/components/ui/ReadTime.astro'
+import ScrollProgressBar from '@/components/ui/ScrollProgressBar.astro'
+import TableOfContents from '@/components/ui/TableOfContents.astro'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+  post: CollectionEntry<'blog'>
+}
+
+const { post } = Astro.props
+
+type Heading = {
+  depth: number
+  slug: string
+  text: string
+}
+
+const headings = (post.rendered?.metadata?.headings ?? []) as Heading[]
+
+const links = headings.map((heading) => ({
+  href: `#${heading.slug}`,
+  text: heading.text,
+}))
+---
+
+<section class="section container">
+  <div class="toc-wrapper">
+    <TableOfContents links={links} />
+
+    <ScrollProgressBar contents="#blog-post-body" />
+
+    <ReadTime>
+      {post.data.readTimeMinutes} mins read
+    </ReadTime>
+  </div>
+
+  <div class="article">
+    <BlogPostBody id="blog-post-body" post={post} />
+
+    <hr class="divider" />
+
+    <BlogPostInfo post={post} />
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    gap: var(--spacing-3xl);
+  }
+
+  .toc-wrapper {
+    max-width: rem(378px);
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
+  .article {
+    max-width: rem(720px);
+  }
+
+  .divider {
+    margin-block: var(--spacing-3xl);
+    color: var(--colour-divider-primary);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .section {
+      grid-template-columns: auto auto;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .toc-wrapper {
+      position: sticky;
+      top: var(--spacing-xl);
+    }
+  }
+</style>

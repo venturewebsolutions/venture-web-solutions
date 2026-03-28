@@ -1,0 +1,29 @@
+---
+import ClockIcon from '@/components/icons/ClockIcon.astro'
+
+type Props = {
+  date: Date
+}
+
+const { date } = Astro.props
+
+const formatted = date.toLocaleDateString('en-GB', {
+  dateStyle: 'medium',
+})
+---
+
+<div class="published-date">
+  <ClockIcon />
+  <p>{formatted}</p>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .published-date {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+</style>

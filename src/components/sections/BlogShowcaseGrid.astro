@@ -1,9 +1,9 @@
 ---
+import BlogPostCard from '@/components/ui/BlogPostCard.astro'
 import Button from '@/components/ui/Button.astro'
-import BlogPostGrid from '@/components/ui/BlogPostGrid.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { url } from '@/lib/url'
 import type { CollectionEntry } from 'astro:content'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
 
 type Props = {
   posts: CollectionEntry<'blog'>[]
@@ -23,7 +23,18 @@ const { posts } = Astro.props
     </Button>
   </div>
 
-  <BlogPostGrid posts={posts} blogPostHeadingLevel={3} />
+  <div class="posts">
+    {
+      posts.map((post) => (
+        <BlogPostCard
+          post={post}
+          level={3}
+          thumbnailWidths={[216, 343, 432, 520, 708, 832, 1416]}
+          thumbnailSizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+        />
+      ))
+    }
+  </div>
 </section>
 
 <style lang="scss">
@@ -43,6 +54,19 @@ const { posts } = Astro.props
 
   .header {
     max-width: rem(535px);
+  }
+
+  .posts {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .posts {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-2xl);
+      align-items: start;
+    }
   }
 
   @media screen and (min-width: rem(1024px)) {

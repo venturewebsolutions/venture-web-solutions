@@ -1,0 +1,20 @@
+---
+import ClockIcon from '@/components/icons/ClockIcon.astro'
+---
+
+<div class="read-time">
+  <ClockIcon />
+  <p><slot /></p>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .read-time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+</style>

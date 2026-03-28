@@ -1,5 +1,5 @@
 ---
-import BlogPostGrid from '@/components/ui/BlogPostGrid.astro'
+import BlogPostCard from '@/components/ui/BlogPostCard.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts } from '@/lib/collections'
 
@@ -7,7 +7,7 @@ const posts = await getBlogPosts()
 ---
 
 <Layout title="Blog (TODO)" description="TODO">
-  <div class="container section">
+  <section id="hero" class="container section">
     <header class="header">
       <h1 class="h2">Blog</h1>
       <p class="subheading">
@@ -17,8 +17,19 @@ const posts = await getBlogPosts()
       </p>
     </header>
 
-    <BlogPostGrid posts={posts} blogPostHeadingLevel={2} />
-  </div>
+    <div class="posts">
+      {
+        posts.map((post) => (
+          <BlogPostCard
+            post={post}
+            level={2}
+            thumbnailWidths={[216, 343, 432, 520, 708, 832, 1416]}
+            thumbnailSizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+          />
+        ))
+      }
+    </div>
+  </section>
 </Layout>
 
 <style lang="scss">
@@ -37,5 +48,18 @@ const posts = await getBlogPosts()
 
   .subheading {
     max-width: rem(648px);
+  }
+
+  .posts {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .posts {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-2xl);
+      align-items: start;
+    }
   }
 </style>

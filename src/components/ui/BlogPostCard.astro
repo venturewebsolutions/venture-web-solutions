@@ -1,0 +1,113 @@
+---
+import Heading from '@/components/headless/Heading.astro'
+import Avatar from '@/components/ui/Avatar.astro'
+import Badge from '@/components/ui/Badge.astro'
+import Eyebrow from '@/components/ui/Eyebrow.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { url } from '@/lib/url'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = {
+  post: CollectionEntry<'blog'>
+  level: number
+  thumbnailWidths: number[]
+  thumbnailSizes: string
+}
+
+const { post, level, thumbnailWidths, thumbnailSizes } = Astro.props
+---
+
+<section class="post">
+  <Thumbnail>
+    <a href={url(`/blog/${post.id}/`)} aria-label={post.data.title}>
+      <Image
+        src={post.data.thumbnail.image}
+        alt={post.data.thumbnail.description}
+        class="thumbnail-image"
+        style={`--cursor-url: url(${url('/cursor.svg')});`}
+        widths={thumbnailWidths}
+        sizes={thumbnailSizes}
+      />
+    </a>
+
+    <ThumbnailCaption
+      position="bottom left"
+      class="thumbnail-caption thumbnail-caption-bottom-left"
+    >
+      <Avatar
+        src={post.data.author.avatar}
+        alt={post.data.author.name}
+        width={43}
+      />
+    </ThumbnailCaption>
+
+    <ThumbnailCaption
+      position="top right"
+      class="thumbnail-caption thumbnail-caption-top-right"
+    >
+      <Badge variant="tertiary" size="s">
+        {post.data.topic}
+      </Badge>
+    </ThumbnailCaption>
+  </Thumbnail>
+
+  <div class="post-summary">
+    <Eyebrow class="post-read-time">
+      {post.data.readTimeMinutes} mins read
+    </Eyebrow>
+    <a href={`/blog/${post.id}/`}>
+      <Heading level={level} class="post-title">
+        {post.data.summary}
+      </Heading>
+    </a>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .post {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .thumbnail-image {
+    border-radius: var(--border-radius-m);
+    width: 100%;
+    aspect-ratio: 421/238;
+    object-fit: cover;
+    cursor:
+      var(--cursor-url) 56.5 56.5,
+      pointer;
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-s);
+    --inverted-border-radius: var(--border-radius-m);
+  }
+
+  .thumbnail-caption-bottom-left {
+    --padding: #{rem(10px)};
+  }
+
+  .thumbnail-caption-top-right {
+    --padding: #{rem(8px)};
+  }
+
+  .post-summary {
+    display: grid;
+    gap: var(--spacing-xs);
+  }
+
+  .post-read-time {
+    @include font(body);
+  }
+
+  .post-summary {
+    @include font(h4);
+  }
+</style>

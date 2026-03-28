@@ -243,19 +243,19 @@ import TextareaField from '@/components/ui/TextareaField.astro'
     gap: var(--spacing-m);
   }
 
-  .stepper[data-first-step] {
+  .stepper[data-current-step="1"] {
     .previous-step-button {
       display: none;
     }
   }
 
-  .stepper[data-last-step] {
+  .stepper[data-current-step="3"] {
     .next-step-button {
       display: none;
     }
   }
 
-  .stepper:not([data-last-step]) {
+  .stepper:not([data-current-step="3"]) {
     .submit-button {
       display: none;
     }

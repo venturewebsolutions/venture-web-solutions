@@ -1,0 +1,189 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import Button from '@/components/ui/Button.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+
+const members = [
+  {
+    thumbnail: {
+      src: import('@/assets/images/jordan.jpg'),
+      alt: 'Jordan, Co-founder',
+    },
+    badge: 'Left brain',
+    name: 'Jordan',
+    position: 'Co-founder & Web Developer',
+    summary: 'Physics nerd, lover of fast websites & No. 1 Sam Harris fan.',
+    url: url(`/team/jordan/`),
+  },
+  {
+    thumbnail: {
+      src: import('@/assets/images/daniela.jpg'),
+      alt: 'Daniela, Co-founder',
+    },
+    badge: 'Left brain',
+    name: 'Daniela',
+    position: 'Co-founder & Web Designer',
+    summary: 'Curious traveler, business-minded, sporty, creative soul.',
+    url: url(`/team/daniela/`),
+  },
+]
+
+type Props = HTMLAttributes<'section'> & {
+  level: number
+}
+
+const { level, class: className, ...props } = Astro.props
+---
+
+<section class:list={cn('section container', className)} {...props}>
+  <div class="intro">
+    <SectionHeader eyebrow="Meet the team" level={1} class="header">
+      The humans behind the scenes
+    </SectionHeader>
+
+    <div class="intro-text">
+      <p>
+        Hello! You’ve found us — yes, we’re humans too. It’s nice to meet you!
+      </p>
+
+      <p>
+        We’re a small team of two, and we’re happy you’re here. This page is
+        where you can get to know us a little better — who we are, what we do,
+        and the people you’ll be working with. And if you decide to start a
+        project with us, we’ll be just as excited to get to know you too.
+      </p>
+    </div>
+  </div>
+
+  <div class="member-cards">
+    {
+      members.map((member) => (
+        <div class="member-card">
+          <Thumbnail>
+            <Image
+              src={member.thumbnail.src}
+              alt={member.thumbnail.alt}
+              class="member-image"
+            />
+
+            <ThumbnailCaption
+              position="top right"
+              class="thumbnail-caption thumbnail-caption-top-right"
+            >
+              <Badge variant="tertiary" size="s">
+                {member.badge}
+              </Badge>
+            </ThumbnailCaption>
+
+            <ThumbnailCaption
+              position="bottom left"
+              class="thumbnail-caption thumbnail-caption-bottom-left"
+            >
+              <div class="member-info">
+                <p class="member-name">{member.name}</p>
+                <p class="member-position">{member.position}</p>
+              </div>
+            </ThumbnailCaption>
+          </Thumbnail>
+
+          <div class="member-card-footer">
+            <p class="member-summary">{member.summary}</p>
+
+            <Button
+              href={member.url}
+              variant="secondary-outline"
+              arrow
+              class="member-link"
+            >
+              Get to know {member.name}
+            </Button>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .intro {
+    max-width: rem(648px);
+    text-align: center;
+    margin-inline: auto;
+  }
+
+  .intro-text {
+    margin-top: var(--spacing-m);
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .member-cards {
+    margin-top: var(--spacing-3xl-4xl);
+    display: grid;
+    gap: var(--spacing-4xl);
+  }
+
+  .member-image {
+    border-radius: var(--border-radius-m);
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-m);
+    --inverted-border-radius: var(--border-radius-l);
+  }
+
+  .thumbnail-caption-top-right {
+    --padding: var(--spacing-xs);
+  }
+
+  .thumbnail-caption-bottom-left {
+    --padding: var(--spacing-s);
+  }
+
+  .member-info {
+    max-width: rem(106px);
+    display: grid;
+    gap: var(--spacing-4xs);
+  }
+
+  .member-name {
+    @include font(caption);
+    color: var(--colour-text-contrast);
+  }
+
+  .member-position {
+    @include font(meta-primary);
+  }
+
+  .member-card-footer {
+    text-align: center;
+  }
+
+  .member-summary {
+    margin-top: var(--spacing-xl);
+    margin-inline: auto;
+    max-width: rem(349px);
+    text-align: center;
+  }
+
+  .member-link {
+    margin-top: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .member-cards {
+      gap: var(--spacing-8xl);
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

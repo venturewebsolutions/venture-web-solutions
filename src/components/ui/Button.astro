@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'astro/types'
 import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
 import { cn } from '@/lib/class-names'
 
-export type ButtonVariant = 'secondary' | 'secondary-outline' | 'ghost' | 'form'
+export type ButtonVariant = 'primary-outline' | 'secondary' | 'secondary-outline' | 'ghost' | 'form'
 
 type BaseProps = {
   variant?: ButtonVariant | null
@@ -89,6 +89,12 @@ const {
   }
 
   // Variants
+  .button[data-variant='primary-outline'] {
+    background-color: transparent;
+    border-color: var(--colour-primary);
+    color: var(--colour-primary);
+  }
+
   .button[data-variant='secondary'] {
     background-color: var(--colour-secondary);
     border-color: var(--colour-secondary);

@@ -1,0 +1,237 @@
+---
+import DrinkIcon from '@/components/icons/DrinkIcon.astro'
+import FactoryIcon from '@/components/icons/FactoryIcon.astro'
+import FamilyHomeIcon from '@/components/icons/FamilyHomeIcon.astro'
+import LaptopIcon from '@/components/icons/LaptopIcon.astro'
+import RocketIcon from '@/components/icons/RocketIcon.astro'
+import ScissorsIcon from '@/components/icons/ScissorsIcon.astro'
+import ToolsIcon from '@/components/icons/ToolsIcon.astro'
+import ProjectCard from '@/components/ui/ProjectCard.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'>
+
+const projects = [
+  {
+    client: 'Maggi Maid',
+    heading: 'Building trust for a brand-new home care business',
+    description:
+      'Trust can’t be claimed — it has to be felt. For Maggi Maid, the challenge was to create a digital experience that immediately reassures families, removes doubt, and feels genuinely caring, while communicating professionalism and a sense of responsibility in a sensitive industry.',
+    highlights: [
+      {
+        icon: FamilyHomeIcon,
+        text: 'Home care industry',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'End-to-end branding & online business launch',
+      },
+    ],
+    link: {
+      href: url('/projects/maggi-maid/'),
+      text: 'View project',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-maggi-maid.png'),
+      alt: 'A screenshot of the Maggi Maid website and colour scheme',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+  {
+    client: 'Stefano’s Pizzeria',
+    heading:
+      'A warm, professional start for the first wood-fired pizzeria in Harrogate',
+    description:
+      'Stefano’s Pizzeria needed an online presence that matched the warmth and authenticity of Harrogate’s first wood-fired pizzeria. We delivered a fully custom, hand-coded website paired with a flexible CMS, allowing the team to update their own content — giving them full control as they grow. The result is a professional, inviting website that truly reflects their brand and hospitality.',
+    highlights: [
+      {
+        icon: DrinkIcon,
+        text: 'Hospitality sector',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'CMS website launch',
+      },
+    ],
+    link: {
+      href: url('/projects/stefanos/'),
+      text: 'View project',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-stefanos.png'),
+      alt: 'A screenshot of Stefano’s Pizzeria website and colour scheme',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+  {
+    client: 'SOS Party Rental',
+    heading: 'A performance-first redesign for an event services business',
+    description:
+      'SOS Party Rental needed a website that reflected their brand accurately and worked seamlessly for their customers. The redesign prioritized performance over aesthetics, focusing on speed, structure, and usability. The result is a clearer, more intuitive experience that reflects how the business truly operates.',
+    highlights: [
+      {
+        icon: DrinkIcon,
+        text: 'Events & hospitality sector',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'Website redesign & bilingual setup',
+      },
+    ],
+    link: {
+      href: url('/projects/sos-party-rental/'),
+      text: 'View project',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-sos-party-rental.png'),
+      alt: 'A screenshot of the SOS Party Rental website and colour scheme',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+  {
+    client: 'Poplett’s Dog Grooming',
+    heading: 'A playful yet professional start for a dog grooming business',
+    description:
+      'Poplett’s Dog Grooming needed a website that reflected the friendly, professional care they provide to pets. The design focused on creating a clear, welcoming online presence that reassures clients and communicates the brand’s expertise and approachable personality. The result is a website that feels authentic, professional, and inviting, helping the business connect with pet owners from the very first visit.',
+    highlights: [
+      {
+        icon: ScissorsIcon,
+        text: 'Pet care & grooming industry',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'End-to-end branding & online business launch',
+      },
+    ],
+    link: {
+      href: url('/projects/popletts/'),
+      text: 'View project',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-popletts.png'),
+      alt: 'A screenshot of the Poplett’s Dog Grooming website and colour scheme',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+  {
+    client: 'MD Loft Storage',
+    heading: 'Helping a new trade business look established',
+    description:
+      'They needed a website that clearly showcased their loft storage solutions while reflecting the professionalism and quality of their work. The custom design and hand-coded development created a clean, intuitive online experience that helps customers understand their products and services at a glance. The result is a website that’s informative, professional, and visually aligned with their brand.',
+    highlights: [
+      {
+        icon: ToolsIcon,
+        text: 'Home improvement & storage industry',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'New business website launch',
+      },
+    ],
+    link: {
+      href: url('/projects/md-loft-storage/'),
+      text: 'View project',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-md-loft-storage.png'),
+      alt: 'A screenshot of the MD Loft Storage website and colour scheme',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+  {
+    client: 'Your business',
+    heading: 'Ready to get started?',
+    description:
+      'Do you like what you see? Are you ready to take your business online, refresh your website, or simply explore some ideas? Whether you’re just starting out or looking to make a meaningful change, we’d love to hear from you. Let’s chat about what you’re looking for, what could work for your business, and how we can bring your ideas to life — no pressure, no sales pitch, just a conversation to get things moving in the right direction.',
+    highlights: [
+      {
+        icon: FactoryIcon,
+        text: 'Industry expertise',
+      },
+      {
+        icon: LaptopIcon,
+        text: 'Custom design & hand-coded website',
+      },
+      {
+        icon: RocketIcon,
+        text: 'Tailored services to fit your needs',
+      },
+    ],
+    link: {
+      href: url('/project-planner/'),
+      text: 'Get started',
+    },
+    image: {
+      src: import('@/assets/images/project-showcase-empty.png'),
+      alt: '',
+      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
+      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+    },
+  },
+]
+
+const { class: className, ...props } = Astro.props
+---
+
+<section
+  data-project-showcase
+  class:list={cn('section container', className)}
+  {...props}
+>
+  <SectionHeader eyebrow="Portfolio" level={1} class="section-header">
+    What we’ve been working on
+  </SectionHeader>
+
+  <div class="projects">
+    {
+      projects.map((project) => (
+        <div class="card-wrapper">
+          <ProjectCard {...project} level={2} data-project-card />
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    gap: var(--spacing-4xl);
+  }
+
+  .projects {
+    display: grid;
+    gap: var(--spacing-4xl);
+  }
+</style>

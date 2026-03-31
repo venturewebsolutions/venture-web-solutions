@@ -1,0 +1,287 @@
+---
+import Button from '@/components/ui/Button.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+import Heading from '../headless/Heading.astro'
+
+type Props = HTMLAttributes<'section'> & {
+  client: string
+  heading: string
+  description: string
+  highlights: {
+    icon: (_props: any) => any
+    text: string
+  }[]
+  link: {
+    href: string
+    text: string
+  }
+  image: {
+    src: Promise<{ default: ImageMetadata }>
+    alt: string
+    widths: number[]
+    sizes: string
+  }
+  level: number
+}
+
+const {
+  client,
+  heading,
+  description,
+  highlights,
+  link,
+  image,
+  level,
+  class: className,
+  ...props
+} = Astro.props
+---
+
+<section class:list={cn('card glow-background', className)} {...props}>
+  <div class="glow-foreground">
+    <div class="card-content vignette">
+      <div class="left">
+        <p class="client-name h4">{client}</p>
+
+        <Heading level={level} class="heading h2">{heading}</Heading>
+
+        <p class="description">{description}</p>
+
+        <ul class="project-highlights">
+          {
+            highlights.map((highlight) => (
+              <li class="project-highlight">
+                <highlight.icon class="project-highlight-icon" />
+                <span class="project-highlight-text">{highlight.text}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="right">
+        <div class="project-link">
+          <Button href={link.href} variant="primary-outline" arrow>
+            {link.text}
+          </Button>
+        </div>
+
+        <Image
+          src={image.src}
+          alt={image.alt}
+          widths={[]}
+          class="project-image"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .glow-background {
+    position: relative;
+    overflow: hidden;
+    padding: var(--border-width-m);
+    background-color: var(--colour-border-primary);
+    border-radius: var(--border-radius-m);
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  .glow-foreground {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-m);
+
+    &:hover::before {
+      opacity: 0.2;
+    }
+  }
+
+  .glow-background,
+  .glow-foreground {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 150%;
+      aspect-ratio: 1;
+      transform: translateX(calc(-50% + var(--mouse-x)))
+        translateY(calc(-50% + var(--mouse-y)));
+      background-image: radial-gradient(
+        var(--colour-primary),
+        transparent,
+        transparent
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+  }
+
+  .vignette {
+    box-shadow:
+      inset 0 0 100px #1c1d2c,
+      inset 20px 20px 50px #28293a;
+  }
+
+  .card {
+    --rotate-x-max: 2deg;
+    --rotate-y-max: 5deg;
+
+    position: relative;
+    overflow: hidden;
+    padding: var(--border-width-m);
+    background-color: var(--colour-border-primary);
+    border-radius: var(--border-radius-m);
+    transform: perspective(1000px)
+      rotateX(calc(var(--mouse-y-relative) * var(--rotate-x-max)))
+      rotateY(calc(var(--mouse-x-relative) * var(--rotate-y-max)));
+    transition: transform 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }
+
+  .card-content {
+    position: relative;
+
+    display: grid;
+    justify-content: space-between;
+    grid-template-columns: minmax(0, rem(508px)) minmax(0, rem(609px));
+    padding-top: var(--spacing-4xl);
+    padding-inline: var(--spacing-4xl);
+  }
+
+  .right {
+    display: grid;
+    gap: var(--spacing-4xl);
+    justify-items: end;
+  }
+
+  .client-name {
+    color: var(--colour-primary);
+  }
+
+  .heading {
+    margin-top: var(--spacing-2xl);
+  }
+
+  .description {
+    margin-top: var(--spacing-2xl);
+  }
+
+  .project-highlights {
+    margin-top: var(--spacing-4xl);
+    margin-bottom: var(--spacing-4xl);
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .project-highlight {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-s);
+  }
+
+  .project-highlight-icon {
+    color: var(--colour-primary);
+  }
+
+  .project-highlight-text {
+    @include font(boy-medium);
+    color: var(--colour-text-contrast);
+  }
+
+  .project-image {
+    width: 100%;
+    align-self: end;
+  }
+
+  @media screen and (max-width: rem(767px)) {
+    .card-content {
+      grid-template-columns: 1fr;
+      padding-inline: var(--spacing-2xl);
+      padding-bottom: var(--spacing-4xl);
+    }
+
+    .left {
+      display: contents;
+    }
+
+    .right {
+      display: contents;
+    }
+
+    .client-name {
+      order: 1;
+    }
+
+    .heading {
+      order: 2;
+    }
+
+    .description {
+      order: 3;
+    }
+
+    .project-image {
+      order: 4;
+      margin-top: var(--spacing-4xl);
+    }
+
+    .project-highlights {
+      order: 5;
+      margin-bottom: 0;
+    }
+
+    .project-link {
+      order: 6;
+      margin-top: var(--spacing-2xl);
+    }
+  }
+</style>
+
+<script>
+  import { throttle } from 'lodash'
+
+  const cards = document.querySelectorAll<HTMLElement>('[data-project-card]')
+
+  for (const card of cards) {
+    function onMouseMove(event: MouseEvent) {
+      const rect = card.getBoundingClientRect()
+
+      const cx = rect.left + rect.width / 2
+      const cy = rect.top + rect.height / 2
+
+      const x = event.clientX - cx
+      const y = event.clientY - cy
+
+      const xRelative = x / (rect.width / 2)
+      const yRelative = y / (rect.height / 2)
+
+      card.style.setProperty('--mouse-x', `${x}px`)
+      card.style.setProperty('--mouse-y', `${y}px`)
+
+      card.style.setProperty('--mouse-x-relative', `${xRelative}`)
+      card.style.setProperty('--mouse-y-relative', `${yRelative}`)
+    }
+
+    const listener = throttle(onMouseMove, 1000 / 60)
+
+    card.addEventListener('mousemove', listener)
+
+    card.addEventListener('mouseleave', () => {
+      listener.cancel()
+
+      card.style.setProperty('--mouse-x-relative', '0')
+      card.style.setProperty('--mouse-y-relative', '0')
+    })
+  }
+</script>

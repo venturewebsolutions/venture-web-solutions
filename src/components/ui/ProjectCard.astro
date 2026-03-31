@@ -40,7 +40,7 @@ const {
 ---
 
 <section class:list={cn('card glow-background', className)} {...props}>
-  <div class="glow-foreground">
+  <div class="card-inner glow-foreground">
     <div class="card-content vignette">
       <div class="left">
         <p class="client-name h4">{client}</p>
@@ -86,7 +86,7 @@ const {
   .glow-background {
     position: relative;
     overflow: hidden;
-    padding: var(--border-width-m);
+    padding: var(--border-width-s);
     background-color: var(--colour-border-primary);
     border-radius: var(--border-radius-m);
 
@@ -138,11 +138,6 @@ const {
     --rotate-x-max: 2deg;
     --rotate-y-max: 5deg;
 
-    position: relative;
-    overflow: hidden;
-    padding: var(--border-width-m);
-    background-color: var(--colour-border-primary);
-    border-radius: var(--border-radius-m);
     transform: perspective(1000px)
       rotateX(calc(var(--mouse-y-relative) * var(--rotate-x-max)))
       rotateY(calc(var(--mouse-x-relative) * var(--rotate-y-max)));
@@ -151,7 +146,6 @@ const {
 
   .card-content {
     position: relative;
-
     display: grid;
     justify-content: space-between;
     grid-template-columns: minmax(0, rem(508px)) minmax(0, rem(609px));
@@ -195,7 +189,7 @@ const {
   }
 
   .project-highlight-text {
-    @include font(boy-medium);
+    @include font(body-medium);
     color: var(--colour-text-contrast);
   }
 
@@ -249,7 +243,7 @@ const {
 </style>
 
 <script>
-  import { throttle } from 'lodash'
+  import throttle from 'lodash/throttle'
 
   const cards = document.querySelectorAll<HTMLElement>('[data-project-card]')
 

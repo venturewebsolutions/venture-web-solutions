@@ -42,7 +42,7 @@ const projects = [
           {
             projects.map((project) => (
               <a
-                href={url(`/portfolio/${project.slug}`)}
+                href={url(`/work/${project.slug}`)}
                 class="title h2"
                 data-project={project.slug}
               >
@@ -61,7 +61,7 @@ const projects = [
         {
           projects.map((project) => (
             <section class="image-card" data-project={project.slug}>
-              <a href={url(`/portfolio/${project.slug}`)} class="image-link">
+              <a href={url(`/work/${project.slug}`)} class="image-link">
                 <Image
                   src={project.image}
                   alt={`${project.name} project screenshot`}

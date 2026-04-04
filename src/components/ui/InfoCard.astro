@@ -1,0 +1,37 @@
+---
+import Heading from '@/components/headless/Heading.astro'
+
+type Props = {
+  heading: string
+  level: number
+}
+
+const { heading, level } = Astro.props
+---
+
+<section class="card">
+  <Heading level={level} class="h4">
+    {heading}
+  </Heading>
+
+  <p><slot /></p>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .card {
+    display: grid;
+    gap: var(--spacing-m);
+    border-radius: var(--border-radius-m);
+    background-color: color-mix(
+      in srgb,
+      var(--colour-surface-200) 20%,
+      transparent
+    );
+    color: var(--colour-text-contrast);
+    padding-block: var(--spacing-m);
+    padding-inline: var(--spacing-xl);
+  }
+</style>

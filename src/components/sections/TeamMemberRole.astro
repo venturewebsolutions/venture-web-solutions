@@ -1,0 +1,53 @@
+---
+import BasicCard from '@/components/ui/BasicCard.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'> & {
+  cards: {
+    heading: string
+    text: string
+  }[]
+}
+
+const { cards, class: className, ...props } = Astro.props
+---
+
+<section class:list={cn('section container', className)} {...props}>
+  <SectionHeader level={2}>What I do</SectionHeader>
+
+  <div class="cards">
+    {
+      cards.map((card) => (
+        <BasicCard heading={card.heading} level={3}>
+          {card.text}
+        </BasicCard>
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .cards {
+    margin-top: var(--spacing-3xl-4xl);
+
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: rem(600px)) {
+    .cards {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .cards {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>

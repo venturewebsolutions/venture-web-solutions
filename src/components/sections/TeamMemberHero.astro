@@ -1,0 +1,142 @@
+---
+import Marquee from '@/components/headless/Marquee/Marquee.astro'
+import MarqueeGroup from '@/components/headless/Marquee/MarqueeGroup.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { Image } from 'astro:assets'
+
+type Props = {
+  name: string
+  eyebrow: string
+  marquee: {
+    groups: number
+    images: {
+      src: Promise<{ default: ImageMetadata }>
+      alt: string
+    }[]
+  }
+}
+
+const { name, eyebrow, marquee } = Astro.props
+---
+
+<section class="section container">
+  <div class="content-left-wrapper">
+    <SectionHeader eyebrow={eyebrow} level={1}>
+      Hi, I'm {name}
+    </SectionHeader>
+
+    <div class="content-left">
+      <slot name="content-left" />
+    </div>
+  </div>
+
+  <div class="content-right">
+    <slot name="content-right" />
+  </div>
+
+  <Marquee class="marquee">
+    <MarqueeGroup groups={marquee.groups} class="marquee-group">
+      {
+        marquee.images.map((image) => (
+          <Image
+            src={image.src}
+            alt={image.alt}
+            class="marquee-photo"
+            loading="eager"
+          />
+        ))
+      }
+    </MarqueeGroup>
+  </Marquee>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    grid-template-areas:
+      'header'
+      'marquee'
+      'content-left'
+      'content-right';
+    row-gap: var(--spacing-xl);
+  }
+
+  .content-left-wrapper {
+    display: contents;
+  }
+
+  .content-left {
+    grid-area: content-left;
+    display: grid;
+    row-gap: var(--spacing-xl);
+  }
+
+  .content-right {
+    grid-area: content-right;
+    display: grid;
+    row-gap: var(--spacing-xl);
+  }
+
+  .marquee {
+    --marquee-duration: 10s;
+    --marquee-gap: var(--spacing-2xl);
+
+    grid-area: marquee;
+  }
+
+  .marquee-group {
+    gap: var(--spacing-2xl);
+    align-items: start;
+  }
+
+  .marquee-photo {
+    width: 230px;
+    aspect-ratio: 230/149;
+    object-fit: cover;
+    border-radius: var(--border-radius-l);
+
+    &:nth-child(2n + 1) {
+      margin-top: var(--spacing-xl);
+    }
+  }
+
+  @media (min-width: rem(768px)) {
+    .section {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+      grid-template-areas:
+        'content-left-wrapper content-right'
+        'marquee marquee';
+      align-items: start;
+      column-gap: var(--spacing-5xl);
+      row-gap: var(--spacing-5xl);
+    }
+
+    .content-left-wrapper {
+      grid-area: content-left-wrapper;
+      display: grid;
+      gap: var(--spacing-xl);
+    }
+
+    .content-left {
+      grid-area: auto;
+    }
+
+    .content-left-wrapper,
+    .content-right {
+      max-width: rem(535px);
+    }
+
+    .marquee-photo {
+      width: 385px;
+      aspect-ratio: 385/250;
+
+      &:nth-child(2n + 1) {
+        margin-top: var(--spacing-3xl);
+      }
+    }
+  }
+</style>

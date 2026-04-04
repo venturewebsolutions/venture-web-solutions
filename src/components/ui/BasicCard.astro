@@ -1,19 +1,18 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 import Heading from '@/components/headless/Heading.astro'
+import { cn } from '@/lib/class-names'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   heading: string
-  level?: number
-  icon: (_props: HTMLAttributes<'svg'>) => any
+  level: number
 }
 
-const { heading, level = 3, icon: Icon } = Astro.props
+const { heading, level, class: className, ...props } = Astro.props
 ---
 
-<section class="card">
-  <Icon class="card-icon" />
-  <Heading level={level} class="card-heading h4">{heading}</Heading>
+<section class:list={cn('card', className)} {...props}>
+  <Heading level={level} class="h4">{heading}</Heading>
   <p><slot /></p>
 </section>
 
@@ -27,16 +26,8 @@ const { heading, level = 3, icon: Icon } = Astro.props
     justify-items: center;
     align-content: start;
     background-color: var(--colour-surface-100);
-    padding: var(--spacing-6xl) var(--spacing-4xl);
+    padding: var(--spacing-2xl) var(--spacing-xl-4xl);
     border-radius: var(--border-radius-m);
-  }
-
-  .card-icon {
-    color: var(--colour-text-contrast);
-    fill: var(--colour-surface-base);
-  }
-
-  .card-heading {
     text-align: center;
   }
 </style>

@@ -8,6 +8,7 @@ import Badge from '@/components/ui/Badge.astro'
 import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import Divider from './Divider.astro'
 
 type Props = HTMLAttributes<'section'> & {
   heading: {
@@ -102,7 +103,7 @@ const {
     <p class="card-summary">{summary}</p>
   </div>
 
-  <hr class="card-divider" />
+  <Divider size="m" />
 
   <div class="card-content">
     <ul class="card-features">
@@ -126,7 +127,7 @@ const {
     </Button>
   </div>
 
-  <hr class="card-divider" />
+  <Divider size="m" />
 
   <div class="card-footer">
     <p class="card-footer-heading">Add-ons:</p>
@@ -231,11 +232,6 @@ const {
     display: flex;
     align-items: baseline;
     gap: var(--spacing-s);
-  }
-
-  .card-divider {
-    border-top-width: 2px;
-    color: var(--colour-divider-primary);
   }
 
   .card-background {

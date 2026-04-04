@@ -13,9 +13,9 @@ const { groups, class: className, ...props } = Astro.props
 {
   range(Math.max(0, groups ?? 1)).map((i) => (
     <div
-      {...props}
       class:list={cn('marquee-group', className)}
       aria-hidden={i > 0}
+      {...props}
     >
       <slot />
     </div>
@@ -24,6 +24,8 @@ const { groups, class: className, ...props } = Astro.props
 
 <style lang="scss">
   .marquee-group {
+    flex-shrink: 0;
+
     display: flex;
     flex-wrap: nowrap;
 

@@ -1,0 +1,29 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'hr'> & {
+  size: 's' | 'm'
+}
+
+const { class: className, size, ...props } = Astro.props
+---
+
+<hr class:list={cn('divider', className)} data-size={size} {...props} />
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .divider {
+    border-color: var(--colour-divider-primary);
+  }
+
+  .divider[data-size='s'] {
+    border-top-width: var(--border-width-s);
+  }
+
+  .divider[data-size='m'] {
+    border-top-width: var(--border-width-m);
+  }
+</style>

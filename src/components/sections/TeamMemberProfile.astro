@@ -1,0 +1,185 @@
+---
+import Badge from '@/components/ui/Badge.astro'
+import InfoCard from '@/components/ui/InfoCard.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
+import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+import SocialMediaBadge from '../ui/SocialMediaBadge.astro'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<section class:list={cn('section container', className)} {...props}>
+  <div class="content-left">
+    <SectionHeader eyebrow="Q&A" level={2}>A bit more about me</SectionHeader>
+
+    <Thumbnail class="thumbnail">
+      <Image
+        src={import('@/assets/images/jordan.jpg')}
+        alt="Jordan, Co-founder"
+        class="member-image"
+      />
+
+      <ThumbnailCaption
+        position="top right"
+        class="thumbnail-caption thumbnail-caption-top-right"
+      >
+        <Badge variant="tertiary" size="s">Left brain</Badge>
+      </ThumbnailCaption>
+
+      <ThumbnailCaption
+        position="bottom left"
+        class="thumbnail-caption thumbnail-caption-bottom-left"
+      >
+        <div class="member-info">
+          <p class="member-name">Jordan</p>
+          <p class="member-position">Co-founder & Web Developer</p>
+        </div>
+      </ThumbnailCaption>
+    </Thumbnail>
+
+    <div class="social-links">
+      <SocialMediaBadge
+        platform="linkedin"
+        href="#"
+        aria-label="Visit Jordan's LinkedIn page"
+      />
+      <SocialMediaBadge
+        platform="facebook"
+        href="#"
+        aria-label="Visit Jordan's Facebook page"
+      />
+      <SocialMediaBadge
+        platform="instagram"
+        href="#"
+        aria-label="Visit Jordan's Instagram page"
+      />
+    </div>
+  </div>
+
+  <div class="content-right">
+    <div class="info-cards">
+      <InfoCard
+        heading="What’s your favourite part of building websites?"
+        level={3}
+      >
+        Honestly, writing the code itself — in particular, keeping it clean and
+        well-organised so that it’s easy to read and change when needed. Sounds
+        boring but I love it!
+      </InfoCard>
+
+      <InfoCard
+        heading="Why’d you switch from astrophysics to building websites?"
+        level={3}
+      >
+        got tired of being a student, and it’s not as romantic as it sounds
+        anyway — it’s mostly about solving algebra, not looking through
+        telescopes as I’d imagined! I learned programming as part of my degree,
+        although I didn’t take to it right away. It did eventually click for me
+        though, and at that point I fell in love with it. Later, I had to decide
+        whether to continue on as a student and pursue a PhD, or change
+        direction and pursue a career in coding. Well, I chose the latter, and
+        here we are!
+      </InfoCard>
+
+      <InfoCard heading="What do you enjoy doing outside of work?" level={3}>
+        I used to love playing rugby, but unfortunately I haven’t played for a
+        while now (I’m dying to get back into it though!). These days, it’s more
+        about spending time with Daniela — discovering new places, trying new
+        restaurants, going to the cinema, etc. I also recently got a motorbike,
+        and I can’t wait to go touring on it with Daniela (when the weather
+        picks up!).
+      </InfoCard>
+
+      <InfoCard
+        heading="What’s your favourite place you’ve travelled to?"
+        level={3}
+      >
+        It’d have to be Athens, where I met Daniela. I love Ancient Greek
+        mythology, and of course meeting Daniela there changed my life forever,
+        so Athens will always have a special place in my heart.
+      </InfoCard>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    gap: var(--spacing-3xl);
+  }
+
+  .thumbnail {
+    margin-top: var(--spacing-xl);
+  }
+
+  .member-image {
+    border-radius: var(--border-radius-m);
+  }
+
+  .thumbnail-caption {
+    --background-color: var(--colour-surface-base);
+    --border-radius: var(--border-radius-m);
+    --inverted-border-radius: var(--border-radius-l);
+  }
+
+  .thumbnail-caption-top-right {
+    --padding: var(--spacing-xs);
+  }
+
+  .thumbnail-caption-bottom-left {
+    --padding: var(--spacing-s);
+  }
+
+  .member-info {
+    max-width: rem(106px);
+    display: grid;
+    gap: var(--spacing-4xs);
+  }
+
+  .member-name {
+    @include font(caption);
+    color: var(--colour-text-contrast);
+  }
+
+  .member-position {
+    @include font(meta-primary);
+  }
+
+  .social-links {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: var(--spacing-m);
+  }
+
+  .info-cards {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .section {
+      grid-template-columns: 445fr 737fr;
+      gap: var(--spacing-5xl);
+    }
+
+    .content-left {
+      max-width: rem(445px);
+    }
+
+    .content-right {
+      max-width: rem(737px);
+      justify-self: end;
+    }
+  }
+</style>

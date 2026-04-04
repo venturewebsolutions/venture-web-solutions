@@ -10,7 +10,7 @@ type Props = {
   marquee: {
     groups: number
     images: {
-      src: Promise<{ default: ImageMetadata }>
+      src: ImageMetadata
       alt: string
     }[]
   }
@@ -81,7 +81,7 @@ const { name, eyebrow, marquee } = Astro.props
   }
 
   .marquee {
-    --marquee-duration: 10s;
+    --marquee-duration: 35s;
     --marquee-gap: var(--spacing-2xl);
 
     grid-area: marquee;
@@ -117,6 +117,7 @@ const { name, eyebrow, marquee } = Astro.props
 
     .content-left-wrapper {
       grid-area: content-left-wrapper;
+      justify-self: end;
       display: grid;
       gap: var(--spacing-xl);
     }

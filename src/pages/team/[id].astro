@@ -1,0 +1,60 @@
+---
+import { getCollection } from 'astro:content'
+import BlogShowcaseCarousel from '@/components/sections/BlogShowcaseCarousel.astro'
+import TeamMemberHero from '@/components/sections/TeamMemberHero.astro'
+import TeamMemberProfile from '@/components/sections/TeamMemberProfile.astro'
+import TeamMemberRole from '@/components/sections/TeamMemberRole.astro'
+import Divider from '@/components/ui/Divider.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getBlogPosts } from '@/lib/collections'
+
+export async function getStaticPaths() {
+  const team = await getCollection('team')
+
+  return team.map((member) => ({
+    params: { id: member.id },
+    props: { member },
+  }))
+}
+
+const { member } = Astro.props
+
+const posts = (await getBlogPosts()).filter(
+  (p) => p.data.author.name === member.data.name,
+)
+---
+
+<Layout
+  title={`${member.data.name} | Venture Web Solutions`}
+  description={member.data.meta.description}
+>
+  <TeamMemberHero
+    eyebrow={`Hi, I'm ${member.data.name}`}
+    name={member.data.name}
+    marquee={{
+      groups: 2,
+      images: member.data.marquee.images.map((image) => ({
+        src: image.src,
+        alt: '',
+      })),
+    }}
+  >
+    <Fragment slot="content-left">
+      {member.data.bio.left.map((text) => <p>{text}</p>)}
+    </Fragment>
+
+    <Fragment slot="content-right">
+      {member.data.bio.right.map((text) => <p>{text}</p>)}
+    </Fragment>
+  </TeamMemberHero>
+
+  <div class="container">
+    <Divider size="s" />
+  </div>
+
+  <TeamMemberRole cards={member.data.roles} />
+
+  <TeamMemberProfile member={member} />
+
+  <BlogShowcaseCarousel posts={posts} />
+</Layout>

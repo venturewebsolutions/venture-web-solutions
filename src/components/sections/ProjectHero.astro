@@ -16,13 +16,18 @@ const { project, class: className, ...props } = Astro.props
 
 <section class:list={cn('section container', className)} {...props}>
   <SectionHeader eyebrow={project.data.client} class="header">
-    {project.data.title}
+    {project.data.heading}
   </SectionHeader>
 
   <div class="project-info">
     <Tags tags={project.data.tags} />
 
-    <Button href={project.data.url} variant="secondary-outline" arrow>
+    <Button
+      href={project.data.url}
+      target="_blank"
+      variant="secondary-outline"
+      arrow
+    >
       Visit site
     </Button>
   </div>

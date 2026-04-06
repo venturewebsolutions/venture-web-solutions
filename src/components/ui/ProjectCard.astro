@@ -8,7 +8,7 @@ import Heading from '../headless/Heading.astro'
 type Props = HTMLAttributes<'section'> & {
   client: string
   heading: string
-  description: string
+  summary: string
   highlights: {
     icon: (_props: any) => any
     text: string
@@ -18,7 +18,7 @@ type Props = HTMLAttributes<'section'> & {
     text: string
   }
   image: {
-    src: Promise<{ default: ImageMetadata }>
+    src: ImageMetadata | Promise<{ default: ImageMetadata }>
     alt: string
     widths: number[]
     sizes: string
@@ -29,7 +29,7 @@ type Props = HTMLAttributes<'section'> & {
 const {
   client,
   heading,
-  description,
+  summary,
   highlights,
   link,
   image,
@@ -47,7 +47,7 @@ const {
 
         <Heading level={level} class="heading h2">{heading}</Heading>
 
-        <p class="description">{description}</p>
+        <p class="summary">{summary}</p>
 
         <ul class="project-highlights">
           {
@@ -167,7 +167,7 @@ const {
     margin-top: var(--spacing-2xl);
   }
 
-  .description {
+  .summary {
     margin-top: var(--spacing-2xl);
   }
 
@@ -221,7 +221,7 @@ const {
       order: 2;
     }
 
-    .description {
+    .summary {
       order: 3;
     }
 

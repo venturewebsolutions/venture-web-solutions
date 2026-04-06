@@ -1,11 +1,22 @@
 ---
 client: 'Maggi Maid'
-title: 'Building trust for a brand-new home care business'
+heading: 'Building trust for a brand-new home care business'
+summary: 'Trust can’t be claimed — it has to be felt. For Maggi Maid, the challenge was to create a digital experience that immediately reassures families, removes doubt, and feels genuinely caring, while communicating professionalism and a sense of responsibility in a sensitive industry.'
+highlights:
+  - icon: 'FamilyHomeIcon'
+    text: 'Home care industry'
+  - icon: 'LaptopIcon'
+    text: 'Custom design & hand-coded website'
+  - icon: 'RocketIcon'
+    text: 'End-to-end branding & online business launch'
+thumbnail:
+  src: '@/assets/images/project-showcase-maggi-maid.png'
+  alt: 'A screenshot of the Maggi Maid website and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
   - 'Web design & development'
-url: '#'
+url: 'https://maggimaid.co.uk'
 mockup:
   desktop:
     src: '@/assets/images/maggi-maid-mockup-desktop.png'
@@ -34,8 +45,10 @@ sections:
     media:
       - type: 'video'
         src: '@/assets/videos/maggi-maid-video-mobile.mp4'
+        thumbnail: true
         background: true
         border: false
+        shadow: true
         padding: null
         constrained: true
       - type: 'image'
@@ -43,6 +56,7 @@ sections:
         alt: ''
         background: false
         border: false
+        shadow: false
         padding: null
         constrained: false
   - label: 'The challenge'
@@ -51,8 +65,10 @@ sections:
     media:
       - type: 'video'
         src: '@/assets/videos/maggi-maid-video-desktop.mp4'
+        thumbnail: true
         background: true
         border: false
+        shadow: true
         padding: 'l'
         constrained: false
   - label: 'Our approach'
@@ -69,8 +85,11 @@ sections:
     media:
       - type: 'video'
         src: '@/assets/videos/maggi maid short video - desktop.mp4'
+        autoplay: true
+        thumbnail: false
         background: false
         border: true
+        shadow: true
         padding: 's'
         constrained: false
       - type: 'image'
@@ -78,6 +97,7 @@ sections:
         alt: ''
         background: '#D1462F'
         border: false
+        shadow: true
         padding: 's'
         constrained: false
       - type: 'image'
@@ -85,6 +105,7 @@ sections:
         alt: ''
         background: '#60695C'
         border: false
+        shadow: true
         padding: 's'
         constrained: false
       - type: 'image'
@@ -92,6 +113,7 @@ sections:
         alt: ''
         background: '#ECEEE9'
         border: false
+        shadow: true
         padding: 's'
         constrained: false
   - label: 'The result'

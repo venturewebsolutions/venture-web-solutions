@@ -92,13 +92,25 @@ const work = defineCollection({
     const media = {
       background: z.xor([z.boolean(), z.string()]),
       border: z.boolean(),
+      shadow: z.boolean(),
       padding: z.enum(['s', 'l']).nullable(),
       constrained: z.boolean(),
     }
 
     return z.object({
       client: z.string(),
-      title: z.string(),
+      heading: z.string(),
+      summary: z.string(),
+      highlights: z.array(
+        z.object({
+          icon: z.string(),
+          text: z.string(),
+        }),
+      ),
+      thumbnail: z.object({
+        src: image(),
+        alt: z.string(),
+      }),
       tags: z.array(z.string()),
       url: z.string(),
       mockup: z.object({
@@ -142,6 +154,8 @@ const work = defineCollection({
                   ...media,
                   type: z.enum(['video']),
                   src: video(),
+                  autoplay: z.boolean().optional(),
+                  thumbnail: z.boolean().optional(),
                 }),
               ]),
             )

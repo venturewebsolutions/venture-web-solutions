@@ -1,0 +1,40 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import range from 'lodash/range'
+
+type Props = HTMLAttributes<'div'> & {
+  count: number
+}
+
+const { count, class: className, ...props } = Astro.props
+---
+
+<div class:list={cn('stars', className)} {...props}>
+  {
+    range(count).map(() => (
+      <svg
+        width="23"
+        height="20"
+        viewBox="0 0 23 20"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M11.2273 14.5996L15.1103 16.6913C15.8215 17.0746 16.6916 16.508 16.5045 15.7913L15.4753 11.858L18.9092 9.20797C19.5361 8.72464 19.1993 7.80798 18.3759 7.74964L13.8565 7.40798L12.0881 3.69131C11.77 3.01631 10.6846 3.01631 10.3665 3.69131L8.59802 7.39964L4.07868 7.74131C3.25528 7.79964 2.91844 8.71631 3.54534 9.19964L6.97929 11.8496L5.95004 15.783C5.76291 16.4996 6.63309 17.0663 7.3442 16.683L11.2273 14.5996Z"
+          fill="currentColor"
+        />
+      </svg>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .stars {
+    display: flex;
+    align-items: center;
+  }
+</style>

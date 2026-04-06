@@ -1,0 +1,22 @@
+---
+import ProjectDetails from '@/components/sections/ProjectDetails.astro'
+import ProjectHero from '@/components/sections/ProjectHero.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+export async function getStaticPaths() {
+  const work = await getCollection('work')
+
+  return work.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }))
+}
+
+const { project } = Astro.props
+---
+
+<Layout title={`${project.data.client} | Venture Web Solutions`} description="">
+  <ProjectHero project={project} id="hero" />
+  {project.data.sections.map((section) => <ProjectDetails section={section} />)}
+</Layout>

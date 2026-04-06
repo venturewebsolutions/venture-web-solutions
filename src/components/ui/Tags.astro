@@ -1,0 +1,42 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'ul'> & {
+  tags: string[]
+}
+
+const { tags, class: className, ...props } = Astro.props
+---
+
+<ul class:list={cn('tags', className)} {...props}>
+  {tags.map((tag) => <li class="tag">{tag}</li>)}
+</ul>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+  }
+
+  .tag {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+
+    &:not(:last-child)::after {
+      --width: #{rem(4.5px)};
+
+      content: '';
+      display: inline-block;
+      width: var(--width);
+      aspect-ratio: 1;
+      background-color: currentColor;
+      border-radius: calc(var(--width) / 2);
+    }
+  }
+</style>

@@ -1,6 +1,7 @@
-import { defineCollection } from 'astro:content'
+import { video } from '@/lib/schema'
 import { file, glob } from 'astro/loaders'
 import { z } from 'astro/zod'
+import { defineCollection } from 'astro:content'
 
 const blog = defineCollection({
   loader: glob({ base: './src/content/blog/', pattern: '**/*.{md,mdx}' }),
@@ -85,4 +86,80 @@ const team = defineCollection({
     }),
 })
 
-export const collections = { blog, faqTopics, team }
+const work = defineCollection({
+  loader: glob({ base: './src/content/work/', pattern: '**/*.{md,mdx}' }),
+  schema: ({ image }) => {
+    const media = {
+      background: z.xor([z.boolean(), z.string()]),
+      border: z.boolean(),
+      padding: z.enum(['s', 'l']).nullable(),
+      constrained: z.boolean(),
+    }
+
+    return z.object({
+      client: z.string(),
+      title: z.string(),
+      tags: z.array(z.string()),
+      url: z.string(),
+      mockup: z.object({
+        desktop: z.object({
+          src: image(),
+        }),
+        mobile: z.object({
+          src: image(),
+        }),
+      }),
+      logo: z.object({
+        src: image(),
+      }),
+      sections: z.array(
+        z.object({
+          label: z.string(),
+          heading: z.string(),
+          text: z.string(),
+          bullets: z
+            .object({
+              heading: z.string().optional(),
+              items: z.array(
+                z.object({
+                  label: z.string().optional(),
+                  text: z.string(),
+                  icon: z.string().optional(),
+                }),
+              ),
+            })
+            .optional(),
+          media: z
+            .array(
+              z.xor([
+                z.object({
+                  ...media,
+                  type: z.enum(['image']),
+                  src: image(),
+                  alt: z.string(),
+                }),
+                z.object({
+                  ...media,
+                  type: z.enum(['video']),
+                  src: video(),
+                }),
+              ]),
+            )
+            .optional(),
+          testimonial: z
+            .object({
+              image: z.object({
+                src: image(),
+                alt: z.string(),
+              }),
+              quote: z.string(),
+              citation: z.string(),
+            })
+            .optional(),
+        }),
+      ),
+    })
+  },
+})
+
+export const collections = { blog, faqTopics, team, work }

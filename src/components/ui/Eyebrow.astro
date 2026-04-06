@@ -17,6 +17,7 @@ const { as: Tag = 'p', class: className, ...props } = Astro.props as Props
 
   .eyebrow {
     @include font(caption);
+    color: var(--eyebrow-colour, currentColor);
 
     &::before {
       --bullet-size: 0.5em;

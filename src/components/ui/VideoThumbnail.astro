@@ -1,0 +1,109 @@
+---
+import PlayIcon from '@/components/icons/PlayIcon.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'button'> & {
+  label: string
+}
+
+const { label, class: className, ...props } = Astro.props
+---
+
+<button
+  class:list={cn('video-thumbnail', className)}
+  aria-label={label}
+  {...props}
+>
+  <PlayIcon class="play" />
+
+  <slot />
+</button>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .video-thumbnail {
+    display: block;
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+      .play {
+        --scale: 1.1;
+      }
+    }
+
+    &.active {
+      .play {
+        display: none;
+      }
+    }
+  }
+
+  .play {
+    --scale: 1;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(var(--scale));
+    transition: transform var(--transition-duration-default)
+      var(--transition-ease-default);
+  }
+</style>
+
+<script>
+  window.addEventListener('load', () => {
+    const wrappers = document.querySelectorAll('.video-thumbnail')
+
+    for (const wrapper of wrappers) {
+      const video = wrapper.querySelector('video')
+      if (!video) continue
+
+      let started = false
+
+      wrapper.addEventListener('mouseenter', () => {
+        if (!started) {
+          video.play()
+        }
+      })
+
+      wrapper.addEventListener('mouseleave', () => {
+        if (!started) {
+          video.pause()
+          video.currentTime = 0
+        }
+      })
+
+      wrapper.addEventListener('click', () => {
+        if (!started) {
+          video.pause()
+          video.currentTime = 0
+          video.muted = false
+          video.controls = true
+
+          setTimeout(() => {
+            video.play()
+          }, 0)
+
+          wrapper.classList.add('active')
+
+          started = true
+        }
+      })
+
+      video.addEventListener('ended', () => {
+        video.pause()
+        video.currentTime = 0
+        video.muted = true
+        video.controls = false
+
+        wrapper.classList.remove('active')
+
+        started = false
+      })
+    }
+  })
+</script>

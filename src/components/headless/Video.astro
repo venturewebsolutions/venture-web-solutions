@@ -6,7 +6,7 @@ type VideoModule = {
 }
 
 type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
-  src: string | Promise<VideoModule>
+  src: string | VideoModule | Promise<VideoModule>
   lazy?: true
 }
 
@@ -15,7 +15,9 @@ const { src: _, lazy, ...props } = Astro.props
 const src =
   typeof Astro.props.src === 'string'
     ? Astro.props.src
-    : (await Astro.props.src).default
+    : Astro.props.src instanceof Promise
+      ? (await Astro.props.src)?.default
+      : Astro.props.src?.default
 ---
 
 <video {...props} src={lazy ? undefined : src} data-src={src} data-lazy={lazy}>

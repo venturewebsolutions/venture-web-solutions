@@ -43,6 +43,7 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
         sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
         class="thumbnail-image"
       />
+
       <PlayIcon class="play-icon" />
     </button>
 
@@ -76,7 +77,6 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
 
   .thumbnail-media-wrapper {
     border-radius: var(--border-radius-l);
-    overflow: hidden;
     cursor: pointer;
     position: relative;
     overflow: hidden;

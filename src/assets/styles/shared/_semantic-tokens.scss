@@ -35,6 +35,10 @@
   --border-radius-l: var(--border-radius-24);
   --border-radius-xl: var(--border-radius-32);
 
+  // Box Shadows
+  --shadow-subtle: 1px -1px 12px 0
+    color-mix(in srgb, var(--colour-slate) 25%, transparent);
+
   // Spacing
   --spacing-3xs: var(--spacing-4);
   --spacing-2xs: var(--spacing-6);
@@ -53,11 +57,19 @@
   --spacing-9xl: #{linear(var(--spacing-96), var(--spacing-128))};
   --spacing-10xl: #{linear(var(--spacing-120), var(--spacing-160))};
 
+  --spacing-xs-3xl: #{linear(var(--spacing-8), var(--spacing-40))};
+  --spacing-xs-5xl: #{linear(var(--spacing-8), var(--spacing-64))};
+  --spacing-xs-6xl: #{linear(var(--spacing-8), var(--spacing-80))};
+  --spacing-xs-8xl: #{linear(var(--spacing-8), var(--spacing-120))};
   --spacing-m-xl: #{linear(var(--spacing-16), var(--spacing-24))};
+  --spacing-m-3xl: #{linear(var(--spacing-16), var(--spacing-40))};
+  --spacing-m-4xl: #{linear(var(--spacing-16), var(--spacing-56))};
   --spacing-xl-4xl: #{linear(var(--spacing-24), var(--spacing-56))};
   --spacing-2xl-7xl: #{linear(var(--spacing-28), var(--spacing-104))};
   --spacing-3xl-4xl: #{linear(var(--spacing-32), var(--spacing-56))};
   --spacing-4xl-5xl: #{linear(var(--spacing-40), var(--spacing-64))};
+  --spacing-4xl-6xl: #{linear(var(--spacing-40), var(--spacing-80))};
+  --spacing-5xl-7xl: #{linear(var(--spacing-64), var(--spacing-104))};
 
   // Transitions
   --transition-duration-default: 0.6s;

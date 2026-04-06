@@ -1,0 +1,87 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import type { CollectionEntry } from 'astro:content'
+import { cn } from '@/lib/class-names'
+import Tags from '@/components/ui/Tags.astro'
+import Button from '@/components/ui/Button.astro'
+import { Image } from 'astro:assets'
+
+type Props = HTMLAttributes<'section'> & {
+  project: CollectionEntry<'work'>
+}
+
+const { project, class: className, ...props } = Astro.props
+---
+
+<section class:list={cn('section container', className)} {...props}>
+  <SectionHeader eyebrow={project.data.client} class="header">
+    {project.data.title}
+  </SectionHeader>
+
+  <div class="project-info">
+    <Tags tags={project.data.tags} />
+
+    <Button href={project.data.url} variant="secondary-outline" arrow>
+      Visit site
+    </Button>
+  </div>
+
+  <div class="mockup-card">
+    <Image src={project.data.mockup.desktop.src} alt="" class="mockup-image" />
+
+    <div class="mockup-logo">
+      <Image
+        src={project.data.logo.src}
+        alt={`${project.data.client} logo`}
+        class="logo"
+      />
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .header {
+    --eyebrow-colour: var(--colour-primary);
+
+    max-width: rem(672px);
+  }
+
+  .project-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: var(--spacing-l);
+  }
+
+  .mockup-card {
+    padding-top: var(--spacing-m-4xl);
+    padding-inline: var(--spacing-m-4xl);
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-l);
+    margin-top: var(--spacing-5xl);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .mockup-image {
+    width: calc(1009 / 1200 * 100%);
+    min-width: 0;
+    flex-shrink: 1;
+  }
+
+  .mockup-logo {
+    flex: 0 0 136px;
+    display: flex;
+    justify-content: end;
+  }
+
+  .logo {
+    width: 136px;
+  }
+</style>

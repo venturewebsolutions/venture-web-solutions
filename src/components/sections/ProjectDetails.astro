@@ -1,0 +1,273 @@
+---
+import Video from '@/components/headless/Video.astro'
+import VideoThumbnail from '@/components/ui/VideoThumbnail.astro'
+import { cn } from '@/lib/class-names'
+import { icon } from '@/lib/resolvers'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
+import Stars from '../ui/Stars.astro'
+
+type Props = HTMLAttributes<'section'> & {
+  section: CollectionEntry<'work'>['data']['sections'][number]
+}
+
+const { section, class: className, ...props } = Astro.props
+---
+
+<section class:list={cn('section container', className)} {...props}>
+  <div class="content">
+    <div class="content-left">
+      <p class="label">{section.label}</p>
+    </div>
+
+    <div class="content-right">
+      <h2 class="h3">{section.heading}</h2>
+
+      <p class="text">{section.text}</p>
+
+      {
+        section.bullets && (
+          <div class="bullets">
+            {section.bullets.heading && (
+              <p class="bullets-heading">{section.bullets.heading}:</p>
+            )}
+
+            <ul class="bullets-items">
+              {section.bullets.items.map((bullet) => {
+                const Icon = bullet.icon ? icon(bullet.icon) : undefined
+
+                return (
+                  <li
+                    class="bullet"
+                    data-has-icon={bullet.icon ? true : undefined}
+                  >
+                    {Icon && <Icon class="bullet-icon" />}
+                    <span>
+                      {bullet.label && (
+                        <span class="bullet-label">{bullet.label}:</span>
+                      )}
+                      <span>{bullet.text}</span>
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  {
+    section.media && (
+      <div class="media">
+        {section.media.map((item) => (
+          <div
+            class="media-card"
+            style={{ 'background-color': item.background || undefined }}
+            data-media-type={item.type}
+            data-background={item.background || undefined}
+            data-padding={item.padding || undefined}
+            data-border={item.border || undefined}
+            data-constrained={item.constrained || undefined}
+          >
+            {item.type === 'video' ? (
+              <VideoThumbnail label="Play video" class="video-thumbnail">
+                <Video src={item.src} lazy muted class="video" />
+              </VideoThumbnail>
+            ) : (
+              <Image src={item.src} alt={item.alt} class="image" />
+            )}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  {
+    section.testimonial && (
+      <div class="testimonial">
+        <Image
+          src={section.testimonial.image.src}
+          alt={section.testimonial.image.alt}
+          class="testimonial-image"
+        />
+
+        <div class="testimonial-content">
+          <Stars count={5} class="testimonial-stars" />
+
+          <p class="testimonial-quote">{section.testimonial.quote}</p>
+
+          <p class="testimonial-citation">{section.testimonial.citation}</p>
+        </div>
+      </div>
+    )
+  }
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    padding-top: 0;
+  }
+
+  .content {
+    max-width: rem(909px);
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+  }
+
+  .content-right {
+    max-width: rem(633px);
+  }
+
+  .label {
+    @include font(h4);
+    color: var(--colour-primary);
+  }
+
+  .text {
+    margin-top: var(--spacing-xl);
+  }
+
+  .bullets {
+    margin-top: var(--spacing-2xl);
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .bullets-items {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .bullet {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-s);
+
+    &:not([data-has-icon])::before {
+      --width: #{rem(10px)};
+
+      content: '';
+      display: block;
+      width: var(--width);
+      aspect-ratio: 1;
+      border-radius: calc(var(--width) / 2);
+      background-color: currentColor;
+    }
+  }
+
+  .bullet-icon {
+    flex-shrink: 0;
+    color: var(--colour-primary);
+  }
+
+  .bullet-label {
+    color: var(--colour-text-contrast);
+  }
+
+  .media {
+    margin-top: var(--spacing-5xl-7xl);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-3xl);
+  }
+
+  .media-card {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    border-radius: var(--border-radius-l);
+
+    &:nth-child(2n) {
+      justify-self: end;
+    }
+
+    &:nth-child(2n + 1):last-child {
+      grid-column: 1 / span 2;
+    }
+
+    &:not(:nth-child(2n + 1):last-child) {
+      max-width: rem(635px);
+    }
+
+    &[data-border] {
+      border: var(--border-width-s) solid var(--colour-border-primary);
+    }
+
+    &[data-shadow] {
+      box-shadow: var(--shadow-subtle);
+    }
+
+    &[data-background='true'] {
+      background-color: var(--colour-surface-100);
+    }
+
+    &[data-padding='s'] {
+      padding: var(--spacing-xs-3xl) var(--spacing-xs-5xl);
+    }
+
+    &[data-padding='l'] {
+      padding: var(--spacing-xs-6xl) var(--spacing-xs-8xl);
+    }
+  }
+
+  .video-thumbnail,
+  .image {
+    width: 100%;
+    height: 100%;
+
+    .media-card[data-constrained] & {
+      width: calc(395 / 635 * 100%);
+      height: calc(100% - var(--spacing-4xl-6xl));
+    }
+  }
+
+  .video,
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius-m);
+
+    .media-card[data-constrained] & {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  .testimonial {
+    margin-top: var(--spacing-5xl-7xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-m-3xl);
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-l);
+  }
+
+  .testimonial-image {
+    max-width: rem(603px);
+    border-radius: var(--border-radius-m);
+  }
+
+  .testimonial-content {
+    max-width: rem(557px);
+    display: grid;
+    gap: var(--spacing-xl-4xl);
+  }
+
+  .testimonial-stars {
+    color: var(--colour-primary);
+  }
+
+  .testimonial-quote {
+    @include font(h3);
+  }
+</style>

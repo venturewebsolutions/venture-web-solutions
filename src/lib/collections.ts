@@ -13,3 +13,9 @@ export async function getFaqTopics() {
 
   return topics.sort((a, b) => a.data.order - b.data.order)
 }
+
+export async function getWork() {
+  const projects = await getCollection('work')
+
+  return projects.sort((a, b) => a.data.order - b.data.order)
+}

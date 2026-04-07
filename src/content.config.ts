@@ -98,6 +98,7 @@ const work = defineCollection({
     }
 
     return z.object({
+      order: z.number(),
       client: z.string(),
       heading: z.string(),
       summary: z.string(),

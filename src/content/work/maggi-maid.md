@@ -1,4 +1,5 @@
 ---
+order: 1
 client: 'Maggi Maid'
 heading: 'Building trust for a brand-new home care business'
 summary: 'Trust can’t be claimed — it has to be felt. For Maggi Maid, the challenge was to create a digital experience that immediately reassures families, removes doubt, and feels genuinely caring, while communicating professionalism and a sense of responsibility in a sensitive industry.'
@@ -10,13 +11,13 @@ highlights:
   - icon: 'RocketIcon'
     text: 'End-to-end branding & online business launch'
 thumbnail:
-  src: '@/assets/images/project-showcase-maggi-maid.png'
+  src: '@/assets/images/maggi-maid-mockup-with-colour-palette.png'
   alt: 'A screenshot of the Maggi Maid website and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
   - 'Web design & development'
-url: 'https://maggimaid.co.uk'
+url: 'https://maggimaid.co.uk/'
 mockup:
   desktop:
     src: '@/assets/images/maggi-maid-mockup-desktop.png'
@@ -44,7 +45,7 @@ sections:
           icon: 'ShutterSpeedPlusIcon'
     media:
       - type: 'video'
-        src: '@/assets/videos/maggi-maid-video-mobile.mp4'
+        src: '@/assets/videos/maggi-maid-mobile-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -64,7 +65,7 @@ sections:
     text: 'Before the launch, Maggi Maid had no clear digital presence. Potential clients struggled to find reliable information, understand the services, or feel confident making contact. The challenge was to translate a highly personal, offline service into a clear and reassuring online experience — without feeling clinical, generic, or overly emotional.'
     media:
       - type: 'video'
-        src: '@/assets/videos/maggi-maid-video-desktop.mp4'
+        src: '@/assets/videos/maggi-maid-desktop-video-desktop.mp4'
         thumbnail: true
         background: true
         border: false
@@ -84,7 +85,7 @@ sections:
         - text: 'Structured content and calls to action to reduce friction and encourage enquiries.'
     media:
       - type: 'video'
-        src: '@/assets/videos/maggi maid short video - desktop.mp4'
+        src: '@/assets/videos/maggi-maid-short-video-desktop.mp4'
         autoplay: true
         thumbnail: false
         background: false
@@ -93,7 +94,7 @@ sections:
         padding: 's'
         constrained: false
       - type: 'image'
-        src: '@/assets/images/maggi maid - website img 1 - desktop.png'
+        src: '@/assets/images/maggi-maid-website-img-1-desktop.png'
         alt: ''
         background: '#D1462F'
         border: false
@@ -101,7 +102,7 @@ sections:
         padding: 's'
         constrained: false
       - type: 'image'
-        src: '@/assets/images/maggi maid - website img 2 - desktop.png'
+        src: '@/assets/images/maggi-maid-website-img-2-desktop.png'
         alt: ''
         background: '#60695C'
         border: false
@@ -109,7 +110,7 @@ sections:
         padding: 's'
         constrained: false
       - type: 'image'
-        src: '@/assets/images/maggi maid - website img 3 - desktop.png'
+        src: '@/assets/images/maggi-maid-website-img-3-desktop.png'
         alt: ''
         background: '#ECEEE9'
         border: false
@@ -128,7 +129,7 @@ sections:
         - text: 'Client numbers grew by 42% within the months after launch.'
     testimonial:
       image:
-        src: '@/assets/images/maggi maid - review photo - desktop.jpg'
+        src: '@/assets/images/maggi-maid-review-photo-desktop.jpg'
         alt: ''
       quote: '“Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.”'
       citation: 'Margaret W - Founder of Maggi Maid'

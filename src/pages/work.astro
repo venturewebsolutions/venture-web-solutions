@@ -2,12 +2,15 @@
 import PortfolioShowcase from '@/components/sections/PortfolioShowcase.astro'
 import Testimonials from '@/components/sections/Testimonials.astro'
 import Layout from '@/layouts/Layout.astro'
+import { getWork } from '@/lib/collections'
+
+const projects = await getWork()
 ---
 
 <Layout
   title="Work (TODO)"
   description="A showcase of my projects and work experience."
 >
-  <PortfolioShowcase id="projects" />
+  <PortfolioShowcase id="projects" projects={projects} />
   <Testimonials />
 </Layout>

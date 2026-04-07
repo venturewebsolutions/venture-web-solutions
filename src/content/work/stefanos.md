@@ -28,7 +28,8 @@ logo:
 sections:
   - label: 'Overview'
     heading: 'Launching the digital presence for Harrogate’s first wood-fired pizzeria.'
-    text: 'Stefano’s needed a professional, easy-to-manage online presence to support the opening of a new independent restaurant. The project focused on defining a clear visual identity and building a website that communicates food, atmosphere, experiences and story — while giving the team full control over ongoing updates.'
+    text:
+      - 'Stefano’s needed a professional, easy-to-manage online presence to support the opening of a new independent restaurant. The project focused on defining a clear visual identity and building a website that communicates food, atmosphere, experiences and story — while giving the team full control over ongoing updates.'
     bullets:
       items:
         - label: 'Brand Identity'
@@ -68,7 +69,8 @@ sections:
         constrained: false
   - label: 'The challenge'
     heading: 'Communicating story, not just service.'
-    text: 'Stefano’s is more than a new restaurant. It’s a family-run business with a clear identity — led by an Italian pizza chef owner, supported by family members front-of-house, and shaped by live music and events hosted by co-owner Sally. The challenge was to translate this personal, lived experience into a digital presence without over-explaining or diluting it into generic restaurant messaging.'
+    text:
+      - 'Stefano’s is more than a new restaurant. It’s a family-run business with a clear identity — led by an Italian pizza chef owner, supported by family members front-of-house, and shaped by live music and events hosted by co-owner Sally. The challenge was to translate this personal, lived experience into a digital presence without over-explaining or diluting it into generic restaurant messaging.'
     media:
       - type: 'video'
         src: '@/assets/videos/stefanos-desktop-video-desktop.mp4'
@@ -80,7 +82,8 @@ sections:
         constrained: false
   - label: 'Our approach'
     heading: 'Let the content do the work.'
-    text: 'The site was designed to give space to the story while staying functional and easy to navigate. Visual decisions were kept restrained so photography, copy, and structure could communicate personality naturally. Events, menus, bookings, and vouchers were treated as core features — not add-ons — and built into a CMS the team can manage themselves.'
+    text:
+      - 'The site was designed to give space to the story while staying functional and easy to navigate. Visual decisions were kept restrained so photography, copy, and structure could communicate personality naturally. Events, menus, bookings, and vouchers were treated as core features — not add-ons — and built into a CMS the team can manage themselves.'
     bullets:
       heading: 'Key outcomes'
       items:
@@ -125,7 +128,8 @@ sections:
         constrained: false
   - label: 'The result'
     heading: 'A digital presence that reflects the restaurant.'
-    text: 'The website now supports reservations, gift purchases, events, and discovery in one place. It presents Stefano’s as it actually is — a family-run business with personality, not just a place to eat.'
+    text:
+      - 'The website now supports reservations, gift purchases, events, and discovery in one place. It presents Stefano’s as it actually is — a family-run business with personality, not just a place to eat.'
     bullets:
       heading: 'Impact'
       items:
@@ -142,5 +146,6 @@ sections:
       citation: 'Sally D - Cofounder of Stefano’s Pizzeria'
   - label: 'Ongoing partnership'
     heading: 'Support as the business grows.'
-    text: 'We continue to support Stefano’s with updates, refinements, and technical support as the restaurant evolves — ensuring the website remains accurate, flexible, and aligned with how the business actually operates.'
+    text:
+      - 'We continue to support Stefano’s with updates, refinements, and technical support as the restaurant evolves — ensuring the website remains accurate, flexible, and aligned with how the business actually operates.'
 ---

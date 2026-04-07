@@ -28,7 +28,8 @@ logo:
 sections:
   - label: 'Overview'
     heading: 'Transforming the digital presence of a trusted local care service.'
-    text: 'Maggi Maid is a personalised home care and support service based in Bradford supporting independent adults with everyday tasks — from companionship and errands to light housekeeping and transport. The project involved crafting a brand identity and customer-facing website that clearly communicates trust, warmth, and reliability while making it easy for families and clients to understand services and book support.'
+    text:
+      - 'Maggi Maid is a personalised home care and support service based in Bradford supporting independent adults with everyday tasks — from companionship and errands to light housekeeping and transport. The project involved crafting a brand identity and customer-facing website that clearly communicates trust, warmth, and reliability while making it easy for families and clients to understand services and book support.'
     bullets:
       items:
         - label: 'Clear Service Messaging'
@@ -62,7 +63,8 @@ sections:
         constrained: false
   - label: 'The challenge'
     heading: 'Communicating care in a space where trust comes first.'
-    text: 'Before the launch, Maggi Maid had no clear digital presence. Potential clients struggled to find reliable information, understand the services, or feel confident making contact. The challenge was to translate a highly personal, offline service into a clear and reassuring online experience — without feeling clinical, generic, or overly emotional.'
+    text:
+      - 'Before the launch, Maggi Maid had no clear digital presence. Potential clients struggled to find reliable information, understand the services, or feel confident making contact. The challenge was to translate a highly personal, offline service into a clear and reassuring online experience — without feeling clinical, generic, or overly emotional.'
     media:
       - type: 'video'
         src: '@/assets/videos/maggi-maid-desktop-video-desktop.mp4'
@@ -74,7 +76,8 @@ sections:
         constrained: false
   - label: 'Our approach'
     heading: 'Clarity, warmth, and ease at every step.'
-    text: 'We focused on creating a calm, human-centred experience that prioritises clarity, conversion and accessibility. The brand identity and website were designed to guide users naturally through the services, answer common questions early, and reduce friction at the point of enquiry.'
+    text:
+      - 'We focused on creating a calm, human-centred experience that prioritises clarity, conversion and accessibility. The brand identity and website were designed to guide users naturally through the services, answer common questions early, and reduce friction at the point of enquiry.'
     bullets:
       heading: 'Key outcomes'
       items:
@@ -119,7 +122,8 @@ sections:
         constrained: false
   - label: 'The result'
     heading: 'A website that actively supports business growth.'
-    text: 'The new website became a trusted digital front door for Maggi Maid, helping visitors quickly understand the services, feel reassured by the brand, and contact Margaret with confidence. It now plays an active role in supporting enquiries and long-term growth.'
+    text:
+      - 'The new website became a trusted digital front door for Maggi Maid, helping visitors quickly understand the services, feel reassured by the brand, and contact Margaret with confidence. It now plays an active role in supporting enquiries and long-term growth.'
     bullets:
       heading: 'Impact'
       items:
@@ -135,5 +139,6 @@ sections:
       citation: 'Margaret W - Founder of Maggi Maid'
   - label: 'Ongoing partnership'
     heading: 'Ongoing support for sustainable growth.'
-    text: 'We continue to support Maggi Maid with regular updates, performance improvements, and ongoing enhancements as the business grows. This includes refining messaging and providing ongoing updates to the existing website to keep it accurate and up to date. This is not a one-and-done relationship — it’s a collaborative, evolving partnership.'
+    text:
+      - 'We continue to support Maggi Maid with regular updates, performance improvements, and ongoing enhancements as the business grows. This includes refining messaging and providing ongoing updates to the existing website to keep it accurate and up to date. This is not a one-and-done relationship — it’s a collaborative, evolving partnership.'
 ---

@@ -28,7 +28,9 @@ logo:
 sections:
   - label: 'Overview'
     heading: 'Establishing a credible digital presence for a new local specialist.'
-    text: 'MD Loft Storage is a West Yorkshire–based loft storage specialist helping homeowners unlock practical, usable space in their homes. As a newly launched business, the priority was to create a professional digital presence that clearly communicated the service, positioned the brand as a trustworthy local expert, and generated enquiries from day one. The website was designed as a business-launch platform — simple, focused, and conversion-driven — with an emphasis on clarity, reassurance, and fast, direct contact through channels like WhatsApp.'
+    text:
+      - 'MD Loft Storage is a West Yorkshire–based loft storage specialist helping homeowners unlock practical, usable space in their homes. As a newly launched business, the priority was to create a professional digital presence that clearly communicated the service, positioned the brand as a trustworthy local expert, and generated enquiries from day one.'
+      - 'The website was designed as a business-launch platform — simple, focused, and conversion-driven — with an emphasis on clarity, reassurance, and fast, direct contact through channels like WhatsApp.'
     bullets:
       items:
         - label: 'Business launch website'
@@ -65,7 +67,9 @@ sections:
         constrained: false
   - label: 'The challenge'
     heading: 'Building trust and understanding with no prior brand presence.'
-    text: 'MD Loft Storage entered the market with no existing digital footprint, reviews, or brand recognition. The challenge was twofold: first, to explain loft storage as a worthwhile home improvement in a way that felt clear and tangible; second, to make a brand-new business feel professional, reliable, and safe to contact. The site needed to communicate expertise without sounding sales-driven, guide users without overwhelming them, and encourage enquiries without relying on traditional forms — instead using direct, visible contact methods that felt natural and low-commitment.'
+    text:
+      - 'MD Loft Storage entered the market with no existing digital footprint, reviews, or brand recognition. The challenge was twofold: first, to explain loft storage as a worthwhile home improvement in a way that felt clear and tangible; second, to make a brand-new business feel professional, reliable, and safe to contact.'
+      - 'The site needed to communicate expertise without sounding sales-driven, guide users without overwhelming them, and encourage enquiries without relying on traditional forms — instead using direct, visible contact methods that felt natural and low-commitment.'
     media:
       - type: 'video'
         src: '@/assets/videos/md-loft-storage-desktop-video-desktop.mp4'
@@ -77,7 +81,9 @@ sections:
         constrained: false
   - label: 'Our approach'
     heading: 'Turning a blank slate into a clear customer journey.'
-    text: 'The website was designed as a guided journey rather than a static brochure. Content was structured to answer the most important questions upfront — what loft storage is, how it works, and why MD Loft Storage is a reliable choice — before asking visitors to take action. We focused on reducing uncertainty at every stage, using clear language, visual proof, and practical explanations to help homeowners feel confident before making contact.'
+    text:
+      - 'The website was designed as a guided journey rather than a static brochure. Content was structured to answer the most important questions upfront — what loft storage is, how it works, and why MD Loft Storage is a reliable choice — before asking visitors to take action.'
+      - 'We focused on reducing uncertainty at every stage, using clear language, visual proof, and practical explanations to help homeowners feel confident before making contact.'
     bullets:
       heading: 'Key outcomes'
       items:
@@ -122,7 +128,9 @@ sections:
         constrained: false
   - label: 'The result'
     heading: 'A digital storefront that supports real business activity.'
-    text: 'The finished website acts as an effective digital storefront, not just an online presence. It gives MD Loft Storage a professional platform that explains the service clearly, builds confidence quickly, and actively supports customer enquiries from launch. Visitors can understand the offering, see real examples of work, and reach out directly without barriers — making the website a functional part of the business’s early operations.'
+    text:
+      - 'The finished website acts as an effective digital storefront, not just an online presence. It gives MD Loft Storage a professional platform that explains the service clearly, builds confidence quickly, and actively supports customer enquiries from launch.'
+      - 'Visitors can understand the offering, see real examples of work, and reach out directly without barriers — making the website a functional part of the business’s early operations.'
     bullets:
       heading: 'Impact'
       items:
@@ -139,5 +147,7 @@ sections:
       citation: 'Mark - Founder of MD Loft Storage'
   - label: 'Ongoing partnership'
     heading: 'Evolving the site as the business grows.'
-    text: 'Post-launch, we continue to support MD Loft Storage by refining messaging, updating content, and aligning the site with the company’s real-world growth. As services expand and customer feedback accumulates, the website evolves alongside the business. This ensures the digital presence remains accurate, trustworthy, and effective — transforming the website from a launch asset into a long-term growth tool.'
+    text:
+      - 'Post-launch, we continue to support MD Loft Storage by refining messaging, updating content, and aligning the site with the company’s real-world growth. As services expand and customer feedback accumulates, the website evolves alongside the business.'
+      - 'This ensures the digital presence remains accurate, trustworthy, and effective — transforming the website from a launch asset into a long-term growth tool.'
 ---

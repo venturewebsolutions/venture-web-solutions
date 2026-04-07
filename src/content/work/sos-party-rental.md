@@ -27,7 +27,8 @@ logo:
 sections:
   - label: 'Overview'
     heading: 'Redesigning and expanding SOS Party Rental’s online presence.'
-    text: 'SOS Party Rental provides event planning and equipment hire for weddings, corporate events, special occasions, and private parties across South Florida. The project focused on redesigning the website to better represent the full scope of services, support both English and Spanish audiences, and present hire items and event offerings in a clear, professional, and easy-to-navigate way.'
+    text:
+      - 'SOS Party Rental provides event planning and equipment hire for weddings, corporate events, special occasions, and private parties across South Florida. The project focused on redesigning the website to better represent the full scope of services, support both English and Spanish audiences, and present hire items and event offerings in a clear, professional, and easy-to-navigate way.'
     bullets:
       items:
         - label: 'Brand presentation'
@@ -67,7 +68,8 @@ sections:
         constrained: false
   - label: 'The challenge'
     heading: 'Communicating breadth while staying approachable.'
-    text: 'SOS Party Rental offers both individual equipment hire and full event support, serving a diverse client base in English and Spanish. The challenge was to present this broad range of services without overwhelming users, while ensuring both language audiences received the same level of clarity and detail. At the same time, the website needed to feel polished and professional without losing the personal, service-driven character of the brand.'
+    text:
+      - 'SOS Party Rental offers both individual equipment hire and full event support, serving a diverse client base in English and Spanish. The challenge was to present this broad range of services without overwhelming users, while ensuring both language audiences received the same level of clarity and detail. At the same time, the website needed to feel polished and professional without losing the personal, service-driven character of the brand.'
     media:
       - type: 'video'
         src: '@/assets/videos/sos-party-rental-desktop-video-desktop.mp4'
@@ -79,7 +81,8 @@ sections:
         constrained: false
   - label: 'Our approach'
     heading: 'Structure, clarity, and visual storytelling.'
-    text: 'The redesign prioritised structure and usability. Services, event types, and hire products were clearly separated into intuitive sections, allowing users to quickly find what they need. A fully bilingual experience was implemented, ensuring content parity across English and Spanish. Visual elements—particularly the product catalogue and gallery—were designed to support quick scanning and inspiration, while contact and enquiry paths were simplified to reduce friction.'
+    text:
+      - 'The redesign prioritised structure and usability. Services, event types, and hire products were clearly separated into intuitive sections, allowing users to quickly find what they need. A fully bilingual experience was implemented, ensuring content parity across English and Spanish. Visual elements—particularly the product catalogue and gallery—were designed to support quick scanning and inspiration, while contact and enquiry paths were simplified to reduce friction.'
     bullets:
       heading: 'Key outcomes'
       items:
@@ -124,7 +127,8 @@ sections:
         constrained: false
   - label: 'The result'
     heading: 'A comprehensive and accessible digital presence.'
-    text: 'The new website positions SOS Party Rental as a reliable, full-service event partner. Visitors can easily explore hire items, understand services, view past work, and make enquiries in either language. The result is a platform that supports discovery, builds credibility, and encourages direct engagement.'
+    text:
+      - 'The new website positions SOS Party Rental as a reliable, full-service event partner. Visitors can easily explore hire items, understand services, view past work, and make enquiries in either language. The result is a platform that supports discovery, builds credibility, and encourages direct engagement.'
     bullets:
       heading: 'Impact'
       items:
@@ -141,5 +145,6 @@ sections:
       citation: 'Sandra O - Founder of SOS Party Rental'
   - label: 'Ongoing partnership'
     heading: 'Supporting updates and evolving needs.'
-    text: 'We remain involved in supporting SOS Party Rental with updates, refinements, and enhancements over time — ensuring the site stays current, content remains accurate, and the bilingual experience continues to reflect the business as it grows.'
+    text:
+      - 'We remain involved in supporting SOS Party Rental with updates, refinements, and enhancements over time — ensuring the site stays current, content remains accurate, and the bilingual experience continues to reflect the business as it grows.'
 ---

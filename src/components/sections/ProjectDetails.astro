@@ -24,7 +24,9 @@ const { section, class: className, ...props } = Astro.props
     <div>
       <h2 class="h3">{section.heading}</h2>
 
-      <p class="text">{section.text}</p>
+      <div class="text">
+        {section.text.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
 
       {
         section.bullets && (
@@ -143,6 +145,8 @@ const { section, class: className, ...props } = Astro.props
 
   .text {
     margin-top: var(--spacing-xl);
+    display: grid;
+    gap: var(--spacing-xl);
   }
 
   .bullets {

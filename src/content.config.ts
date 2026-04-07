@@ -129,7 +129,7 @@ const work = defineCollection({
         z.object({
           label: z.string(),
           heading: z.string(),
-          text: z.string(),
+          text: z.array(z.string()),
           bullets: z
             .object({
               heading: z.string().optional(),

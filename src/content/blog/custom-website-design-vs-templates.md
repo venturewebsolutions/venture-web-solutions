@@ -7,7 +7,7 @@ thumbnail:
   description: ''
 author:
   name: 'Daniela'
-  avatar: '@/assets/images/daniela-avatar.png'
+  avatar: '@/assets/images/daniela-avatar.jpg'
 readTimeMinutes: 8
 publishedDate: '2026-01-03'
 featured: true

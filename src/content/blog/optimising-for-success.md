@@ -7,7 +7,7 @@ thumbnail:
   description: ''
 author:
   name: 'Jordan'
-  avatar: '@/assets/images/jordan-avatar.png'
+  avatar: '@/assets/images/jordan-avatar.jpg'
 readTimeMinutes: 4
 publishedDate: '2026-01-04'
 featured: false

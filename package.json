@@ -13,8 +13,8 @@
     "format": "prettier --write '**/*.{html,css,scss,js,mjs,json,md,astro}'"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.7.1",
-    "astro": "^6.0.8",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.1.5",
     "gsap": "^3.14.2",
     "lodash": "^4.17.23",
     "sass": "^1.97.3",

@@ -1,69 +1,51 @@
 ---
-import VideoSource, {
-  type VideoModule,
-} from '@/components/headless/VideoSource.astro'
-import PlayIcon from '@/components/icons/PlayIcon.astro'
 import Avatar from '@/components/ui/Avatar.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
+import type { CollectionEntry } from 'astro:content'
 
-type Props = {
-  client: string
-  video: {
-    src: Promise<VideoModule>
-    type: string
-  }
-  thumbnail: Promise<{ default: ImageMetadata }>
-  avatar: Promise<{ default: ImageMetadata }>
-  author: {
-    name: string
-    position: string
-  }
-  quote: string
+type Props = HTMLAttributes<'section'> & {
+  testimonial: CollectionEntry<'testimonials'>
 }
 
-const { client, video, thumbnail, avatar, author, quote } = Astro.props
+const { testimonial, class: className, ...props } = Astro.props
 ---
 
-<section class="testimonial-card">
+<section class:list={cn('testimonial-card', className)} {...props}>
   <Thumbnail>
-    <button
-      class="thumbnail-media-wrapper"
-      aria-label={`Play ${client}'s testimonial video`}
-    >
-      <video playsinline muted preload="none" class="thumbnail-video">
-        <VideoSource src={video.src} type={video.type} hash="t=0.001" />
-      </video>
-
-      <Image
-        src={thumbnail}
-        alt=""
-        widths={[365, 416, 730, 857, 1714]}
-        sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
-        class="thumbnail-image"
-      />
-
-      <PlayIcon class="play-icon" />
-    </button>
+    <Image
+      src={testimonial.data.image}
+      alt=""
+      widths={[365, 416, 730, 857, 1714]}
+      sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
+      class="thumbnail-image"
+    />
 
     <ThumbnailCaption
       position="top left"
       class="thumbnail-caption swiper-no-swiping"
     >
-      <div class="client-info">
-        <Avatar src={avatar} alt={`${author.name}, ${client}`} width={43} />
-        <div>
-          <p class="client-name">{author.name}</p>
-          <p class="client-description">
-            {author.position}
+      <div class="client">
+        <Avatar
+          src={testimonial.data.avatar}
+          alt={`${testimonial.data.author}, ${testimonial.data.client} ${testimonial.data.position}`}
+          width={43}
+        />
+        <div class="client-info">
+          <p class="client-name">{testimonial.data.author}</p>
+          <p class="client-title">
+            {testimonial.data.client}
+            {testimonial.data.position}
           </p>
         </div>
       </div>
     </ThumbnailCaption>
   </Thumbnail>
 
-  <p class="quote swiper-no-swiping">“{quote}”</p>
+  <p class="quote swiper-no-swiping">“{testimonial.data.quote}”</p>
 </section>
 
 <style lang="scss">
@@ -75,46 +57,12 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
     gap: var(--spacing-xl);
   }
 
-  .thumbnail-media-wrapper {
-    border-radius: var(--border-radius-l);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-
-    &:hover {
-      .play-icon {
-        --scale: 1.1;
-      }
-    }
-
-    &.active {
-      .play-icon {
-        display: none;
-      }
-    }
-  }
-
-  .play-icon {
-    --scale: 1;
-
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(var(--scale));
-    transition: transform var(--transition-duration-default)
-      var(--transition-ease-default);
-  }
-
   .thumbnail-image {
     aspect-ratio: 421/419;
     object-fit: cover;
-  }
-
-  .thumbnail-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    border-top-right-radius: var(--border-radius-l);
+    border-bottom-left-radius: var(--border-radius-l);
+    border-bottom-right-radius: var(--border-radius-l);
   }
 
   .thumbnail-caption {
@@ -124,11 +72,11 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
     --padding: var(--spacing-s);
   }
 
-  .client-info {
+  .client {
     display: flex;
     align-items: start;
     gap: var(--spacing-xs);
-    max-width: rem(132px);
+    max-width: rem(149px);
   }
 
   .client-name {
@@ -136,64 +84,8 @@ const { client, video, thumbnail, avatar, author, quote } = Astro.props
     color: var(--colour-text-contrast);
   }
 
-  .client-description {
+  .client-title {
     @include font(meta-secondary);
     color: var(--colour-text-primary);
   }
 </style>
-
-<script>
-  // Videos
-  window.addEventListener('load', () => {
-    const wrappers = document.querySelectorAll(
-      '.testimonial-card .thumbnail-media-wrapper',
-    )
-
-    for (const wrapper of wrappers) {
-      const video = wrapper.querySelector('video')!
-
-      let started = false
-
-      wrapper.addEventListener('mouseenter', () => {
-        if (!started) {
-          video.play()
-        }
-      })
-
-      wrapper.addEventListener('mouseleave', () => {
-        if (!started) {
-          video.pause()
-          video.currentTime = 0
-        }
-      })
-
-      wrapper.addEventListener('click', () => {
-        if (!started) {
-          video.pause()
-          video.currentTime = 0
-          video.muted = false
-          video.controls = true
-
-          setTimeout(() => {
-            video.play()
-          }, 0)
-
-          wrapper.classList.add('active')
-
-          started = true
-        }
-      })
-
-      video.addEventListener('ended', () => {
-        video.pause()
-        video.currentTime = 0
-        video.muted = true
-        video.controls = false
-
-        wrapper.classList.remove('active')
-
-        started = false
-      })
-    }
-  })
-</script>

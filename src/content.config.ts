@@ -181,4 +181,21 @@ const work = defineCollection({
   },
 })
 
-export const collections = { blog, faqTopics, team, work }
+const testimonials = defineCollection({
+  loader: glob({
+    base: './src/content/testimonials/',
+    pattern: '**/*.{md,mdx}',
+  }),
+  schema: ({ image }) =>
+    z.object({
+      order: z.number(),
+      client: z.string(),
+      image: image(),
+      author: z.string(),
+      position: z.string(),
+      avatar: image(),
+      quote: z.string(),
+    }),
+})
+
+export const collections = { blog, faqTopics, team, work, testimonials }

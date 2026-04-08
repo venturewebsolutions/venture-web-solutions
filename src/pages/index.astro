@@ -12,7 +12,7 @@ import Pricing from '@/components/sections/Pricing.astro'
 import Testimonials from '@/components/sections/Testimonials.astro'
 import WhatWeOffer from '@/components/sections/WhatWeOffer.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getBlogPosts, getFaqTopics } from '@/lib/collections'
+import { getBlogPosts, getFaqTopics, getTestimonials } from '@/lib/collections'
 import { url } from '@/lib/url'
 
 const faqs = (await getFaqTopics())
@@ -24,6 +24,8 @@ const faqs = (await getFaqTopics())
   }))
 
 const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
+
+const testimonials = await getTestimonials()
 ---
 
 <Layout
@@ -35,7 +37,7 @@ const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
   <WhatWeOffer />
   <Performance />
   <OurWork />
-  <Testimonials />
+  <Testimonials testimonials={testimonials} />
   <HowItWorks id="how-it-works" />
   <Pricing />
   <FAQ faqs={faqs} />

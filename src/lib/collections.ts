@@ -1,4 +1,4 @@
-import { getCollection } from 'astro:content'
+import { getCollection, type CollectionEntry } from 'astro:content'
 
 export async function getBlogPosts() {
   const posts = await getCollection('blog')
@@ -16,6 +16,14 @@ export async function getFaqTopics() {
 
 export async function getWork() {
   const projects = await getCollection('work')
+
+  return projects.sort((a, b) => a.data.order - b.data.order)
+}
+
+export async function getTestimonials(
+  filter?: (entry: CollectionEntry<'testimonials'>) => boolean,
+) {
+  const projects = await getCollection('testimonials', filter)
 
   return projects.sort((a, b) => a.data.order - b.data.order)
 }

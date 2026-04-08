@@ -5,7 +5,7 @@ import FAQ from '@/components/sections/FAQ.astro'
 import PricingSection from '@/components/sections/Pricing.astro'
 import Testimonials from '@/components/sections/Testimonials.astro'
 import HowItWorks from '@/components/sections/HowItWorks.astro'
-import { getFaqTopics } from '@/lib/collections'
+import { getFaqTopics, getTestimonials } from '@/lib/collections'
 
 const faqs = (await getFaqTopics())
   .flatMap((topic) => topic.data.faqs)
@@ -14,11 +14,13 @@ const faqs = (await getFaqTopics())
     question: faq.question,
     answer: faq.answer,
   }))
+
+const testimonials = await getTestimonials()
 ---
 
 <Layout title="Pricing (TODO)" description="TODO">
   <PricingSection level={1} fullWidth />
-  <Testimonials />
+  <Testimonials testimonials={testimonials} />
   <HowItWorks id="how-it-works" />
   <FAQ faqs={faqs} />
   <ContactUs heading="Get in touch!" reversed>

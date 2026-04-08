@@ -2,27 +2,22 @@
 import NavigationButton from '@/components/ui/NavigationButton.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import TestimonialCard from '@/components/ui/TestimonialCard.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import type { CollectionEntry } from 'astro:content'
 
-const testimonial = {
-  client: 'Maggi Maid',
-  video: {
-    src: import('@/assets/videos/testimonial-video-maggi-maid.mp4'),
-    type: 'video/mp4',
-  },
-  thumbnail: import('@/assets/images/testimonial-thumbnail-maggi-maid.png'),
-  avatar: import('@/assets/images/maggi-maid-avatar.png'),
-  author: {
-    name: 'Margaret W.',
-    position: 'Maggi Maid founder',
-  },
-  quote:
-    'Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.',
+type Props = HTMLAttributes<'section'> & {
+  testimonials: CollectionEntry<'testimonials'>[]
 }
 
-const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
+const { testimonials, class: className, ...props } = Astro.props
 ---
 
-<section id="testimonials" class="section container">
+<section
+  id="testimonials"
+  class:list={cn('section container', className)}
+  {...props}
+>
   <SectionHeader eyebrow="Client testimonials">
     Voice of our happy clients
   </SectionHeader>
@@ -32,7 +27,7 @@ const testimonials = [...new Array(5).fill(null).map(() => testimonial)]
       {
         testimonials.map((testimonial) => (
           <div class="swiper-slide">
-            <TestimonialCard {...testimonial} />
+            <TestimonialCard testimonial={testimonial} />
           </div>
         ))
       }

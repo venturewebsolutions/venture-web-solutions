@@ -1,11 +1,11 @@
 import trim from 'lodash/trim'
 import trimStart from 'lodash/trimStart'
-import { BASE } from '@/config'
+import { BASE_URL } from '@/config'
 
 export const url = (pathname: string) => {
   const parts: string[] = []
 
-  const base = trim(BASE, '/')
+  const base = trim(BASE_URL, '/')
 
   parts.push('/')
 

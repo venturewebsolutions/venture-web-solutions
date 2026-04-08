@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 // https://astro.build/config
 export default defineConfig({
   site: process.env.SITE,
-  base: process.env.BASE,
+  base: process.env.BASE_URL,
 
   vite: {
     css: {

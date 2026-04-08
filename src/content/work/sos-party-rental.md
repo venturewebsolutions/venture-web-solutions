@@ -1,8 +1,5 @@
 ---
 order: 3
-theme:
-  colour: '#c7b7a9'
-  highlight: '#f25c49'
 client: 'SOS Party Rental'
 heading: 'A performance-first redesign for an event services business'
 summary: 'SOS Party Rental needed a website that reflected their brand accurately and worked seamlessly for their customers. The redesign prioritized performance over aesthetics, focusing on speed, structure, and usability. The result is a clearer, more intuitive experience that reflects how the business truly operates.'

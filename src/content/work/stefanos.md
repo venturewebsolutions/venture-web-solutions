@@ -1,8 +1,5 @@
 ---
 order: 2
-theme:
-  colour: '#d3c49f'
-  highlight: '#d8572a'
 client: 'Stefano’s Pizzeria'
 heading: 'A warm, professional start for the first wood-fired pizzeria in Harrogate'
 summary: 'Stefano’s Pizzeria needed an online presence that matched the warmth and authenticity of Harrogate’s first wood-fired pizzeria. We delivered a fully custom, hand-coded website paired with a flexible CMS, allowing the team to update their own content — giving them full control as they grow. The result is a professional, inviting website that truly reflects their brand and hospitality.'

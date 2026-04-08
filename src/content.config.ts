@@ -99,10 +99,6 @@ const work = defineCollection({
 
     return z.object({
       order: z.number(),
-      theme: z.object({
-        colour: z.string(),
-        highlight: z.string(),
-      }),
       client: z.string(),
       heading: z.string(),
       summary: z.string(),

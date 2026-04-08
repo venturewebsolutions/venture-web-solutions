@@ -2,49 +2,59 @@
 import { Image } from 'astro:assets'
 import { url } from '@/lib/url'
 import Eyebrow from '@/components/ui/Eyebrow.astro'
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/class-names'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 
 const projects = [
   {
+    id: 'maggi-maid',
     name: 'Maggi Maid',
-    image: import('@/assets/images/project-screenshot-maggi-maid.png'),
-    slug: 'maggi-maid',
+    image: import('@/assets/images/maggi-maid-screenshot.png'),
   },
   {
+    id: 'stefanos',
     name: "Stefano's Pizzeria",
-    image: import('@/assets/images/project-screenshot-stefanos.png'),
-    slug: 'stefanos',
+    image: import('@/assets/images/stefanos-screenshot.png'),
   },
   {
+    id: 'sos-party-rental',
     name: 'SOS Party Rental',
-    image: import('@/assets/images/project-screenshot-sos-party-rental.png'),
-    slug: 'sos-party-rental',
+    image: import('@/assets/images/sos-party-rental-screenshot.png'),
   },
   {
+    id: 'popletts',
     name: "Poplett's Dog Grooming",
-    image: import('@/assets/images/project-screenshot-popletts.png'),
-    slug: 'popletts',
+    image: import('@/assets/images/popletts-screenshot.png'),
   },
   {
+    id: 'md-loft-storage',
     name: 'MD Loft Storage',
-    image: import('@/assets/images/project-screenshot-md-loft-storage.png'),
-    slug: 'md-loft-storage',
+    image: import('@/assets/images/md-loft-storage-screenshot.png'),
   },
 ]
 ---
 
-<section id="our-work" class="section container">
-  <div class="surface">
-    <div class="content">
+<section
+  class:list={cn('section container', className)}
+  data-component="our-work"
+  {...props}
+>
+  <div class="card">
+    <div class="content-left">
       <Eyebrow as="h2">Our Work</Eyebrow>
 
-      <div id="title-carousel">
+      <div class="title-carousel">
         <div class="titles">
           {
             projects.map((project) => (
               <a
-                href={url(`/work/${project.slug}`)}
+                href={url(`/work/${project.id}`)}
                 class="title h2"
-                data-project={project.slug}
+                data-project={project.id}
               >
                 {project.name}
               </a>
@@ -56,12 +66,12 @@ const projects = [
       </div>
     </div>
 
-    <div id="image-carousel">
+    <div class="image-carousel">
       <div class="images">
         {
           projects.map((project) => (
-            <section class="image-card" data-project={project.slug}>
-              <a href={url(`/work/${project.slug}`)} class="image-link">
+            <section class="image-card" data-project={project.id}>
+              <a href={url(`/work/${project.id}`)} class="image-link">
                 <Image
                   src={project.image}
                   alt={`${project.name} project screenshot`}
@@ -86,16 +96,16 @@ const projects = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .surface {
+  .card {
     display: grid;
     gap: var(--spacing-xl);
   }
 
-  #title-carousel {
+  .title-carousel {
     display: none;
   }
 
-  #image-carousel {
+  .image-carousel {
     position: relative;
   }
 
@@ -135,29 +145,31 @@ const projects = [
   }
 
   @media screen and (min-width: rem(768px)) {
-    #our-work {
+    .section {
       display: grid;
       justify-content: center;
+      align-items: center;
       min-height: 100vh;
     }
 
-    .surface {
+    .card {
       background: var(--colour-surface-100);
       border-radius: var(--border-radius-l);
       padding: var(--spacing-4xl);
       grid-template-columns: repeat(2, 1fr);
       gap: var(--spacing-4xl);
       overflow: hidden;
-      min-height: calc(100vh - var(--spacing-section) * 2);
+      min-height: 60svh;
     }
 
-    .content {
+    .content-left {
       display: grid;
       align-content: space-between;
+      gap: var(--spacing-5xl);
     }
 
-    #title-carousel {
-      display: initial;
+    .title-carousel {
+      display: block;
       position: relative;
     }
 
@@ -228,38 +240,34 @@ const projects = [
   window.addEventListener('load', () => {
     const mm = gsap.matchMedia()
 
-    const imageCarousel = document.querySelector('#image-carousel')!
-    const titleCarousel = document.querySelector('#title-carousel')!
-
-    const imageCards = imageCarousel.querySelectorAll(
-      '.image-card',
-    ) as NodeListOf<HTMLDivElement>
-
-    const images = imageCarousel.querySelectorAll<HTMLImageElement>('.image')
+    const root = document.querySelector('[data-component="our-work"]')!
+    const imageCarousel = root.querySelector('.image-carousel')!
+    const titleCarouselOverlay = root.querySelector('.title-carousel-overlay')!
+    const imagesWrapper = root.querySelector('.images')!
+    const imageCards = root.querySelectorAll<HTMLElement>('.image-card')
+    const images = root.querySelectorAll<HTMLImageElement>('.image')
 
     onImagesLoaded(images, () => {
       mm.add('(min-width: 48rem)', () => {
         gsap
           .timeline({
             scrollTrigger: {
-              trigger: '.surface',
-              start: '50% 50%',
+              trigger: root,
+              start: 'top top',
               end: () => `+=${imageCarousel.scrollHeight}`,
               scrub: true,
-              pin: '#our-work',
+              pin: true,
             },
           })
-          .to('.images', { bottom: 0, ease: 'none' }, 0)
-          .to('.title-carousel-overlay', { '--spotlight-position': '90%' }, 0)
+          .to(imagesWrapper, { bottom: 0, ease: 'none' }, 0)
+          .to(titleCarouselOverlay, { '--spotlight-position': '90%' }, 0)
       })
     })
 
     for (const imageCard of imageCards) {
       const project = imageCard.dataset.project
 
-      const title = titleCarousel.querySelector(
-        `.title[data-project="${project}"]`,
-      )!
+      const title = root.querySelector(`.title[data-project="${project}"]`)!
 
       imageCard.addEventListener('mouseenter', () => {
         title.classList.add('active')

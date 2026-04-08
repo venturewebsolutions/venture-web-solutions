@@ -6,6 +6,10 @@ import { Image } from 'astro:assets'
 import Heading from '../headless/Heading.astro'
 
 type Props = HTMLAttributes<'section'> & {
+  theme?: {
+    colour?: string
+    highlight?: string
+  }
   client: string
   heading: string
   summary: string
@@ -27,6 +31,7 @@ type Props = HTMLAttributes<'section'> & {
 }
 
 const {
+  theme,
   client,
   heading,
   summary,
@@ -39,7 +44,14 @@ const {
 } = Astro.props
 ---
 
-<section class:list={cn('card glow-background', className)} {...props}>
+<section
+  class:list={cn('card glow-background', className)}
+  style={{
+    '--project-theme-colour': theme?.colour,
+    '--project-highlight-colour': theme?.highlight,
+  }}
+  {...props}
+>
   <div class="card-inner glow-foreground">
     <div class="card-content vignette">
       <div class="left">
@@ -106,6 +118,18 @@ const {
     }
   }
 
+  .glow-foreground {
+    &::before {
+      --glow-colour: var(--project-theme-colour, var(--colour-primary));
+    }
+  }
+
+  .glow-background {
+    &::before {
+      --glow-colour: var(--project-highlight-colour, var(--colour-primary));
+    }
+  }
+
   .glow-background,
   .glow-foreground {
     &::before {
@@ -118,7 +142,7 @@ const {
       transform: translateX(calc(-50% + var(--mouse-x)))
         translateY(calc(-50% + var(--mouse-y)));
       background-image: radial-gradient(
-        var(--colour-primary),
+        var(--glow-colour),
         transparent,
         transparent
       );

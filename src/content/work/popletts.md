@@ -1,5 +1,8 @@
 ---
 order: 4
+theme:
+  colour: '#beded6'
+  highlight: '#e54e29'
 client: 'Poplett’s Dog Grooming'
 heading: 'A playful yet professional start for a dog grooming business'
 summary: 'Poplett’s Dog Grooming needed a website that reflected the friendly, professional care they provide to pets. The design focused on creating a clear, welcoming online presence that reassures clients and communicates the brand’s expertise and approachable personality. The result is a website that feels authentic, professional, and inviting, helping the business connect with pet owners from the very first visit.'

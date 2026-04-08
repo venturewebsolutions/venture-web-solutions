@@ -1,5 +1,8 @@
 ---
 order: 5
+theme:
+  colour: '#54ceed'
+  highlight: '#e98f4e'
 client: 'MD Loft Storage'
 heading: 'Helping a new trade business look established'
 summary: 'They needed a website that clearly showcased their loft storage solutions while reflecting the professionalism and quality of their work. The custom design and hand-coded development created a clean, intuitive online experience that helps customers understand their products and services at a glance. The result is a website that’s informative, professional, and visually aligned with their brand.'

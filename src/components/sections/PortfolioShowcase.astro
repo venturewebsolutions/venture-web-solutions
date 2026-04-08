@@ -18,6 +18,7 @@ const { projects: work, class: className, ...props } = Astro.props
 
 const projects = [
   ...work.map((project) => ({
+    theme: project.data.theme,
     client: project.data.client,
     heading: project.data.heading,
     summary: project.data.summary,

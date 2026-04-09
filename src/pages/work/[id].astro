@@ -23,7 +23,7 @@ const testimonials = await getTestimonials((t) => t.id !== project.id)
 ---
 
 <Layout title={`${project.data.client} | Venture Web Solutions`} description="">
-  <ProjectHero project={project} id="hero" />
+  <ProjectHero project={project} />
   {project.data.sections.map((section) => <ProjectDetails section={section} />)}
   <CTAMarquee groups={3} href={url('/work/')} text="View all projects" />
   <Testimonials testimonials={testimonials} />

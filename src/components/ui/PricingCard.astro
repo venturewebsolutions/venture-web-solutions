@@ -1,14 +1,13 @@
 ---
-import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
 import Heading from '@/components/headless/Heading.astro'
-import CircleCheckIcon from '@/components/icons/CircleCheckIcon.astro'
-import CircleCrossIcon from '@/components/icons/CircleCrossIcon.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
+import Divider from '@/components/ui/Divider.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
-import Divider from './Divider.astro'
+import { Icon } from 'astro-icon/components'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
 
 type Props = HTMLAttributes<'section'> & {
   heading: {
@@ -115,7 +114,11 @@ const {
               !feature.included && 'card-feature-excluded',
             ]}
           >
-            {feature.included ? <CircleCheckIcon /> : <CircleCrossIcon />}
+            {feature.included ? (
+              <Icon name="tick" class="card-feature-icon" />
+            ) : (
+              <Icon name="cross" class="card-feature-icon" />
+            )}
             <span>{feature.description}</span>
           </li>
         ))
@@ -212,6 +215,10 @@ const {
     display: flex;
     align-items: center;
     gap: var(--spacing-m);
+  }
+
+  .card-feature-icon {
+    --size: #{rem(20px)};
   }
 
   .card-feature-excluded {

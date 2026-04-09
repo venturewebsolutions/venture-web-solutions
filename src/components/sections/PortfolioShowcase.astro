@@ -1,7 +1,4 @@
 ---
-import FactoryIcon from '@/components/icons/FactoryIcon.astro'
-import LaptopIcon from '@/components/icons/LaptopIcon.astro'
-import RocketIcon from '@/components/icons/RocketIcon.astro'
 import ProjectCard from '@/components/ui/ProjectCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
@@ -22,7 +19,7 @@ const projects = [
     heading: project.data.heading,
     summary: project.data.summary,
     highlights: project.data.highlights.map((highlight) => ({
-      icon: icon(highlight.icon),
+      icon: highlight.icon,
       text: highlight.text,
     })),
     link: { href: url(`/work/${project.id}/`), text: 'View project' },
@@ -40,15 +37,15 @@ const projects = [
       'Do you like what you see? Are you ready to take your business online, refresh your website, or simply explore some ideas? Whether you’re just starting out or looking to make a meaningful change, we’d love to hear from you. Let’s chat about what you’re looking for, what could work for your business, and how we can bring your ideas to life — no pressure, no sales pitch, just a conversation to get things moving in the right direction.',
     highlights: [
       {
-        icon: FactoryIcon,
+        icon: 'industry',
         text: 'Industry expertise',
       },
       {
-        icon: LaptopIcon,
+        icon: 'laptop_mac',
         text: 'Custom design & hand-coded website',
       },
       {
-        icon: RocketIcon,
+        icon: 'rocket',
         text: 'Tailored services to fit your needs',
       },
     ],

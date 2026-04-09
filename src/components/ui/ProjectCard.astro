@@ -1,16 +1,17 @@
 ---
+import Heading from '@/components/headless/Heading.astro'
 import Button from '@/components/ui/Button.astro'
 import { cn } from '@/lib/class-names'
+import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
-import Heading from '../headless/Heading.astro'
 
 type Props = HTMLAttributes<'section'> & {
   client: string
   heading: string
   summary: string
   highlights: {
-    icon: (_props: any) => any
+    icon: (_props: any) => any | string
     text: string
   }[]
   link: {
@@ -53,7 +54,11 @@ const {
           {
             highlights.map((highlight) => (
               <li class="project-highlight">
-                <highlight.icon class="project-highlight-icon" />
+                {typeof highlight.icon === 'string' ? (
+                  <Icon name={highlight.icon} class="project-highlight-icon" />
+                ) : (
+                  <highlight.icon class="project-highlight-icon" />
+                )}
                 <span class="project-highlight-text">{highlight.text}</span>
               </li>
             ))

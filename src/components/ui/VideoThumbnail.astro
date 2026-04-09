@@ -1,7 +1,7 @@
 ---
-import PlayIcon from '@/components/icons/PlayIcon.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
+import { Icon } from 'astro-icon/components'
 
 type Props = HTMLAttributes<'button'> & {
   label: string
@@ -15,7 +15,9 @@ const { label, class: className, ...props } = Astro.props
   aria-label={label}
   {...props}
 >
-  <PlayIcon class="play" />
+  <div class="play-button">
+    <Icon name="play" class="play-icon" />
+  </div>
 
   <slot />
 </button>
@@ -30,27 +32,42 @@ const { label, class: className, ...props } = Astro.props
     cursor: pointer;
 
     &:hover {
-      .play {
+      .play-button {
         --scale: 1.1;
       }
     }
 
     &.active {
-      .play {
+      .play-button {
         display: none;
       }
     }
   }
 
-  .play {
+  .play-button {
     --scale: 1;
+    --size: #{rem(70px)};
 
+    width: var(--size);
+    height: var(--size);
+    background-color: var(--colour-accent);
+    border-radius: calc(var(--size) / 2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(var(--scale));
     transition: transform var(--transition-duration-default)
       var(--transition-ease-default);
+  }
+
+  .play-icon {
+    width: rem(20px);
+    height: rem(26px);
+    color: var(--colour-surface-base);
+    margin-left: 5px;
   }
 </style>
 

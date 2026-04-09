@@ -1,27 +1,24 @@
 ---
-import ConfirmUserIcon from '@/components/icons/ConfirmUserIcon.astro'
-import CycleIcon from '@/components/icons/CycleIcon.astro'
-import EditUserIcon from '@/components/icons/EditUserIcon.astro'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
 import BenefitCard from '@/components/ui/BenefitCard.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
 
 const cards = [
   {
-    icon: EditUserIcon,
+    icon: 'person_edit',
     heading: 'Unlimited edits',
     paragraph:
       "Don't worry about making small tweaks to your website — we don't charge a penny. Want to update your opening hours, swap out an image, or update the copy? Just send us a message and we'll get it done, pronto!",
   },
   {
-    icon: CycleIcon,
+    icon: 'published_with_changes',
     heading: 'Lifetime updates',
     paragraph:
       "Times change, and so do design trends. We'll keep your website looking fresh with a free design update every 3 years. We won't let your website fall behind!",
   },
   {
-    icon: ConfirmUserIcon,
+    icon: 'routine',
     heading: '24/7 support',
     paragraph:
       "Call us, text us, or email us any time. We're on your side so we're happy to help. And yes, that includes evenings and weekends!",

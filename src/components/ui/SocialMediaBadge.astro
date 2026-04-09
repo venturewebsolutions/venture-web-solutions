@@ -1,8 +1,5 @@
 ---
-import FacebookIcon from '@/components/icons/FacebookIcon.astro'
-import InstagramIcon from '@/components/icons/InstagramIcon.astro'
-import LinkedInIcon from '@/components/icons/LinkedInIcon.astro'
-import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
+import { Icon } from 'astro-icon/components'
 
 type Props = {
   platform: 'facebook' | 'instagram' | 'linkedin'
@@ -11,19 +8,11 @@ type Props = {
 }
 
 const { platform, ...props } = Astro.props
-
-const icons = {
-  facebook: FacebookIcon,
-  instagram: InstagramIcon,
-  linkedin: LinkedInIcon,
-}
-
-const Icon = icons[platform]
 ---
 
 <a target="_blank" class="social-media-link" {...props}>
-  <Icon />
-  <UpRightArrowIcon class="arrow" />
+  <Icon name={platform} class="icon" />
+  <Icon name="arrow-up-right" class="arrow" />
 </a>
 
 <style lang="scss">
@@ -44,9 +33,13 @@ const Icon = icons[platform]
     color: var(--colour-text-on-secondary);
   }
 
+  .icon {
+    --size: #{rem(12px)};
+  }
+
   .arrow {
+    --size: #{rem(12px)};
+
     flex-shrink: 0;
-    height: rem(6px);
-    width: rem(6px);
   }
 </style>

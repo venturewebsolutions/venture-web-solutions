@@ -1,12 +1,12 @@
 ---
 import Video from '@/components/headless/Video.astro'
+import Stars from '@/components/ui/Stars.astro'
 import VideoThumbnail from '@/components/ui/VideoThumbnail.astro'
 import { cn } from '@/lib/class-names'
-import { icon } from '@/lib/resolvers'
+import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
-import Stars from '../ui/Stars.astro'
 
 type Props = HTMLAttributes<'section'> & {
   section: CollectionEntry<'work'>['data']['sections'][number]
@@ -37,14 +37,14 @@ const { section, class: className, ...props } = Astro.props
 
             <ul class="bullets-items">
               {section.bullets.items.map((bullet) => {
-                const Icon = bullet.icon ? icon(bullet.icon) : undefined
-
                 return (
                   <li
                     class="bullet"
                     data-has-icon={bullet.icon ? true : undefined}
                   >
-                    {Icon && <Icon class="bullet-icon" />}
+                    {bullet.icon && (
+                      <Icon name={bullet.icon} class="bullet-icon" />
+                    )}
                     <span>
                       {bullet.label && (
                         <span class="bullet-label">{bullet.label}:</span>

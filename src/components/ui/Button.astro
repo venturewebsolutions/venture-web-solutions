@@ -1,7 +1,7 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
-import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
 import { cn } from '@/lib/class-names'
+import { Icon } from 'astro-icon/components'
 
 // prettier-ignore
 export type ButtonVariant = 'primary' | 'primary-outline' | 'secondary' | 'secondary-outline' | 'ghost' | 'form'
@@ -42,7 +42,7 @@ const {
       data-size={size}
     >
       <slot />
-      {arrow && <UpRightArrowIcon class="arrow" />}
+      {arrow && <Icon name="arrow-up-right" class="arrow" />}
     </a>
   ) : (
     <button
@@ -52,7 +52,7 @@ const {
       data-size={size}
     >
       <slot />
-      {arrow && <UpRightArrowIcon class="arrow" />}
+      {arrow && <Icon name="arrow-up-right" class="arrow" />}
     </button>
   )
 }
@@ -73,9 +73,9 @@ const {
   }
 
   .arrow {
+    --size: #{rem(16px)};
+
     flex-shrink: 0;
-    height: 0.8125em;
-    width: 0.625em;
   }
 
   // Variants

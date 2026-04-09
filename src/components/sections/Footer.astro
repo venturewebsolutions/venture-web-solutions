@@ -1,11 +1,10 @@
 ---
-import EnvelopeIcon from '@/components/icons/EnvelopeIcon.astro'
-import TelephoneIcon from '@/components/icons/TelephoneIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Logo from '@/components/ui/Logo.astro'
 import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'footer'>
@@ -63,12 +62,12 @@ const lists = [
     links: [
       {
         text: '07454 747 488',
-        icon: TelephoneIcon,
+        icon: 'phone',
         href: 'tel:+447454747488',
       },
       {
         text: 'hello@venturewebsolutions.co.uk',
-        icon: EnvelopeIcon,
+        icon: 'email',
         href: 'mailto:hello@venturewebsolutions.co.uk',
       },
     ],
@@ -111,10 +110,10 @@ const lists = [
           <div class="list-wrapper">
             <ul class="list">
               <li class="list-heading">{list.heading}</li>
-              {list.links.map(({ text, icon: Icon, href }) => (
+              {list.links.map(({ text, icon, href }) => (
                 <li class="list-item">
                   <a href={href} class="list-link">
-                    {Icon && <Icon class="list-icon" />}
+                    {icon && <Icon name={icon} class="list-icon" />}
                     <span>{text}</span>
                   </a>
                 </li>
@@ -232,14 +231,14 @@ const lists = [
   .list-link {
     @include font(link-md);
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: var(--spacing-m);
   }
 
   .list-icon {
+    --size: 0.875em;
+
     display: none;
-    width: 0.875em;
-    height: auto;
   }
 
   .banner-segment {
@@ -295,7 +294,7 @@ const lists = [
 
   @media screen and (min-width: rem(375px)) {
     .list-icon {
-      display: initial;
+      display: block;
     }
   }
 

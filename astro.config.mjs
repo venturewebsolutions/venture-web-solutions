@@ -1,5 +1,6 @@
 // @ts-check
 import sitemap from '@astrojs/sitemap'
+import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import { fileURLToPath } from 'url'
 
@@ -22,5 +23,19 @@ export default defineConfig({
     enabled: false,
   },
 
-  integrations: [sitemap()],
+  integrations: [
+    sitemap(),
+    icon({
+      iconDir: './src/assets/icons/',
+      svgoOptions: {
+        plugins: [
+          'preset-default',
+          {
+            name: 'convertColors',
+            params: { currentColor: true },
+          },
+        ],
+      },
+    }),
+  ],
 })

@@ -1,9 +1,9 @@
 ---
-import ClockIcon from '@/components/icons/ClockIcon.astro'
+import { Icon } from 'astro-icon/components'
 ---
 
 <div class="read-time">
-  <ClockIcon />
+  <Icon name="clock" class="icon" />
   <p><slot /></p>
 </div>
 
@@ -16,5 +16,9 @@ import ClockIcon from '@/components/icons/ClockIcon.astro'
     justify-content: center;
     align-items: center;
     gap: var(--spacing-2xs);
+  }
+
+  .icon {
+    --size: #{rem(16px)};
   }
 </style>

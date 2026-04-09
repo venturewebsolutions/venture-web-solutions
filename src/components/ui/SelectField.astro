@@ -1,5 +1,5 @@
 ---
-import ChevronDownIcon from '@/components/icons/ChevronDownIcon.astro'
+import { Icon } from 'astro-icon/components'
 import FormField from '@/components/ui/FormField.astro'
 import FormLabel from '@/components/ui/FormLabel.astro'
 import type { AutocompleteValue } from '@/lib/types'
@@ -54,7 +54,7 @@ const { id, name, required, placeholder, autocomplete, label, options } =
         ))
       }
     </select>
-    <ChevronDownIcon class="form-select-chevron" />
+    <Icon name="chevron-down" class="form-select-chevron" />
   </div>
 </FormField>
 
@@ -63,8 +63,6 @@ const { id, name, required, placeholder, autocomplete, label, options } =
   @use 'mixins' as *;
 
   .form-select {
-    --chevron-width: 1rem;
-
     display: grid;
     align-items: center;
   }
@@ -75,8 +73,8 @@ const { id, name, required, placeholder, autocomplete, label, options } =
   }
 
   .form-select-chevron {
-    width: var(--chevron-width);
-    height: auto;
+    --size: #{rem(16px)};
+
     margin-right: var(--spacing-m);
     grid-row-start: 1;
     grid-column-start: 1;

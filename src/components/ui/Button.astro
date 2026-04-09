@@ -3,11 +3,12 @@ import type { HTMLAttributes } from 'astro/types'
 import UpRightArrowIcon from '@/components/icons/UpRightArrowIcon.astro'
 import { cn } from '@/lib/class-names'
 
-export type ButtonVariant = 'primary-outline' | 'secondary' | 'secondary-outline' | 'ghost' | 'form'
+// prettier-ignore
+export type ButtonVariant = 'primary' | 'primary-outline' | 'secondary' | 'secondary-outline' | 'ghost' | 'form'
 
 type BaseProps = {
-  variant?: ButtonVariant | null
-  size?: 'lg' | 'link'
+  variant?: ButtonVariant
+  size?: 'm' | 'l' | 'link'
   arrow?: boolean
   disabled?: boolean
 }
@@ -22,8 +23,8 @@ type LinkProps = HTMLAttributes<'a'> &
 type Props = ButtonProps | LinkProps
 
 const {
-  variant,
-  size,
+  variant = 'primary',
+  size = 'm',
   arrow,
   disabled,
   class: className,
@@ -37,7 +38,7 @@ const {
       {...props}
       href={disabled ? undefined : props.href}
       class:list={cn('button', className)}
-      data-variant={variant ?? undefined}
+      data-variant={variant}
       data-size={size}
     >
       <slot />
@@ -47,7 +48,7 @@ const {
     <button
       {...props}
       class:list={cn('button', className)}
-      data-variant={variant ?? undefined}
+      data-variant={variant}
       data-size={size}
     >
       <slot />
@@ -67,19 +68,8 @@ const {
     justify-content: center;
     align-items: center;
     gap: 0.5em;
-    // text-wrap: nowrap;
-    // flex-wrap: nowrap;
+    border-style: solid;
     cursor: pointer;
-
-    // Default Size
-    padding: 0.625em 1.25em;
-    border: var(--border-width-m) solid;
-
-    // Default Variant
-    background-color: var(--colour-primary);
-    border-color: var(--colour-primary);
-    color: var(--colour-text-on-primary);
-    border-radius: var(--border-radius-xl);
   }
 
   .arrow {
@@ -89,28 +79,39 @@ const {
   }
 
   // Variants
+  .button[data-variant='primary'] {
+    background-color: var(--colour-primary);
+    border-color: var(--colour-primary);
+    color: var(--colour-text-on-primary);
+    border-radius: var(--border-radius-xl);
+  }
+
   .button[data-variant='primary-outline'] {
     background-color: transparent;
     border-color: var(--colour-primary);
     color: var(--colour-primary);
+    border-radius: var(--border-radius-xl);
   }
 
   .button[data-variant='secondary'] {
     background-color: var(--colour-secondary);
     border-color: var(--colour-secondary);
     color: var(--colour-text-on-secondary);
+    border-radius: var(--border-radius-xl);
   }
 
   .button[data-variant='secondary-outline'] {
     background-color: transparent;
     border-color: var(--colour-secondary);
     color: var(--colour-secondary);
+    border-radius: var(--border-radius-xl);
   }
 
   .button[data-variant='ghost'] {
     background-color: transparent;
     border-color: transparent;
     color: var(--colour-text-contrast);
+    border-radius: var(--border-radius-xl);
   }
 
   .button[data-variant='form'] {
@@ -121,12 +122,18 @@ const {
   }
 
   // Sizes
-  .button[data-size='lg'] {
+  .button[data-size='m'] {
+    padding: 0.625em 1.25em;
+    border-width: var(--border-width-m);
+  }
+
+  .button[data-size='l'] {
     padding: var(--spacing-m) var(--spacing-xl);
+    border-width: var(--border-width-m);
   }
 
   .button[data-size='link'] {
     padding: 0;
-    border: 0;
+    border-width: 0;
   }
 </style>

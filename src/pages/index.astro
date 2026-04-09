@@ -28,10 +28,7 @@ const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
 const testimonials = await getTestimonials()
 ---
 
-<Layout
-  title="Welcome to Venture Web Solutions"
-  description="Your partner in digital success."
->
+<Layout title="Home | Venture Web Solutions" description="">
   <Hero />
   <AboutUs />
   <WhatWeOffer />

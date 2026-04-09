@@ -1,17 +1,19 @@
 ---
+import type { HTMLAttributes } from 'astro/types'
 import BlogPostBody from '@/components/ui/BlogPostBody.astro'
 import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
 import ReadTime from '@/components/ui/ReadTime.astro'
 import ScrollProgressBar from '@/components/ui/ScrollProgressBar.astro'
 import TableOfContents from '@/components/ui/TableOfContents.astro'
 import type { CollectionEntry } from 'astro:content'
+import { cn } from '@/lib/class-names'
 import Divider from '../ui/Divider.astro'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   post: CollectionEntry<'blog'>
 }
 
-const { post } = Astro.props
+const { post, class: className, ...props } = Astro.props
 
 type Heading = {
   depth: number
@@ -27,7 +29,7 @@ const links = headings.map((heading) => ({
 }))
 ---
 
-<section class="section container">
+<section class:list={cn('section container', className)} {...props}>
   <div class="toc-wrapper">
     <TableOfContents links={links} />
 

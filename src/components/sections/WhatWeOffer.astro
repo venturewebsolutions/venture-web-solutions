@@ -4,6 +4,8 @@ import CycleIcon from '@/components/icons/CycleIcon.astro'
 import EditUserIcon from '@/components/icons/EditUserIcon.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import BenefitCard from '@/components/ui/BenefitCard.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
 
 const cards = [
   {
@@ -25,9 +27,13 @@ const cards = [
       "Call us, text us, or email us any time. We're on your side so we're happy to help. And yes, that includes evenings and weekends!",
   },
 ]
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 ---
 
-<section id="what-we-offer" class="section container">
+<section class:list={cn('section container', className)} {...props}>
   <SectionHeader eyebrow="What we offer" class="header">
     Professional websites, £100 per month
   </SectionHeader>

@@ -2,17 +2,19 @@
 import BlogPostCard from '@/components/ui/BlogPostCard.astro'
 import Button from '@/components/ui/Button.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { CollectionEntry } from 'astro:content'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   posts: CollectionEntry<'blog'>[]
 }
 
-const { posts } = Astro.props
+const { posts, class: className, ...props } = Astro.props
 ---
 
-<section id="blog" class="container section">
+<section class:list={cn('blog-showcase-grid container section', className)} {...props}>
   <div class="intro">
     <SectionHeader eyebrow="Blog" class="header">
       What have we been writing about recently?
@@ -41,7 +43,7 @@ const { posts } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #blog {
+  .blog-showcase-grid {
     display: grid;
     gap: var(--spacing-4xl);
   }

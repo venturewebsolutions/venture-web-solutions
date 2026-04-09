@@ -1,21 +1,29 @@
 ---
 import Button from '@/components/ui/Button.astro'
 import ContactForm from '@/components/ui/ContactForm.astro'
+import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   heading?: string
   headingUnderline?: boolean
   reversed?: boolean
 }
 
-const { heading, headingUnderline, reversed } = Astro.props
+const {
+  heading,
+  headingUnderline,
+  reversed,
+  class: className,
+  ...props
+} = Astro.props
 ---
 
 <section
-  id="contact-us"
-  class="container section"
+  class:list={cn('section container', className)}
   data-reversed={reversed || undefined}
+  {...props}
 >
   <div class="content-wrapper">
     <header class="header">
@@ -65,7 +73,7 @@ const { heading, headingUnderline, reversed } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #contact-us {
+  .section {
     display: grid;
     gap: var(--spacing-5xl);
   }
@@ -104,7 +112,7 @@ const { heading, headingUnderline, reversed } = Astro.props
   }
 
   @media screen and (min-width: rem(1200px)) {
-    #contact-us {
+    .section {
       grid-template-columns: minmax(0, rem(502px)) minmax(0, rem(679px));
       justify-content: space-between;
       align-items: start;

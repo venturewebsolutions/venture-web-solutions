@@ -11,7 +11,7 @@ type Props = HTMLAttributes<'section'> & {
 const { posts, class: className, ...props } = Astro.props
 ---
 
-<section id="hero" class:list={cn('section container', className)} {...props}>
+<section class:list={cn('section container', className)} {...props}>
   <header class="header">
     <h1 class="h2">Blog</h1>
     <p class="subheading">

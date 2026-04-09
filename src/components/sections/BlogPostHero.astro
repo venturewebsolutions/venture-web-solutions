@@ -3,18 +3,20 @@ import BlogPostInfo from '@/components/ui/BlogPostInfo.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { cn } from '@/lib/class-names'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import type { HTMLAttributes } from 'astro/types'
 import range from 'lodash/range'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   post: CollectionEntry<'blog'>
 }
 
-const { post } = Astro.props
+const { post, class: className, ...props } = Astro.props
 ---
 
-<section id="hero" class="section container">
+<section class:list={cn('blog-post-hero section container', className)} {...props}>
   <div class="header-mobile">
     <SectionHeader eyebrow={post.data.topic} level={1}>
       {post.data.title}
@@ -58,7 +60,7 @@ const { post } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #hero {
+  .blog-post-hero {
     display: grid;
     gap: var(--spacing-l);
   }

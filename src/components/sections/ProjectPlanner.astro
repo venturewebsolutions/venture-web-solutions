@@ -7,9 +7,15 @@ import InputField from '@/components/ui/InputField.astro'
 import ProgressBar from '@/components/ui/ProgressBar.astro'
 import SelectField from '@/components/ui/SelectField.astro'
 import TextareaField from '@/components/ui/TextareaField.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 ---
 
-<section class="section container">
+<section class:list={cn('section container', className)} {...props}>
   <div class="video-wrapper">
     <Video
       src={import('@/assets/videos/project-planner.mp4')}

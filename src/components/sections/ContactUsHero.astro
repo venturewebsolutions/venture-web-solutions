@@ -2,9 +2,15 @@
 import Button from '@/components/ui/Button.astro'
 import ContactForm from '@/components/ui/ContactForm.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 ---
 
-<section id="hero" class="container section">
+<section class:list={cn('contact-us-hero container section', className)} {...props}>
   <div>
     <SectionHeader eyebrow="Contact" level={1} class="header">
       We'd love to hear from you
@@ -60,7 +66,7 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #hero {
+  .contact-us-hero {
     display: grid;
     gap: var(--spacing-5xl);
   }
@@ -118,7 +124,7 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
   }
 
   @media screen and (min-width: rem(1200px)) {
-    #hero {
+    .contact-us-hero {
       grid-template-columns: minmax(0, rem(502px)) minmax(0, rem(679px));
       justify-content: space-between;
       align-items: start;

@@ -3,7 +3,9 @@ import Heading from '@/components/headless/Heading.astro'
 import Button from '@/components/ui/Button.astro'
 import FAQItem from '@/components/ui/FAQItem.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
 
 export type FAQGroup = {
   heading: string
@@ -22,7 +24,8 @@ type BaseProps = {
   reversed?: true
 }
 
-type Props = BaseProps &
+type Props = HTMLAttributes<'section'> &
+  BaseProps &
   (
     | {
         faqs: FAQ[]
@@ -32,13 +35,20 @@ type Props = BaseProps &
       }
   )
 
-const { heading = 'Have questions?', level = 2, link, reversed } = Astro.props
+const {
+  heading = 'Have questions?',
+  level = 2,
+  link,
+  reversed,
+  class: className,
+  ...props
+} = Astro.props
 ---
 
 <section
-  id="faq"
-  class="section container"
+  class:list={cn('section container', className)}
   data-reversed={reversed || undefined}
+  {...props}
 >
   <div class="left">
     <SectionHeader eyebrow="FAQs" level={level}>{heading}</SectionHeader>
@@ -97,7 +107,7 @@ const { heading = 'Have questions?', level = 2, link, reversed } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #faq {
+  .section {
     display: grid;
     gap: var(--spacing-5xl);
   }
@@ -124,7 +134,7 @@ const { heading = 'Have questions?', level = 2, link, reversed } = Astro.props
   }
 
   @media screen and (min-width: rem(1024px)) {
-    #faq {
+    .section {
       grid-template-columns: repeat(2, auto);
       gap: var(--spacing-4xl);
       justify-content: space-between;

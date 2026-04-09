@@ -1,10 +1,16 @@
 ---
-import { Image } from 'astro:assets'
-import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Quote from '@/components/ui/Quote.astro'
+import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import { Image } from 'astro:assets'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 ---
 
-<section id="performance" class="section container">
+<section class:list={cn('section container', className)} {...props}>
   <SectionHeader eyebrow="Performance" class="header">
     Unparalleled performance with hand-coded websites
   </SectionHeader>
@@ -41,9 +47,8 @@ import Quote from '@/components/ui/Quote.astro'
 
     <div class="footer">
       <p>Don’t believe us?</p>
-      <!-- TODO: update link -->
       <a
-        href="https://pagespeed.web.dev/report?url=maggimaid.co.uk&form_factor=desktop"
+        href="https://pagespeed.web.dev/report?url=venturewebsolutions.co.uk&form_factor=desktop"
         target="_blank"
         class="link"
       >
@@ -57,7 +62,7 @@ import Quote from '@/components/ui/Quote.astro'
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #performance {
+  .section {
     display: grid;
     grid-template-areas:
       'header'
@@ -96,7 +101,7 @@ import Quote from '@/components/ui/Quote.astro'
   }
 
   @media screen and (min-width: rem(768px)) {
-    #performance {
+    .section {
       grid-template-columns: minmax(0, rem(648px)) minmax(0, rem(571px));
       grid-template-areas:
         'image header'
@@ -110,7 +115,7 @@ import Quote from '@/components/ui/Quote.astro'
   }
 
   @media screen and (min-width: rem(1267px)) {
-    #performance {
+    .section {
       align-items: center;
     }
 

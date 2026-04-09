@@ -105,11 +105,7 @@ const cards = [
 ]
 ---
 
-<section
-  id="pricing"
-  class:list={cn('section container', className)}
-  {...props}
->
+<section class:list={cn('section container', className)} {...props}>
   <SectionHeader eyebrow="Pricing" level={level} class="header">
     {heading}
   </SectionHeader>
@@ -123,7 +119,7 @@ const cards = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #pricing {
+  .section {
     display: grid;
     gap: var(--spacing-5xl);
   }

@@ -10,16 +10,22 @@ import NavigationButton from '@/components/ui/NavigationButton.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
+import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   posts: CollectionEntry<'blog'>[]
 }
 
-const { posts } = Astro.props
+const { posts, class: className, ...props } = Astro.props
 ---
 
-<section id="blog" class="section container" data-component="blog-carousel">
+<section
+  class:list={cn('section container', className)}
+  data-component="blog-carousel"
+  {...props}
+>
   <div class="intro">
     <SectionHeader eyebrow="Blog">Also worth reading</SectionHeader>
 

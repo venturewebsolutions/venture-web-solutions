@@ -2,9 +2,11 @@
 import Marquee from '@/components/headless/Marquee/Marquee.astro'
 import MarqueeGroup from '@/components/headless/Marquee/MarqueeGroup.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
+import { cn } from '@/lib/class-names'
 import { Image } from 'astro:assets'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = {
+type Props = HTMLAttributes<'section'> & {
   name: string
   eyebrow: string
   marquee: {
@@ -16,10 +18,10 @@ type Props = {
   }
 }
 
-const { name, eyebrow, marquee } = Astro.props
+const { name, eyebrow, marquee, class: className, ...props } = Astro.props
 ---
 
-<section class="section container">
+<section class:list={cn('section container', className)} {...props}>
   <div class="content-left-wrapper">
     <SectionHeader eyebrow={eyebrow} level={1}>
       Hi, I'm {name}

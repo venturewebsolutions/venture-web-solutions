@@ -4,7 +4,13 @@ import TelephoneIcon from '@/components/icons/TelephoneIcon.astro'
 import Button from '@/components/ui/Button.astro'
 import Logo from '@/components/ui/Logo.astro'
 import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
+import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'footer'>
+
+const { class: className, ...props } = Astro.props
 
 const lists = [
   {
@@ -16,24 +22,14 @@ const lists = [
         href: url('/about/'),
       },
       {
-        text: 'Testimonials',
+        text: 'Pricing',
         icon: null,
-        href: url('/testimonials/'),
-      },
-      {
-        text: 'Process',
-        icon: null,
-        href: url('/process/'),
+        href: url('/pricing/'),
       },
       {
         text: 'FAQs',
         icon: null,
         href: url('/faq/'),
-      },
-      {
-        text: 'Blog',
-        icon: null,
-        href: url('/blog/'),
       },
     ],
   },
@@ -51,9 +47,9 @@ const lists = [
         href: url('/work/'),
       },
       {
-        text: 'Pricing',
+        text: 'Blog',
         icon: null,
-        href: url('/pricing/'),
+        href: url('/blog/'),
       },
       {
         text: 'Contact',
@@ -80,7 +76,7 @@ const lists = [
 ]
 ---
 
-<footer id="footer" class="container section">
+<footer class:list={cn('section container', className)} {...props}>
   <div class="content">
     <div class="intro">
       <div class="header">
@@ -168,7 +164,7 @@ const lists = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  #footer {
+  .section {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-4xl);

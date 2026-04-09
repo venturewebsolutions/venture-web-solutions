@@ -47,7 +47,8 @@ const steps = Astro.props.steps ?? [
 ---
 
 <section
-  class:list={cn('how-it-works section container', className)}
+  class:list={cn('section container', className)}
+  data-component="how-it-works"
   {...props}
 >
   <div class="intro">
@@ -80,7 +81,7 @@ const steps = Astro.props.steps ?? [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .how-it-works {
+  .section {
     display: grid;
     gap: var(--spacing-2xl);
     grid-template-areas:
@@ -106,7 +107,7 @@ const steps = Astro.props.steps ?? [
   }
 
   @media screen and (min-width: rem(1024px)) {
-    .how-it-works {
+    .section {
       grid-template-columns: repeat(3, 1fr);
       grid-template-areas:
         'intro steps steps'
@@ -129,7 +130,7 @@ const steps = Astro.props.steps ?? [
   import { Navigation } from 'swiper/modules'
 
   window.addEventListener('load', () => {
-    new Swiper('.how-it-works .swiper', {
+    new Swiper('[data-component="how-it-works"] .swiper', {
       modules: [Navigation],
 
       slidesPerView: 1,
@@ -143,8 +144,8 @@ const steps = Astro.props.steps ?? [
       },
 
       navigation: {
-        nextEl: '.how-it-works .swiper-button-next',
-        prevEl: '.how-it-works .swiper-button-prev',
+        nextEl: '[data-component="how-it-works"] .swiper-button-next',
+        prevEl: '[data-component="how-it-works"] .swiper-button-prev',
       },
     })
   })

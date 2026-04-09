@@ -1,0 +1,67 @@
+---
+import BlogPostCard from '@/components/ui/BlogPostCard.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import type { CollectionEntry } from 'astro:content'
+
+type Props = HTMLAttributes<'section'> & {
+  posts: CollectionEntry<'blog'>[]
+}
+
+const { posts, class: className, ...props } = Astro.props
+---
+
+<section id="hero" class:list={cn('section container', className)} {...props}>
+  <header class="header">
+    <h1 class="h2">Blog</h1>
+    <p class="subheading">
+      Here’s where we keep all our little secrets about web design, development,
+      and related topics — tips, tricks, and things we wish we knew sooner!
+    </p>
+  </header>
+
+  <div class="posts">
+    {
+      posts.map((post) => (
+        <BlogPostCard
+          post={post}
+          level={2}
+          thumbnailWidths={[216, 343, 432, 520, 708, 832, 1416]}
+          thumbnailSizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  .header {
+    display: grid;
+    gap: var(--spacing-m);
+  }
+
+  .subheading {
+    max-width: rem(648px);
+  }
+
+  .posts {
+    display: grid;
+    gap: var(--spacing-2xl);
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .posts {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-2xl);
+      align-items: start;
+    }
+  }
+</style>

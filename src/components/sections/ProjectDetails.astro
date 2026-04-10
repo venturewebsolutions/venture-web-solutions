@@ -132,10 +132,8 @@ const { section, class: className, ...props } = Astro.props
   }
 
   .content {
-    max-width: rem(909px);
-    margin-inline: auto;
     display: grid;
-    grid-template-columns: 276fr 633fr;
+    gap: var(--spacing-m);
   }
 
   .label {
@@ -162,18 +160,20 @@ const { section, class: className, ...props } = Astro.props
 
   .bullet {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: var(--spacing-s);
 
     &:not([data-has-icon])::before {
-      --width: #{rem(10px)};
+      --width: #{rem(8px)};
 
       content: '';
       display: block;
+      flex-shrink: 0;
       width: var(--width);
       aspect-ratio: 1;
       border-radius: calc(var(--width) / 2);
       background-color: currentColor;
+      transform: translateY(-1px);
     }
   }
 
@@ -188,7 +188,6 @@ const { section, class: className, ...props } = Astro.props
 
   .media {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: var(--spacing-3xl);
   }
 
@@ -197,18 +196,6 @@ const { section, class: className, ...props } = Astro.props
     justify-content: center;
     align-items: end;
     border-radius: var(--border-radius-l);
-
-    &:nth-child(2n) {
-      justify-self: end;
-    }
-
-    &:nth-child(2n + 1):last-child {
-      grid-column: 1 / span 2;
-    }
-
-    &:not(:nth-child(2n + 1):last-child) {
-      max-width: rem(635px);
-    }
 
     &[data-border] {
       border: var(--border-width-s) solid var(--colour-border-primary);
@@ -257,9 +244,8 @@ const { section, class: className, ...props } = Astro.props
 
   .testimonial {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: var(--spacing-2xl);
+    flex-direction: column;
+    gap: var(--spacing-3xl);
     padding: var(--spacing-m-3xl);
     background-color: var(--colour-surface-100);
     border-radius: var(--border-radius-l);
@@ -267,12 +253,12 @@ const { section, class: className, ...props } = Astro.props
   }
 
   .testimonial-image {
-    max-width: rem(603px);
     border-radius: var(--border-radius-m);
+    aspect-ratio: 1;
+    object-fit: cover;
   }
 
   .testimonial-content {
-    max-width: rem(557px);
     display: grid;
     gap: var(--spacing-xl-4xl);
   }
@@ -283,5 +269,67 @@ const { section, class: className, ...props } = Astro.props
 
   .testimonial-quote {
     @include font(h3);
+  }
+
+  @media screen and (min-width: rem(426px)) {
+    .testimonial-image {
+      aspect-ratio: 603/401;
+    }
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .content {
+      max-width: rem(909px);
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: 276fr 633fr;
+    }
+
+    .bullet {
+      &:not([data-has-icon])::before {
+        --width: #{rem(10px)};
+      }
+    }
+
+    .media {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-3xl);
+    }
+
+    .media-card {
+      &:nth-child(2n) {
+        justify-self: end;
+      }
+
+      &:nth-child(2n + 1):last-child {
+        grid-column: 1 / span 2;
+      }
+
+      &:not(:nth-child(2n + 1):last-child) {
+        max-width: rem(635px);
+      }
+    }
+
+    .testimonial {
+      display: grid;
+      grid-template-columns: 603fr 557fr;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--spacing-2xl);
+    }
+
+    .testimonial-image {
+      width: rem(603px);
+      border-radius: var(--border-radius-m);
+      aspect-ratio: 603/401;
+    }
+
+    .testimonial-content {
+      max-width: rem(557px);
+      justify-self: end;
+      display: grid;
+      gap: var(--spacing-xl-4xl);
+    }
   }
 </style>

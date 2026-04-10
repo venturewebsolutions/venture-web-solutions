@@ -50,7 +50,7 @@ sections:
           icon: 'zoom_out_map'
     media:
       - type: 'video'
-        src: '@/assets/videos/md-loft-storage-mobile-video.mp4'
+        src: '/videos/md-loft-storage-mobile-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -72,7 +72,7 @@ sections:
       - 'The site needed to communicate expertise without sounding sales-driven, guide users without overwhelming them, and encourage enquiries without relying on traditional forms — instead using direct, visible contact methods that felt natural and low-commitment.'
     media:
       - type: 'video'
-        src: '@/assets/videos/md-loft-storage-desktop-video-desktop.mp4'
+        src: '/videos/md-loft-storage-desktop-video-desktop.mp4'
         thumbnail: true
         background: true
         border: false
@@ -94,7 +94,7 @@ sections:
         - text: 'WhatsApp-first contact to remove friction and speed up enquiries.'
     media:
       - type: 'video'
-        src: '@/assets/videos/md-loft-storage-short-video-desktop.mp4'
+        src: '/videos/md-loft-storage-short-video-desktop.mp4'
         autoplay: true
         thumbnail: false
         background: false

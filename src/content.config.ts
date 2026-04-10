@@ -1,4 +1,3 @@
-import { video } from '@/lib/schema'
 import { file, glob } from 'astro/loaders'
 import { z } from 'astro/zod'
 import { defineCollection } from 'astro:content'
@@ -154,7 +153,7 @@ const work = defineCollection({
                 z.object({
                   ...media,
                   type: z.enum(['video']),
-                  src: video(),
+                  src: z.string(),
                   autoplay: z.boolean().optional(),
                   thumbnail: z.boolean().optional(),
                 }),

@@ -3,6 +3,7 @@ import Video from '@/components/headless/Video.astro'
 import Stars from '@/components/ui/Stars.astro'
 import VideoThumbnail from '@/components/ui/VideoThumbnail.astro'
 import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
@@ -82,7 +83,7 @@ const { section, class: className, ...props } = Astro.props
               {item.type === 'video' ? (
                 <VideoWrapper label="Play video" class="video-thumbnail">
                   <Video
-                    src={item.src}
+                    src={url(item.src)}
                     lazy
                     muted
                     autoplay={item.autoplay || undefined}

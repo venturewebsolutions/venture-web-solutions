@@ -46,7 +46,7 @@ sections:
           icon: 'laptop_mac'
     media:
       - type: 'video'
-        src: '@/assets/videos/popletts-mobile-video.mp4'
+        src: '/videos/popletts-mobile-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -67,7 +67,7 @@ sections:
       - 'As a new business, Poplett’s had no existing digital presence. The challenge was to create a website that could immediately establish credibility and reassure pet owners — a crucial factor in a trust-led service like dog grooming. The site needed to clearly explain services, remove uncertainty around pricing, and make it easy for visitors to reach out, particularly on mobile devices.'
     media:
       - type: 'video'
-        src: '@/assets/videos/popletts-desktop-video-desktop.mp4'
+        src: '/videos/popletts-desktop-video-desktop.mp4'
         thumbnail: true
         background: true
         border: false
@@ -88,7 +88,7 @@ sections:
         - text: 'Delivered a fast, reliable experience across devices.'
     media:
       - type: 'video'
-        src: '@/assets/videos/popletts-short-video-desktop.mp4'
+        src: '/videos/popletts-short-video-desktop.mp4'
         autoplay: true
         thumbnail: false
         background: false

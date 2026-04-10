@@ -52,7 +52,7 @@ sections:
           icon: 'laptop_mac'
     media:
       - type: 'video'
-        src: '@/assets/videos/stefanos-mobile-video.mp4'
+        src: '/videos/stefanos-mobile-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -73,7 +73,7 @@ sections:
       - 'Stefano’s is more than a new restaurant. It’s a family-run business with a clear identity — led by an Italian pizza chef owner, supported by family members front-of-house, and shaped by live music and events hosted by co-owner Sally. The challenge was to translate this personal, lived experience into a digital presence without over-explaining or diluting it into generic restaurant messaging.'
     media:
       - type: 'video'
-        src: '@/assets/videos/stefanos-desktop-video-desktop.mp4'
+        src: '/videos/stefanos-desktop-video-desktop.mp4'
         thumbnail: true
         background: true
         border: false
@@ -94,7 +94,7 @@ sections:
         - text: 'Delivered a CMS enabling the team to manage updates independently.'
     media:
       - type: 'video'
-        src: '@/assets/videos/stefanos-short-video-desktop.mp4'
+        src: '/videos/stefanos-short-video-desktop.mp4'
         autoplay: true
         thumbnail: false
         background: false

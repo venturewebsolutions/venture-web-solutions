@@ -35,30 +35,37 @@ const members = [
 ]
 
 type Props = HTMLAttributes<'section'> & {
-  level: number
+  minimal?: boolean
+  level?: number
 }
 
-const { level, class: className, ...props } = Astro.props
+const { minimal = false, level = 2, class: className, ...props } = Astro.props
 ---
 
 <section class:list={cn('section container', className)} {...props}>
   <div class="intro">
-    <SectionHeader eyebrow="Meet the team" level={1} class="header">
+    <SectionHeader eyebrow="Meet the team" level={level} class="header">
       The humans behind the scenes
     </SectionHeader>
 
-    <div class="intro-text">
-      <p>
-        Hello! You’ve found us — yes, we’re humans too. It’s nice to meet you!
-      </p>
+    {
+      !minimal && (
+        <div class="intro-text">
+          <p>
+            Hello! You’ve found us — yes, we’re humans too. It’s nice to meet
+            you!
+          </p>
 
-      <p>
-        We’re a small team of two, and we’re happy you’re here. This page is
-        where you can get to know us a little better — who we are, what we do,
-        and the people you’ll be working with. And if you decide to start a
-        project with us, we’ll be just as excited to get to know you too.
-      </p>
-    </div>
+          <p>
+            We’re a small team of two, and we’re happy you’re here. This page is
+            where you can get to know us a little better — who we are, what we
+            do, and the people you’ll be working with. And if you decide to
+            start a project with us, we’ll be just as excited to get to know you
+            too.
+          </p>
+        </div>
+      )
+    }
   </div>
 
   <div class="member-cards">
@@ -92,18 +99,20 @@ const { level, class: className, ...props } = Astro.props
             </ThumbnailCaption>
           </Thumbnail>
 
-          <div class="member-card-footer">
-            <p class="member-summary">{member.summary}</p>
+          {!minimal && (
+            <div class="member-card-footer">
+              <p class="member-summary">{member.summary}</p>
 
-            <Button
-              href={member.url}
-              variant="secondary-outline"
-              arrow
-              class="member-link"
-            >
-              Get to know {member.name}
-            </Button>
-          </div>
+              <Button
+                href={member.url}
+                variant="secondary-outline"
+                arrow
+                class="member-link"
+              >
+                Get to know {member.name}
+              </Button>
+            </div>
+          )}
         </div>
       ))
     }

@@ -1,0 +1,140 @@
+---
+import { Image } from 'astro:assets'
+import Eyebrow from '../ui/Eyebrow.astro'
+
+const images = [
+  {
+    src: import('@/assets/images/about-1.jpg'),
+  },
+  {
+    src: import('@/assets/images/about-2.jpg'),
+  },
+  {
+    src: import('@/assets/images/about-3.jpg'),
+  },
+  {
+    src: import('@/assets/images/about-4.jpg'),
+  },
+  {
+    src: import('@/assets/images/about-5.jpg'),
+  },
+]
+---
+
+<section class="section">
+  <div class="container">
+    <div class="header">
+      <h1>
+        <Eyebrow>About us</Eyebrow>
+      </h1>
+
+      <p class="h1">Hi, nice to meet you!</p>
+    </div>
+  </div>
+
+  <div class="wheel-track">
+    <div class="wheel">
+      {
+        new Array(6)
+          .fill(null)
+          .flatMap(() =>
+            images.map((image) => (
+              <Image src={image.src} alt="" class="image" loading="eager" />
+            )),
+          )
+      }
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    display: grid;
+    gap: var(--spacing-7xl);
+    overflow: hidden;
+  }
+
+  .header {
+    display: grid;
+    gap: var(--spacing-2xs);
+    text-align: center;
+  }
+
+  .wheel-track {
+    height: 303px;
+    position: relative;
+    transform: translateY(-35%);
+  }
+
+  .wheel {
+    --radius: 75vw;
+
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+
+    width: calc(var(--radius) * 2);
+    height: calc(var(--radius) * 2);
+
+    animation: spin 200s linear infinite;
+  }
+
+  .image {
+    position: absolute;
+    border-radius: var(--border-radius-m);
+    width: 295px;
+    height: 303px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translateX(-50%) rotateZ(0deg);
+    }
+
+    100% {
+      transform: translateX(-50%) rotateZ(360deg);
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const wheel = document.querySelector<HTMLElement>('.wheel')!
+  const images = document.querySelectorAll('.image')
+
+  const center = wheel.offsetWidth / 2
+  const radius = wheel.offsetWidth / 2
+  const slice = 360 / images.length
+  const DEG2RAD = Math.PI / 180
+
+  for (let i = 0; i < images.length; i++) {
+    const angle = i * slice
+
+    const x = radius * Math.sin(angle * DEG2RAD)
+    const y = center + radius * Math.cos(angle * DEG2RAD)
+    const rotation = -i * slice
+
+    const image = images[i]
+
+    gsap.set(image, {
+      x,
+      y,
+      rotation,
+      // xPercent: -50,
+      yPercent: -50,
+      zIndex: images.length - i,
+    })
+  }
+</script>

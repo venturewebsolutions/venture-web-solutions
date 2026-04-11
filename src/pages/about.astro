@@ -1,0 +1,96 @@
+---
+import AboutHero from '@/components/sections/AboutHero.astro'
+import AboutUs from '@/components/sections/AboutUs.astro'
+import BlogShowcaseCarousel from '@/components/sections/BlogShowcaseCarousel.astro'
+import CTAMarquee from '@/components/sections/CTAMarquee.astro'
+import HowItWorks from '@/components/sections/HowItWorks.astro'
+import MeetTheTeam from '@/components/sections/MeetTheTeam.astro'
+import OurValues from '@/components/sections/OurValues.astro'
+import Testimonials from '@/components/sections/Testimonials.astro'
+import WhyUs from '@/components/sections/WhyUs.astro'
+import Layout from '@/layouts/Layout.astro'
+import { getBlogPosts, getTestimonials } from '@/lib/collections'
+import { url } from '@/lib/url'
+
+const testimonials = await getTestimonials()
+const posts = await getBlogPosts()
+
+const steps = [
+  {
+    heading: 'Discovery & Planning',
+    text: 'A quick chat to learn about your business, your goals, and how we can help.',
+  },
+  {
+    heading: 'Design',
+    text: 'We create something that feels right for your business (and if you hate it, you don’t pay).',
+  },
+  {
+    heading: 'Development & Launch',
+    text: 'We hand-code your site from scratch and make it live.',
+  },
+  {
+    heading: 'Support',
+    text: 'We’ll still be here, ready to help whenever you need us.',
+  },
+]
+---
+
+<Layout title="About | Venture Web Solutions" description="">
+  <AboutHero />
+  <AboutUs class="about-us">
+    <p slot="heading" class="h3">
+      We’re Venture Web Solutions, an independent web design agency, dedicated
+      to bringing professional websites to small businesses.
+    </p>
+
+    <Fragment slot="paragraphs">
+      <p>
+        We build fast, great-looking websites for small, ambitious businesses
+        across the UK who want to look professional online without spending a
+        small fortune. Based in York and working with clients nationwide, we
+        help companies succeed online without the budget of a large
+        organisation.
+      </p>
+
+      <p>
+        We believe great websites shouldn’t be reserved for big businesses.
+        We’re humans first, tech people second — so no jargon or buzzwords here.
+        Just clear communication, honest advice, and websites that actually
+        work.
+      </p>
+
+      <p>
+        Our mission is simple: make professional websites accessible to every
+        small business that wants to grow online.
+      </p>
+    </Fragment>
+  </AboutUs>
+  <WhyUs />
+  <HowItWorks
+    heading="How we work"
+    subheading="We keep things simple!"
+    steps={steps}
+  />
+  <OurValues />
+  <MeetTheTeam minimal />
+  <Testimonials testimonials={testimonials} />
+  <CTAMarquee
+    groups={3}
+    text="Ready to get started?"
+    href={url('/project-planner/')}
+  />
+  <BlogShowcaseCarousel posts={posts} />
+</Layout>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .about-us {
+    --intro-fr: 567fr;
+    --content-fr: 648fr;
+
+    --intro-max-width: #{rem(567px)};
+    --content-max-width: #{rem(648px)};
+  }
+</style>

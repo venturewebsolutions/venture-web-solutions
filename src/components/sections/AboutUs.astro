@@ -5,19 +5,34 @@ import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { HTMLAttributes } from 'astro/types'
 
-type Props = HTMLAttributes<'section'>
+type Props = HTMLAttributes<'section'> & {
+  links?: boolean
+  reversed?: boolean
+}
 
-const { class: className, ...props } = Astro.props
+const {
+  links = false,
+  reversed = false,
+  class: className,
+  ...props
+} = Astro.props
 ---
 
-<section class:list={cn('section container', className)} {...props}>
+<section
+  class:list={cn('section container', className)}
+  data-reversed={reversed || undefined}
+  {...props}
+>
   <h2 class="sr-only">About Us</h2>
 
-  <div class="column-1">
-    <p class="h2">
-      We’re an independent web design agency, dedicated to bringing professional
-      websites to small businesses.
-    </p>
+  <div class="intro">
+    <slot name="heading">
+      <p class="h2">
+        We’re an independent web design agency, dedicated to bringing
+        professional websites to small businesses.
+      </p>
+    </slot>
+
     <div class="images">
       <Avatar
         src={import('@/assets/images/jordan-avatar.jpg')}
@@ -32,25 +47,41 @@ const { class: className, ...props } = Astro.props
     </div>
   </div>
 
-  <div class="column-2">
-    <p class="paragraph-1">
-      We want to break the barriers for small but ambitious businesses to expand
-      into the digital world and grow their business online. Based in York and
-      working with clients anywhere in the UK, we support companies that want to
-      succeed online but don’t have the budget of larger organisations. We
-      believe that great websites shouldn’t be reserved only for big businesses!
-    </p>
-    <div class="button-1">
-      <Button variant="secondary" href={url('/about/')} arrow>
-        Who we are
-      </Button>
+  <div class="content" data-links={links || undefined}>
+    <div class="paragraphs">
+      <slot name="paragraphs">
+        <p>
+          We want to break the barriers for small but ambitious businesses to
+          expand into the digital world and grow their business online. Based in
+          York and working with clients anywhere in the UK, we support companies
+          that want to succeed online but don’t have the budget of larger
+          organisations. We believe that great websites shouldn’t be reserved
+          only for big businesses!
+        </p>
+      </slot>
     </div>
-    <p class="paragraph-2">Pssst… want to meet the team behind the scenes?</p>
-    <div class="button-2">
-      <Button variant="ghost" size="link" href={url('/team/')} arrow>
-        Meet the team
-      </Button>
-    </div>
+
+    {
+      links && (
+        <>
+          <div class="button-1">
+            <Button variant="secondary" href={url('/about/')} arrow>
+              Who we are
+            </Button>
+          </div>
+
+          <p class="button-2-caption">
+            Pssst… want to meet the team behind the scenes?
+          </p>
+
+          <div class="button-2">
+            <Button variant="ghost" size="link" href={url('/team/')} arrow>
+              Meet the team
+            </Button>
+          </div>
+        </>
+      )
+    }
   </div>
 </section>
 
@@ -63,7 +94,7 @@ const { class: className, ...props } = Astro.props
     gap: var(--spacing-2xl);
   }
 
-  .column-1 {
+  .intro {
     display: grid;
     gap: var(--spacing-2xl);
   }
@@ -74,46 +105,69 @@ const { class: className, ...props } = Astro.props
     gap: var(--spacing-xs);
   }
 
-  .column-2 {
+  .content {
     display: grid;
     justify-items: start;
     align-items: center;
     gap: var(--spacing-2xl) var(--spacing-xl);
   }
 
+  .paragraphs {
+    display: grid;
+    gap: var(--spacing-xl);
+  }
+
   @media screen and (min-width: rem(931px)) {
     .section {
-      grid-template-columns: repeat(2, auto);
+      grid-template-columns: var(--intro-fr, 683fr) var(--content-fr, 535fr);
       gap: var(--spacing-4xl);
+      align-items: start;
+
+      &[data-reversed] {
+        grid-template-columns: var(--intro-fr, 535fr) var(--content-fr, 683fr);
+      }
     }
 
-    .column-1 {
-      order: 1;
+    .intro {
+      display: grid;
+      gap: var(--spacing-2xl);
+      max-width: var(--intro-max-width, rem(683px));
+
+      .section[data-reversed] & {
+        order: 1;
+      }
     }
 
-    .column-2 {
-      grid-template-columns: auto 1fr;
-      grid-template-areas:
-        'p1 p1'
-        'p2 p2'
-        'b1 b2';
+    .content {
+      max-width: var(--content-max-width, rem(535px));
+
+      &[data-links] {
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          'paragraphs paragraphs'
+          'button-2-caption button-2-caption'
+          'button-1 button-2';
+      }
     }
 
-    .paragraph-1 {
+    .paragraphs {
       max-width: #{em(535px, 16px)};
-      grid-area: p1;
+
+      .content[data-links] & {
+        grid-area: paragraphs;
+      }
     }
 
-    .paragraph-2 {
-      grid-area: p2;
+    .button-2-caption {
+      grid-area: button-2-caption;
     }
 
     .button-1 {
-      grid-area: b1;
+      grid-area: button-1;
     }
 
     .button-2 {
-      grid-area: b2;
+      grid-area: button-2;
     }
   }
 </style>

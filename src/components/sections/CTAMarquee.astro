@@ -5,21 +5,23 @@ import MarqueeGroup from '@/components/headless/Marquee/MarqueeGroup.astro'
 import { url } from '@/lib/url'
 
 type Props = HTMLAttributes<'section'> & {
+  href?: string
   text: string
-  href: string
   groups: number
 }
 
 const { text, href, groups, ...props } = Astro.props
+
+const Wrapper = href ? 'a' : Fragment
 ---
 
 <section {...props}>
   <h2 class="sr-only">{text}</h2>
 
-  <a
-    href={href}
-    style={`--cursor-url: url(${url('/cursor.svg')});`}
-    class="link"
+  <Wrapper
+    href={href || undefined}
+    style={href ? `--cursor-url: url(${url('/cursor.svg')});` : undefined}
+    class:list={{ link: href }}
   >
     <Marquee class="marquee">
       <MarqueeGroup groups={groups} class="marquee-group">
@@ -34,7 +36,7 @@ const { text, href, groups, ...props } = Astro.props
         <div class="dot"></div>
       </MarqueeGroup>
     </Marquee>
-  </a>
+  </Wrapper>
 </section>
 
 <style lang="scss">

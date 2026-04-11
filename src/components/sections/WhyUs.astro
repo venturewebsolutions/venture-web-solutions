@@ -1,0 +1,224 @@
+---
+import { Icon } from 'astro-icon/components'
+import SectionHeader from '../ui/SectionHeader.astro'
+import Drawing from '@/assets/images/boat_island_drawing.svg'
+
+const features = [
+  {
+    icon: 'laptop_mac',
+    heading: 'Hand-coded websites (no WordPress or page builders)',
+    description:
+      'No bloated templates, no plugins breaking every five minutes — just clean, fast, custom code built for you.',
+  },
+  {
+    icon: 'shutter_speed_add',
+    heading: 'Serious performance',
+    description:
+      'Every extra second of load time can lose you up to 10% more customers. We aim for Google PageSpeed scores as close to 100/100 as humanly possible, bringing you more customers and better Google rankings.',
+  },
+  {
+    icon: 'routine',
+    heading: 'Proper support — whenever you need it',
+    description:
+      'Call, text, or email us any time. Yes, even evenings and weekends. We actually want to hear from you. (Note: 24/7 support is included in our subscription model.)',
+  },
+  {
+    icon: 'money_bag',
+    heading: 'Transparent, small-business-friendly pricing',
+    description: 'No upsells, no surprises, no nonsense.',
+  },
+  {
+    icon: 'published_with_changes',
+    heading: 'Unlimited edits',
+    description:
+      'Need to update your opening hours or swap out an image? Just ask — it’s included. (Note: unlimited edits are also part of our subscription model.)',
+  },
+]
+---
+
+<section class="section container" data-component="why-us">
+  <div class="card">
+    <div class="content-left">
+      <div class="intro">
+        <SectionHeader eyebrow="Why us" class="header">
+          What makes us different
+        </SectionHeader>
+
+        <p class="lead">
+          There are a lot of web design agencies out there. Here’s why we’re not
+          like most of them!
+        </p>
+      </div>
+
+      <Drawing class="drawing" />
+    </div>
+
+    <div class="content-right">
+      <div class="features">
+        {
+          features.map((feature) => (
+            <div class="feature">
+              <div class="feature-header">
+                <div class="feature-icon-box">
+                  <Icon name={feature.icon} class="feature-icon" />
+                </div>
+
+                <h3 class="h3">{feature.heading}</h3>
+              </div>
+
+              <p class="feature-description">{feature.description}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .card {
+    display: grid;
+    gap: var(--spacing-5xl);
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-l);
+    padding: var(--spacing-5xl);
+  }
+
+  .lead {
+    margin-top: var(--spacing-m);
+  }
+
+  .drawing {
+    width: 100%;
+    height: auto;
+    margin-top: var(--spacing-m);
+  }
+
+  .feature {
+    display: grid;
+    gap: var(--spacing-m);
+
+    &:not(:last-child) {
+      padding-bottom: var(--spacing-6xl);
+    }
+  }
+
+  .feature-header {
+    display: grid;
+    gap: var(--spacing-s);
+    justify-items: start;
+  }
+
+  .feature-icon-box {
+    background-color: var(--colour-surface-base);
+    border-radius: var(--border-radius-s);
+    padding: var(--spacing-m);
+  }
+
+  .feature-icon {
+    color: var(--colour-text-contrast);
+  }
+
+  @media screen and (min-width: 1440px) {
+    .section {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      display: grid;
+      grid-template-columns: 454fr 565fr;
+      gap: var(--spacing-5xl);
+      overflow: hidden;
+    }
+
+    .content-left {
+      display: grid;
+      gap: var(--spacing-s);
+      align-content: space-between;
+      max-width: rem(454px);
+    }
+
+    .content-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lead {
+      max-width: rem(374px);
+    }
+
+    .features {
+      position: absolute;
+      bottom: 0;
+      transform: translateY(100%);
+    }
+
+    .feature-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--spacing-xl);
+      align-items: center;
+    }
+  }
+</style>
+
+<script>
+  import gsap from 'gsap'
+  import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  const mm = gsap.matchMedia()
+
+  const root = document.querySelector('[data-component="why-us"]')!
+  const featureList = root.querySelector('.features')!
+  const features = root.querySelectorAll('.feature')!
+
+  window.addEventListener('load', () => {
+    mm.add('(min-width: 48rem)', () => {
+      gsap.to(featureList, {
+        y: 0,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: root,
+          start: 'top top',
+          end: () => `+=${featureList.scrollHeight}px`,
+          scrub: true,
+          pin: true,
+        },
+      })
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: root,
+          start: 'top top',
+          end: () => `+=${featureList.scrollHeight}px`,
+          scrub: true,
+        },
+      })
+
+      for (const feature of features) {
+        tl.fromTo(
+          feature,
+          {
+            x: 40,
+            autoAlpha: 0,
+            skewX: -3,
+          },
+          {
+            x: 0,
+            autoAlpha: 1,
+            skewX: 0,
+            duration: () => feature.clientHeight,
+          },
+        )
+      }
+    })
+  })
+</script>

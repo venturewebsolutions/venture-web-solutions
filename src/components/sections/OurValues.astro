@@ -1,0 +1,97 @@
+---
+import CTAMarquee from '@/components/sections/CTAMarquee.astro'
+import NumberCard from '@/components/ui/NumberCard.astro'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'section'>
+
+const cards = [
+  {
+    number: 1,
+    heading: 'Honesty first',
+    text: 'You’ll always get clear, straightforward advice.',
+  },
+  {
+    number: 2,
+    heading: 'Attention to detail',
+    text: 'Every pixel, every line of code, every experience matters.',
+  },
+  {
+    number: 3,
+    heading: 'Friendly & approachable',
+    text: 'We’re here to help, not to confuse you.',
+  },
+  {
+    number: 4,
+    heading: 'Speed matters',
+    text: 'In replies, in development, and in the websites themselves.',
+  },
+  {
+    number: 5,
+    heading: 'Partner mentality',
+    text: 'Your success is our success; we’re in this with you.',
+  },
+  {
+    number: 6,
+    heading: 'Accessibility for all',
+    text: 'Great websites shouldn’t be reserved for big budgets.',
+  },
+]
+---
+
+<section class="section" id="values">
+  <CTAMarquee groups={5} text="Our values" />
+
+  <div class="container">
+    <div class="cards">
+      {
+        cards.map((card) => (
+          <NumberCard
+            number={card.number}
+            heading={card.heading}
+            level={3}
+            class="card"
+          >
+            {card.text}
+          </NumberCard>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .section {
+    padding-top: 0;
+  }
+
+  .cards {
+    --columns: 1;
+
+    display: grid;
+    grid-template-columns: repeat(var(--columns), 1fr);
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-section);
+  }
+
+  .card {
+    --number-colour: var(--colour-text-primary);
+
+    text-align: center;
+  }
+
+  @media screen and (min-width: rem(642px)) {
+    .cards {
+      --columns: 2;
+    }
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .cards {
+      --columns: 3;
+    }
+  }
+</style>

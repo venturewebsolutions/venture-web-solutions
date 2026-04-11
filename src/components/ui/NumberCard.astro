@@ -1,24 +1,26 @@
 ---
 import Heading from '@/components/headless/Heading.astro'
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
 
-type Props = {
-  step: number
+type Props = HTMLAttributes<'section'> & {
+  number: number
   heading: string
   level: number
 }
 
-const { step, heading, level } = Astro.props
+const { number, heading, level, class: className, ...props } = Astro.props
 ---
 
-<section class="step-card">
-  <div class="step-surface">
-    <p class="step-number">
-      <span class="swiper-no-swiping">{step}</span>
+<section class:list={cn('card', className)} {...props}>
+  <div class="surface">
+    <p class="number">
+      <span class="swiper-no-swiping">{number}</span>
     </p>
-    <Heading level={level} class="step-title h4">
+    <Heading level={level} class="heading h4">
       <span class="swiper-no-swiping">{heading}</span>
     </Heading>
-    <p class="step-content">
+    <p class="content">
       <span class="swiper-no-swiping"><slot /></span>
     </p>
   </div>
@@ -28,7 +30,7 @@ const { step, heading, level } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .step-card {
+  .card {
     --padding-block: var(--spacing-s);
 
     @include font(display-numeral-xl);
@@ -42,7 +44,7 @@ const { step, heading, level } = Astro.props
     height: 100%;
   }
 
-  .step-surface {
+  .surface {
     @include font(body);
 
     background-color: var(--colour-surface-100);
@@ -55,14 +57,14 @@ const { step, heading, level } = Astro.props
     height: 100%;
   }
 
-  .step-number {
+  .number {
     @include font(display-numeral-xl);
-    color: var(--colour-text-contrast);
+    color: var(--number-colour, var(--colour-text-contrast));
     text-align: center;
     margin-top: calc(-1 * var(--negative-margin));
   }
 
-  .step-title {
+  .heading {
     text-align: center;
   }
 </style>

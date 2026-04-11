@@ -1,13 +1,14 @@
 ---
 import NavigationButton from '@/components/ui/NavigationButton.astro'
+import NumberCard from '@/components/ui/NumberCard.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
-import StepCard from '@/components/ui/StepCard.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'section'> & {
   eyebrow?: string
   heading?: string
+  subheading?: string
   steps?: {
     heading: string
     text: string
@@ -17,6 +18,7 @@ type Props = HTMLAttributes<'section'> & {
 const {
   eyebrow = 'Steps',
   heading = 'How it works',
+  subheading = 'It’s simple (we promise)!',
   steps: _,
   class: className,
   ...props
@@ -54,7 +56,7 @@ const steps = Astro.props.steps ?? [
   <div class="intro">
     <SectionHeader eyebrow={eyebrow}>{heading}</SectionHeader>
 
-    <p>It’s simple (we promise)!</p>
+    <p>{subheading}</p>
   </div>
 
   <div class="steps swiper">
@@ -62,9 +64,9 @@ const steps = Astro.props.steps ?? [
       {
         steps.map((step, i) => (
           <div class="swiper-slide">
-            <StepCard step={i + 1} heading={step.heading} level={3}>
+            <NumberCard number={i + 1} heading={step.heading} level={3}>
               {step.text}
-            </StepCard>
+            </NumberCard>
           </div>
         ))
       }

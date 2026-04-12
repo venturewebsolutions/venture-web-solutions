@@ -1,8 +1,8 @@
 ---
+import Eyebrow from '@/components/ui/Eyebrow.astro'
 import { Image } from 'astro:assets'
-import Eyebrow from '../ui/Eyebrow.astro'
 
-const images = [
+const images = new Array(5).fill(null).flatMap(() => [
   {
     src: import('@/assets/images/about-1.jpg'),
   },
@@ -18,7 +18,7 @@ const images = [
   {
     src: import('@/assets/images/about-5.jpg'),
   },
-]
+])
 ---
 
 <section class="section">
@@ -33,15 +33,20 @@ const images = [
   </div>
 
   <div class="wheel-track">
-    <div class="wheel">
+    <div class="wheel" style={{ '--total-items': `${images.length}` }}>
       {
-        new Array(6)
-          .fill(null)
-          .flatMap(() =>
-            images.map((image) => (
+        images.map((image, index) => {
+          return (
+            <div
+              class="wheel-item"
+              style={{
+                '--index': `${index}`,
+              }}
+            >
               <Image src={image.src} alt="" class="image" loading="eager" />
-            )),
+            </div>
           )
+        })
       }
     </div>
   </div>
@@ -66,41 +71,67 @@ const images = [
   .wheel-track {
     height: 303px;
     position: relative;
-    transform: translateY(-35%);
   }
 
   .wheel {
-    --radius: 75vw;
+    --max-items: -1;
+    --items: clamp(var(--total-items), var(--total-items), var(--max-items));
+
+    --radius: 60vw;
+    --translateX: -50%;
+    --translateY: calc(var(--image-height) / -2);
+
+    --item-gap: calc(360deg / var(--items));
+
+    --image-height: #{linear(160px, 303px)};
 
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(var(--translateX)) translateY(var(--translateY))
+      rotateZ(0deg);
+
     z-index: -1;
-    display: flex;
-    align-items: start;
-    justify-content: center;
 
     width: calc(var(--radius) * 2);
     height: calc(var(--radius) * 2);
 
-    animation: spin 200s linear infinite;
+    // animation: spin 5s linear infinite;
+  }
+
+  .wheel-item {
+    --index: 0;
+
+    --left: calc(50% + 50% * sin(var(--index) * var(--item-gap)));
+    --top: calc(50% + 50% * cos(var(--index) * var(--item-gap)));
+    --rotation: calc(var(--index) * var(--item-gap) * -1);
+
+    position: absolute;
+
+    left: var(--left);
+    top: var(--top);
+    transform: translateX(-50%) translateY(-50%) rotateZ(var(--rotation));
+
+    height: var(--image-height);
+    aspect-ratio: 295/303;
   }
 
   .image {
-    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: var(--border-radius-m);
-    width: 295px;
-    height: 303px;
   }
 
   @keyframes spin {
     0% {
-      transform: translateX(-50%) rotateZ(0deg);
+      transform: translateX(var(--translateX)) translateY(var(--translateY))
+        rotateZ(0deg);
     }
 
     100% {
-      transform: translateX(-50%) rotateZ(360deg);
+      transform: translateX(var(--translateX)) translateY(var(--translateY))
+        rotateZ(360deg);
     }
   }
 </style>
@@ -128,13 +159,13 @@ const images = [
 
     const image = images[i]
 
-    gsap.set(image, {
-      x,
-      y,
-      rotation,
-      // xPercent: -50,
-      yPercent: -50,
-      zIndex: images.length - i,
-    })
+    // gsap.set(image, {
+    //   x,
+    //   y,
+    //   rotation,
+    //   // xPercent: -50,
+    //   yPercent: -50,
+    //   zIndex: images.length - i,
+    // })
   }
 </script>

@@ -1,24 +1,28 @@
 ---
 import Eyebrow from '@/components/ui/Eyebrow.astro'
+import { take } from '@/lib/utils'
 import { Image } from 'astro:assets'
 
-const images = new Array(5).fill(null).flatMap(() => [
-  {
-    src: import('@/assets/images/about-1.jpg'),
-  },
-  {
-    src: import('@/assets/images/about-2.jpg'),
-  },
-  {
-    src: import('@/assets/images/about-3.jpg'),
-  },
-  {
-    src: import('@/assets/images/about-4.jpg'),
-  },
-  {
-    src: import('@/assets/images/about-5.jpg'),
-  },
-])
+const images = take(
+  [
+    {
+      src: import('@/assets/images/about-1.jpg'),
+    },
+    {
+      src: import('@/assets/images/about-2.jpg'),
+    },
+    {
+      src: import('@/assets/images/about-3.jpg'),
+    },
+    {
+      src: import('@/assets/images/about-4.jpg'),
+    },
+    {
+      src: import('@/assets/images/about-5.jpg'),
+    },
+  ],
+  25,
+)
 ---
 
 <section class="section">
@@ -33,7 +37,7 @@ const images = new Array(5).fill(null).flatMap(() => [
   </div>
 
   <div class="wheel-track">
-    <div class="wheel" style={{ '--total-items': `${images.length}` }}>
+    <div class="wheel" style={{ '--items': `${images.length}` }}>
       {
         images.map((image, index) => {
           return (
@@ -69,26 +73,28 @@ const images = new Array(5).fill(null).flatMap(() => [
   }
 
   .wheel-track {
-    height: 303px;
+    --scale: #{linear(0.5, 1)};
+
+    --item-width: calc(295px * var(--scale));
+    --item-height: calc(303px * var(--scale));
+
+    height: var(--item-height);
     position: relative;
   }
 
   .wheel {
-    --max-items: -1;
-    --items: clamp(var(--total-items), var(--total-items), var(--max-items));
+    --radius: calc(1536px * var(--scale));
 
-    --radius: 60vw;
-    --translateX: -50%;
-    --translateY: calc(var(--image-height) / -2);
+    // --angular-gap must be a multiple of 360deg to avoid gaps at the end
+    --angular-gap: calc(360deg / var(--items));
 
-    --item-gap: calc(360deg / var(--items));
-
-    --image-height: #{linear(160px, 303px)};
+    --translate-x: -50%;
+    --translate-y: calc(var(--item-height) / -2);
 
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateX(var(--translateX)) translateY(var(--translateY))
+    transform: translateX(var(--translate-x)) translateY(var(--translate-y))
       rotateZ(0deg);
 
     z-index: -1;
@@ -96,15 +102,15 @@ const images = new Array(5).fill(null).flatMap(() => [
     width: calc(var(--radius) * 2);
     height: calc(var(--radius) * 2);
 
-    // animation: spin 5s linear infinite;
+    animation: spin 220s linear infinite;
   }
 
   .wheel-item {
     --index: 0;
 
-    --left: calc(50% + 50% * sin(var(--index) * var(--item-gap)));
-    --top: calc(50% + 50% * cos(var(--index) * var(--item-gap)));
-    --rotation: calc(var(--index) * var(--item-gap) * -1);
+    --left: calc(50% + 50% * sin(var(--index) * var(--angular-gap)));
+    --top: calc(50% + 50% * cos(var(--index) * var(--angular-gap)));
+    --rotation: calc(var(--index) * var(--angular-gap) * -1);
 
     position: absolute;
 
@@ -112,8 +118,8 @@ const images = new Array(5).fill(null).flatMap(() => [
     top: var(--top);
     transform: translateX(-50%) translateY(-50%) rotateZ(var(--rotation));
 
-    height: var(--image-height);
-    aspect-ratio: 295/303;
+    width: var(--item-width);
+    height: var(--item-height);
   }
 
   .image {
@@ -125,47 +131,13 @@ const images = new Array(5).fill(null).flatMap(() => [
 
   @keyframes spin {
     0% {
-      transform: translateX(var(--translateX)) translateY(var(--translateY))
+      transform: translateX(var(--translate-x)) translateY(var(--translate-y))
         rotateZ(0deg);
     }
 
     100% {
-      transform: translateX(var(--translateX)) translateY(var(--translateY))
+      transform: translateX(var(--translate-x)) translateY(var(--translate-y))
         rotateZ(360deg);
     }
   }
 </style>
-
-<script>
-  import gsap from 'gsap'
-  import { ScrollTrigger } from 'gsap/ScrollTrigger'
-
-  gsap.registerPlugin(ScrollTrigger)
-
-  const wheel = document.querySelector<HTMLElement>('.wheel')!
-  const images = document.querySelectorAll('.image')
-
-  const center = wheel.offsetWidth / 2
-  const radius = wheel.offsetWidth / 2
-  const slice = 360 / images.length
-  const DEG2RAD = Math.PI / 180
-
-  for (let i = 0; i < images.length; i++) {
-    const angle = i * slice
-
-    const x = radius * Math.sin(angle * DEG2RAD)
-    const y = center + radius * Math.cos(angle * DEG2RAD)
-    const rotation = -i * slice
-
-    const image = images[i]
-
-    // gsap.set(image, {
-    //   x,
-    //   y,
-    //   rotation,
-    //   // xPercent: -50,
-    //   yPercent: -50,
-    //   zIndex: images.length - i,
-    // })
-  }
-</script>

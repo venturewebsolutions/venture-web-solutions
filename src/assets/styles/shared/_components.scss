@@ -8,7 +8,8 @@
 }
 
 .section {
-  padding-block: var(--spacing-section);
+  padding-top: var(--padding-top, var(--spacing-section));
+  padding-bottom: var(--padding-bottom, var(--spacing-section));
 }
 
 .h1 {

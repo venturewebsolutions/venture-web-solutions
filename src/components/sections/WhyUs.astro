@@ -124,7 +124,6 @@ const features = [
 
   @media screen and (min-width: 1440px) {
     .section {
-      min-height: 100svh;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -187,17 +186,17 @@ const features = [
         ease: 'none',
         scrollTrigger: {
           trigger: root,
-          start: 'top top',
+          start: '50% 50%',
           end: () => `+=${featureList.scrollHeight}px`,
           scrub: true,
-          pin: true,
+          pin: 'main',
         },
       })
 
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
-          start: 'top top',
+          start: '50% 50%',
           end: () => `+=${featureList.scrollHeight}px`,
           scrub: true,
         },

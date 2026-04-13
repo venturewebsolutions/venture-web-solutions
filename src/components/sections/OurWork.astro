@@ -149,7 +149,6 @@ const projects = [
       display: grid;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
     }
 
     .card {
@@ -253,10 +252,10 @@ const projects = [
           .timeline({
             scrollTrigger: {
               trigger: root,
-              start: 'top top',
+              start: '50% 50%',
               end: () => `+=${imageCarousel.scrollHeight}`,
               scrub: true,
-              pin: true,
+              pin: 'main',
             },
           })
           .to(imagesWrapper, { bottom: 0, ease: 'none' }, 0)

@@ -20,6 +20,7 @@ const { class: className, ...props } = Astro.props
     <Video
       src={import('@/assets/videos/project-planner.mp4')}
       autoplay
+      playsinline
       muted
       loop
       class="video"
@@ -249,19 +250,19 @@ const { class: className, ...props } = Astro.props
     gap: var(--spacing-m);
   }
 
-  .stepper[data-current-step="1"] {
+  .stepper[data-current-step='1'] {
     .previous-step-button {
       display: none;
     }
   }
 
-  .stepper[data-current-step="3"] {
+  .stepper[data-current-step='3'] {
     .next-step-button {
       display: none;
     }
   }
 
-  .stepper:not([data-current-step="3"]) {
+  .stepper:not([data-current-step='3']) {
     .submit-button {
       display: none;
     }

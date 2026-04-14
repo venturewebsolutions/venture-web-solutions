@@ -50,6 +50,7 @@ sections:
         thumbnail: true
         background: true
         border: false
+        rounded: true
         shadow: true
         padding: null
         constrained: true
@@ -58,6 +59,7 @@ sections:
         alt: ''
         background: false
         border: false
+        rounded: false
         shadow: false
         padding: null
         constrained: false
@@ -71,6 +73,7 @@ sections:
         thumbnail: true
         background: true
         border: false
+        rounded: true
         shadow: true
         padding: 'l'
         constrained: false
@@ -93,6 +96,7 @@ sections:
         thumbnail: false
         background: false
         border: true
+        rounded: true
         shadow: true
         padding: 's'
         constrained: false
@@ -101,6 +105,7 @@ sections:
         alt: ''
         background: '#D1462F'
         border: false
+        rounded: true
         shadow: true
         padding: 's'
         constrained: false
@@ -109,6 +114,7 @@ sections:
         alt: ''
         background: '#60695C'
         border: false
+        rounded: true
         shadow: true
         padding: 's'
         constrained: false
@@ -117,6 +123,7 @@ sections:
         alt: ''
         background: '#ECEEE9'
         border: false
+        rounded: true
         shadow: true
         padding: 's'
         constrained: false

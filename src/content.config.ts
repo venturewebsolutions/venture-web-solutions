@@ -91,6 +91,7 @@ const work = defineCollection({
     const media = {
       background: z.xor([z.boolean(), z.string()]),
       border: z.boolean(),
+      rounded: z.boolean(),
       shadow: z.boolean(),
       padding: z.enum(['s', 'l']).nullable(),
       constrained: z.boolean(),

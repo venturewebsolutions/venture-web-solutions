@@ -8,6 +8,7 @@ import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
+import VideoSource from '../headless/VideoSource.astro'
 
 type Props = HTMLAttributes<'section'> & {
   section: CollectionEntry<'work'>['data']['sections'][number]
@@ -79,6 +80,7 @@ const { section, class: className, ...props } = Astro.props
               data-shadow={item.shadow || undefined}
               data-padding={item.padding || undefined}
               data-constrained={item.constrained || undefined}
+              data-rounded={item.rounded || undefined}
             >
               {item.type === 'video' ? (
                 <VideoWrapper label="Play video" class="video-thumbnail">
@@ -87,6 +89,7 @@ const { section, class: className, ...props } = Astro.props
                     lazy
                     muted
                     autoplay={item.autoplay || undefined}
+                    playsinline
                     loop={item.thumbnail !== true || undefined}
                     class="video"
                   />
@@ -161,7 +164,7 @@ const { section, class: className, ...props } = Astro.props
 
   .bullet {
     display: flex;
-    align-items: start;
+    align-items: baseline;
     gap: var(--spacing-s);
 
     &:not([data-has-icon])::before {
@@ -196,10 +199,13 @@ const { section, class: className, ...props } = Astro.props
     display: flex;
     justify-content: center;
     align-items: end;
-    border-radius: var(--border-radius-l);
 
     &[data-border] {
       border: var(--border-width-s) solid var(--colour-border-primary);
+    }
+
+    &[data-rounded] {
+      border-radius: var(--border-radius-l);
     }
 
     &[data-shadow] {
@@ -235,7 +241,10 @@ const { section, class: className, ...props } = Astro.props
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: var(--border-radius-m);
+
+    .media-card[data-rounded] & {
+      border-radius: var(--border-radius-m);
+    }
 
     .media-card[data-constrained] & {
       border-bottom-left-radius: 0;

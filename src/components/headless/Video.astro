@@ -7,17 +7,22 @@ type VideoModule = {
 
 type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
   src: string | VideoModule | Promise<VideoModule>
+  hash?: string
   lazy?: true
 }
 
-const { src: _, lazy, ...props } = Astro.props
+const { src: _, hash = '0.001', lazy, ...props } = Astro.props
 
-const src =
+let src =
   typeof Astro.props.src === 'string'
     ? Astro.props.src
     : Astro.props.src instanceof Promise
       ? (await Astro.props.src)?.default
       : Astro.props.src?.default
+
+if (hash) {
+  src += `#${hash}`
+}
 ---
 
 <video {...props} src={lazy ? undefined : src} data-src={src} data-lazy={lazy}>

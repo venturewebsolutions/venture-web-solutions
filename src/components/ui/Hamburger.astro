@@ -1,0 +1,37 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'div'>
+
+const { class: className, ...props } = Astro.props
+---
+
+<div class:list={cn('hamburger', className)} {...props}>
+  <div class="line"></div>
+  <div class="line"></div>
+  <div class="line"></div>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .hamburger {
+    display: grid;
+    align-content: space-between;
+    justify-content: center;
+
+    height: 24px;
+    width: 24px;
+
+    padding-block: 5px;
+  }
+
+  .line {
+    width: 20px;
+    height: 2px;
+    background-color: currentColor;
+    border-radius: 1px;
+  }
+</style>

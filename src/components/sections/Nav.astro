@@ -4,6 +4,7 @@ import Divider from '@/components/ui/Divider.astro'
 import Logo from '@/components/ui/Logo.astro'
 import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
+import Hamburger from '../ui/Hamburger.astro'
 
 const links = [
   {
@@ -70,8 +71,10 @@ const links = [
 
     <Divider size="m" class="divider" />
 
+    <!-- <Icon name="hamburger" class="hamburger-icon" /> -->
+
     <button class="hamburger" aria-label="Toggle navigation menu">
-      <Icon name="hamburger" class="hamburger-icon" />
+      <Hamburger class="hamburger-icon" />
     </button>
   </div>
 </nav>
@@ -160,6 +163,130 @@ const links = [
         transparent
       );
       backdrop-filter: blur(10px);
+    }
+  }
+
+  .nav[data-opening],
+  .nav[data-opened] {
+    .hamburger-icon {
+      :global(.line:first-child) {
+        animation: hamburger-line-1-open 0.8s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+
+      :global(.line:nth-child(2)) {
+        animation: hamburger-line-2-open 0.8s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+
+      :global(.line:last-child) {
+        animation: hamburger-line-3-open 0.8s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+    }
+  }
+
+  .nav[data-closing],
+  .nav[data-closed] {
+    .hamburger-icon {
+      :global(.line:first-child) {
+        animation: hamburger-line-1-close 1.2s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+
+      :global(.line:nth-child(2)) {
+        animation: hamburger-line-2-close 1.2s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+
+      :global(.line:last-child) {
+        animation: hamburger-line-3-close 1.2s var(--transition-ease-default)
+          forwards;
+        transform-origin: center;
+      }
+    }
+  }
+
+  @keyframes hamburger-line-1-open {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+    100% {
+      transform: translateY(6px) rotate(45deg);
+    }
+  }
+
+  @keyframes hamburger-line-1-close {
+    0% {
+      transform: translateY(6px) rotate(45deg);
+    }
+    50% {
+      transform: translateY(6px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hamburger-line-2-open {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @keyframes hamburger-line-2-close {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes hamburger-line-3-open {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+  }
+
+  @keyframes hamburger-line-3-close {
+    0% {
+      transform: translateY(-6px) rotate(-45deg);
+    }
+    50% {
+      transform: translateY(-6px);
+    }
+    100% {
+      transform: translateY(0);
     }
   }
 

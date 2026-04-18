@@ -112,6 +112,12 @@
       var(--line-height-150),
       var(--font-family-base)
     )};
+  --font-link-lg: #{font(
+      var(--font-weight-medium),
+      var(--font-size-24),
+      var(--line-height-120),
+      var(--font-family-base)
+    )};
   --font-display-numeral-xl: #{font(
       var(--font-weight-bold),
       linear(var(--font-size-78), var(--font-size-106)),
@@ -169,6 +175,7 @@
       var(--letter-spacing-0),
       var(--letter-spacing-1)
     )};
+  --letter-spacing-link-lg: var(--letter-spacing-0);
   --letter-spacing-display-numeral-xl: var(--letter-spacing-0);
   --letter-spacing-display-numeral-m: #{linear(
       var(--letter-spacing-1-6),

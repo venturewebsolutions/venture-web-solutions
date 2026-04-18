@@ -1,0 +1,425 @@
+---
+import Button from '@/components/ui/Button.astro'
+import Divider from '@/components/ui/Divider.astro'
+import Logo from '@/components/ui/Logo.astro'
+import { url } from '@/lib/url'
+import { Icon } from 'astro-icon/components'
+
+const links = [
+  {
+    name: 'Home',
+    icon: 'home-rounded',
+    href: url('/'),
+  },
+  {
+    name: 'Work',
+    icon: 'portfolio',
+    href: url('/work/'),
+  },
+  {
+    name: 'Pricing',
+    icon: 'receipt-pound-filled',
+    href: url('/pricing/'),
+  },
+  {
+    name: 'About Us',
+    icon: 'about-filled',
+    href: url('/about/'),
+  },
+  {
+    name: 'Blog',
+    icon: 'conversation',
+    href: url('/blog/'),
+  },
+  {
+    name: 'Contact',
+    icon: 'contact-book-fill',
+    href: url('/contact/'),
+  },
+]
+---
+
+<nav class="nav">
+  <div class="overlay"></div>
+
+  <div class="container">
+    <div class="glow-container" aria-hidden="true"></div>
+
+    <a href={url('/')} class="logo-link">
+      <Logo class="logo" />
+    </a>
+
+    <ul class="links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="link">
+              <Icon name={link.icon} class="link-icon" />
+              <span>{link.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="cta">
+      <Button href={url('/project-planner/')} class="cta-button">
+        Start a project.
+      </Button>
+    </div>
+
+    <Divider size="m" class="divider" />
+
+    <button class="hamburger" aria-label="Toggle navigation menu">
+      <Icon name="hamburger" class="hamburger-icon" />
+    </button>
+  </div>
+</nav>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .nav {
+    position: fixed;
+    left: 0;
+    top: var(--spacing-s);
+    width: 100%;
+    z-index: 10;
+
+    overflow-y: hidden;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .container {
+    --max-width: 100vw;
+    --padding-inline: var(--spacing-2xl);
+
+    --border-colour: transparent;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: calc(
+      (var(--spacing-xl) * 2) + (var(--border-width-s) * 2) +
+        #{linear(rem(25px), rem(49px))}
+    );
+
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+
+    border: var(--border-width-s) solid var(--border-colour);
+
+    transition:
+      height var(--transition-duration-default) var(--transition-ease-default),
+      max-width var(--transition-duration-default)
+        var(--transition-ease-default);
+  }
+
+  .glow-container {
+    display: none;
+  }
+
+  .logo {
+    width: #{linear(rem(97px), rem(194px))};
+    height: #{linear(rem(25px), rem(49px))};
+    color: var(--colour-text-contrast);
+  }
+
+  .links {
+    display: none;
+  }
+
+  .cta {
+    display: none;
+  }
+
+  .nav[data-scrolled] {
+    .container {
+      --max-width: calc(
+        min(100vw, #{rem(1440px)}) - (var(--spacing-container) * 2) -
+          (var(--padding-inline) * 2)
+      );
+
+      --border-colour: color-mix(
+        in srgb,
+        var(--colour-border-contrast) 5%,
+        transparent
+      );
+
+      border-radius: var(--border-radius-2xl);
+      background-color: color-mix(
+        in srgb,
+        var(--colour-surface-base) 40%,
+        transparent
+      );
+      backdrop-filter: blur(10px);
+    }
+  }
+
+  .nav[data-opening],
+  .nav[data-closing],
+  .nav[data-opened] {
+    .container {
+      --max-width: calc(100vw - var(--spacing-s) * 2);
+
+      --border-colour: transparent;
+
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      grid-template-areas:
+        'logo hamburger'
+        'divider divider'
+        'links links'
+        'cta cta';
+      align-content: start;
+      gap: var(--spacing-3xl);
+
+      border-radius: var(--border-radius-l);
+      background-color: var(--colour-surface-base);
+
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+
+    .glow-container {
+      display: block;
+
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        width: 200%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background-image: radial-gradient(
+          var(--colour-primary),
+          transparent,
+          transparent
+        );
+        opacity: 0.15;
+      }
+
+      &::before {
+        left: -15%;
+        top: 70%;
+      }
+
+      &::after {
+        left: 115%;
+        top: 22%;
+      }
+    }
+
+    .overlay {
+      display: block;
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+
+      background-color: color-mix(
+        in srgb,
+        var(--colour-surface-base) 80%,
+        transparent
+      );
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      grid-area: logo;
+    }
+
+    .hamburger {
+      grid-area: hamburger;
+      justify-self: end;
+    }
+
+    .divider {
+      grid-area: divider;
+      margin-top: calc(var(--spacing-xl) - var(--spacing-3xl));
+    }
+
+    .links {
+      display: grid;
+      gap: var(--spacing-3xl);
+      grid-area: links;
+    }
+
+    .link {
+      @include font(link-lg);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-s);
+    }
+
+    .cta {
+      display: block;
+      grid-area: cta;
+    }
+
+    .cta-button {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: rem(1024px)) {
+    .container {
+      --max-width: #{rem(1800px)};
+    }
+
+    .links {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xl);
+      color: var(--colour-text-contrast);
+    }
+
+    .link {
+      @include font(body);
+    }
+
+    .link-icon {
+      display: none;
+    }
+
+    .cta {
+      display: block;
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    .divider {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const sentinel = document.querySelector('#scroll-sentinel')!
+  const nav = document.querySelector<HTMLElement>('.nav')!
+  const container = document.querySelector<HTMLElement>('.container')!
+  const hamburger = nav.querySelector('.hamburger')!
+  const overlay = nav.querySelector('.overlay')!
+
+  function open() {
+    document.body.style.overflow = 'hidden'
+    document.body.style.height = '100dvh'
+
+    nav.removeAttribute('data-closed')
+    nav.removeAttribute('data-closing')
+    nav.setAttribute('data-opening', '')
+
+    container.style.height = `${container.scrollHeight}px`
+    container.style.overflowY = 'hidden'
+  }
+
+  function close() {
+    container.style.height = `${container.scrollHeight}px`
+    container.style.overflowY = 'hidden'
+
+    nav.removeAttribute('data-opened')
+    nav.removeAttribute('data-opening')
+    nav.setAttribute('data-closing', '')
+
+    setTimeout(() => {
+      container.style.height = ''
+    }, 0)
+  }
+
+  function onOpened() {
+    container.style.height = 'auto'
+    container.style.overflowY = ''
+
+    nav.removeAttribute('data-opening')
+    nav.setAttribute('data-opened', '')
+  }
+
+  function onClosed() {
+    container.style.overflowY = ''
+
+    nav.removeAttribute('data-closing')
+    nav.setAttribute('data-closed', '')
+
+    document.body.style.overflow = ''
+    document.body.style.height = ''
+  }
+
+  function reset() {
+    container.style.height = ''
+    container.style.overflowY = ''
+
+    nav.removeAttribute('data-opening')
+    nav.removeAttribute('data-closing')
+    nav.removeAttribute('data-opened')
+    nav.removeAttribute('data-closed')
+  }
+
+  hamburger.addEventListener('click', () => {
+    if (
+      !(nav.hasAttribute('data-opened') || nav.hasAttribute('data-opening'))
+    ) {
+      open()
+    } else if (
+      !(nav.hasAttribute('data-closing') || nav.hasAttribute('data-closed'))
+    ) {
+      close()
+    }
+  })
+
+  container.addEventListener('transitionend', (event) => {
+    if (event.propertyName === 'height') {
+      if (nav.hasAttribute('data-opening')) {
+        onOpened()
+      } else {
+        onClosed()
+      }
+    }
+  })
+
+  overlay.addEventListener('click', () => {
+    close()
+  })
+
+  window.addEventListener('keydown', (event) => {
+    if (
+      event.key === 'Escape' &&
+      (nav.hasAttribute('data-opened') || nav.hasAttribute('data-opening'))
+    ) {
+      close()
+    }
+  })
+
+  const query = window.matchMedia('(min-width: 64rem)')
+
+  query.addEventListener('change', (event) => {
+    if (event.matches) {
+      reset()
+    }
+  })
+
+  const observer = new IntersectionObserver(([entry]) => {
+    nav.toggleAttribute('data-scrolled', !entry.isIntersecting)
+  })
+
+  observer.observe(sentinel)
+</script>

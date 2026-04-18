@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'svg'>
+---
+
+<svg
+  width="30"
+  height="30"
+  viewBox="0 0 30 30"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  {...Astro.props}
+>
+  <path d="M10 30C4.47715 30 0 25.5229 0 20H10V30Z" fill="currentColor"></path>
+  <path d="M20 30C14.4772 30 10 25.5229 10 20H20V30Z" fill="currentColor"
+  ></path>
+  <path d="M30 30C24.4772 30 20 25.5229 20 20H30V30Z" fill="currentColor"
+  ></path>
+  <path d="M10 20C4.47715 20 0 15.5228 0 10H10V20Z" fill="currentColor"></path>
+  <path d="M20 20C14.4772 20 10 15.5228 10 10H20V20Z" fill="currentColor"
+  ></path>
+  <path d="M30 20C24.4772 20 20 15.5228 20 10H30V20Z" fill="currentColor"
+  ></path>
+  <path d="M20 10C14.4772 10 10 5.52285 10 0H20V10Z" fill="currentColor"></path>
+</svg>

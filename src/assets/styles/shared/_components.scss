@@ -1,9 +1,10 @@
 @use 'sass:math';
+@use 'functions' as *;
 @use 'mixins' as *;
 
 .container {
-  max-width: 90rem;
-  padding-inline: var(--spacing-container);
+  max-width: var(--max-width, rem(1440px));
+  padding-inline: var(--padding-inline, var(--spacing-container));
   margin-inline: auto;
 }
 

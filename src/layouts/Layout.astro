@@ -107,6 +107,7 @@ const { title, description } = Astro.props
     <slot name="head" />
   </head>
   <body>
+    <div id="scroll-sentinel"></div>
     <Nav />
     <main>
       <slot />

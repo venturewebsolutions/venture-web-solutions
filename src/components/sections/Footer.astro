@@ -1,6 +1,6 @@
 ---
 import Button from '@/components/ui/Button.astro'
-import Logo from '@/components/ui/Logo.astro'
+import LogoEmblem from '@/components/ui/LogoEmblem.astro'
 import SocialMediaBadge from '@/components/ui/SocialMediaBadge.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
@@ -139,7 +139,7 @@ const lists = [
   </p>
 
   <div class="footer-legal">
-    <Logo />
+    <LogoEmblem class="logo" />
 
     <div class="footer-legal-text">
       <div class="footer-legal-group">
@@ -267,6 +267,10 @@ const lists = [
     display: flex;
     flex-direction: column;
     gap: var(--spacing-m);
+    opacity: 0.5;
+  }
+
+  .logo {
     opacity: 0.5;
   }
 

@@ -28,8 +28,8 @@ const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
 const testimonials = await getTestimonials()
 ---
 
-<Layout title="Home | Venture Web Solutions" description="">
-  <Hero />
+<Layout title="Venture Web Solutions" description="">
+  <Hero class="hero" />
   <AboutUs reversed links />
   <WhatWeOffer />
   <Performance />
@@ -46,3 +46,24 @@ const testimonials = await getTestimonials()
   />
   <BlogShowcaseGrid posts={posts} />
 </Layout>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .hero {
+    --nav-offset-top: var(--spacing-s);
+    --nav-padding-top: var(--spacing-xl);
+    --nav-padding-bottom: var(--spacing-xl);
+    --nav-border-width: var(--border-width-s);
+    --nav-logo-height: #{linear(rem(25px), rem(49px))};
+
+    --nav-height: calc(
+      var(--nav-offset-top) + var(--nav-padding-top) +
+        var(--nav-padding-bottom) + var(--nav-border-width) +
+        var(--nav-logo-height)
+    );
+
+    --padding-top: calc(var(--nav-height) + var(--spacing-l));
+  }
+</style>

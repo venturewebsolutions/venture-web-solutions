@@ -11,7 +11,7 @@ type Props = HTMLAttributes<'section'> & {
   heading: string
   summary: string
   highlights: {
-    icon: (_props: any) => any | string
+    icon: string
     text: string
   }[]
   link: {
@@ -54,11 +54,7 @@ const {
           {
             highlights.map((highlight) => (
               <li class="project-highlight">
-                {typeof highlight.icon === 'string' ? (
-                  <Icon name={highlight.icon} class="project-highlight-icon" />
-                ) : (
-                  <highlight.icon class="project-highlight-icon" />
-                )}
+                <Icon name={highlight.icon} class="project-highlight-icon" />
                 <span class="project-highlight-text">{highlight.text}</span>
               </li>
             ))

@@ -23,7 +23,7 @@ const links = [
     href: url('/pricing/'),
   },
   {
-    name: 'About Us',
+    name: 'About',
     icon: 'about-filled',
     href: url('/about/'),
   },
@@ -71,8 +71,6 @@ const links = [
 
     <Divider size="m" class="divider" />
 
-    <!-- <Icon name="hamburger" class="hamburger-icon" /> -->
-
     <button class="hamburger" aria-label="Toggle navigation menu">
       <Hamburger class="hamburger-icon" />
     </button>
@@ -82,6 +80,51 @@ const links = [
 <style lang="scss">
   @use 'functions' as *;
   @use 'mixins' as *;
+
+  @mixin hamburger-animation(
+    $animation-name,
+    $first-from,
+    $first-to,
+    $last-from,
+    $last-to,
+    $mid-opacity: null
+  ) {
+    .hamburger-icon {
+      :global(.line:first-child),
+      :global(.line:last-child) {
+        animation: #{$animation-name} var(--transition-duration-default)
+          var(--transition-ease-default) forwards;
+        transform-origin: center;
+      }
+
+      :global(.line:first-child) {
+        --from: #{$first-from};
+        --to: #{$first-to};
+      }
+
+      :global(.line:last-child) {
+        --from: #{$last-from};
+        --to: #{$last-to};
+      }
+
+      @if $mid-opacity != null {
+        :global(.line:nth-child(2)) {
+          opacity: $mid-opacity;
+        }
+      }
+    }
+  }
+
+  @each $state in opening, opened, closing, closed {
+    @keyframes hamburger-line-#{$state} {
+      0% {
+        transform: var(--from);
+      }
+      100% {
+        transform: var(--to);
+      }
+    }
+  }
 
   .nav {
     position: fixed;
@@ -98,7 +141,7 @@ const links = [
   }
 
   .container {
-    --max-width: 100vw;
+    --max-width: calc(100vw - var(--spacing-s) * 2);
     --padding-inline: var(--spacing-2xl);
 
     --border-colour: transparent;
@@ -166,135 +209,55 @@ const links = [
     }
   }
 
-  .nav[data-opening],
-  .nav[data-opened] {
-    .hamburger-icon {
-      :global(.line:first-child) {
-        animation: hamburger-line-1-open 0.8s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
+  .nav {
+    &[data-opening] {
+      @include hamburger-animation(
+        hamburger-line-opening,
+        translateY(0),
+        translateY(6px),
+        translateY(0),
+        translateY(-6px)
+      );
+    }
 
-      :global(.line:nth-child(2)) {
-        animation: hamburger-line-2-open 0.8s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
+    &[data-opened] {
+      @include hamburger-animation(
+        hamburger-line-opened,
+        translateY(6px),
+        translateY(6px) rotate(45deg),
+        translateY(-6px),
+        translateY(-6px) rotate(-45deg),
+        $mid-opacity: 0
+      );
+    }
 
-      :global(.line:last-child) {
-        animation: hamburger-line-3-open 0.8s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
+    &[data-closing] {
+      @include hamburger-animation(
+        hamburger-line-closing,
+        translateY(6px) rotate(45deg),
+        translateY(6px),
+        translateY(-6px) rotate(-45deg),
+        translateY(-6px)
+      );
     }
-  }
 
-  .nav[data-closing],
-  .nav[data-closed] {
-    .hamburger-icon {
-      :global(.line:first-child) {
-        animation: hamburger-line-1-close 1.2s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
-
-      :global(.line:nth-child(2)) {
-        animation: hamburger-line-2-close 1.2s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
-
-      :global(.line:last-child) {
-        animation: hamburger-line-3-close 1.2s var(--transition-ease-default)
-          forwards;
-        transform-origin: center;
-      }
-    }
-  }
-
-  @keyframes hamburger-line-1-open {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(6px);
-    }
-    100% {
-      transform: translateY(6px) rotate(45deg);
-    }
-  }
-
-  @keyframes hamburger-line-1-close {
-    0% {
-      transform: translateY(6px) rotate(45deg);
-    }
-    50% {
-      transform: translateY(6px);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
-  @keyframes hamburger-line-2-open {
-    0% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-
-  @keyframes hamburger-line-2-close {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @keyframes hamburger-line-3-open {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-6px);
-    }
-    100% {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-  }
-
-  @keyframes hamburger-line-3-close {
-    0% {
-      transform: translateY(-6px) rotate(-45deg);
-    }
-    50% {
-      transform: translateY(-6px);
-    }
-    100% {
-      transform: translateY(0);
+    &[data-closed] {
+      @include hamburger-animation(
+        hamburger-line-closed,
+        translateY(6px),
+        translateY(0),
+        translateY(-6px),
+        translateY(0),
+        $mid-opacity: 1
+      );
     }
   }
 
   .nav[data-opening],
-  .nav[data-closing],
-  .nav[data-opened] {
+  .nav[data-opened],
+  .nav[data-closing] {
     .container {
-      --max-width: calc(100vw - var(--spacing-s) * 2);
+      // --max-width: calc(100vw - var(--spacing-s) * 2);
 
       --border-colour: transparent;
 

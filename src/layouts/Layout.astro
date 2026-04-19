@@ -122,18 +122,6 @@ const { title, description, flush } = Astro.props
   @use 'mixins' as *;
 
   body:not([data-flush]) {
-    --nav-padding-top: var(--spacing-xl);
-    --nav-padding-bottom: var(--spacing-xl);
-    --nav-border-width: var(--border-width-s);
-    --nav-logo-height: #{linear(rem(25px), rem(49px))};
-
-    --nav-height: calc(
-      var(--nav-padding-top) + var(--nav-padding-bottom) +
-        var(--nav-border-width) + var(--nav-logo-height)
-    );
-
-    --nav-offset-top: var(--spacing-s);
-
     padding-top: calc(var(--nav-height) + var(--nav-offset-top));
   }
 </style>

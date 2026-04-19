@@ -29,7 +29,7 @@ const testimonials = await getTestimonials()
 ---
 
 <Layout title="Venture Web Solutions" description="" flush>
-  <Hero />
+  <Hero class="hero" />
   <AboutUs reversed links />
   <WhatWeOffer />
   <Performance />
@@ -46,3 +46,14 @@ const testimonials = await getTestimonials()
   />
   <BlogShowcaseGrid posts={posts} />
 </Layout>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .hero {
+    --padding-top: calc(
+      var(--nav-height) + var(--nav-offset-top) + var(--spacing-xl)
+    );
+  }
+</style>

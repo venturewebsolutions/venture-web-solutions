@@ -254,6 +254,13 @@ const links = [
   }
 
   .nav[data-opening],
+  .nav[data-opened] {
+    .container {
+      --max-width: calc(100vw - var(--spacing-s) * 2);
+    }
+  }
+
+  .nav[data-opening],
   .nav[data-opened],
   .nav[data-closing] {
     .container {

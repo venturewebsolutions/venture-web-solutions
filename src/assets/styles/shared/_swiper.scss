@@ -27,3 +27,11 @@
   opacity: 0.4;
   cursor: default;
 }
+
+.swiper-slide {
+  cursor: grab;
+
+  &:active {
+    cursor: grabbing;
+  }
+}

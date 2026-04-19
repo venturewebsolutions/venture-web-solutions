@@ -81,51 +81,6 @@ const links = [
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  @mixin hamburger-animation(
-    $animation-name,
-    $first-from,
-    $first-to,
-    $last-from,
-    $last-to,
-    $mid-opacity: null
-  ) {
-    .hamburger-icon {
-      :global(.line:first-child),
-      :global(.line:last-child) {
-        animation: #{$animation-name} var(--transition-duration-default)
-          var(--transition-ease-default) forwards;
-        transform-origin: center;
-      }
-
-      :global(.line:first-child) {
-        --from: #{$first-from};
-        --to: #{$first-to};
-      }
-
-      :global(.line:last-child) {
-        --from: #{$last-from};
-        --to: #{$last-to};
-      }
-
-      @if $mid-opacity != null {
-        :global(.line:nth-child(2)) {
-          opacity: $mid-opacity;
-        }
-      }
-    }
-  }
-
-  @each $state in opening, opened, closing, closed {
-    @keyframes hamburger-line-#{$state} {
-      0% {
-        transform: var(--from);
-      }
-      100% {
-        transform: var(--to);
-      }
-    }
-  }
-
   .nav {
     position: fixed;
     left: 0;
@@ -151,11 +106,6 @@ const links = [
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    height: calc(
-      (var(--spacing-xl) * 2) + (var(--border-width-s) * 2) +
-        #{linear(rem(25px), rem(49px))}
-    );
 
     padding-top: var(--spacing-xl);
     padding-bottom: var(--spacing-xl);
@@ -211,64 +161,7 @@ const links = [
     }
   }
 
-  .nav {
-    &[data-opening] {
-      @include hamburger-animation(
-        hamburger-line-opening,
-        translateY(0),
-        translateY(6px),
-        translateY(0),
-        translateY(-6px)
-      );
-    }
-
-    &[data-opened] {
-      @include hamburger-animation(
-        hamburger-line-opened,
-        translateY(6px),
-        translateY(6px) rotate(45deg),
-        translateY(-6px),
-        translateY(-6px) rotate(-45deg),
-        $mid-opacity: 0
-      );
-    }
-
-    &[data-closing] {
-      @include hamburger-animation(
-        hamburger-line-closing,
-        translateY(6px) rotate(45deg),
-        translateY(6px),
-        translateY(-6px) rotate(-45deg),
-        translateY(-6px)
-      );
-    }
-
-    &[data-closed] {
-      @include hamburger-animation(
-        hamburger-line-closed,
-        translateY(6px),
-        translateY(0),
-        translateY(-6px),
-        translateY(0),
-        $mid-opacity: 1
-      );
-    }
-  }
-
-  .nav[data-opening],
-  .nav[data-opened] {
-    .container {
-      --max-width: calc(100vw - var(--spacing-s) * 2);
-
-      --border-colour: transparent;
-
-      background-color: var(--colour-surface-base);
-    }
-  }
-
-  .nav[data-opening],
-  .nav[data-opened],
-  .nav[data-closing] {
+  .nav[data-expanded] {
     .overlay {
       display: block;
 
@@ -287,6 +180,10 @@ const links = [
     }
 
     .container {
+      --max-width: calc(100vw - var(--spacing-s) * 2);
+
+      --border-colour: transparent;
+
       display: grid;
       grid-template-columns: repeat(2, auto);
       grid-template-areas:
@@ -299,8 +196,14 @@ const links = [
 
       border-radius: var(--border-radius-l);
 
+      background-color: var(--colour-surface-base);
+
+      max-height: calc(100dvh - var(--spacing-s) * 2);
+
       overflow-x: hidden;
       overflow-y: auto;
+
+      transition: none;
     }
 
     .glow-container {
@@ -348,6 +251,18 @@ const links = [
     .hamburger {
       grid-area: hamburger;
       justify-self: end;
+
+      :global(.line:nth-child(1)) {
+        transform: translateY(6px) rotateZ(45deg);
+      }
+
+      :global(.line:nth-child(2)) {
+        display: none;
+      }
+
+      :global(.line:nth-child(3)) {
+        transform: translateY(-6px) rotateZ(-45deg);
+      }
     }
 
     .divider {
@@ -423,40 +338,11 @@ const links = [
     document.body.style.overflow = 'hidden'
     document.body.style.height = '100dvh'
 
-    nav.removeAttribute('data-closed')
-    nav.removeAttribute('data-closing')
-    nav.setAttribute('data-opening', '')
-
-    container.style.height = `${container.scrollHeight}px`
-    container.style.overflowY = 'hidden'
+    nav.setAttribute('data-expanded', '')
   }
 
   function close() {
-    container.style.height = `${container.scrollHeight}px`
-    container.style.overflowY = 'hidden'
-
-    nav.removeAttribute('data-opened')
-    nav.removeAttribute('data-opening')
-    nav.setAttribute('data-closing', '')
-
-    setTimeout(() => {
-      container.style.height = ''
-    }, 0)
-  }
-
-  function onOpened() {
-    container.style.height = 'auto'
-    container.style.overflowY = ''
-
-    nav.removeAttribute('data-opening')
-    nav.setAttribute('data-opened', '')
-  }
-
-  function onClosed() {
-    container.style.overflowY = ''
-
-    nav.removeAttribute('data-closing')
-    nav.setAttribute('data-closed', '')
+    nav.removeAttribute('data-expanded')
 
     document.body.style.overflow = ''
     document.body.style.height = ''
@@ -466,43 +352,28 @@ const links = [
     container.style.height = ''
     container.style.overflowY = ''
 
-    nav.removeAttribute('data-opening')
-    nav.removeAttribute('data-closing')
-    nav.removeAttribute('data-opened')
-    nav.removeAttribute('data-closed')
+    nav.removeAttribute('data-expanded')
+
+    document.body.style.overflow = ''
+    document.body.style.height = ''
   }
 
   hamburger.addEventListener('click', () => {
-    if (
-      !(nav.hasAttribute('data-opened') || nav.hasAttribute('data-opening'))
-    ) {
+    if (!nav.hasAttribute('data-expanded')) {
       open()
-    } else if (
-      !(nav.hasAttribute('data-closing') || nav.hasAttribute('data-closed'))
-    ) {
+    } else {
       close()
     }
   })
 
-  container.addEventListener('transitionend', (event) => {
-    if (event.propertyName === 'height') {
-      if (nav.hasAttribute('data-opening')) {
-        onOpened()
-      } else {
-        onClosed()
-      }
+  overlay.addEventListener('click', () => {
+    if (nav.hasAttribute('data-expanded')) {
+      close()
     }
   })
 
-  overlay.addEventListener('click', () => {
-    close()
-  })
-
   window.addEventListener('keydown', (event) => {
-    if (
-      event.key === 'Escape' &&
-      (nav.hasAttribute('data-opened') || nav.hasAttribute('data-opening'))
-    ) {
+    if (event.key === 'Escape' && nav.hasAttribute('data-expanded')) {
       close()
     }
   })

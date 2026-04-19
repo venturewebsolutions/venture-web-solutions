@@ -1,9 +1,9 @@
 @use './shared/fonts';
-@use './shared/primitive-tokens';
-@use './shared/semantic-tokens';
-@use './shared/usage-tokens';
+@use './shared/tokens/primitive-tokens';
+@use './shared/tokens/semantic-tokens';
+@use './shared/tokens/usage-tokens';
 @use './shared/reset';
 @use './shared/base';
-@use './shared/swiper';
+@use './shared/modules/swiper';
 @use './shared/components';
 @use './shared/utilities';

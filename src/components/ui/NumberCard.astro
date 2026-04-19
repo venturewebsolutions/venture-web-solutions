@@ -15,13 +15,13 @@ const { number, heading, level, class: className, ...props } = Astro.props
 <section class:list={cn('card', className)} {...props}>
   <div class="surface">
     <p class="number">
-      <span class="swiper-no-swiping">{number}</span>
+      {number}
     </p>
     <Heading level={level} class="heading h4">
-      <span class="swiper-no-swiping">{heading}</span>
+      {heading}
     </Heading>
     <p class="content">
-      <span class="swiper-no-swiping"><slot /></span>
+      <slot />
     </p>
   </div>
 </section>

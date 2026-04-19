@@ -65,7 +65,7 @@ const { posts, class: className, ...props } = Astro.props
 
                 <ThumbnailCaption
                   position="top right"
-                  class="thumbnail-caption thumbnail-caption-top-right swiper-no-swiping"
+                  class="thumbnail-caption thumbnail-caption-top-right"
                 >
                   <Badge variant="tertiary" size="s">
                     {post.data.topic}
@@ -73,7 +73,7 @@ const { posts, class: className, ...props } = Astro.props
                 </ThumbnailCaption>
               </Thumbnail>
 
-              <div class="post-summary swiper-no-swiping">
+              <div class="post-summary">
                 <Eyebrow>
                   <span class="post-caption">
                     {post.data.readTimeMinutes} mins read

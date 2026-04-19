@@ -24,10 +24,7 @@ const { testimonial, class: className, ...props } = Astro.props
       class="thumbnail-image"
     />
 
-    <ThumbnailCaption
-      position="top left"
-      class="thumbnail-caption swiper-no-swiping"
-    >
+    <ThumbnailCaption position="top left" class="thumbnail-caption">
       <div class="client">
         <Avatar
           src={testimonial.data.avatar}
@@ -45,7 +42,7 @@ const { testimonial, class: className, ...props } = Astro.props
     </ThumbnailCaption>
   </Thumbnail>
 
-  <p class="quote swiper-no-swiping">“{testimonial.data.quote}”</p>
+  <p class="quote">“{testimonial.data.quote}”</p>
 </section>
 
 <style lang="scss">

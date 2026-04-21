@@ -1,17 +1,21 @@
 ---
+import Image, { type ImageProps } from '@/components/headless/Image.astro'
 import Avatar from '@/components/ui/Avatar.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 
 type Props = HTMLAttributes<'section'> & {
   testimonial: CollectionEntry<'testimonials'>
+  image: {
+    widths: ImageProps['widths']
+    sizes: ImageProps['sizes']
+  }
 }
 
-const { testimonial, class: className, ...props } = Astro.props
+const { testimonial, image, class: className, ...props } = Astro.props
 ---
 
 <section class:list={cn('testimonial-card', className)} {...props}>
@@ -19,8 +23,8 @@ const { testimonial, class: className, ...props } = Astro.props
     <Image
       src={testimonial.data.image}
       alt=""
-      widths={[365, 416, 730, 857, 1714]}
-      sizes="(min-width: 64rem) min(30vw, 416px), 100vw"
+      widths={image.widths}
+      sizes={image.sizes}
       class="thumbnail-image"
     />
 

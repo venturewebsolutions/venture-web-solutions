@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets'
-import { url } from '@/lib/url'
+import Image from '@/components/headless/Image.astro'
 import Eyebrow from '@/components/ui/Eyebrow.astro'
-import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/class-names'
+import { url } from '@/lib/url'
+import type { HTMLAttributes } from 'astro/types'
 
 type Props = HTMLAttributes<'section'>
 
@@ -77,8 +77,17 @@ const projects = [
                   alt={`${project.name} project screenshot`}
                   style={`--cursor-url: url(${url('/cursor.svg')});`}
                   class="image"
-                  widths={[525, 708, 1030, 1416]}
-                  sizes="(min-width: 48rem) min(40vw, 525px), 100vw"
+                  widths={{
+                    min: 286,
+                    max: 708,
+                    mobile: 378,
+                    desktop: 512,
+                  }}
+                  sizes={[
+                    '(min-width: 90rem) 40.5rem',
+                    '(min-width: 48rem) 50vw',
+                    '100vw',
+                  ]}
                 />
                 <div class="image-footer">
                   <h3 class="h4">{project.name}</h3>

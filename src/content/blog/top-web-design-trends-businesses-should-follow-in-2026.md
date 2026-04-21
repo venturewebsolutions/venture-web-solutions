@@ -3,7 +3,7 @@ title: 'Top web design trends businesses should follow in 2026'
 summary: 'Top web design trends businesses should follow in 2026'
 topic: 'Web Design'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-3.png'
+  image: '@/assets/images/blog-post-thumbnail-3.jpg'
   description: ''
 author:
   name: 'Daniela'

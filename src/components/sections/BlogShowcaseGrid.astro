@@ -14,7 +14,7 @@ type Props = HTMLAttributes<'section'> & {
 const { posts, class: className, ...props } = Astro.props
 ---
 
-<section class:list={cn('blog-showcase-grid container section', className)} {...props}>
+<section class:list={cn('section container', className)} {...props}>
   <div class="intro">
     <SectionHeader eyebrow="Blog" class="header">
       What have we been writing about recently?
@@ -31,8 +31,19 @@ const { posts, class: className, ...props } = Astro.props
         <BlogPostCard
           post={post}
           level={3}
-          thumbnailWidths={[216, 343, 432, 520, 708, 832, 1416]}
-          thumbnailSizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+          image={{
+            widths: {
+              min: 217,
+              max: 708,
+              mobile: 378,
+              desktop: 385,
+            },
+            sizes: [
+              '(min-width: 90rem) 26rem',
+              '(min-width: 48rem) 33.33vw',
+              '100vw',
+            ],
+          }}
         />
       ))
     }
@@ -43,7 +54,7 @@ const { posts, class: className, ...props } = Astro.props
   @use 'functions' as *;
   @use 'mixins' as *;
 
-  .blog-showcase-grid {
+  .section {
     display: grid;
     gap: var(--spacing-4xl);
   }

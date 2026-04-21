@@ -1,9 +1,9 @@
 ---
+import Image from '@/components/headless/Image.astro'
 import Quote from '@/components/ui/Quote.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
 
 type Props = HTMLAttributes<'section'>
 
@@ -19,8 +19,13 @@ const { class: className, ...props } = Astro.props
     src={import('@/assets/images/performance-screenshot.png')}
     alt="Screenshot of Google PageSpeed Insights showing a perfect score of 100 for both mobile and desktop performance"
     class="image"
-    widths={[343, 500, 686, 1000, 1372]}
-    sizes="(min-width: 48rem) min(50vw, 648px), 100vw"
+    widths={{
+      min: 288,
+      max: 686,
+      mobile: 378,
+      desktop: 615,
+    }}
+    sizes={['(min-width: 90rem) 40.5rem', '(min-width: 48rem) 50vw', '100vw']}
   />
 
   <div class="content">

@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import Image from '@/components/headless/Image.astro'
 
 type Props = {
   src: ImageMetadata | Promise<{ default: ImageMetadata }>
@@ -18,7 +18,12 @@ const src =
 <Image
   src={src}
   alt={alt}
-  widths={[width, width * 2]}
+  widths={{
+    min: width,
+    max: width,
+    mobile: width,
+    desktop: width,
+  }}
   sizes={`${width}px`}
   width={width}
   class="avatar"

@@ -27,7 +27,23 @@ const { testimonials, class: className, ...props } = Astro.props
       {
         testimonials.map((testimonial) => (
           <div class="swiper-slide">
-            <TestimonialCard testimonial={testimonial} />
+            <TestimonialCard
+              testimonial={testimonial}
+              image={{
+                widths: {
+                  min: 265,
+                  max: 552,
+                  mobile: 378,
+                  desktop: 385,
+                },
+                sizes: [
+                  '(min-width: 90rem) 26rem',
+                  '(min-width: 63rem) 33.33vw',
+                  '(min-width: 37.5rem) 50vw',
+                  '100vw',
+                ],
+              }}
+            />
           </div>
         ))
       }

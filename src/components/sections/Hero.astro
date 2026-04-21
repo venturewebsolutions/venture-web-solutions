@@ -1,4 +1,5 @@
 ---
+import Image from '@/components/headless/Image.astro'
 import Video from '@/components/headless/Video.astro'
 import Button from '@/components/ui/Button.astro'
 import Eyebrow from '@/components/ui/Eyebrow.astro'
@@ -6,7 +7,7 @@ import Squiggle from '@/components/ui/Squiggle.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
+import ImageSource from '../headless/ImageSource.astro'
 
 type Props = HTMLAttributes<'section'>
 
@@ -15,19 +16,50 @@ const { class: className, ...props } = Astro.props
 
 <section class:list={cn('hero section', className)} {...props}>
   <div class="hero-background">
-    <Image
-      src={import('@/assets/images/hero.png')}
-      alt=""
-      widths={[
-        400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600,
-        2800,
-      ]}
-      sizes="100vw"
-      class="hero-image"
-      loading="eager"
-    />
+    <picture>
+      <ImageSource
+        src={import('@/assets/images/hero-landscape.jpg')}
+        widths={{
+          min: 320,
+          max: 2560,
+          mobile: 412,
+          desktop: 1440,
+          step: 400,
+        }}
+        sizes="100vw"
+        media="(orientation: landscape)"
+      />
 
-    <Video
+      <ImageSource
+        src={import('@/assets/images/hero-portrait.jpg')}
+        widths={{
+          min: 320,
+          max: 1440,
+          mobile: 412,
+          desktop: 1440,
+          step: 400,
+        }}
+        sizes="100vw"
+        media="(orientation: portrait)"
+      />
+
+      <Image
+        src={import('@/assets/images/hero-portrait.jpg')}
+        alt=""
+        widths={{
+          min: 320,
+          max: 1440,
+          mobile: 412,
+          desktop: 1440,
+          step: 400,
+        }}
+        sizes="100vw"
+        class="hero-image"
+        loading="eager"
+      />
+    </picture>
+
+    <!-- <Video
       src={import('@/assets/videos/hero.mp4')}
       lazy
       autoplay
@@ -35,7 +67,7 @@ const { class: className, ...props } = Astro.props
       muted
       loop
       class="hero-video"
-    />
+    /> -->
   </div>
 
   <div class="hero-content container">

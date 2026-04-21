@@ -3,7 +3,7 @@ title: 'Why page speed shapes first impressions'
 summary: 'Why page speed shapes first impressions: How a slow site can cost you future customers'
 topic: 'Web Development'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-3.png'
+  image: '@/assets/images/blog-post-thumbnail-3.jpg'
   description: ''
 author:
   name: 'Jordan'

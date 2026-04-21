@@ -1,0 +1,68 @@
+---
+import type { LocalImageProps, RemoteImageProps } from 'astro:assets'
+import { Image as AstroImage } from 'astro:assets'
+import range from 'lodash/range'
+import path from 'node:path'
+
+const LIGHTHOUSE_MOBILE_DPR = 1.75
+const LIGHTHOUSE_DESKTOP_DPR = 2
+
+type AstroImageProps = LocalImageProps | RemoteImageProps
+
+export type ImageProps = Omit<AstroImageProps, 'widths' | 'sizes'> & {
+  widths: {
+    min: number
+    max: number
+    mobile: number
+    desktop: number
+    step?: number
+  }
+  sizes: string | string[]
+}
+
+type Props = ImageProps
+
+const { widths: _, sizes: __, src, ...props } = Astro.props
+
+if (typeof src !== 'string' && import.meta.env.DEV) {
+  const image = src instanceof Promise ? (await src).default : src
+
+  if (image.width !== Astro.props.widths.max * 2) {
+    let { name, ext } = path.parse(image.src)
+    ext = ext.substring(0, Math.max(0, ext.indexOf('?')) || undefined)
+
+    console.warn(
+      `${name}${ext} is ${image.width} px but is required to be ${Astro.props.widths.max * 2} px (max is ${Astro.props.widths.max} px)`,
+    )
+  }
+}
+
+function getWidths() {
+  const { min, max, mobile, desktop, step = 200 } = Astro.props.widths
+
+  const widths = [
+    Math.ceil(mobile * LIGHTHOUSE_MOBILE_DPR),
+    Math.ceil(desktop * LIGHTHOUSE_DESKTOP_DPR),
+    ...range(min, max * 2, step),
+    max * 2,
+  ]
+
+  return [...new Set(widths)].toSorted((a, b) => a - b)
+}
+
+function getSizes() {
+  const mobile = `(width: 412px) ${Astro.props.widths.mobile}px`
+  const desktop = `(width: 1350px) ${Astro.props.widths.desktop}px`
+
+  if (Array.isArray(Astro.props.sizes)) {
+    return [mobile, desktop, ...Astro.props.sizes].join(', ')
+  }
+
+  return [mobile, desktop, Astro.props.sizes].join(', ')
+}
+
+const widths = getWidths()
+const sizes = getSizes()
+---
+
+<AstroImage {...props as any} src={src} widths={widths} sizes={sizes} />

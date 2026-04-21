@@ -1,22 +1,24 @@
 ---
 import Heading from '@/components/headless/Heading.astro'
+import Image, { type ImageProps } from '@/components/headless/Image.astro'
 import Avatar from '@/components/ui/Avatar.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Eyebrow from '@/components/ui/Eyebrow.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { url } from '@/lib/url'
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 
 type Props = {
   post: CollectionEntry<'blog'>
   level: number
-  thumbnailWidths: number[]
-  thumbnailSizes: string
+  image: {
+    widths: ImageProps['widths']
+    sizes: ImageProps['sizes']
+  }
 }
 
-const { post, level, thumbnailWidths, thumbnailSizes } = Astro.props
+const { post, level, image } = Astro.props
 ---
 
 <section class="post">
@@ -27,8 +29,8 @@ const { post, level, thumbnailWidths, thumbnailSizes } = Astro.props
         alt={post.data.thumbnail.description}
         class="thumbnail-image"
         style={`--cursor-url: url(${url('/cursor.svg')});`}
-        widths={thumbnailWidths}
-        sizes={thumbnailSizes}
+        widths={image.widths}
+        sizes={image.sizes}
       />
     </a>
 

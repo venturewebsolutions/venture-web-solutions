@@ -26,8 +26,19 @@ const { posts, class: className, ...props } = Astro.props
         <BlogPostCard
           post={post}
           level={2}
-          thumbnailWidths={[216, 343, 432, 520, 708, 832, 1416]}
-          thumbnailSizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+          image={{
+            widths: {
+              min: 217,
+              max: 708,
+              mobile: 378,
+              desktop: 385,
+            },
+            sizes: [
+              '(min-width: 90rem) 26rem',
+              '(min-width: 48rem) 33.33vw',
+              '100vw',
+            ],
+          }}
         />
       ))
     }

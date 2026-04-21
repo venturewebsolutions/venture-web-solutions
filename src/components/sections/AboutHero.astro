@@ -1,7 +1,13 @@
 ---
 import Eyebrow from '@/components/ui/Eyebrow.astro'
+import { cn } from '@/lib/class-names'
 import { take } from '@/lib/utils'
+import type { HTMLAttributes } from 'astro/types'
 import { Image } from 'astro:assets'
+
+type Props = HTMLAttributes<'section'>
+
+const { class: className, ...props } = Astro.props
 
 const images = take(
   [
@@ -25,7 +31,7 @@ const images = take(
 )
 ---
 
-<section class="section">
+<section class:list={cn(className, 'section')} {...props}>
   <div class="container">
     <div class="header">
       <h1>

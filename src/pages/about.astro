@@ -35,8 +35,8 @@ const steps = [
 ]
 ---
 
-<Layout title="About | Venture Web Solutions" description="">
-  <AboutHero />
+<Layout title="About | Venture Web Solutions" description="" flush>
+  <AboutHero class="hero" />
   <AboutUs class="about-us">
     <p slot="heading" class="h3">
       We’re Venture Web Solutions, an independent web design agency, dedicated
@@ -85,6 +85,12 @@ const steps = [
 <style lang="scss">
   @use 'functions' as *;
   @use 'mixins' as *;
+
+  .hero {
+    --padding-top: calc(
+      var(--nav-height) + var(--nav-offset-top) + var(--spacing-5xl)
+    );
+  }
 
   .about-us {
     --padding-top: 0;

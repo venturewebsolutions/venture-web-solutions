@@ -89,6 +89,17 @@ const links = [
     z-index: 10;
 
     overflow-y: hidden;
+
+    transition: transform var(--transition-duration-default)
+      var(--transition-ease-default);
+
+    &[data-hidden] {
+      transform: translateY(calc(-100% - var(--spacing-s)));
+    }
+
+    &[data-show] {
+      transform: none;
+    }
   }
 
   .overlay {
@@ -328,6 +339,8 @@ const links = [
 </style>
 
 <script>
+  import throttle from 'lodash/throttle'
+
   const sentinel = document.querySelector('#scroll-sentinel')!
   const nav = document.querySelector<HTMLElement>('.nav')!
   const container = document.querySelector<HTMLElement>('.container')!
@@ -386,9 +399,39 @@ const links = [
     }
   })
 
-  const observer = new IntersectionObserver(([entry]) => {
+  const scrolledObserver = new IntersectionObserver(([entry]) => {
     nav.toggleAttribute('data-scrolled', !entry.isIntersecting)
   })
 
-  observer.observe(sentinel)
+  scrolledObserver.observe(sentinel)
+
+  const hiddenObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        nav.removeAttribute('data-hidden')
+      } else {
+        nav.setAttribute('data-hidden', '')
+      }
+    },
+    {
+      rootMargin: '30%',
+    },
+  )
+
+  hiddenObserver.observe(sentinel)
+
+  let scrollY = window.scrollY
+
+  window.addEventListener(
+    'scroll',
+    throttle(() => {
+      if (window.scrollY < scrollY) {
+        nav.setAttribute('data-show', '')
+      } else {
+        nav.removeAttribute('data-show')
+      }
+
+      scrollY = window.scrollY
+    }, 200),
+  )
 </script>

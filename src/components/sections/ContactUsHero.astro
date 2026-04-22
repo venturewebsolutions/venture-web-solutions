@@ -4,13 +4,17 @@ import ContactForm from '@/components/ui/ContactForm.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
+import Link from '../ui/Link.astro'
 
 type Props = HTMLAttributes<'section'>
 
 const { class: className, ...props } = Astro.props
 ---
 
-<section class:list={cn('contact-us-hero container section', className)} {...props}>
+<section
+  class:list={cn('contact-us-hero container section', className)}
+  {...props}
+>
   <div>
     <SectionHeader eyebrow="Contact" level={1} class="header">
       We'd love to hear from you
@@ -28,18 +32,17 @@ const { class: className, ...props } = Astro.props
 
         <ul class="contact-options-list">
           <li class="contact-option">
-            <a
+            <Link
               href="mailto:hello@venturewebsolutions.co.uk"
-              class="contact-option-link underline"
+              variant="md"
+              underline
             >
               hello@venturewebsolutions.co.uk
-            </a>
+            </Link>
           </li>
 
           <li class="contact-option">
-            <a href="tel:+447454747455" class="contact-option-link">
-              07454 747 488
-            </a>
+            <Link href="tel:+447454747455" variant="md">07454 747 488</Link>
           </li>
         </ul>
       </div>
@@ -91,6 +94,9 @@ const { class: className, ...props } = Astro.props
   }
 
   .contact-option {
+    display: flex;
+    align-items: baseline;
+
     color: var(--colour-text-contrast);
 
     &::before {

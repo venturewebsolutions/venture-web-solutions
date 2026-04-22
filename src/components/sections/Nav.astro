@@ -5,6 +5,7 @@ import Logo from '@/components/ui/Logo.astro'
 import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import Hamburger from '../ui/Hamburger.astro'
+import Link from '../ui/Link.astro'
 
 const links = [
   {
@@ -54,10 +55,10 @@ const links = [
       {
         links.map((link) => (
           <li>
-            <a href={link.href} class="link">
+            <Link href={link.href} class="link">
               <Icon name={link.icon} class="link-icon" />
               <span>{link.name}</span>
-            </a>
+            </Link>
           </li>
         ))
       }
@@ -268,6 +269,7 @@ const links = [
     .hamburger {
       grid-area: hamburger;
       justify-self: end;
+      cursor: pointer;
 
       :global(.line:nth-child(1)) {
         transform: translateY(6px) rotateZ(45deg);
@@ -300,6 +302,10 @@ const links = [
       gap: var(--spacing-s);
     }
 
+    .link-icon {
+      margin-top: -4px;
+    }
+
     .cta {
       display: block;
       grid-area: cta;
@@ -319,11 +325,10 @@ const links = [
       display: flex;
       align-items: center;
       gap: var(--spacing-xl);
-      color: var(--colour-text-contrast);
     }
 
     .link {
-      @include font(body);
+      @include font(link-md);
     }
 
     .link-icon {

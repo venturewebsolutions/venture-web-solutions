@@ -1,0 +1,71 @@
+---
+import { cn } from '@/lib/class-names'
+import { Icon } from 'astro-icon/components'
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'a'> & {
+  variant?: 'md' | 'lg' | 'footer-legal'
+  underline?: boolean
+  'hover:underline'?: boolean
+}
+
+const {
+  variant,
+  underline,
+  'hover:underline': hoverUnderline = true,
+  class: className,
+  ...props
+} = Astro.props
+---
+
+<a
+  class:list={cn('link', className)}
+  data-variant={variant}
+  data-underline={underline || undefined}
+  data-hover-underline={hoverUnderline || undefined}
+  {...props}
+>
+  <slot />
+</a>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .link {
+    text-decoration-color: transparent;
+
+    transition:
+      color var(--transition-duration-default) var(--transition-ease-default),
+      text-decoration-color var(--transition-duration-default)
+        var(--transition-ease-default);
+
+    &[data-variant='md'] {
+      @include font(link-md);
+    }
+
+    &[data-variant='footer-legal'] {
+      @include font(footer-legal);
+    }
+
+    &[data-underline] {
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-thickness: 1px;
+      text-underline-offset: calc(0.25em + 1px);
+      text-decoration-color: currentColor;
+    }
+
+    &:hover {
+      color: var(--colour-primary);
+
+      &[data-hover-underline] {
+        text-decoration-line: underline;
+        text-decoration-style: wavy;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+        text-decoration-color: var(--colour-primary);
+      }
+    }
+  }
+</style>

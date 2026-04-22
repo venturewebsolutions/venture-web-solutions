@@ -4,6 +4,7 @@ import ContactForm from '@/components/ui/ContactForm.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { HTMLAttributes } from 'astro/types'
+import Link from '../ui/Link.astro'
 
 type Props = HTMLAttributes<'section'> & {
   heading?: string
@@ -52,12 +53,14 @@ const {
       <div class="email-link-wrapper">
         <p>Hate contact forms?</p>
 
-        <a
+        <Link
           href="mailto:hello@venturewebsolutions.co.uk"
-          class="email-link underline"
+          variant="md"
+          underline
+          class="email-link"
         >
           hello@venturewebsolutions.co.uk
-        </a>
+        </Link>
       </div>
 
       <Button href={url('/project-planner/')} arrow>
@@ -107,7 +110,6 @@ const {
   }
 
   .email-link {
-    @include font(link-md);
     color: var(--colour-text-contrast);
   }
 

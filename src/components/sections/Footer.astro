@@ -6,6 +6,7 @@ import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
+import Link from '../ui/Link.astro'
 
 type Props = HTMLAttributes<'footer'>
 
@@ -112,10 +113,10 @@ const lists = [
               <li class="list-heading">{list.heading}</li>
               {list.links.map(({ text, icon, href }) => (
                 <li class="list-item">
-                  <a href={href} class="list-link">
+                  <Link href={href} variant="md" class="list-link">
                     {icon && <Icon name={icon} class="list-icon" />}
                     <span>{text}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -151,9 +152,17 @@ const lists = [
       <div class="footer-legal-group">
         <p>All Rights Reserved</p>
         <div class="footer-legal-bullet"></div>
-        <a href={url('/privacy-policy/')}>Privacy Policy</a>
+        <Link
+          href={url('/privacy-policy/')}
+          variant="footer-legal"
+          hover:underline={false}
+        >
+          Privacy Policy
+        </Link>
         <div class="footer-legal-bullet"></div>
-        <a href={url('/terms-and-conditions/')}>Terms & Conditions</a>
+        <Link href={url('/terms-and-conditions/')} variant="footer-legal">
+          Terms & Conditions
+        </Link>
       </div>
     </div>
   </div>
@@ -229,16 +238,14 @@ const lists = [
   }
 
   .list-link {
-    @include font(link-md);
     display: flex;
     align-items: center;
-    gap: var(--spacing-m);
+    gap: var(--spacing-s);
   }
 
   .list-icon {
     --size: 0.875em;
-
-    display: none;
+    margin-top: -1px;
   }
 
   .banner-segment {

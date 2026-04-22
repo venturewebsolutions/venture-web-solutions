@@ -4,6 +4,7 @@ import Quote from '@/components/ui/Quote.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
+import Link from '../ui/Link.astro'
 
 type Props = HTMLAttributes<'section'>
 
@@ -52,13 +53,15 @@ const { class: className, ...props } = Astro.props
 
     <div class="footer">
       <p>Don’t believe us?</p>
-      <a
+      <Link
         href="https://pagespeed.web.dev/report?url=venturewebsolutions.co.uk&form_factor=desktop"
         target="_blank"
+        variant="md"
+        underline
         class="link"
       >
         See for yourself!
-      </a>
+      </Link>
     </div>
   </div>
 </section>
@@ -100,8 +103,6 @@ const { class: className, ...props } = Astro.props
   }
 
   .link {
-    @include font(body-medium);
-    text-decoration: underline;
     color: var(--colour-text-contrast);
   }
 

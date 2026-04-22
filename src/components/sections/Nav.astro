@@ -82,6 +82,8 @@ const links = [
   @use 'mixins' as *;
 
   .nav {
+    --transition-duration: var(--transition-duration-default);
+
     position: fixed;
     left: 0;
     top: var(--spacing-s);
@@ -90,14 +92,18 @@ const links = [
 
     overflow-y: hidden;
 
-    transition: transform var(--transition-duration-default)
+    transition: transform var(--transition-duration)
       var(--transition-ease-default);
 
     &[data-hidden] {
+      --transition-duration: var(--transition-duration-l);
+
       transform: translateY(calc(-100% - var(--spacing-s)));
     }
 
     &[data-show] {
+      --transition-duration: var(--transition-duration-default);
+
       transform: none;
     }
   }

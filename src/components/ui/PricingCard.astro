@@ -249,7 +249,7 @@ const {
   .card-circle-1,
   .card-circle-2,
   .card-circle-3 {
-    --inset: 20%;
+    --inset: 5%;
 
     position: absolute;
     width: 46%;
@@ -266,43 +266,34 @@ const {
   }
 
   .card-circle-1 {
-    --travel: 150%;
+    --travel: 200%;
 
-    left: 100%;
-    top: 80%;
-    transform: translateX(calc(-1 * var(--inset)));
+    left: 0;
+    top: 0;
+    transform: translateY(calc(-100% + var(--inset)));
     animation-name: card-circle-1;
+    animation-direction: alternate-reverse;
   }
 
   .card-circle-2 {
-    --travel: 150%;
-
-    left: 20%;
-    top: 0;
-    transform: translateY(calc(-100% + var(--inset)));
-    animation-name: card-circle-2;
-  }
-
-  .card-circle-3 {
     --travel: 200%;
 
     left: 0;
     top: 30%;
     transform: translateX(calc(-100% + var(--inset)));
+    animation-name: card-circle-2;
+  }
+
+  .card-circle-3 {
+    --travel: 150%;
+
+    left: 100%;
+    top: 80%;
+    transform: translateX(calc(-1 * var(--inset)));
     animation-name: card-circle-3;
   }
 
   @keyframes card-circle-1 {
-    0% {
-      transform: translateX(calc(-1 * var(--inset))) translateY(0%);
-    }
-    100% {
-      transform: translateX(calc(-1 * var(--inset)))
-        translateY(calc(-1 * var(--travel)));
-    }
-  }
-
-  @keyframes card-circle-2 {
     0% {
       transform: translateY(calc(-100% + var(--inset))) translateX(0%);
     }
@@ -312,13 +303,23 @@ const {
     }
   }
 
-  @keyframes card-circle-3 {
+  @keyframes card-circle-2 {
     0% {
       transform: translateX(calc(-100% + var(--inset))) translateY(0%);
     }
     100% {
       transform: translateX(calc(-100% + var(--inset)))
         translateY(var(--travel));
+    }
+  }
+
+  @keyframes card-circle-3 {
+    0% {
+      transform: translateX(calc(-1 * var(--inset))) translateY(0%);
+    }
+    100% {
+      transform: translateX(calc(-1 * var(--inset)))
+        translateY(calc(-1 * var(--travel)));
     }
   }
 

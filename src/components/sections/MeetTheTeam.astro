@@ -7,7 +7,7 @@ import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
+import Image from '../headless/Image.astro'
 
 const members = [
   {
@@ -76,6 +76,17 @@ const { minimal = false, level = 2, class: className, ...props } = Astro.props
             <Image
               src={member.thumbnail.src}
               alt={member.thumbnail.alt}
+              widths={{
+                min: 288,
+                max: 708,
+                mobile: 378,
+                desktop: 551,
+              }}
+              sizes={[
+                '(min-width: 90rem) 38rem',
+                '(min-width: 48rem) 50vw',
+                '100vw',
+              ]}
               class="member-image"
             />
 

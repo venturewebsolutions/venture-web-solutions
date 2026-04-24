@@ -1,71 +1,120 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
-
 type Props = HTMLAttributes<'svg'>
 ---
 
 <svg
-  width="567"
-  height="924"
-  viewBox="0 0 567 924"
-  fill="none"
   xmlns="http://www.w3.org/2000/svg"
+  width="100%"
+  height="100%"
+  style="display:block;"
   {...Astro.props}
 >
-  <g filter="url(#filter0_n_5393_9679)">
-    <rect
-      width="569"
-      height="925"
-      transform="translate(-1 -1)"
-      fill="black"
-      fill-opacity="0.125"></rect>
-  </g>
   <defs>
     <filter
-      id="filter0_n_5393_9679"
-      x="-1"
-      y="-1"
-      width="569"
-      height="925"
-      filterUnits="userSpaceOnUse"
+      id="noise-filter"
+      x="0%"
+      y="0%"
+      width="100%"
+      height="100%"
       color-interpolation-filters="sRGB"
     >
-      <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
-      <feBlend
-        mode="normal"
-        in="SourceGraphic"
-        in2="BackgroundImageFix"
-        result="shape"></feBlend>
       <feTurbulence
         type="fractalNoise"
-        baseFrequency="5 5"
-        stitchTiles="stitch"
+        baseFrequency="0.2"
         numOctaves="3"
-        result="noise"
-        seed="3053"></feTurbulence>
-      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"
-      ></feColorMatrix>
-      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
-        <feFuncA
-          type="discrete"
-          tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
-        ></feFuncA>
+        stitchTiles="stitch"
+        result="noise"></feTurbulence>
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+        in="noise"
+        result="blackNoise"></feColorMatrix>
+      <feComposite
+        in="blackNoise"
+        in2="SourceGraphic"
+        operator="in"
+        result="clippedNoise"></feComposite>
+      <feBlend
+        in="SourceGraphic"
+        in2="clippedNoise"
+        mode="normal"
+        result="withNoise"></feBlend>
+    </filter>
+
+    <filter
+      id="glass-filter"
+      x="-10%"
+      y="-10%"
+      width="120%"
+      height="120%"
+      color-interpolation-filters="sRGB"
+    >
+      <!-- Frost / blur — frost: 19 → ~1.9px blur -->
+      <feGaussianBlur stdDeviation="1.9" in="SourceGraphic" result="blurred"
+      ></feGaussianBlur>
+
+      <!-- Dispersion: split RGB channels slightly (dispersion: 100) -->
+      <feOffset dx="-1.2" dy="0" in="blurred" result="rShift"></feOffset>
+      <feOffset dx="1.2" dy="0" in="blurred" result="bShift"></feOffset>
+
+      <feColorMatrix
+        type="matrix"
+        values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0"
+        in="rShift"
+        result="rOnly"></feColorMatrix>
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0"
+        in="blurred"
+        result="gOnly"></feColorMatrix>
+      <feColorMatrix
+        type="matrix"
+        values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0"
+        in="bShift"
+        result="bOnly"></feColorMatrix>
+
+      <feBlend in="rOnly" in2="gOnly" mode="screen" result="rg"></feBlend>
+      <feBlend in="rg" in2="bOnly" mode="screen" result="dispersed"></feBlend>
+
+      <!-- Refraction: slight distort using turbulence displacement (refraction: 82) -->
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="0.012"
+        numOctaves="2"
+        seed="5"
+        result="warp"></feTurbulence>
+      <feDisplacementMap
+        in="dispersed"
+        in2="warp"
+        scale="8"
+        xChannelSelector="R"
+        yChannelSelector="G"
+        result="refracted"></feDisplacementMap>
+
+      <!-- Intensity: lighten the result (intensity: 30%) -->
+      <feComponentTransfer in="refracted" result="intensified">
+        <feFuncR type="linear" slope="1" intercept="0.08"></feFuncR>
+        <feFuncG type="linear" slope="1" intercept="0.08"></feFuncG>
+        <feFuncB type="linear" slope="1" intercept="0.1"></feFuncB>
       </feComponentTransfer>
-      <feComposite
-        operator="in"
-        in2="shape"
-        in="coloredNoise1"
-        result="noise1Clipped"></feComposite>
-      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood"></feFlood>
-      <feComposite
-        operator="in"
-        in2="noise1Clipped"
-        in="color1Flood"
-        result="color1"></feComposite>
-      <feMerge result="effect1_noise_5393_9679">
-        <feMergeNode in="shape"></feMergeNode>
-        <feMergeNode in="color1"></feMergeNode>
-      </feMerge>
     </filter>
   </defs>
+
+  <!-- Glass layer -->
+  <rect
+    width="100%"
+    height="100%"
+    fill="rgba(0,0,0,0.06)"
+    filter="url(#glass-filter)"></rect>
+
+  <!-- Subtle top highlight edge (angle: 178deg → almost horizontal top) -->
+  <rect width="100%" height="1px" fill="rgba(0,0,0,0.45)"></rect>
+
+  <!-- Noise overlay (density 100%, color #000 at 25% opacity) -->
+  <rect
+    width="100%"
+    height="100%"
+    fill="rgba(0,0,0,0.08)"
+    filter="url(#noise-filter)"></rect>
 </svg>

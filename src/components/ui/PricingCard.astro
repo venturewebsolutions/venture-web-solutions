@@ -3,11 +3,11 @@ import Heading from '@/components/headless/Heading.astro'
 import Badge from '@/components/ui/Badge.astro'
 import Button, { type ButtonVariant } from '@/components/ui/Button.astro'
 import Divider from '@/components/ui/Divider.astro'
+import Glass from '@/components/ui/Glass.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
-import Noise from './Noise.astro'
 
 type Props = HTMLAttributes<'section'> & {
   heading: {
@@ -63,7 +63,7 @@ const {
       )
     }
 
-    <Noise class="card-background-noise" />
+    <Glass class="card-background-glass" />
   </div>
 
   <div class="card-header">
@@ -241,7 +241,7 @@ const {
     z-index: -1;
   }
 
-  .card-background-noise {
+  .card-background-glass {
     position: absolute;
     inset: 0;
   }

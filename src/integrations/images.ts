@@ -1,5 +1,9 @@
-import type { AstroIntegration, AstroIntegrationLogger } from 'astro'
+import type { AstroIntegration } from 'astro'
 import path from 'node:path'
+
+declare global {
+  var __imageRegistry: ImageRegistry | undefined
+}
 
 interface Logger {
   warn(message: string): void
@@ -11,20 +15,24 @@ class ConsoleLogger implements Logger {
   }
 }
 
+type ImageConfig = {
+  maxRenderWidth: number
+}
+
 class ImageRegistry {
   private logger: Logger = new ConsoleLogger()
 
   private images = new Map<
     string,
-    { image: ImageMetadata; maxRenderWidth: number }
+    { image: ImageMetadata; config: ImageConfig }
   >()
 
-  public add(image: ImageMetadata, maxRenderWidth: number) {
+  public registerImage(image: ImageMetadata, config: ImageConfig) {
     const filename = this.getFilename(image)
 
-    if (image.width < maxRenderWidth * 2) {
+    if (image.width < config.maxRenderWidth * 2) {
       this.logger.warn(
-        `${filename} is ${image.width} only px but needs to be at least ${maxRenderWidth * 2} px (max render width is ${maxRenderWidth} px)`,
+        `${filename} is ${image.width} only px but needs to be at least ${config.maxRenderWidth * 2} px (max render width is ${config.maxRenderWidth} px)`,
       )
     }
 
@@ -32,11 +40,16 @@ class ImageRegistry {
 
     this.images.set(filename, {
       image,
-      maxRenderWidth: Math.max(existing?.maxRenderWidth ?? 0, maxRenderWidth),
+      config: {
+        maxRenderWidth: Math.max(
+          existing?.config.maxRenderWidth ?? 0,
+          config.maxRenderWidth,
+        ),
+      },
     })
   }
 
-  public entries() {
+  public getEntries() {
     return this.images.entries()
   }
 
@@ -50,13 +63,7 @@ class ImageRegistry {
   }
 }
 
-declare global {
-  var __imageRegistry: ImageRegistry | undefined
-}
-
-globalThis.__imageRegistry ??= new ImageRegistry()
-
-export const registry = globalThis.__imageRegistry
+export const registry = (globalThis.__imageRegistry ??= new ImageRegistry())
 
 export default function createIntegration(): AstroIntegration {
   return {
@@ -66,16 +73,13 @@ export default function createIntegration(): AstroIntegration {
         registry.setLogger(logger)
       },
       'astro:build:done': ({ logger }) => {
-        for (const [
-          filename,
-          { image, maxRenderWidth },
-        ] of registry.entries()) {
-          const idealWidth = maxRenderWidth * 2
+        for (const [filename, { image, config }] of registry.getEntries()) {
+          const idealWidth = config.maxRenderWidth * 2
 
           if (image.width > idealWidth) {
             logger.warn(
               `${filename} is ${image.width} px but only needs to be ${idealWidth} px ` +
-                `(largest render width is ${maxRenderWidth} px)`,
+                `(largest render width is ${config.maxRenderWidth} px)`,
             )
           }
         }

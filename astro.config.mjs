@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 import { defineConfig } from 'astro/config'
 import { fileURLToPath } from 'url'
-import imageSizeCheck from './src/integrations/image-size-check'
+import images from './src/integrations/images'
 
 // https://astro.build/config
 export default defineConfig({
@@ -38,6 +38,6 @@ export default defineConfig({
         ],
       },
     }),
-    imageSizeCheck(),
+    images(),
   ],
 })

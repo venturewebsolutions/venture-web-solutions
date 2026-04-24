@@ -1,5 +1,5 @@
 ---
-import { registry } from '@/integrations/image-size-check'
+import { registry } from '@/integrations/images'
 import type { LocalImageProps, RemoteImageProps } from 'astro:assets'
 import { Image as AstroImage } from 'astro:assets'
 import range from 'lodash/range'
@@ -26,7 +26,9 @@ const { widths: _, sizes: __, src, ...props } = Astro.props
 
 if (typeof src !== 'string') {
   const image = src instanceof Promise ? (await src).default : src
-  registry.add(image, Astro.props.widths.max)
+  registry.registerImage(image, {
+    maxRenderWidth: Astro.props.widths.max,
+  })
 }
 
 function getWidths() {

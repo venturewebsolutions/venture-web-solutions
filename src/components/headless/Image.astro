@@ -1,8 +1,8 @@
 ---
+import { registry } from '@/integrations/image-size-check'
 import type { LocalImageProps, RemoteImageProps } from 'astro:assets'
 import { Image as AstroImage } from 'astro:assets'
 import range from 'lodash/range'
-import path from 'node:path'
 
 const LIGHTHOUSE_MOBILE_DPR = 1.75
 const LIGHTHOUSE_DESKTOP_DPR = 2
@@ -24,17 +24,9 @@ type Props = ImageProps
 
 const { widths: _, sizes: __, src, ...props } = Astro.props
 
-if (typeof src !== 'string' && import.meta.env.DEV) {
+if (typeof src !== 'string') {
   const image = src instanceof Promise ? (await src).default : src
-
-  if (image.width !== Astro.props.widths.max * 2) {
-    let { name, ext } = path.parse(image.src)
-    ext = ext.substring(0, Math.max(0, ext.indexOf('?')) || undefined)
-
-    console.warn(
-      `${name}${ext} is ${image.width} px but is required to be ${Astro.props.widths.max * 2} px (max is ${Astro.props.widths.max} px)`,
-    )
-  }
+  registry.add(image, Astro.props.widths.max)
 }
 
 function getWidths() {

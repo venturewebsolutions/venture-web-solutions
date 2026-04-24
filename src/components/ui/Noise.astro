@@ -1,0 +1,71 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+type Props = HTMLAttributes<'svg'>
+---
+
+<svg
+  width="567"
+  height="924"
+  viewBox="0 0 567 924"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  {...Astro.props}
+>
+  <g filter="url(#filter0_n_5393_9679)">
+    <rect
+      width="569"
+      height="925"
+      transform="translate(-1 -1)"
+      fill="black"
+      fill-opacity="0.2"></rect>
+  </g>
+  <defs>
+    <filter
+      id="filter0_n_5393_9679"
+      x="-1"
+      y="-1"
+      width="569"
+      height="925"
+      filterUnits="userSpaceOnUse"
+      color-interpolation-filters="sRGB"
+    >
+      <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+      <feBlend
+        mode="normal"
+        in="SourceGraphic"
+        in2="BackgroundImageFix"
+        result="shape"></feBlend>
+      <feTurbulence
+        type="fractalNoise"
+        baseFrequency="5 5"
+        stitchTiles="stitch"
+        numOctaves="3"
+        result="noise"
+        seed="3053"></feTurbulence>
+      <feColorMatrix in="noise" type="luminanceToAlpha" result="alphaNoise"
+      ></feColorMatrix>
+      <feComponentTransfer in="alphaNoise" result="coloredNoise1">
+        <feFuncA
+          type="discrete"
+          tableValues="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 "
+        ></feFuncA>
+      </feComponentTransfer>
+      <feComposite
+        operator="in"
+        in2="shape"
+        in="coloredNoise1"
+        result="noise1Clipped"></feComposite>
+      <feFlood flood-color="rgba(0, 0, 0, 0.25)" result="color1Flood"></feFlood>
+      <feComposite
+        operator="in"
+        in2="noise1Clipped"
+        in="color1Flood"
+        result="color1"></feComposite>
+      <feMerge result="effect1_noise_5393_9679">
+        <feMergeNode in="shape"></feMergeNode>
+        <feMergeNode in="color1"></feMergeNode>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>

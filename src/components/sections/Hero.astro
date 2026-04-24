@@ -71,7 +71,9 @@ const { class: className, ...props } = Astro.props
   </div>
 
   <div class="hero-content container">
-    <Eyebrow>Hi, we’re Venture Web Solutions 👋</Eyebrow>
+    <Eyebrow>
+      Hi, we’re Venture Web Solutions <span class="hand">👋</span>
+    </Eyebrow>
 
     <h1 class="title h1">
       A web
@@ -80,7 +82,7 @@ const { class: className, ...props } = Astro.props
       <span class="squiggle-container">
         <span>ambitious</span>
         <span class="squiggle">
-          <Squiggle />
+          <Squiggle animate />
         </span>
       </span> businesses
     </h1>
@@ -161,6 +163,44 @@ const { class: className, ...props } = Astro.props
 
   .hero-content {
     display: grid;
+  }
+
+  .hand {
+    --max-rotation: 28deg;
+    --max-scale: 1.3;
+
+    display: inline-block;
+    transform-origin: 70% 70%;
+    animation: wave 1s ease-in-out 0.8s 1 forwards;
+  }
+
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg) scale(1) translateY(-2px);
+    }
+    15% {
+      transform: rotate(var(--max-rotation)) scale(var(--max-scale))
+        translateY(-2px);
+    }
+    30% {
+      transform: rotate(calc(var(--max-rotation) * -8 / 14))
+        scale(var(--max-scale)) translateY(-2px);
+    }
+    45% {
+      transform: rotate(var(--max-rotation)) scale(var(--max-scale))
+        translateY(-2px);
+    }
+    60% {
+      transform: rotate(calc(var(--max-rotation) * -4 / 14))
+        scale(var(--max-scale)) translateY(-2px);
+    }
+    75% {
+      transform: rotate(calc(var(--max-rotation) * 10 / 14))
+        scale(var(--max-scale)) translateY(-2px);
+    }
+    100% {
+      transform: rotate(0deg) scale(1);
+    }
   }
 
   .title {

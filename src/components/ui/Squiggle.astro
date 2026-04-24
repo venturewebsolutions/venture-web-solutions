@@ -1,14 +1,19 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
 
-type Props = HTMLAttributes<'svg'>
+type Props = HTMLAttributes<'svg'> & {
+  animate?: boolean
+}
+
+const { animate, ...props } = Astro.props
 ---
 
 <svg
   viewBox="0 0 353 22"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
-  {...Astro.props}
+  data-animate={animate || undefined}
+  {...props}
 >
   <path
     d="M1 5.41775C3.21252 5.30342 9.65523 4.696 27.1502 3.06178C31.2633 2.67757 33.5926 2.59059 44.3211 2.16403C55.0495 1.73747 74.1415 1.01415 110.39 1.0002C146.638 0.986245 199.465 1.70357 239.685 2.79346C279.905 3.88334 305.918 5.32405 320.899 6.23774C339.133 7.34983 344.962 8.43142 349.699 9.44322C351.751 9.88134 353.168 10.1266 350.663 10.258C341.817 10.7221 331.241 10.4305 319.116 10.2788C298.066 10.0154 277.773 9.17958 260.857 9.10132C239.574 9.00287 219.059 8.93397 194.705 9.00797C178.83 9.0562 155.831 9.40702 137.83 9.86088C90.681 11.0496 79.7196 12.8406 76.3414 13.171C76.0453 13.1999 79.8345 13.2287 106.95 13.5165C134.066 13.8043 184.703 14.4222 213.983 14.9206C249.703 15.5287 261.913 16.7161 271.984 17.7357C283.899 18.942 288.29 19.4254 289.892 19.9405C291.469 20.4477 278.296 21.1127 245.887 20.9837C223.709 20.7785 189.895 20.2895 165.174 19.9732C140.454 19.6569 125.853 19.528 110.809 19.3952"
@@ -16,3 +21,22 @@ type Props = HTMLAttributes<'svg'>
     stroke-width="2"
     stroke-linecap="round"></path>
 </svg>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  svg[data-animate] path {
+    --length: 1020.6419677734375;
+
+    stroke-dasharray: var(--length);
+    stroke-dashoffset: var(--length);
+    animation: draw 0.6s ease-in-out forwards 0.1s;
+  }
+
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+</style>

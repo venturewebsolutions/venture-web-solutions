@@ -91,10 +91,20 @@ const { class: className, ...props } = Astro.props
       support, and unlimited edits.
     </p>
     <div class="buttons">
-      <Button variant="primary" href={url('/project-planner/')} arrow>
+      <Button
+        variant="primary"
+        href={url('/project-planner/')}
+        arrow
+        class="button"
+      >
         Start a project
       </Button>
-      <Button variant="secondary-outline" href={url('/work/')} arrow>
+      <Button
+        variant="secondary-outline"
+        href={url('/work/')}
+        arrow
+        class="button"
+      >
         See our work
       </Button>
     </div>
@@ -246,5 +256,9 @@ const { class: className, ...props } = Astro.props
     column-gap: #{linear(var(--spacing-m), var(--spacing-xl))};
     row-gap: var(--spacing-m);
     margin-top: var(--spacing-4xl);
+  }
+
+  .button {
+    flex-basis: 14rem;
   }
 </style>

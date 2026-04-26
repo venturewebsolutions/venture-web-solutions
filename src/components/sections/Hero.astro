@@ -249,16 +249,25 @@ const { class: className, ...props } = Astro.props
   }
 
   .buttons {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     justify-content: center;
     align-items: center;
-    column-gap: #{linear(var(--spacing-m), var(--spacing-xl))};
-    row-gap: var(--spacing-m);
+    gap: var(--spacing-m);
     margin-top: var(--spacing-4xl);
   }
 
   .button {
-    flex-basis: 14rem;
+    width: 14rem;
+  }
+
+  @media screen and (min-width: rem(506px)) {
+    .buttons {
+      grid-template-columns: repeat(2, auto);
+      gap: #{linear(var(--spacing-m), var(--spacing-xl))};
+    }
+
+    .button {
+      width: auto;
+    }
   }
 </style>

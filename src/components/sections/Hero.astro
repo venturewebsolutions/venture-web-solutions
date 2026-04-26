@@ -263,7 +263,7 @@ const { class: className, ...props } = Astro.props
   @media screen and (min-width: rem(506px)) {
     .buttons {
       grid-template-columns: repeat(2, auto);
-      gap: #{linear(var(--spacing-m), var(--spacing-xl))};
+      gap: #{responsive(var(--spacing-m), var(--spacing-xl))};
     }
 
     .button {

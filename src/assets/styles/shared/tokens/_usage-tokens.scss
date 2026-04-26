@@ -35,19 +35,19 @@
   --font-body: #{font(
       var(--font-weight-regular),
       var(--font-size-16),
-      linear(var(--line-height-160), var(--line-height-150)),
+      responsive(var(--line-height-160), var(--line-height-150)),
       var(--font-family-base)
     )};
   --font-body-medium: #{font(
       var(--font-weight-medium),
       var(--font-size-16),
-      linear(var(--line-height-160), var(--line-height-150)),
+      responsive(var(--line-height-160), var(--line-height-150)),
       var(--font-family-base)
     )};
   --font-body-italic: #{font(
       var(--font-weight-regular),
       var(--font-size-16),
-      linear(var(--line-height-160), var(--line-height-150)),
+      responsive(var(--line-height-160), var(--line-height-150)),
       var(--font-family-base),
       'italic'
     )};
@@ -71,33 +71,33 @@
     )};
   --font-meta-secondary: #{font(
       var(--font-weight-medium),
-      linear(var(--font-size-12), var(--font-size-10)),
-      linear(var(--line-height-140), var(--line-height-130)),
+      responsive(var(--font-size-12), var(--font-size-10)),
+      responsive(var(--line-height-140), var(--line-height-130)),
       var(--font-family-base)
     )};
   --font-h1: #{font(
       var(--font-weight-black),
-      linear(var(--font-size-50), var(--font-size-72)),
-      linear(var(--line-height-112), var(--line-height-110)),
+      responsive(var(--font-size-50), var(--font-size-72)),
+      responsive(var(--line-height-112), var(--line-height-110)),
       var(--font-family-base)
     )};
   --font-h2: #{font(
       var(--font-weight-medium),
-      linear(var(--font-size-32), var(--font-size-48)),
-      linear(var(--line-height-120), var(--line-height-100)),
+      responsive(var(--font-size-32), var(--font-size-48)),
+      responsive(var(--line-height-120), var(--line-height-100)),
       var(--font-family-base)
     )};
   --font-h2-italic: #{font(
       var(--font-weight-medium),
-      linear(var(--font-size-32), var(--font-size-48)),
-      linear(var(--line-height-120), var(--line-height-100)),
+      responsive(var(--font-size-32), var(--font-size-48)),
+      responsive(var(--line-height-120), var(--line-height-100)),
       var(--font-family-base),
       'italic'
     )};
   --font-h3: #{font(
       var(--font-weight-medium),
-      linear(var(--font-size-24), var(--font-size-32)),
-      linear(var(--line-height-125), var(--line-height-120)),
+      responsive(var(--font-size-24), var(--font-size-32)),
+      responsive(var(--line-height-125), var(--line-height-120)),
       var(--font-family-base)
     )};
   --font-h4: #{font(
@@ -120,37 +120,37 @@
     )};
   --font-display-numeral-xl: #{font(
       var(--font-weight-bold),
-      linear(var(--font-size-78), var(--font-size-106)),
+      responsive(var(--font-size-78), var(--font-size-106)),
       var(--line-height-display-numeral-xl),
       var(--font-family-display)
     )};
   --font-display-numeral-m: #{font(
       var(--font-weight-medium),
-      linear(var(--font-size-50), var(--font-size-60)),
-      linear(var(--line-height-110), var(--line-height-100)),
+      responsive(var(--font-size-50), var(--font-size-60)),
+      responsive(var(--line-height-110), var(--line-height-100)),
       var(--font-family-base)
     )};
   --font-display-expressive-xl: #{font(
       var(--font-weight-semibold),
-      linear(var(--font-size-75), var(--font-size-168)),
-      linear(var(--line-height-131), var(--line-height-135)),
+      responsive(var(--font-size-75), var(--font-size-168)),
+      responsive(var(--line-height-131), var(--line-height-135)),
       var(--font-family-base)
     )};
   --font-footer-brand-display: #{font(
       var(--font-weight-black),
-      linear(var(--font-size-68), var(--font-size-118)),
-      linear(var(--line-height-121), var(--line-height-100)),
+      responsive(var(--font-size-68), var(--font-size-118)),
+      responsive(var(--line-height-121), var(--line-height-100)),
       var(--font-family-base)
     )};
   --font-footer-legal: #{font(
       var(--font-weight-regular),
-      linear(var(--font-size-10), var(--font-size-14)),
-      linear(var(--line-height-130), var(--line-height-120)),
+      responsive(var(--font-size-10), var(--font-size-14)),
+      responsive(var(--line-height-130), var(--line-height-120)),
       var(--font-family-base)
     )};
 
   --letter-spacing-body: var(--letter-spacing-0);
-  --letter-spacing-caption: #{linear(
+  --letter-spacing-caption: #{responsive(
       var(--letter-spacing-0),
       var(--letter-spacing-1)
     )};
@@ -158,40 +158,40 @@
   --letter-spacing-meta-primary: var(--letter-spacing-0);
   --letter-spacing-meta-secondary: var(--letter-spacing-0);
   --letter-spacing-h1: var(--letter-spacing-0);
-  --letter-spacing-h2: #{linear(
+  --letter-spacing-h2: #{responsive(
       var(--letter-spacing-0),
       var(--letter-spacing--1-2)
     )};
-  --letter-spacing-h2-italic: #{linear(
+  --letter-spacing-h2-italic: #{responsive(
       var(--letter-spacing-0),
       var(--letter-spacing--1-2)
     )};
-  --letter-spacing-h3: #{linear(
+  --letter-spacing-h3: #{responsive(
       var(--letter-spacing-0),
       var(--letter-spacing-3)
     )};
   --letter-spacing-h4: var(--letter-spacing-3);
-  --letter-spacing-link-md: #{linear(
+  --letter-spacing-link-md: #{responsive(
       var(--letter-spacing-0),
       var(--letter-spacing-1)
     )};
   --letter-spacing-link-lg: var(--letter-spacing-0);
   --letter-spacing-display-numeral-xl: var(--letter-spacing-0);
-  --letter-spacing-display-numeral-m: #{linear(
+  --letter-spacing-display-numeral-m: #{responsive(
       var(--letter-spacing-1-6),
       var(--letter-spacing-2)
     )};
-  --letter-spacing-display-expressive-xl: #{linear(
+  --letter-spacing-display-expressive-xl: #{responsive(
       var(--letter-spacing-1-6),
       var(--letter-spacing-2)
     )};
-  --letter-spacing-footer-brand-display: #{linear(
+  --letter-spacing-footer-brand-display: #{responsive(
       var(--letter-spacing-1-5),
       var(--letter-spacing--1-2)
     )};
   --letter-spacing-footer-legal: var(--letter-spacing-0);
 
   // Spacing
-  --spacing-container: #{linear(var(--spacing-m), var(--spacing-5xl))};
-  --spacing-section: #{linear(var(--spacing-4xl), var(--spacing-6xl))};
+  --spacing-container: #{responsive(var(--spacing-m), var(--spacing-5xl))};
+  --spacing-section: #{responsive(var(--spacing-4xl), var(--spacing-6xl))};
 }

@@ -171,34 +171,40 @@ const { class: className, ...props } = Astro.props
 
     display: inline-block;
     transform-origin: 70% 70%;
-    animation: wave 1s ease-in-out 0.8s 1 forwards;
+    animation: wave 5s linear 0.8s infinite;
   }
 
   @keyframes wave {
     0% {
+      animation-timing-function: ease-in;
       transform: rotate(0deg) scale(1) translateY(-2px);
     }
-    15% {
+    3% {
+      animation-timing-function: ease-in-out;
       transform: rotate(var(--max-rotation)) scale(var(--max-scale))
         translateY(-2px);
     }
-    30% {
+    6% {
+      animation-timing-function: ease-in-out;
       transform: rotate(calc(var(--max-rotation) * -8 / 14))
         scale(var(--max-scale)) translateY(-2px);
     }
-    45% {
+    9% {
+      animation-timing-function: ease-in-out;
       transform: rotate(var(--max-rotation)) scale(var(--max-scale))
         translateY(-2px);
     }
-    60% {
+    12% {
+      animation-timing-function: ease-in-out;
       transform: rotate(calc(var(--max-rotation) * -4 / 14))
         scale(var(--max-scale)) translateY(-2px);
     }
-    75% {
+    15% {
+      animation-timing-function: ease-out;
       transform: rotate(calc(var(--max-rotation) * 10 / 14))
         scale(var(--max-scale)) translateY(-2px);
     }
-    100% {
+    20% {
       transform: rotate(0deg) scale(1);
     }
   }

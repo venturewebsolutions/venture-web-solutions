@@ -35,7 +35,6 @@ const { class: className, ...props } = Astro.props
       id="contact-form-phone-number"
       name="phone-number"
       type="tel"
-      required
       autocomplete="tel"
       label="Phone Number"
     />
@@ -43,14 +42,12 @@ const { class: className, ...props } = Astro.props
     <SelectField
       id="contact-form-preferred-contact-method"
       name="preferred-contact-method"
-      required
-      placeholder="Please select an option"
       label="Preferred Contact Method"
-      autocomplete="cont"
+      placeholder="No preference"
       options={[
+        { value: 'any', text: 'No preference' },
         { value: 'email', text: 'Email' },
         { value: 'phone', text: 'Phone' },
-        { value: 'either', text: 'Either' },
       ]}
     />
 
@@ -90,6 +87,11 @@ const { class: className, ...props } = Astro.props
     display: grid;
     gap: var(--spacing-xl);
     justify-items: start;
+  }
+
+  .help-text {
+    @include font(body-italic);
+    margin-top: var(--spacing-s);
   }
 
   .disclaimer {

@@ -1,0 +1,13 @@
+<p class="form-helper">
+  <slot />
+</p>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .form-helper {
+    @include font(body-italic);
+    color: var(--colour-text-primary);
+  }
+</style>

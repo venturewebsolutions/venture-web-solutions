@@ -35,7 +35,7 @@ const { class: className, ...props } = Astro.props
         <ProgressBar class="progress-bar" />
 
         <p class="step-info-text">
-          Step <StepperCounter />/3
+          Step <StepperCounter />/2
         </p>
       </div>
 
@@ -45,7 +45,7 @@ const { class: className, ...props } = Astro.props
 
           <p>
             Share a few details below and we’ll take it from there — you’ll
-            usually hear back from us within 24 hours. See you soon!
+            usually hear back from us within 24 hours. Speak soon!
           </p>
         </div>
 
@@ -55,7 +55,7 @@ const { class: className, ...props } = Astro.props
             name="name"
             type="text"
             required
-            placeholder="Name*"
+            label="Your name"
             autocomplete="name"
           />
 
@@ -64,7 +64,7 @@ const { class: className, ...props } = Astro.props
             name="email"
             type="email"
             required
-            placeholder="Email Address*"
+            label="Email address"
             autocomplete="email"
           />
 
@@ -72,16 +72,21 @@ const { class: className, ...props } = Astro.props
             id="project-planner-phone-number-input"
             name="phone-number"
             type="tel"
-            placeholder="Phone Number"
+            label="Phone number"
             autocomplete="tel"
           />
 
-          <InputField
-            id="project-planner-business-name-input"
-            name="business-name"
-            type="text"
-            placeholder="Business Name"
-            autocomplete="organization"
+          <SelectField
+            id="project-planner-preferred-contact-method-input"
+            name="preferred-contact-method"
+            label="Preferred contact method"
+            placeholder="No preference"
+            helper="We’ll only use this info to understand your project — no spam, ever."
+            options={[
+              { value: 'any', text: 'No preference' },
+              { value: 'email', text: 'Email' },
+              { value: 'phone', text: 'Phone' },
+            ]}
           />
         </div>
       </div>
@@ -89,50 +94,35 @@ const { class: className, ...props } = Astro.props
       <div class="step" data-step>
         <div class="step-header">
           <p class="h3">Tell us about your project</p>
-
-          <p>
-            Share a few details about your project, goals, and timeline. Feel
-            free to include as much detail as possible to help us better
-            understand your needs.
-          </p>
         </div>
 
         <div class="step-form">
+          <InputField
+            id="project-planner-business-name-input"
+            name="business-name"
+            type="text"
+            label="Business name"
+            required
+            autocomplete="organization"
+          />
+
+          <InputField
+            id="project-planner-business-website"
+            name="business-website"
+            type="text"
+            label="Business website"
+            placeholder="e.g. company.co.uk"
+            helper="If you don't currently have a website, you can skip this field."
+            autocomplete="url"
+          />
+
           <TextareaField
             id="project-planner-details-input"
             name="details"
             required
-            placeholder="Please provide information about your project"
+            label="Project details"
+            placeholder="Please provide a summary of your project"
           />
-        </div>
-      </div>
-
-      <div class="step" data-step>
-        <div class="step-header">
-          <p class="h3">How should we reach you?</p>
-
-          <p>
-            Let us know how you’d prefer to be contacted. Choose email, phone,
-            or either — whatever works best for you.
-          </p>
-        </div>
-
-        <div class="step-form">
-          <SelectField
-            id="project-planner-preferred-contact-method-input"
-            name="preferred-contact-method"
-            required
-            placeholder="Preferred Contact Method*"
-            options={[
-              { value: 'email', text: 'Email' },
-              { value: 'phone', text: 'Phone' },
-              { value: 'either', text: 'Either' },
-            ]}
-          />
-
-          <p>
-            We’ll only use this info to understand your project — no spam, ever.
-          </p>
         </div>
       </div>
 
@@ -150,7 +140,7 @@ const { class: className, ...props } = Astro.props
           Next step
         </Button>
 
-        <Button type="submit" class="submit-button">Submit enquiry</Button>
+        <Button type="submit" class="submit-button">Start your project</Button>
       </div>
     </form>
   </Stepper>
@@ -175,7 +165,7 @@ const { class: className, ...props } = Astro.props
 
   @media screen and (min-width: rem(768px)) {
     .section {
-      grid-template-columns: repeat(2, auto);
+      grid-template-columns: 453fr 648fr;
       column-gap: var(--spacing-5xl);
     }
 
@@ -221,7 +211,7 @@ const { class: className, ...props } = Astro.props
   }
 
   .progress-bar {
-    --progress: calc(var(--stepper-current-step) / 3);
+    --progress: calc(var(--stepper-current-step) / 2);
   }
 
   .step-info-text {
@@ -241,7 +231,7 @@ const { class: className, ...props } = Astro.props
 
   .step-form {
     display: grid;
-    gap: var(--spacing-m);
+    gap: var(--spacing-xl);
   }
 
   .buttons {
@@ -256,13 +246,13 @@ const { class: className, ...props } = Astro.props
     }
   }
 
-  .stepper[data-current-step='3'] {
+  .stepper[data-current-step='2'] {
     .next-step-button {
       display: none;
     }
   }
 
-  .stepper:not([data-current-step='3']) {
+  .stepper:not([data-current-step='2']) {
     .submit-button {
       display: none;
     }

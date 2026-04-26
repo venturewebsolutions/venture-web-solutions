@@ -2,6 +2,7 @@
 import FormField from '@/components/ui/FormField.astro'
 import FormLabel from '@/components/ui/FormLabel.astro'
 import type { AutocompleteValue } from '@/lib/types'
+import FormHelper from './FormHelper.astro'
 
 type Props = {
   id: string
@@ -10,9 +11,11 @@ type Props = {
   placeholder?: string
   autocomplete?: AutocompleteValue
   label?: string
+  helper?: string
 }
 
-const { id, name, required, placeholder, autocomplete, label } = Astro.props
+const { id, name, required, placeholder, autocomplete, label, helper } =
+  Astro.props
 ---
 
 <FormField>
@@ -31,4 +34,5 @@ const { id, name, required, placeholder, autocomplete, label } = Astro.props
     autocomplete={autocomplete}
     rows="3"
     class="form-input"></textarea>
+  {helper && <FormHelper>{helper}</FormHelper>}
 </FormField>

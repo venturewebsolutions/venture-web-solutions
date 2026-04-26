@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components'
 import FormField from '@/components/ui/FormField.astro'
 import FormLabel from '@/components/ui/FormLabel.astro'
 import type { AutocompleteValue } from '@/lib/types'
+import FormHelper from './FormHelper.astro'
 
 type Option = {
   value: astroHTML.JSX.OptionHTMLAttributes['value']
@@ -16,11 +17,20 @@ type Props = {
   placeholder?: string
   autocomplete?: AutocompleteValue
   label?: string
+  helper?: string
   options: Option[]
 }
 
-const { id, name, required, placeholder, autocomplete, label, options } =
-  Astro.props
+const {
+  id,
+  name,
+  required,
+  placeholder,
+  autocomplete,
+  label,
+  helper,
+  options,
+} = Astro.props
 ---
 
 <FormField>
@@ -48,7 +58,11 @@ const { id, name, required, placeholder, autocomplete, label, options } =
       }
       {
         options.map((option) => (
-          <option value={option.value} class="form-option">
+          <option
+            value={option.value}
+            data-placeholder={option.value === '' ? '' : undefined}
+            class="form-option"
+          >
             {option.text}
           </option>
         ))
@@ -56,6 +70,7 @@ const { id, name, required, placeholder, autocomplete, label, options } =
     </select>
     <Icon name="chevron-down" class="form-select-chevron" />
   </div>
+  {helper && <FormHelper>{helper}</FormHelper>}
 </FormField>
 
 <style lang="scss">
@@ -81,8 +96,12 @@ const { id, name, required, placeholder, autocomplete, label, options } =
     justify-self: end;
   }
 
-  .form-input::placeholder,
-  .form-input:invalid {
+  .form-input::placeholder {
+    @include font(body-italic);
+    color: var(--colour-text-primary);
+  }
+
+  select.form-input[data-placeholder] {
     @include font(body-italic);
     color: var(--colour-text-primary);
   }
@@ -92,3 +111,22 @@ const { id, name, required, placeholder, autocomplete, label, options } =
     color: var(--colour-text-contrast);
   }
 </style>
+
+<script>
+  const selects =
+    document.querySelectorAll<HTMLSelectElement>('select.form-input')
+
+  for (const select of selects) {
+    if (select.value === '') {
+      select.setAttribute('data-placeholder', '')
+    }
+
+    select.addEventListener('change', () => {
+      if (select.value === '') {
+        select.setAttribute('data-placeholder', '')
+      } else {
+        select.removeAttribute('data-placeholder')
+      }
+    })
+  }
+</script>

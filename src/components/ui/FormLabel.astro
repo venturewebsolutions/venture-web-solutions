@@ -4,10 +4,10 @@ type Props = {
   required?: boolean
 }
 
-const { for: fur, required } = Astro.props
+const { for: _for, required } = Astro.props
 ---
 
-<label for={fur} class="form-label">
+<label for={_for} class="form-label">
   <slot />{required && '*'}
 </label>
 

@@ -1,14 +1,18 @@
 ---
 import { Image } from 'astro:assets'
+import Link from './Link.astro'
+import type { HTMLAttributes } from 'astro/types'
+import { cn } from '@/lib/class-names'
 
-type Props = {
+type Props = HTMLAttributes<'figure'> & {
   citation: string
+  url: string
 }
 
-const { citation } = Astro.props
+const { citation, url, class: className, ...props } = Astro.props
 ---
 
-<figure class="quotation">
+<figure class:list={cn('quotation', className)} {...props}>
   <div class="quotation-mark">
     <Image
       src={import('@/assets/images/quotation-mark.png')}
@@ -19,11 +23,16 @@ const { citation } = Astro.props
     />
   </div>
   <div class="quotation-content">
-    <blockquote cite="https://support.google.com/adsense/answer/7450973">
+    <blockquote cite={url}>
       <p class="quotation-quote"><slot /></p>
     </blockquote>
     <figcaption class="quotation-caption">
-      — <cite class="quotation-citation">{citation}</cite>
+      —
+      <cite class="quotation-citation">
+        <Link href={url} target="_blank" variant="md" underline>
+          {citation}
+        </Link>
+      </cite>
     </figcaption>
   </div>
 </figure>

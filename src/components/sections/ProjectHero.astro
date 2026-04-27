@@ -5,7 +5,7 @@ import type { CollectionEntry } from 'astro:content'
 import { cn } from '@/lib/class-names'
 import Tags from '@/components/ui/Tags.astro'
 import Button from '@/components/ui/Button.astro'
-import { Image } from 'astro:assets'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   project: CollectionEntry<'work'>
@@ -37,11 +37,29 @@ const { project, class: className, ...props } = Astro.props
       <Image
         src={project.data.logo.src}
         alt={`${project.data.client} logo`}
+        widths={{
+          min: 72,
+          max: 136,
+          mobile: 96,
+          desktop: 136,
+        }}
+        sizes={['(min-width: 48rem) 136px', 'clamp(4.25rem, 28%, 6.3125rem)']}
         class="logo"
       />
     </div>
 
-    <Image src={project.data.mockup.desktop.src} alt="" class="mockup-image" />
+    <Image
+      src={project.data.mockup.desktop.src}
+      alt=""
+      widths={{
+        min: 256,
+        max: 1009,
+        mobile: 343,
+        desktop: 936,
+      }}
+      sizes={['(min-width: 90rem) 64rem', '(min-width: 48rem) 63vw', '100vw']}
+      class="mockup-image"
+    />
   </div>
 </section>
 

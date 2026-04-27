@@ -3,8 +3,8 @@ import Marquee from '@/components/headless/Marquee/Marquee.astro'
 import MarqueeGroup from '@/components/headless/Marquee/MarqueeGroup.astro'
 import SectionHeader from '@/components/ui/SectionHeader.astro'
 import { cn } from '@/lib/class-names'
-import { Image } from 'astro:assets'
 import type { HTMLAttributes } from 'astro/types'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   name: string
@@ -43,6 +43,13 @@ const { name, eyebrow, marquee, class: className, ...props } = Astro.props
           <Image
             src={image.src}
             alt={image.alt}
+            widths={{
+              min: 230,
+              max: 385,
+              mobile: 230,
+              desktop: 385,
+            }}
+            sizes={['(min-width: 48rem) 385px', '230px']}
             class="marquee-photo"
             loading="eager"
           />

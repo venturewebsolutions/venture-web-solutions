@@ -25,8 +25,13 @@ const projects = [
     image: {
       src: project.data.thumbnail.src,
       alt: '',
-      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
-      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+      widths: {
+        min: 230,
+        max: 647,
+        mobile: 320,
+        desktop: 599,
+      },
+      sizes: ['(min-width: 90rem) 38.1rem', '(min-width: 48rem) 50vw', '100vw'],
     },
   })),
   {
@@ -55,8 +60,13 @@ const projects = [
     image: {
       src: import('@/assets/images/empty-project-mockup-with-colour-palette.png'),
       alt: '',
-      widths: [288, 318, 450, 645].flatMap((width) => [width, width * 2]),
-      sizes: '(min-width: 1440px) 609px, (min-width: 768px) 50vw, 100vw',
+      widths: {
+        min: 230,
+        max: 647,
+        mobile: 320,
+        desktop: 599,
+      },
+      sizes: ['(min-width: 90rem) 38.1rem', '(min-width: 48rem) 50vw', '100vw'],
     },
   },
 ]

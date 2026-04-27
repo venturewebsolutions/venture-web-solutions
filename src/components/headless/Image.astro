@@ -9,15 +9,19 @@ const LIGHTHOUSE_DESKTOP_DPR = 2
 
 type AstroImageProps = LocalImageProps | RemoteImageProps
 
+export type ImageWidths = {
+  min: number
+  max: number
+  mobile: number
+  desktop: number
+  step?: number
+}
+
+export type ImageSizes = string | string[]
+
 export type ImageProps = Omit<AstroImageProps, 'widths' | 'sizes'> & {
-  widths: {
-    min: number
-    max: number
-    mobile: number
-    desktop: number
-    step?: number
-  }
-  sizes: string | string[]
+  widths: ImageWidths
+  sizes: ImageSizes
 }
 
 type Props = ImageProps

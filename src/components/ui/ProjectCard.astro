@@ -4,7 +4,10 @@ import Button from '@/components/ui/Button.astro'
 import { cn } from '@/lib/class-names'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
+import Image, {
+  type ImageSizes,
+  type ImageWidths,
+} from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   client: string
@@ -21,8 +24,8 @@ type Props = HTMLAttributes<'section'> & {
   image: {
     src: ImageMetadata | Promise<{ default: ImageMetadata }>
     alt: string
-    widths: number[]
-    sizes: string
+    widths: ImageWidths
+    sizes: ImageSizes
   }
   level: number
 }
@@ -72,7 +75,8 @@ const {
         <Image
           src={image.src}
           alt={image.alt}
-          widths={[]}
+          widths={image.widths}
+          sizes={image.sizes}
           class="project-image"
         />
       </div>

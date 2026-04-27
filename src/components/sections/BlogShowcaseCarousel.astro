@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import Heading from '@/components/headless/Heading.astro'
 import Avatar from '@/components/ui/Avatar.astro'
@@ -13,6 +12,7 @@ import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import type { HTMLAttributes } from 'astro/types'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   posts: CollectionEntry<'blog'>[]
@@ -47,8 +47,17 @@ const { posts, class: className, ...props } = Astro.props
                     alt={post.data.thumbnail.description}
                     class="thumbnail-image"
                     style={`--cursor-url: url(${url('/cursor.svg')});`}
-                    widths={[216, 343, 432, 520, 708, 832, 1416]}
-                    sizes="(min-width: 48rem) min(30vw, 416px), 100vw"
+                    widths={{
+                      min: 228,
+                      max: 707,
+                      mobile: 378,
+                      desktop: 440,
+                    }}
+                    sizes={[
+                      '(min-width: 90rem) 30.5rem',
+                      '(min-width: 48rem) 50vw',
+                      '100vw',
+                    ]}
                   />
                 </a>
 

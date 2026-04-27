@@ -4,10 +4,10 @@ import SectionHeader from '@/components/ui/SectionHeader.astro'
 import Thumbnail from '@/components/ui/Thumbnail/Thumbnail.astro'
 import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { cn } from '@/lib/class-names'
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
 import range from 'lodash/range'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   post: CollectionEntry<'blog'>
@@ -16,7 +16,10 @@ type Props = HTMLAttributes<'section'> & {
 const { post, class: className, ...props } = Astro.props
 ---
 
-<section class:list={cn('blog-post-hero section container', className)} {...props}>
+<section
+  class:list={cn('blog-post-hero section container', className)}
+  {...props}
+>
   <div class="header-mobile">
     <SectionHeader eyebrow={post.data.topic} level={1}>
       {post.data.title}
@@ -28,8 +31,13 @@ const { post, class: className, ...props } = Astro.props
       src={post.data.thumbnail.image}
       alt={post.data.thumbnail.description}
       class="thumbnail-image"
-      widths={range(312, 1312 + 200, 200)}
-      sizes="min(100vw, 90rem)"
+      widths={{
+        min: 288,
+        max: 1312,
+        mobile: 378,
+        desktop: 1218,
+      }}
+      sizes={['90rem', '100vw']}
     />
 
     <ThumbnailCaption

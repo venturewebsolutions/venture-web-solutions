@@ -3,7 +3,7 @@ import Eyebrow from '@/components/ui/Eyebrow.astro'
 import { cn } from '@/lib/class-names'
 import { take } from '@/lib/utils'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'>
 
@@ -53,7 +53,19 @@ const images = take(
                 '--index': `${index}`,
               }}
             >
-              <Image src={image.src} alt="" class="image" loading="eager" />
+              <Image
+                src={image.src}
+                alt=""
+                widths={{
+                  min: 148,
+                  max: 295,
+                  mobile: 153,
+                  desktop: 283,
+                }}
+                sizes={['calc(13.86vw + 95.9px)']}
+                class="image"
+                loading="eager"
+              />
             </div>
           )
         })

@@ -6,9 +6,9 @@ import { cn } from '@/lib/class-names'
 import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
-import { Image } from 'astro:assets'
 import type { CollectionEntry } from 'astro:content'
-import VideoSource from '../headless/VideoSource.astro'
+import Image, { type ImageWidths } from '../headless/Image.astro'
+import type { ImageSizes } from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
   section: CollectionEntry<'work'>['data']['sections'][number]
@@ -66,9 +66,74 @@ const { section, class: className, ...props } = Astro.props
   {
     section.media && (
       <div class="media">
-        {section.media.map((item) => {
+        {section.media.map((item, i) => {
           const VideoWrapper =
             item.type === 'video' && item.thumbnail ? VideoThumbnail : Fragment
+
+          let widths: ImageWidths
+          let sizes: ImageSizes
+
+          if (item.type === 'image') {
+            const isFullWidth = i % 2 !== 0 && i === section.media!.length - 1
+
+            if (isFullWidth) {
+              sizes = ['(min-width: 90rem) 82rem', '100vw']
+
+              if (item.padding === 's') {
+                widths = {
+                  mobile: 358,
+                  desktop: 1100,
+                  min: 272,
+                  max: 1184,
+                }
+              } else if (item.padding === 'l') {
+                widths = {
+                  mobile: 354,
+                  desktop: 997,
+                  min: 272,
+                  max: 1072,
+                }
+              } else if (item.padding === null) {
+                widths = {
+                  mobile: 378,
+                  desktop: 1218,
+                  min: 288,
+                  max: 1312,
+                }
+              }
+            }
+
+            if (!isFullWidth) {
+              sizes = [
+                '(min-width: 90rem) 40rem',
+                '(min-width: 48rem) 50vw',
+                '100vw',
+              ]
+
+              if (item.padding === 's') {
+                widths = {
+                  mobile: 358,
+                  desktop: 471,
+                  min: 272,
+                  max: 650,
+                }
+              } else if (item.padding === 'l') {
+                widths = {
+                  mobile: 354,
+                  desktop: 369,
+                  min: 272,
+                  max: 609,
+                }
+              } else if (item.padding === null) {
+                widths = {
+                  mobile: 378,
+                  desktop: 590,
+                  min: 288,
+                  max: 708,
+                }
+              }
+            }
+          }
 
           return (
             <div
@@ -95,7 +160,13 @@ const { section, class: className, ...props } = Astro.props
                   />
                 </VideoWrapper>
               ) : (
-                <Image src={item.src} alt={item.alt} class="image" />
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  widths={widths!}
+                  sizes={sizes!}
+                  class="image"
+                />
               )}
             </div>
           )
@@ -110,6 +181,17 @@ const { section, class: className, ...props } = Astro.props
         <Image
           src={section.testimonial.image.src}
           alt={section.testimonial.image.alt}
+          widths={{
+            min: 256,
+            max: 658,
+            mobile: 345,
+            desktop: 577,
+          }}
+          sizes={[
+            '(min-width: 90rem) 38rem',
+            '(min-width: 48rem) 50vw',
+            '100vw',
+          ]}
           class="testimonial-image"
         />
 

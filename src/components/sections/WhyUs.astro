@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 import SectionHeader from '../ui/SectionHeader.astro'
-import Drawing from '@/assets/images/boat_island_drawing.svg'
+import SVG from '../headless/SVG.astro'
 
 const features = [
   {
@@ -50,7 +50,10 @@ const features = [
         </p>
       </div>
 
-      <Drawing class="drawing" />
+      <SVG
+        src={import('@/assets/images/boat_island_drawing.svg')}
+        class="drawing"
+      />
     </div>
 
     <div class="content-right">

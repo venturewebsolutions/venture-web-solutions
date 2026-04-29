@@ -21,8 +21,6 @@ url: 'https://maggimaid.co.uk/'
 mockup:
   desktop:
     src: '@/assets/images/maggi-maid-mockup-desktop.png'
-  mobile:
-    src: '@/assets/images/maggi-maid-mockup-mobile.png'
 logo:
   src: '@/assets/images/maggi-maid-logo.svg'
 sections:

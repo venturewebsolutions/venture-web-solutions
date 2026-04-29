@@ -21,8 +21,6 @@ url: 'https://mdloftstorage.co.uk/'
 mockup:
   desktop:
     src: '@/assets/images/md-loft-storage-mockup-desktop.png'
-  mobile:
-    src: '@/assets/images/md-loft-storage-mockup-mobile.png'
 logo:
   src: '@/assets/images/md-loft-storage-logo.svg'
 sections:

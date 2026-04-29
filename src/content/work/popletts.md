@@ -21,8 +21,6 @@ url: 'https://popletts.com/'
 mockup:
   desktop:
     src: '@/assets/images/popletts-mockup-desktop.png'
-  mobile:
-    src: '@/assets/images/popletts-mockup-mobile.png'
 logo:
   src: '@/assets/images/popletts-logo.svg'
 sections:

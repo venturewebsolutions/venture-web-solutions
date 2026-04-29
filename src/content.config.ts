@@ -118,9 +118,6 @@ const work = defineCollection({
         desktop: z.object({
           src: image(),
         }),
-        mobile: z.object({
-          src: image(),
-        }),
       }),
       logo: z.object({
         src: image(),

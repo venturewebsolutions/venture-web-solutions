@@ -1,8 +1,8 @@
 ---
 import Link from './Link.astro'
-import type { HTMLAttributes } from 'astro/types'
+import type { HTMLAttributes, SvgComponent } from 'astro/types'
 import { cn } from '@/lib/class-names'
-import Image from '../headless/Image.astro'
+import SVG from '../headless/SVG.astro'
 
 type Props = HTMLAttributes<'figure'> & {
   citation: string
@@ -13,18 +13,11 @@ const { citation, url, class: className, ...props } = Astro.props
 ---
 
 <figure class:list={cn('quotation', className)} {...props}>
-  <div class="quotation-mark">
-    <Image
-      src={import('@/assets/images/quotation-mark.png')}
-      alt=""
-      widths={{
-        min: 42,
-        max: 42,
-      }}
-      sizes="42px"
-      width="42"
-    />
-  </div>
+  <SVG
+    src={import('@/assets/images/quotation-mark.svg')}
+    class="quotation-mark"
+  />
+
   <div class="quotation-content">
     <blockquote cite={url}>
       <p class="quotation-quote"><slot /></p>

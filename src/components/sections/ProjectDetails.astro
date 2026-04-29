@@ -7,8 +7,8 @@ import { url } from '@/lib/url'
 import { Icon } from 'astro-icon/components'
 import type { HTMLAttributes } from 'astro/types'
 import type { CollectionEntry } from 'astro:content'
-import Image, { type ImageWidths } from '../headless/Image.astro'
-import type { ImageSizes } from '../headless/Image.astro'
+import Image from '../headless/Image.astro'
+import type { ImageSizes, ImageWidths } from '@/lib/images'
 
 type Props = HTMLAttributes<'section'> & {
   section: CollectionEntry<'work'>['data']['sections'][number]

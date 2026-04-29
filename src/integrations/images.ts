@@ -17,7 +17,7 @@ class ImageRegistry {
     { image: ImageMetadata; config: ImageConfig }
   >()
 
-  public registerImage(image: ImageMetadata, config: ImageConfig) {
+  public registerImage(image: ImageMetadata, config?: ImageConfig) {
     const filename = this.getFilename(image)
 
     const existing = this.images.get(filename)
@@ -27,7 +27,7 @@ class ImageRegistry {
       config: {
         maxRenderWidth: Math.max(
           existing?.config.maxRenderWidth ?? 0,
-          config.maxRenderWidth,
+          config?.maxRenderWidth ?? 0,
         ),
       },
     })

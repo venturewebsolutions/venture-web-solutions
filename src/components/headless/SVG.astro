@@ -1,0 +1,18 @@
+---
+import { registry } from '@/integrations/images'
+import type { HTMLAttributes, SvgComponent } from 'astro/types'
+
+type Props = HTMLAttributes<'svg'> & {
+  src: Promise<{ default: SvgComponent & ImageMetadata }>
+}
+
+const { src, ...props } = Astro.props
+
+const Component = (await src).default
+
+registry.registerImage(Component, {
+  maxRenderWidth: 0,
+})
+---
+
+<Component {...props} />

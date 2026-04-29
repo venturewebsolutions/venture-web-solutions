@@ -21,8 +21,6 @@ url: 'https://www.stefanospizza.uk/'
 mockup:
   desktop:
     src: '@/assets/images/stefanos-mockup-desktop.png'
-  mobile:
-    src: '@/assets/images/stefanos-mockup-mobile.png'
 logo:
   src: '@/assets/images/stefanos-logo.svg'
 sections:

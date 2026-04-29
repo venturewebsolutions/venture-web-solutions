@@ -20,8 +20,6 @@ url: 'https://sospartyrental.com/'
 mockup:
   desktop:
     src: '@/assets/images/sos-party-rental-mockup-desktop.png'
-  mobile:
-    src: '@/assets/images/sos-party-rental-mockup-mobile.png'
 logo:
   src: '@/assets/images/sos-party-rental-logo.svg'
 sections:

@@ -53,7 +53,7 @@ export default function createIntegration(): AstroIntegration {
 
           if (image.width < idealWidth) {
             logger.warn(
-              `${filename} is ${image.width} only px but needs to be at least ${idealWidth} px (max render width is ${config.maxRenderWidth} px)`,
+              `${filename} is only ${image.width} px but needs to be at least ${idealWidth} px (max render width is ${config.maxRenderWidth} px)`,
             )
           } else if (image.width > idealWidth) {
             logger.warn(

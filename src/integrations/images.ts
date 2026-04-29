@@ -45,10 +45,14 @@ export const registry = (globalThis.__imageRegistry ??= new ImageRegistry())
 
 export default function createIntegration(): AstroIntegration {
   return {
-    name: 'image-size-check',
+    name: 'images',
     hooks: {
       'astro:build:done': ({ logger }) => {
         for (const [filename, { image, config }] of registry.getEntries()) {
+          if (image.format === 'svg') {
+            continue
+          }
+
           const idealWidth = config.maxRenderWidth * 2
 
           if (image.width < idealWidth) {

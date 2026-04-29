@@ -1,7 +1,6 @@
 ---
 import Stepper from '@/components/headless/Stepper/Stepper.astro'
 import StepperCounter from '@/components/headless/Stepper/StepperCounter.astro'
-import Video from '@/components/headless/Video.astro'
 import Button from '@/components/ui/Button.astro'
 import InputField from '@/components/ui/InputField.astro'
 import ProgressBar from '@/components/ui/ProgressBar.astro'
@@ -9,6 +8,8 @@ import SelectField from '@/components/ui/SelectField.astro'
 import TextareaField from '@/components/ui/TextareaField.astro'
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
+import ImageSource from '../headless/ImageSource.astro'
+import EmptyImage from '../headless/EmptyImage.astro'
 
 type Props = HTMLAttributes<'section'>
 
@@ -16,17 +17,23 @@ const { class: className, ...props } = Astro.props
 ---
 
 <section class:list={cn('section container', className)} {...props}>
-  <div class="video-wrapper">
-    <Video
-      src={import('@/assets/videos/project-planner.mp4')}
-      autoplay
-      playsinline
-      muted
-      loop
-      class="video"
-    />
+  <div class="image-wrapper">
+    <picture class="image">
+      <ImageSource
+        src={import('@/assets/images/project-planner.jpg')}
+        widths={{
+          min: 270,
+          max: 453,
+          desktop: 453,
+        }}
+        sizes="(min-width: 90rem) 28.3125rem, (min-width: 48rem) 42vw"
+        media="(min-width: 48rem)"
+      />
 
-    <p class="video-caption">Jordan and Daniela, the humans behind the brand</p>
+      <EmptyImage alt="" loading="eager" />
+    </picture>
+
+    <p class="image-caption">Jordan and Daniela, the humans behind the brand</p>
   </div>
 
   <Stepper class="stepper">
@@ -156,44 +163,8 @@ const { class: className, ...props } = Astro.props
     row-gap: var(--spacing-5xl);
   }
 
-  .video-wrapper {
-    border-radius: var(--border-radius-l);
-    overflow: hidden;
-    position: relative;
-    order: 1;
-  }
-
-  @media screen and (min-width: rem(768px)) {
-    .section {
-      grid-template-columns: 453fr 648fr;
-      column-gap: var(--spacing-5xl);
-    }
-
-    .video-wrapper {
-      max-width: 453px;
-      order: unset;
-    }
-  }
-
-  .video {
-    aspect-ratio: 453/760;
-    object-fit: cover;
-  }
-
-  .video-caption {
-    @include font(body-medium);
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: var(--colour-text-contrast);
-    padding: var(--spacing-s) var(--spacing-2xl);
-    background-color: color-mix(
-      in srgb,
-      var(--colour-surface-base) 75%,
-      transparent
-    );
-    text-align: center;
+  .image-wrapper {
+    display: none;
   }
 
   .stepper {
@@ -260,5 +231,41 @@ const { class: className, ...props } = Astro.props
 
   .step:not([data-current-step]) {
     display: none;
+  }
+
+  @media screen and (min-width: rem(768px)) {
+    .section {
+      grid-template-columns: 453fr 648fr;
+      column-gap: var(--spacing-5xl);
+    }
+
+    .image-wrapper {
+      display: block;
+      max-width: 453px;
+      border-radius: var(--border-radius-l);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .image {
+      aspect-ratio: 453/760;
+      object-fit: cover;
+    }
+
+    .image-caption {
+      @include font(body-medium);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      color: var(--colour-text-contrast);
+      padding: var(--spacing-s) var(--spacing-2xl);
+      background-color: color-mix(
+        in srgb,
+        var(--colour-surface-base) 75%,
+        transparent
+      );
+      text-align: center;
+    }
   }
 </style>

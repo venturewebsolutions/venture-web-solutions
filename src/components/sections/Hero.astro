@@ -16,7 +16,7 @@ const { class: className, ...props } = Astro.props
 
 <section class:list={cn('section', className)} {...props}>
   <div class="background">
-    <picture>
+    <picture class="image">
       <ImageSource
         src={import('@/assets/images/hero-landscape.jpg')}
         widths={{
@@ -30,19 +30,6 @@ const { class: className, ...props } = Astro.props
         media="(orientation: landscape)"
       />
 
-      <ImageSource
-        src={import('@/assets/images/hero-portrait.jpg')}
-        widths={{
-          min: 320,
-          max: 1440,
-          mobile: 412,
-          desktop: 1440,
-          step: 400,
-        }}
-        sizes="100vw"
-        media="(orientation: portrait)"
-      />
-
       <Image
         src={import('@/assets/images/hero-portrait.jpg')}
         alt=""
@@ -54,7 +41,6 @@ const { class: className, ...props } = Astro.props
           step: 400,
         }}
         sizes="100vw"
-        class="image"
         loading="eager"
       />
     </picture>

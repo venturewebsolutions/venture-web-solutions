@@ -1,5 +1,5 @@
 import type { AstroIntegration } from 'astro'
-import fs from 'node:fs'
+// import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -87,26 +87,26 @@ export default function createIntegration(): AstroIntegration {
           }
         }
 
-        const pathToImages = path.resolve(
-          projectRoot,
-          'src',
-          'assets',
-          'images',
-        )
+        // const pathToImages = path.resolve(
+        //   projectRoot,
+        //   'src',
+        //   'assets',
+        //   'images',
+        // )
 
-        const sourceImages = fs.readdirSync(pathToImages)
+        // const sourceImages = fs.readdirSync(pathToImages)
 
-        const imagesInRegistry = new Set([
-          ...registry.getEntries().map(([filename]) => filename),
-        ])
+        // const imagesInRegistry = new Set([
+        //   ...registry.getEntries().map(([filename]) => filename),
+        // ])
 
-        const unusedImages = sourceImages.filter(
-          (file) => !imagesInRegistry.has(file),
-        )
+        // const unusedImages = sourceImages.filter(
+        //   (file) => !imagesInRegistry.has(file),
+        // )
 
-        for (const image of unusedImages) {
-          logger.warn(`${image} is unregistered`)
-        }
+        // for (const image of unusedImages) {
+        //   logger.warn(`${image} is unregistered`)
+        // }
       },
     },
   }

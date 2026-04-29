@@ -1,5 +1,7 @@
 import type { AstroIntegration } from 'astro'
+import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 declare global {
   var __imageRegistry: ImageRegistry | undefined
@@ -37,18 +39,36 @@ class ImageRegistry {
 
   private getFilename(image: ImageMetadata) {
     const clean = image.src.split('?')[0]
-    return path.basename(clean)
+
+    if (import.meta.env.DEV) {
+      return path.basename(clean)
+    }
+
+    const parts = path.basename(clean).split('.')
+
+    if (parts.length >= 2) {
+      parts.splice(parts.length - 2, 1)
+    }
+
+    return parts.join('.')
   }
 }
 
 export const registry = (globalThis.__imageRegistry ??= new ImageRegistry())
 
 export default function createIntegration(): AstroIntegration {
+  let projectRoot: string
+
   return {
     name: 'images',
     hooks: {
+      'astro:config:setup': ({ config }) => {
+        projectRoot = fileURLToPath(config.root)
+      },
       'astro:build:done': ({ logger }) => {
-        for (const [filename, { image, config }] of registry.getEntries()) {
+        const entries = registry.getEntries()
+
+        for (const [filename, { image, config }] of entries) {
           if (image.format === 'svg') {
             continue
           }
@@ -65,6 +85,27 @@ export default function createIntegration(): AstroIntegration {
                 `(max render width is ${config.maxRenderWidth} px)`,
             )
           }
+        }
+
+        const pathToImages = path.resolve(
+          projectRoot,
+          'src',
+          'assets',
+          'images',
+        )
+
+        const sourceImages = fs.readdirSync(pathToImages)
+
+        const imagesInRegistry = new Set([
+          ...registry.getEntries().map(([filename]) => filename),
+        ])
+
+        const unusedImages = sourceImages.filter(
+          (file) => !imagesInRegistry.has(file),
+        )
+
+        for (const image of unusedImages) {
+          logger.warn(`${image} is unregistered`)
         }
       },
     },

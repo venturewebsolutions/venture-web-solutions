@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets'
 import Link from './Link.astro'
 import type { HTMLAttributes } from 'astro/types'
 import { cn } from '@/lib/class-names'
+import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'figure'> & {
   citation: string
@@ -17,7 +17,10 @@ const { citation, url, class: className, ...props } = Astro.props
     <Image
       src={import('@/assets/images/quotation-mark.png')}
       alt=""
-      widths={[42, 84]}
+      widths={{
+        min: 42,
+        max: 42,
+      }}
       sizes="42px"
       width="42"
     />

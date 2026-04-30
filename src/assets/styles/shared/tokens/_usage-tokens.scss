@@ -4,153 +4,156 @@
 $type-styles: (
   body: (
     weight: var(--font-weight-regular),
-    size: var(--font-size-16),
-    line-height: responsive(var(--line-height-160), var(--line-height-150)),
+    size: var(--font-size-m),
+    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   body-medium: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-16),
-    line-height: responsive(var(--line-height-160), var(--line-height-150)),
+    size: var(--font-size-m),
+    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   body-italic: (
     weight: var(--font-weight-regular),
-    size: var(--font-size-16),
-    line-height: responsive(var(--line-height-160), var(--line-height-150)),
+    size: var(--font-size-m),
+    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
     style: italic,
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   caption: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-16),
-    line-height: var(--line-height-150),
+    size: var(--font-size-m),
+    line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: responsive(var(--letter-spacing-0), var(--letter-spacing-1)),
+    letter-spacing: responsive(var(--letter-spacing-m), var(--letter-spacing-l)),
   ),
   action: (
     weight: var(--font-weight-semibold),
-    size: var(--font-size-16),
-    line-height: var(--line-height-150),
+    size: var(--font-size-m),
+    line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-2),
+    letter-spacing: var(--letter-spacing-3xl),
   ),
   meta-primary: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-14),
-    line-height: var(--line-height-150),
+    size: var(--font-size-s),
+    line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   meta-secondary: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-12), var(--font-size-10)),
-    line-height: responsive(var(--line-height-140), var(--line-height-130)),
+    size: responsive(var(--font-size-xs), var(--font-size-2xs)),
+    line-height: responsive(var(--line-height-7xl), var(--line-height-3xl)),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   h1: (
     weight: var(--font-weight-black),
-    size: responsive(var(--font-size-50), var(--font-size-72)),
-    line-height: responsive(var(--line-height-112), var(--line-height-110)),
+    size: responsive(var(--font-size-4xl), var(--font-size-7xl)),
+    line-height: responsive(var(--line-height-s), var(--line-height-xs)),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   h2: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-32), var(--font-size-48)),
-    line-height: responsive(var(--line-height-120), var(--line-height-100)),
+    size: responsive(var(--font-size-2xl), var(--font-size-3xl)),
+    line-height: responsive(var(--line-height-m), var(--line-height-2xs)),
     family: var(--font-family-base),
     letter-spacing: responsive(
-        var(--letter-spacing-0),
-        var(--letter-spacing--1-2)
+        var(--letter-spacing-m),
+        var(--letter-spacing-s)
       ),
   ),
   h2-italic: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-32), var(--font-size-48)),
-    line-height: responsive(var(--line-height-120), var(--line-height-100)),
+    size: responsive(var(--font-size-2xl), var(--font-size-3xl)),
+    line-height: responsive(var(--line-height-m), var(--line-height-2xs)),
     family: var(--font-family-base),
     style: italic,
     letter-spacing: responsive(
-        var(--letter-spacing-0),
-        var(--letter-spacing--1-2)
+        var(--letter-spacing-m),
+        var(--letter-spacing-s)
       ),
   ),
   h3: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-24), var(--font-size-32)),
-    line-height: responsive(var(--line-height-125), var(--line-height-120)),
+    size: responsive(var(--font-size-xl), var(--font-size-2xl)),
+    line-height: responsive(var(--line-height-2xl), var(--line-height-m)),
     family: var(--font-family-base),
-    letter-spacing: responsive(var(--letter-spacing-0), var(--letter-spacing-3)),
+    letter-spacing: responsive(
+        var(--letter-spacing-m),
+        var(--letter-spacing-4xl)
+      ),
   ),
   h4: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-20),
-    line-height: var(--line-height-135),
+    size: var(--font-size-l),
+    line-height: var(--line-height-5xl),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-3),
+    letter-spacing: var(--letter-spacing-4xl),
   ),
   link-md: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-16),
-    line-height: var(--line-height-150),
+    size: var(--font-size-m),
+    line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: responsive(var(--letter-spacing-0), var(--letter-spacing-1)),
+    letter-spacing: responsive(var(--letter-spacing-m), var(--letter-spacing-l)),
   ),
   link-lg: (
     weight: var(--font-weight-medium),
-    size: var(--font-size-24),
-    line-height: var(--line-height-120),
+    size: var(--font-size-xl),
+    line-height: var(--line-height-m),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   display-numeral-xl: (
     weight: var(--font-weight-bold),
-    size: responsive(var(--font-size-78), var(--font-size-106)),
+    size: responsive(var(--font-size-9xl), var(--font-size-10xl)),
     line-height: var(--line-height-display-numeral-xl),
     family: var(--font-family-display),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
   display-numeral-m: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-50), var(--font-size-60)),
-    line-height: responsive(var(--line-height-110), var(--line-height-100)),
+    size: responsive(var(--font-size-4xl), var(--font-size-5xl)),
+    line-height: responsive(var(--line-height-xs), var(--line-height-2xs)),
     family: var(--font-family-base),
     letter-spacing: responsive(
-        var(--letter-spacing-1-6),
-        var(--letter-spacing-2)
+        var(--letter-spacing-2xl),
+        var(--letter-spacing-3xl)
       ),
   ),
   display-expressive-xl: (
     weight: var(--font-weight-semibold),
-    size: responsive(var(--font-size-75), var(--font-size-168)),
-    line-height: responsive(var(--line-height-131), var(--line-height-135)),
+    size: responsive(var(--font-size-8xl), var(--font-size-12xl)),
+    line-height: responsive(var(--line-height-4xl), var(--line-height-5xl)),
     family: var(--font-family-base),
     letter-spacing: responsive(
-        var(--letter-spacing-1-6),
-        var(--letter-spacing-2)
+        var(--letter-spacing-2xl),
+        var(--letter-spacing-3xl)
       ),
   ),
   footer-brand-display: (
     weight: var(--font-weight-black),
-    size: responsive(var(--font-size-68), var(--font-size-118)),
-    line-height: responsive(var(--line-height-121), var(--line-height-100)),
+    size: responsive(var(--font-size-6xl), var(--font-size-11xl)),
+    line-height: responsive(var(--line-height-l), var(--line-height-2xs)),
     family: var(--font-family-base),
     letter-spacing: responsive(
-        var(--letter-spacing-1-5),
-        var(--letter-spacing--1-2)
+        var(--letter-spacing-xl),
+        var(--letter-spacing-s)
       ),
   ),
   footer-legal: (
     weight: var(--font-weight-regular),
-    size: responsive(var(--font-size-10), var(--font-size-14)),
-    line-height: responsive(var(--line-height-130), var(--line-height-120)),
+    size: responsive(var(--font-size-2xs), var(--font-size-s)),
+    line-height: responsive(var(--line-height-3xl), var(--line-height-m)),
     family: var(--font-family-base),
-    letter-spacing: var(--letter-spacing-0),
+    letter-spacing: var(--letter-spacing-m),
   ),
 );
 
@@ -174,6 +177,6 @@ $type-styles: (
   }
 
   --line-height-display-numeral-xl: var(
-    --line-height-90
+    --line-height-3xs
   ); // needed for something specific
 }

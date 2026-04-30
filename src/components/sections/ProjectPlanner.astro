@@ -18,7 +18,7 @@ const { class: className, ...props } = Astro.props
 
 <section class:list={cn('section container', className)} {...props}>
   <div class="image-wrapper">
-    <picture class="image">
+    <picture>
       <ImageSource
         src={import('@/assets/images/project-planner.jpg')}
         widths={{
@@ -30,7 +30,7 @@ const { class: className, ...props } = Astro.props
         media="(min-width: 48rem)"
       />
 
-      <EmptyImage alt="" loading="eager" />
+      <EmptyImage alt="" loading="eager" class="image" />
     </picture>
 
     <p class="image-caption">Jordan and Daniela, the humans behind the brand</p>

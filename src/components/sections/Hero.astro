@@ -16,7 +16,7 @@ const { class: className, ...props } = Astro.props
 
 <section class:list={cn('section', className)} {...props}>
   <div class="background">
-    <picture class="image">
+    <picture>
       <ImageSource
         src={import('@/assets/images/hero-landscape.jpg')}
         widths={{
@@ -42,6 +42,7 @@ const { class: className, ...props } = Astro.props
         }}
         sizes="100vw"
         loading="eager"
+        class="image"
       />
     </picture>
 

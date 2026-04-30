@@ -5,21 +5,21 @@ $type-styles: (
   body: (
     weight: var(--font-weight-regular),
     size: var(--font-size-m),
-    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
+    line-height: fluid(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
     letter-spacing: var(--letter-spacing-m),
   ),
   body-medium: (
     weight: var(--font-weight-medium),
     size: var(--font-size-m),
-    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
+    line-height: fluid(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
     letter-spacing: var(--letter-spacing-m),
   ),
   body-italic: (
     weight: var(--font-weight-regular),
     size: var(--font-size-m),
-    line-height: responsive(var(--line-height-9xl), var(--line-height-8xl)),
+    line-height: fluid(var(--line-height-9xl), var(--line-height-8xl)),
     family: var(--font-family-base),
     style: italic,
     letter-spacing: var(--letter-spacing-m),
@@ -29,7 +29,7 @@ $type-styles: (
     size: var(--font-size-m),
     line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: responsive(var(--letter-spacing-m), var(--letter-spacing-l)),
+    letter-spacing: fluid(var(--letter-spacing-m), var(--letter-spacing-l)),
   ),
   action: (
     weight: var(--font-weight-semibold),
@@ -47,48 +47,39 @@ $type-styles: (
   ),
   meta-secondary: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-xs), var(--font-size-2xs)),
-    line-height: responsive(var(--line-height-7xl), var(--line-height-3xl)),
+    size: fluid(var(--font-size-xs), var(--font-size-2xs)),
+    line-height: fluid(var(--line-height-7xl), var(--line-height-3xl)),
     family: var(--font-family-base),
     letter-spacing: var(--letter-spacing-m),
   ),
   h1: (
     weight: var(--font-weight-black),
-    size: responsive(var(--font-size-4xl), var(--font-size-7xl)),
-    line-height: responsive(var(--line-height-s), var(--line-height-xs)),
+    size: fluid(var(--font-size-4xl), var(--font-size-7xl)),
+    line-height: fluid(var(--line-height-s), var(--line-height-xs)),
     family: var(--font-family-base),
     letter-spacing: var(--letter-spacing-m),
   ),
   h2: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-2xl), var(--font-size-3xl)),
-    line-height: responsive(var(--line-height-m), var(--line-height-2xs)),
+    size: fluid(var(--font-size-2xl), var(--font-size-3xl)),
+    line-height: fluid(var(--line-height-m), var(--line-height-2xs)),
     family: var(--font-family-base),
-    letter-spacing: responsive(
-        var(--letter-spacing-m),
-        var(--letter-spacing-s)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-m), var(--letter-spacing-s)),
   ),
   h2-italic: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-2xl), var(--font-size-3xl)),
-    line-height: responsive(var(--line-height-m), var(--line-height-2xs)),
+    size: fluid(var(--font-size-2xl), var(--font-size-3xl)),
+    line-height: fluid(var(--line-height-m), var(--line-height-2xs)),
     family: var(--font-family-base),
     style: italic,
-    letter-spacing: responsive(
-        var(--letter-spacing-m),
-        var(--letter-spacing-s)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-m), var(--letter-spacing-s)),
   ),
   h3: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-xl), var(--font-size-2xl)),
-    line-height: responsive(var(--line-height-2xl), var(--line-height-m)),
+    size: fluid(var(--font-size-xl), var(--font-size-2xl)),
+    line-height: fluid(var(--line-height-2xl), var(--line-height-m)),
     family: var(--font-family-base),
-    letter-spacing: responsive(
-        var(--letter-spacing-m),
-        var(--letter-spacing-4xl)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-m), var(--letter-spacing-4xl)),
   ),
   h4: (
     weight: var(--font-weight-medium),
@@ -102,7 +93,7 @@ $type-styles: (
     size: var(--font-size-m),
     line-height: var(--line-height-8xl),
     family: var(--font-family-base),
-    letter-spacing: responsive(var(--letter-spacing-m), var(--letter-spacing-l)),
+    letter-spacing: fluid(var(--letter-spacing-m), var(--letter-spacing-l)),
   ),
   link-lg: (
     weight: var(--font-weight-medium),
@@ -113,45 +104,36 @@ $type-styles: (
   ),
   display-numeral-xl: (
     weight: var(--font-weight-bold),
-    size: responsive(var(--font-size-9xl), var(--font-size-10xl)),
+    size: fluid(var(--font-size-9xl), var(--font-size-10xl)),
     line-height: var(--line-height-display-numeral-xl),
     family: var(--font-family-display),
     letter-spacing: var(--letter-spacing-m),
   ),
   display-numeral-m: (
     weight: var(--font-weight-medium),
-    size: responsive(var(--font-size-4xl), var(--font-size-5xl)),
-    line-height: responsive(var(--line-height-xs), var(--line-height-2xs)),
+    size: fluid(var(--font-size-4xl), var(--font-size-5xl)),
+    line-height: fluid(var(--line-height-xs), var(--line-height-2xs)),
     family: var(--font-family-base),
-    letter-spacing: responsive(
-        var(--letter-spacing-2xl),
-        var(--letter-spacing-3xl)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-2xl), var(--letter-spacing-3xl)),
   ),
   display-expressive-xl: (
     weight: var(--font-weight-semibold),
-    size: responsive(var(--font-size-8xl), var(--font-size-12xl)),
-    line-height: responsive(var(--line-height-4xl), var(--line-height-5xl)),
+    size: fluid(var(--font-size-8xl), var(--font-size-12xl)),
+    line-height: fluid(var(--line-height-4xl), var(--line-height-5xl)),
     family: var(--font-family-base),
-    letter-spacing: responsive(
-        var(--letter-spacing-2xl),
-        var(--letter-spacing-3xl)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-2xl), var(--letter-spacing-3xl)),
   ),
   footer-brand-display: (
     weight: var(--font-weight-black),
-    size: responsive(var(--font-size-6xl), var(--font-size-11xl)),
-    line-height: responsive(var(--line-height-l), var(--line-height-2xs)),
+    size: fluid(var(--font-size-6xl), var(--font-size-11xl)),
+    line-height: fluid(var(--line-height-l), var(--line-height-2xs)),
     family: var(--font-family-base),
-    letter-spacing: responsive(
-        var(--letter-spacing-xl),
-        var(--letter-spacing-s)
-      ),
+    letter-spacing: fluid(var(--letter-spacing-xl), var(--letter-spacing-s)),
   ),
   footer-legal: (
     weight: var(--font-weight-regular),
-    size: responsive(var(--font-size-2xs), var(--font-size-s)),
-    line-height: responsive(var(--line-height-3xl), var(--line-height-m)),
+    size: fluid(var(--font-size-2xs), var(--font-size-s)),
+    line-height: fluid(var(--line-height-3xl), var(--line-height-m)),
     family: var(--font-family-base),
     letter-spacing: var(--letter-spacing-m),
   ),

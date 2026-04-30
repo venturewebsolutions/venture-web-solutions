@@ -41,8 +41,8 @@
     color-mix(in srgb, var(--colour-slate) 25%, transparent);
 
   // Spacing
-  --spacing-container: #{responsive(var(--spacing-m), var(--spacing-5xl))};
-  --spacing-section: #{responsive(var(--spacing-4xl), var(--spacing-6xl))};
+  --spacing-container: #{fluid(var(--spacing-m), var(--spacing-5xl))};
+  --spacing-section: #{fluid(var(--spacing-4xl), var(--spacing-6xl))};
 
   // Transitions
   --transition-duration-default: 0.6s;

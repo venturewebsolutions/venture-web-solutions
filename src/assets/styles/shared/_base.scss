@@ -5,7 +5,7 @@
   --nav-padding-top: var(--spacing-xl);
   --nav-padding-bottom: var(--spacing-xl);
   --nav-border-width: var(--border-width-s);
-  --nav-logo-height: #{responsive(rem(25px), rem(49px))};
+  --nav-logo-height: #{fluid(rem(25px), rem(49px))};
 
   --nav-height: calc(
     var(--nav-padding-top) + var(--nav-padding-bottom) +

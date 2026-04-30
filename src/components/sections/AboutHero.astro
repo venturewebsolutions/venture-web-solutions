@@ -79,10 +79,10 @@ const images = take(
   @use 'mixins' as *;
 
   .section {
-    --padding-bottom: #{responsive(var(--spacing-5xl), var(--spacing-8xl))};
+    --padding-bottom: #{fluid(var(--spacing-5xl), var(--spacing-8xl))};
 
     display: grid;
-    gap: #{responsive(var(--spacing-5xl), var(--spacing-8xl))};
+    gap: #{fluid(var(--spacing-5xl), var(--spacing-8xl))};
     overflow: hidden;
   }
 
@@ -93,7 +93,7 @@ const images = take(
   }
 
   .wheel-track {
-    --scale: #{responsive(0.5, 1)};
+    --scale: #{fluid(0.5, 1)};
 
     --item-width: calc(295px * var(--scale));
     --item-height: calc(303px * var(--scale));

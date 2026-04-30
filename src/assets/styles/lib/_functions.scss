@@ -39,7 +39,7 @@ $maxvw: 90rem; // 1440px
   @error 'Unsupported units: value=#{$value}, base=#{$base}';
 }
 
-@function responsive($y1, $y2) {
+@function fluid($y1, $y2) {
   $slope: #{calc($y2 - $y1) / calc($maxvw - $minvw)};
   $intercept: calc($y1 - ($slope * $minvw));
   $value: calc($intercept + $slope * 100vw);

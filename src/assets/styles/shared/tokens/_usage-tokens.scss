@@ -1,32 +1,6 @@
 @use 'functions' as *;
 
 :root {
-  // Colours
-  --colour-divider-primary: var(--colour-neutral-70);
-
-  --colour-border-primary: var(--colour-neutral-70);
-  --colour-border-contrast: var(--colour-neutral-10);
-
-  --colour-surface-base: var(--colour-neutral-100);
-  --colour-surface-50: var(--colour-neutral-95);
-  --colour-surface-100: var(--colour-neutral-90);
-  --colour-surface-200: var(--colour-neutral-70);
-
-  --colour-text-primary: var(--colour-neutral-30);
-  --colour-text-secondary: var(--colour-neutral-20);
-  --colour-text-muted: var(--colour-neutral-50);
-  --colour-text-contrast: var(--colour-neutral-10);
-
-  --colour-text-on-primary: var(--colour-neutral-100);
-  --colour-text-on-secondary: var(--colour-neutral-100);
-  --colour-text-on-tertiary: var(--colour-neutral-10);
-  --colour-text-on-accent: var(--colour-neutral-100);
-
-  --colour-text-on-light-100: var(--colour-neutral-100);
-  --colour-text-on-light-90: var(--colour-neutral-90);
-  --colour-text-on-dark-30: var(--colour-neutral-30);
-  --colour-text-on-dark-10: var(--colour-neutral-10);
-
   // Typography
   --line-height-display-numeral-xl: var(
     --line-height-90
@@ -190,8 +164,4 @@
       var(--letter-spacing--1-2)
     )};
   --letter-spacing-footer-legal: var(--letter-spacing-0);
-
-  // Spacing
-  --spacing-container: #{responsive(var(--spacing-m), var(--spacing-5xl))};
-  --spacing-section: #{responsive(var(--spacing-4xl), var(--spacing-6xl))};
 }

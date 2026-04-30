@@ -2,27 +2,26 @@
 
 :root {
   // Colours
-  --colour-sky-blue: #51dbea;
+  --colour-sky-blue-500: #51dbea;
 
-  --colour-green: #c7f3ad;
+  --colour-green-500: #c7f3ad;
 
-  --colour-ivory: #f0f5f7;
+  --colour-blue-grey-500: #b4c3cd;
 
-  --colour-grey: #c9c9c9;
+  --colour-slate-500: #4b5763;
 
-  --colour-blue-grey: #b4c3cd;
-
-  --colour-steel: #566470;
-
-  --colour-slate: #4b5763;
-
-  --colour-navy-70: #2d2e3c;
-  --colour-navy-80: #252837;
-  --colour-navy-90: #1c1d2c;
+  --colour-neutral-100: #f0f5f7;
+  --colour-neutral-200: #c9c9c9;
+  --colour-neutral-300: #b4c3cd;
+  --colour-neutral-400: #566470;
+  --colour-neutral-500: #2d2e3c;
+  --colour-neutral-600: #2d2e3c;
+  --colour-neutral-700: #252837;
+  --colour-neutral-800: #1c1d2c;
 
   // Typography
-  --font-family-zalando-sans: 'Zalando Sans', sans-serif;
-  --font-family-libre-caslon-text: 'Libre Caslon Text', serif;
+  --font-family-sans: 'Zalando Sans', sans-serif;
+  --font-family-serif: 'Libre Caslon Text', serif;
 
   --font-size-10: #{rem(10px)};
   --font-size-12: #{rem(12px)};
@@ -42,11 +41,11 @@
   --font-size-118: #{rem(118px)};
   --font-size-168: #{rem(168px)};
 
-  --font-weight-400: 400;
-  --font-weight-500: 500;
-  --font-weight-600: 600;
-  --font-weight-700: 700;
-  --font-weight-900: 900;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
 
   --line-height-90: 90%;
   --line-height-100: 100%;
@@ -73,38 +72,45 @@
   --letter-spacing-3: #{em(3%)};
 
   // Borders
-  --border-width-1: 1px;
-  --border-width-2: 2px;
-  --border-width-3: 3px;
+  --border-width-s: 1px;
+  --border-width-m: 2px;
+  --border-width-l: 3px;
 
-  --border-radius-8: 8px;
-  --border-radius-16: 16px;
-  --border-radius-24: 24px;
-  --border-radius-32: 32px;
-  --border-radius-56: 56px;
+  --border-radius-s: 8px;
+  --border-radius-m: 16px;
+  --border-radius-l: 24px;
+  --border-radius-xl: 32px;
+  --border-radius-2xl: 56px;
 
   // Spacing
-  --spacing-2: #{rem(2px)};
-  --spacing-4: #{rem(4px)};
-  --spacing-6: #{rem(6px)};
-  --spacing-8: #{rem(8px)};
-  --spacing-10: #{rem(10px)};
-  --spacing-16: #{rem(16px)};
-  --spacing-20: #{rem(20px)};
-  --spacing-24: #{rem(24px)};
-  --spacing-28: #{rem(28px)};
-  --spacing-32: #{rem(32px)};
-  --spacing-38: #{rem(38px)};
-  --spacing-40: #{rem(40px)};
-  --spacing-48: #{rem(48px)};
-  --spacing-56: #{rem(56px)};
-  --spacing-64: #{rem(64px)};
-  --spacing-72: #{rem(72px)};
-  --spacing-80: #{rem(80px)};
-  --spacing-88: #{rem(88px)};
-  --spacing-96: #{rem(96px)};
-  --spacing-104: #{rem(104px)};
-  --spacing-120: #{rem(120px)};
-  --spacing-128: #{rem(128px)};
-  --spacing-160: #{rem(160px)};
+  --spacing-3xs: #{rem(4px)};
+  --spacing-2xs: #{rem(6px)};
+  --spacing-xs: #{rem(8px)};
+  --spacing-s: #{rem(10px)};
+  --spacing-m: #{rem(16px)};
+  --spacing-l: #{rem(20px)};
+  --spacing-xl: #{rem(24px)};
+  --spacing-2xl: #{responsive(rem(28px), rem(32px))};
+  --spacing-3xl: #{responsive(rem(32px), rem(40px))};
+  --spacing-4xl: #{responsive(rem(40px), rem(56px))};
+  --spacing-5xl: #{responsive(rem(48px), rem(64px))};
+  --spacing-6xl: #{responsive(rem(56px), rem(80px))};
+  --spacing-7xl: #{responsive(rem(72px), rem(104px))};
+  --spacing-8xl: #{responsive(rem(88px), rem(120px))};
+  --spacing-9xl: #{responsive(rem(96px), rem(128px))};
+  --spacing-10xl: #{responsive(rem(120px), rem(160px))};
+
+  --spacing-xs-3xl: #{responsive(rem(8px), rem(40px))};
+  --spacing-xs-5xl: #{responsive(rem(8px), rem(64px))};
+  --spacing-xs-6xl: #{responsive(rem(8px), rem(80px))};
+  --spacing-xs-8xl: #{responsive(rem(8px), rem(120px))};
+  --spacing-m-xl: #{responsive(rem(16px), rem(24px))};
+  --spacing-m-3xl: #{responsive(rem(16px), rem(40px))};
+  --spacing-m-4xl: #{responsive(rem(16px), rem(56px))};
+  --spacing-xl-4xl: #{responsive(rem(24px), rem(56px))};
+  --spacing-2xl-7xl: #{responsive(rem(28px), rem(104px))};
+  --spacing-3xl-4xl: #{responsive(rem(32px), rem(56px))};
+  --spacing-4xl-5xl: #{responsive(rem(40px), rem(64px))};
+  --spacing-4xl-6xl: #{responsive(rem(40px), rem(80px))};
+  --spacing-5xl-7xl: #{responsive(rem(64px), rem(104px))};
 }

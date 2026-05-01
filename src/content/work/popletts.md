@@ -45,6 +45,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/popletts-mobile-video.mp4'
+        label: 'Poplett’s Dog Grooming mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -68,6 +69,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/popletts-desktop-video.mp4'
+        label: 'Poplett’s Dog Grooming desktop website showcase'
         thumbnail: true
         background: true
         border: false
@@ -90,6 +92,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/popletts-short-video.mp4'
+        label: 'Poplett’s Dog Grooming mini website showcase'
         autoplay: true
         thumbnail: false
         background: false

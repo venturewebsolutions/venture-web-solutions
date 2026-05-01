@@ -153,6 +153,7 @@ const work = defineCollection({
                   ...media,
                   type: z.enum(['video']),
                   src: z.string(),
+                  label: z.string(),
                   autoplay: z.boolean().optional(),
                   thumbnail: z.boolean().optional(),
                 }),

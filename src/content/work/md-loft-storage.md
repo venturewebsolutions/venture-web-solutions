@@ -49,6 +49,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/md-loft-storage-mobile-video.mp4'
+        label: 'MD Loft Storage mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -73,6 +74,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/md-loft-storage-desktop-video.mp4'
+        label: 'MD Loft Storage desktop website showcase'
         thumbnail: true
         background: true
         border: false
@@ -96,6 +98,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/md-loft-storage-short-video.mp4'
+        label: 'MD Loft Storage mini website showcase'
         autoplay: true
         thumbnail: false
         background: false

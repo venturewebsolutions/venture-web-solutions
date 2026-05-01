@@ -50,6 +50,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/sos-party-rental-mobile-video.mp4'
+        label: 'SOS Party Rental mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -73,6 +74,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/sos-party-rental-desktop-video.mp4'
+        label: 'SOS Party Rental mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -95,6 +97,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/sos-party-rental-short-video.mp4'
+        label: 'SOS Party Rental mobile website showcase'
         autoplay: true
         thumbnail: false
         background: false

@@ -51,6 +51,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/stefanos-mobile-video.mp4'
+        label: 'Stefano’s Pizzeria mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -74,6 +75,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/stefanos-desktop-video.mp4'
+        label: 'Stefano’s Pizzeria mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -96,6 +98,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/stefanos-short-video.mp4'
+        label: 'Stefano’s Pizzeria mobile website showcase'
         autoplay: true
         thumbnail: false
         background: false

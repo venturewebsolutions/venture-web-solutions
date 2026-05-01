@@ -151,6 +151,7 @@ const { section, class: className, ...props } = Astro.props
                 <VideoWrapper label="Play video" class="video-thumbnail">
                   <Video
                     sources={[{ src: url(item.src) }]}
+                    aria-label={item.label}
                     lazy
                     muted
                     autoplay={item.autoplay || undefined}

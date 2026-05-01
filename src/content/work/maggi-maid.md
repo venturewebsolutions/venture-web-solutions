@@ -45,6 +45,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/maggi-maid-mobile-video.mp4'
+        label: 'Maggi Maid mobile website showcase'
         thumbnail: true
         background: true
         border: false
@@ -68,6 +69,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/maggi-maid-desktop-video.mp4'
+        label: 'Maggi Maid desktop website showcase'
         thumbnail: true
         background: true
         border: false
@@ -90,6 +92,7 @@ sections:
     media:
       - type: 'video'
         src: '/videos/maggi-maid-short-video.mp4'
+        label: 'Maggi Maid mini website showcase'
         autoplay: true
         thumbnail: false
         background: false

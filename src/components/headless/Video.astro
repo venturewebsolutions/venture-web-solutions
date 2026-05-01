@@ -5,28 +5,44 @@ export type VideoModule = {
   default: string
 }
 
-type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
+export type VideoSource = Omit<HTMLAttributes<'source'>, 'src'> & {
   src: string | VideoModule | Promise<VideoModule>
+}
+
+type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
+  sources: VideoSource[]
   hash?: string
   lazy?: true
 }
 
-const { src: _, hash = '0.001', lazy, ...props } = Astro.props
-
-let src =
-  typeof Astro.props.src === 'string'
-    ? Astro.props.src
-    : Astro.props.src instanceof Promise
-      ? (await Astro.props.src)?.default
-      : Astro.props.src?.default
-
-if (hash) {
-  src += `#${hash}`
-}
+const { sources, hash = '0.001', lazy, ...props } = Astro.props
 ---
 
-<video {...props} src={lazy ? undefined : src} data-src={src} data-lazy={lazy}>
-  <slot />
+<video {...props} data-lazy={lazy}>
+  {
+    sources.map(async (source) => {
+      const { src: _, ...rest } = source
+
+      let src =
+        typeof source.src === 'string'
+          ? source.src
+          : source.src instanceof Promise
+            ? (await source.src)?.default
+            : source.src?.default
+
+      if (hash) {
+        src += `#${hash}`
+      }
+
+      return (
+        <source
+          src={lazy ? undefined : src}
+          data-src={lazy ? src : undefined}
+          {...rest}
+        />
+      )
+    })
+  }
 </video>
 
 <script>
@@ -35,11 +51,13 @@ if (hash) {
       document.querySelectorAll<HTMLVideoElement>('video[data-lazy]')
 
     for (const video of videos) {
-      video.addEventListener('loadeddata', () => {
-        video.setAttribute('data-loaded', '')
-      })
+      const sources = video.querySelectorAll<HTMLSourceElement>('source')
 
-      video.src = video.dataset.src!
+      for (const source of sources) {
+        source.src = source.dataset.src!
+      }
+
+      video.load()
     }
   })
 </script>

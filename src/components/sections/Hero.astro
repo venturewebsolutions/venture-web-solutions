@@ -46,15 +46,25 @@ const { class: className, ...props } = Astro.props
       />
     </picture>
 
-    <!-- <Video
-      src={import('@/assets/videos/hero.mp4')}
+    <Video
+      sources={[
+        {
+          src: url('/videos/hero-1080p.mp4'),
+          media: '(min-width: 1080px)',
+        },
+        {
+          src: url('/videos/hero-720p.mp4'),
+          media: '(min-width: 720px)',
+        },
+        { src: url('/videos/hero-480p.mp4') },
+      ]}
       lazy
       autoplay
       playsinline
       muted
       loop
       class="video"
-    /> -->
+    />
   </div>
 
   <div class="container">
@@ -152,10 +162,6 @@ const { class: className, ...props } = Astro.props
     width: 100%;
     height: 100%;
     object-fit: cover;
-
-    &:not([data-loaded]) {
-      display: none;
-    }
   }
 
   .container {

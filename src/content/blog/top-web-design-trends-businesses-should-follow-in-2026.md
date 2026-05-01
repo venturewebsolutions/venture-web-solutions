@@ -1,5 +1,7 @@
 ---
 title: 'Top web design trends businesses should follow in 2026'
+meta:
+  description: 'Explore the web design trends small businesses should watch in 2026, from performance-led design to clearer content and better user experience.'
 summary: 'Top web design trends businesses should follow in 2026'
 topic: 'Web Design'
 thumbnail:

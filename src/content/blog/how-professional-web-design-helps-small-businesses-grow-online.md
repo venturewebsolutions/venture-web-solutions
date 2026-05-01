@@ -1,5 +1,7 @@
 ---
 title: 'How professional web design helps small businesses grow online'
+meta:
+  description: 'Learn how professional web design helps small businesses build trust, improve user experience, and turn more website visitors into customers online.'
 summary: 'How professional web design helps small businesses grow online'
 topic: 'Web Design'
 thumbnail:

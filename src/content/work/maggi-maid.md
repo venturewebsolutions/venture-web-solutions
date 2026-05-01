@@ -3,6 +3,8 @@ order: 1
 client: 'Maggi Maid'
 heading: 'Building trust for a brand-new home care business'
 summary: 'Trust can’t be claimed — it has to be felt. For Maggi Maid, the challenge was to create a digital experience that immediately reassures families, removes doubt, and feels genuinely caring, while communicating professionalism and a sense of responsibility in a sensitive industry.'
+meta:
+  description: "See how we created a warm, trustworthy brand and hand-coded website for Maggi Maid, helping a new home care business build confidence online."
 highlights:
   - icon: 'family_home'
     text: 'Home care industry'

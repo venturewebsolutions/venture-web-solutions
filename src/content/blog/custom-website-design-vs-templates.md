@@ -1,5 +1,7 @@
 ---
 title: 'Custom website design vs templates'
+meta:
+  description: 'Compare custom website design and templates to see which option gives your small business better performance, branding, SEO, and room to grow.'
 summary: 'Custom website design vs templates: Which is better for your business?'
 topic: 'Web Design'
 thumbnail:

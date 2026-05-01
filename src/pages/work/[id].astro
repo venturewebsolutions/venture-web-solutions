@@ -22,7 +22,10 @@ const { project } = Astro.props
 const testimonials = await getTestimonials((t) => t.id !== project.id)
 ---
 
-<Layout title={`${project.data.client} | Venture Web Solutions`} description="">
+<Layout
+  title={`${project.data.client} Web Design Case Study | Venture Web Solutions`}
+  description={project.data.meta.description}
+>
   <ProjectHero project={project} />
   {project.data.sections.map((section) => <ProjectDetails section={section} />)}
   <CTAMarquee groups={3} href={url('/work/')} text="View all projects" />

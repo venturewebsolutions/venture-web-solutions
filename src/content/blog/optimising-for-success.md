@@ -1,5 +1,7 @@
 ---
 title: 'Optimising for success'
+meta:
+  description: 'See how clean code architecture improves website speed, SEO, accessibility, and user trust for small business websites built to last.'
 summary: 'Optimising for success: How clean code architecture elevates speed, SEO, and user trust'
 topic: 'Web Development'
 thumbnail:

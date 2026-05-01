@@ -19,7 +19,10 @@ const { post } = Astro.props
 const otherPosts = (await getCollection('blog')).filter((p) => p.id !== post.id)
 ---
 
-<Layout title={`${post.data.title} | Venture Web Solutions`} description="">
+<Layout
+  title={`${post.data.title} | Venture Web Solutions`}
+  description={post.data.meta.description}
+>
   <BlogPostHero post={post} />
   <BlogPostContent post={post} />
   <BlogShowcaseCarousel posts={otherPosts} />

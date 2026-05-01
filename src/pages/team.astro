@@ -8,7 +8,10 @@ import { getBlogPosts } from '@/lib/collections'
 const posts = (await getBlogPosts()).filter((post) => post.data.featured)
 ---
 
-<Layout title="Meet The Team | Venture Web Solutions" description="">
+<Layout
+  title="Meet Our York Web Design Team | Venture Web Solutions"
+  description="Meet the team behind Venture Web Solutions: web design and development specialists building websites for small businesses."
+>
   <MeetTheTeam level={1} />
   <CallToAction
     heading="Ready to get started?"

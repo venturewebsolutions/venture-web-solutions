@@ -1,5 +1,7 @@
 ---
 title: 'The power of hand-coded websites'
+meta:
+  description: 'Discover why hand-coded websites can outperform templates with faster load times, cleaner SEO foundations, stronger security, and more flexibility.'
 summary: 'The power of hand-coded websites: Why writing your own code dramatically boosts performance'
 topic: 'Web Development'
 thumbnail:

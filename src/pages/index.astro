@@ -28,7 +28,11 @@ const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
 const testimonials = await getTestimonials()
 ---
 
-<Layout title="Web Design York | Venture Web Solutions" description="" flush>
+<Layout
+  title="Web Design York for Small Businesses | Venture Web Solutions"
+  description="Custom web design in York for UK small businesses. Fast, hand-coded websites from £100/month with unlimited edits, 24/7 support, and a money-back guarantee."
+  flush
+>
   <Hero class="hero" />
   <AboutUs reversed links />
   <WhatWeOffer />

@@ -1,5 +1,7 @@
 ---
 title: 'Why page speed shapes first impressions'
+meta:
+  description: 'Learn why page speed shapes first impressions, affects trust, and can cost small businesses enquiries before visitors even read the page.'
 summary: 'Why page speed shapes first impressions: How a slow site can cost you future customers'
 topic: 'Web Development'
 thumbnail:

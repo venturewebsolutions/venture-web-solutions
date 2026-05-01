@@ -25,7 +25,7 @@ const posts = (await getBlogPosts()).filter(
 ---
 
 <Layout
-  title={`${member.data.name} | Venture Web Solutions`}
+  title={`${member.data.name}, ${member.data.position} | Venture Web Solutions`}
   description={member.data.meta.description}
 >
   <TeamMemberHero

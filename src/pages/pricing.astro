@@ -18,7 +18,10 @@ const faqs = (await getFaqTopics())
 const testimonials = await getTestimonials()
 ---
 
-<Layout title="Pricing | Venture Web Solutions" description="">
+<Layout
+  title="Web Design Pricing | From £100/Month | Venture Web Solutions"
+  description="Simple, transparent web design pricing for small businesses. From £100/month — including hosting, copywriting, unlimited edits, and 24/7 support."
+>
   <PricingSection level={1} fullWidth />
   <Testimonials testimonials={testimonials} />
   <HowItWorks />

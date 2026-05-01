@@ -6,7 +6,6 @@ import ThumbnailCaption from '@/components/ui/Thumbnail/ThumbnailCaption.astro'
 import { cn } from '@/lib/class-names'
 import type { CollectionEntry } from 'astro:content'
 import type { HTMLAttributes } from 'astro/types'
-import range from 'lodash/range'
 import Image from '../headless/Image.astro'
 
 type Props = HTMLAttributes<'section'> & {
@@ -28,8 +27,8 @@ const { post, class: className, ...props } = Astro.props
 
   <Thumbnail>
     <Image
-      src={post.data.thumbnail.image}
-      alt={post.data.thumbnail.description}
+      src={post.data.thumbnail.src}
+      alt={post.data.thumbnail.alt}
       class="thumbnail-image"
       widths={{
         min: 288,

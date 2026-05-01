@@ -3,8 +3,8 @@ title: 'Optimising for success'
 summary: 'Optimising for success: How clean code architecture elevates speed, SEO, and user trust'
 topic: 'Web Development'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-2.jpg'
-  description: ''
+  src: '@/assets/images/blog-post-thumbnail-2.jpg'
+  alt: 'Wireframes for a web design project'
 author:
   name: 'Jordan'
   avatar: '@/assets/images/jordan-avatar.jpg'

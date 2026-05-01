@@ -12,10 +12,15 @@ bio:
 marquee:
   images:
     - src: '@/assets/images/jordan-marquee-1.jpg'
+      alt: 'Jordan and Daniela at their wedding'
     - src: '@/assets/images/jordan-marquee-2.jpg'
+      alt: 'Jordan hiking up Mount Olympus'
     - src: '@/assets/images/jordan-marquee-3.jpg'
+      alt: 'Jordan on a scooter in Greece'
     - src: '@/assets/images/jordan-marquee-4.jpg'
+      alt: 'Jordan scuba-diving in Thailand'
     - src: '@/assets/images/jordan-marquee-5.jpg'
+      alt: 'Jordan’s beloved pet, Bruno'
 roles:
   - heading: 'Hand-coded builds'
     text: 'Hand-code every website from scratch.'

@@ -12,7 +12,7 @@ highlights:
     text: 'End-to-end branding & online business launch'
 thumbnail:
   src: '@/assets/images/maggi-maid-mockup-with-colour-palette.png'
-  alt: 'A screenshot of the Maggi Maid website and colour scheme'
+  alt: 'Maggi Maid website design mockup and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
@@ -54,7 +54,7 @@ sections:
         constrained: true
       - type: 'image'
         src: '@/assets/images/maggi-maid-colour-palette.png'
-        alt: ''
+        alt: 'Maggi Maid website colour palette'
         background: false
         border: false
         rounded: false
@@ -100,7 +100,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/maggi-maid-website-img-1-desktop.png'
-        alt: ''
+        alt: 'Maggi Maid website hero section'
         background: '#D1462F'
         border: false
         rounded: true
@@ -109,7 +109,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/maggi-maid-website-img-2-desktop.png'
-        alt: ''
+        alt: 'Maggi Maid website testimonials section'
         background: '#60695C'
         border: false
         rounded: true
@@ -118,7 +118,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/maggi-maid-website-img-3-desktop.png'
-        alt: ''
+        alt: 'Maggi Maid website contact section'
         background: '#ECEEE9'
         border: false
         rounded: true
@@ -139,9 +139,9 @@ sections:
     testimonial:
       image:
         src: '@/assets/images/maggi-maid-review-photo-desktop.jpg'
-        alt: ''
+        alt: 'Margaret, founder, Maggi Maid'
       quote: '“Venture Web Solutions was incredible from start to finish. They turned our messy ideas into a clean, professional site that fits our brand perfectly.”'
-      citation: 'Margaret W - Founder of Maggi Maid'
+      citation: 'Margaret - Founder of Maggi Maid'
   - label: 'Ongoing partnership'
     heading: 'Ongoing support for sustainable growth.'
     text:

@@ -12,7 +12,7 @@ highlights:
     text: 'Website redesign & bilingual setup'
 thumbnail:
   src: '@/assets/images/sos-party-rental-mockup-with-colour-palette.png'
-  alt: 'A screenshot of the SOS Party Rental website and colour scheme'
+  alt: 'SOS Party Rental website design mockup and colour scheme'
 tags:
   - 'Web design & development'
   - 'Website redesign'
@@ -59,7 +59,7 @@ sections:
         constrained: true
       - type: 'image'
         src: '@/assets/images/sos-party-rental-colour-palette.png'
-        alt: ''
+        alt: 'SOS Party Rental website colour palette'
         background: false
         border: false
         rounded: false
@@ -105,7 +105,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/sos-party-rental-website-img-1-desktop.png'
-        alt: ''
+        alt: 'SOS Party Rental website process section'
         background: '#D1462F'
         border: false
         rounded: true
@@ -114,7 +114,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/sos-party-rental-website-img-2-desktop.png'
-        alt: ''
+        alt: 'SOS Party Rental website product catalog'
         background: '#60695C'
         border: false
         rounded: true
@@ -123,7 +123,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/sos-party-rental-website-img-3-desktop.png'
-        alt: ''
+        alt: 'SOS Party Rental website photo gallery'
         background: '#ECEEE9'
         border: false
         rounded: true
@@ -145,9 +145,9 @@ sections:
     testimonial:
       image:
         src: '@/assets/images/sos-party-rental-review-photo-desktop.jpg'
-        alt: ''
+        alt: 'Sandra, founder, SOS Party Rental'
       quote: '“Working with Venture Web Solutions felt like collaborating with people who genuinely cared. They listened, advised, and delivered a website we’re truly proud of.”'
-      citation: 'Sandra O - Founder of SOS Party Rental'
+      citation: 'Sandra - Founder of SOS Party Rental'
   - label: 'Ongoing partnership'
     heading: 'Supporting updates and evolving needs.'
     text:

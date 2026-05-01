@@ -35,7 +35,7 @@ const posts = (await getBlogPosts()).filter(
       groups: 2,
       images: member.data.marquee.images.map((image) => ({
         src: image.src,
-        alt: '',
+        alt: image.alt,
       })),
     }}
   >

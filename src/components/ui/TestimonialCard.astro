@@ -21,8 +21,8 @@ const { testimonial, image, class: className, ...props } = Astro.props
 <section class:list={cn('testimonial-card', className)} {...props}>
   <Thumbnail>
     <Image
-      src={testimonial.data.image}
-      alt=""
+      src={testimonial.data.image.src}
+      alt={testimonial.data.image.alt}
       widths={image.widths}
       sizes={image.sizes}
       class="thumbnail-image"
@@ -32,7 +32,7 @@ const { testimonial, image, class: className, ...props } = Astro.props
       <div class="client">
         <Avatar
           src={testimonial.data.avatar}
-          alt={`${testimonial.data.author}, ${testimonial.data.client} ${testimonial.data.position}`}
+          alt={`${testimonial.data.author}, ${testimonial.data.position}, ${testimonial.data.client}`}
           width={43}
         />
         <div class="client-info">

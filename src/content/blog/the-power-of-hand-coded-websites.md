@@ -3,8 +3,8 @@ title: 'The power of hand-coded websites'
 summary: 'The power of hand-coded websites: Why writing your own code dramatically boosts performance'
 topic: 'Web Development'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-1.jpg'
-  description: ''
+  src: '@/assets/images/blog-post-thumbnail-1.jpg'
+  alt: 'A laptop with a React project open in Visual Studio Code'
 author:
   name: 'Jordan'
   avatar: '@/assets/images/jordan-avatar.jpg'

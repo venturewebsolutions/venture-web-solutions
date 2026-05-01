@@ -24,7 +24,7 @@ const projects = [
     link: { href: url(`/work/${project.id}/`), text: 'View project' },
     image: {
       src: project.data.thumbnail.src,
-      alt: '',
+      alt: project.data.thumbnail.alt,
       widths: {
         min: 230,
         max: 647,
@@ -59,7 +59,7 @@ const projects = [
     },
     image: {
       src: import('@/assets/images/empty-project-mockup-with-colour-palette.png'),
-      alt: '',
+      alt: 'An empty website design mockup',
       widths: {
         min: 230,
         max: 647,

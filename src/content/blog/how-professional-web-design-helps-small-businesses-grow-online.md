@@ -3,8 +3,8 @@ title: 'How professional web design helps small businesses grow online'
 summary: 'How professional web design helps small businesses grow online'
 topic: 'Web Design'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-1.jpg'
-  description: ''
+  src: '@/assets/images/blog-post-thumbnail-1.jpg'
+  alt: 'A laptop with a React project open in Visual Studio Code'
 author:
   name: 'Daniela'
   avatar: '@/assets/images/daniela-avatar.jpg'

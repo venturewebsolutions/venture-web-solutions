@@ -3,8 +3,8 @@ title: 'Custom website design vs templates'
 summary: 'Custom website design vs templates: Which is better for your business?'
 topic: 'Web Design'
 thumbnail:
-  image: '@/assets/images/blog-post-thumbnail-2.jpg'
-  description: ''
+  src: '@/assets/images/blog-post-thumbnail-2.jpg'
+  alt: 'Wireframes for a web design project'
 author:
   name: 'Daniela'
   avatar: '@/assets/images/daniela-avatar.jpg'

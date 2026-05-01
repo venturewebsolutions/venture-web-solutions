@@ -2,7 +2,7 @@
 import type { RemoteImageProps } from 'astro:assets'
 import type { LocalImageProps } from 'astro:assets'
 
-type Props = Omit<LocalImageProps | RemoteImageProps, 'src'>
+type Props = Omit<LocalImageProps | RemoteImageProps, 'src' | 'alt'>
 ---
 
-<img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" {...Astro.props} />
+<img src="data:image/gif;base64,R0lGODlhAQABAAAAACw=" alt="" {...Astro.props} />

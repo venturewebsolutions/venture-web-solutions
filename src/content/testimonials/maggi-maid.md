@@ -1,7 +1,9 @@
 ---
 order: 1
 client: 'Maggi Maid'
-image: '@/assets/images/maggi-maid-testimonial-image.png'
+image:
+  src: '@/assets/images/maggi-maid-testimonial-image.png'
+  alt: 'Maggi Maid logo'
 author: 'Maragret'
 position: 'Founder'
 avatar: '@/assets/images/maggi-maid-avatar.jpg'

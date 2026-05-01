@@ -13,18 +13,23 @@ const images = take(
   [
     {
       src: import('@/assets/images/about-1.jpg'),
+      alt: 'Jordan and Daniela discussing a project',
     },
     {
       src: import('@/assets/images/about-2.jpg'),
+      alt: 'Jordan working on the code',
     },
     {
       src: import('@/assets/images/about-3.jpg'),
+      alt: 'Jordan and Daniela brainstorming ideas',
     },
     {
       src: import('@/assets/images/about-4.jpg'),
+      alt: 'Daniela wireframing a design',
     },
     {
       src: import('@/assets/images/about-5.jpg'),
+      alt: '',
     },
   ],
   25,
@@ -55,7 +60,7 @@ const images = take(
             >
               <Image
                 src={image.src}
-                alt=""
+                alt={image.alt}
                 widths={{
                   min: 148,
                   max: 295,

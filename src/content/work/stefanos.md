@@ -12,7 +12,7 @@ highlights:
     text: 'CMS website launch'
 thumbnail:
   src: '@/assets/images/stefanos-mockup-with-colour-palette.png'
-  alt: 'A screenshot of the Stefano’s Pizzeria website and colour scheme'
+  alt: 'Stefano’s Pizzeria website design mockup and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
@@ -60,7 +60,7 @@ sections:
         constrained: true
       - type: 'image'
         src: '@/assets/images/stefanos-colour-palette.png'
-        alt: ''
+        alt: 'Stefano’s Pizzeria website colour palette'
         background: false
         border: false
         rounded: false
@@ -106,7 +106,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/stefanos-website-img-1-desktop.png'
-        alt: ''
+        alt: 'Stefano’s Pizzeria website menu'
         background: '#D1462F'
         border: false
         rounded: true
@@ -115,7 +115,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/stefanos-website-img-2-desktop.png'
-        alt: ''
+        alt: 'Stefano’s Pizzeria website photo gallery'
         background: '#60695C'
         border: false
         rounded: true
@@ -124,7 +124,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/stefanos-website-img-3-desktop.png'
-        alt: ''
+        alt: 'Stefano’s Pizzeria website events section'
         background: '#ECEEE9'
         border: false
         rounded: true
@@ -146,9 +146,9 @@ sections:
     testimonial:
       image:
         src: '@/assets/images/stefanos-review-photo-desktop.jpg'
-        alt: ''
+        alt: 'Sally and Stefanos, co-founders, Stefano’s Pizzeria'
       quote: '“We loved the personal touch Venture Web Solutions brought to the project. They helped us rethink our content and created a design that feels fresh and welcoming.”'
-      citation: 'Sally D - Cofounder of Stefano’s Pizzeria'
+      citation: 'Sally - Cofounder of Stefano’s Pizzeria'
   - label: 'Ongoing partnership'
     heading: 'Support as the business grows.'
     text:

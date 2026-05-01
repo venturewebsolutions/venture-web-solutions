@@ -1,7 +1,9 @@
 ---
 order: 5
 client: 'MD Loft Storage'
-image: '@/assets/images/md-loft-storage-testimonial-image.png'
+image:
+  src: '@/assets/images/md-loft-storage-testimonial-image.png'
+  alt: 'MD Loft Storage logo'
 author: 'Mark'
 position: 'Founder'
 avatar: '@/assets/images/md-loft-storage-avatar.png'

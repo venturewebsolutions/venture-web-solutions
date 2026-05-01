@@ -25,8 +25,8 @@ const { post, level, image } = Astro.props
   <Thumbnail>
     <a href={url(`/blog/${post.id}/`)} aria-label={post.data.title}>
       <Image
-        src={post.data.thumbnail.image}
-        alt={post.data.thumbnail.description}
+        src={post.data.thumbnail.src}
+        alt={post.data.thumbnail.alt}
         class="thumbnail-image"
         style={`--cursor-url: url(${url('/cursor.svg')});`}
         widths={image.widths}

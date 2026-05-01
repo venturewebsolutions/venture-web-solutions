@@ -1,7 +1,9 @@
 ---
 order: 3
 client: 'SOS Party Rental'
-image: '@/assets/images/sos-party-rental-testimonial-image.png'
+image:
+  src: '@/assets/images/sos-party-rental-testimonial-image.png'
+  alt: 'SOS Party Rental'
 author: 'Sandra'
 position: 'Founder'
 avatar: '@/assets/images/sos-party-rental-avatar.jpg'

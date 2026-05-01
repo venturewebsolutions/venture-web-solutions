@@ -12,7 +12,7 @@ highlights:
     text: 'End-to-end branding & online business launch'
 thumbnail:
   src: '@/assets/images/md-loft-storage-mockup-with-colour-palette.png'
-  alt: 'A screenshot of the MD Loft Storage website and colour scheme'
+  alt: 'MD Loft Storage website design mockup and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
@@ -58,7 +58,7 @@ sections:
         constrained: true
       - type: 'image'
         src: '@/assets/images/md-loft-storage-colour-palette.png'
-        alt: ''
+        alt: 'MD Loft Storage website colour palette'
         background: false
         border: false
         rounded: false
@@ -106,7 +106,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/md-loft-storage-website-img-1-desktop.png'
-        alt: ''
+        alt: 'MD Loft Storage website services section'
         background: '#D1462F'
         border: false
         rounded: true
@@ -115,7 +115,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/md-loft-storage-website-img-2-desktop.png'
-        alt: ''
+        alt: 'MD Loft Storage website services page'
         background: '#60695C'
         border: false
         rounded: true
@@ -124,7 +124,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/md-loft-storage-website-img-3-desktop.png'
-        alt: ''
+        alt: 'MD Loft Storage website featured service section'
         background: '#ECEEE9'
         border: false
         rounded: true
@@ -147,7 +147,7 @@ sections:
     testimonial:
       image:
         src: '@/assets/images/md-loft-storage-review-photo-desktop.png'
-        alt: ''
+        alt: 'MD Loft Storage logo'
       quote: '“Venture Web Solutions team were responsive, creative, and patient with all of our revisions. The final product feels polished and user-friendly.”'
       citation: 'Mark - Founder of MD Loft Storage'
   - label: 'Ongoing partnership'

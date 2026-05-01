@@ -1,7 +1,9 @@
 ---
 order: 4
 client: 'Poplett’s'
-image: '@/assets/images/popletts-testimonial-image.png'
+image:
+  src: '@/assets/images/popletts-testimonial-image.png'
+  alt: 'Poplett’s logo'
 author: 'Shelley'
 position: 'Founder'
 avatar: '@/assets/images/popletts-avatar.jpg'

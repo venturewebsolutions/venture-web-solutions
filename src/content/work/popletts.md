@@ -12,7 +12,7 @@ highlights:
     text: 'End-to-end branding & online business launch'
 thumbnail:
   src: '@/assets/images/popletts-mockup-with-colour-palette.png'
-  alt: 'A screenshot of the Poplett’s Dog Grooming website and colour scheme'
+  alt: 'Poplett’s Dog Grooming website design mockup and colour scheme'
 tags:
   - 'Branding'
   - 'Business launch'
@@ -54,7 +54,7 @@ sections:
         constrained: true
       - type: 'image'
         src: '@/assets/images/popletts-colour-palette.png'
-        alt: ''
+        alt: 'Poplett’s Dog Grooming website colour palette'
         background: false
         border: false
         rounded: false
@@ -100,7 +100,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/popletts-website-img-1-desktop.png'
-        alt: ''
+        alt: 'Poplett’s Dog Grooming website services section'
         background: '#D1462F'
         border: false
         rounded: true
@@ -109,7 +109,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/popletts-website-img-2-desktop.png'
-        alt: ''
+        alt: 'Poplett’s Dog Grooming website benefits section'
         background: '#60695C'
         border: false
         rounded: true
@@ -118,7 +118,7 @@ sections:
         constrained: false
       - type: 'image'
         src: '@/assets/images/popletts-website-img-3-desktop.png'
-        alt: ''
+        alt: 'Poplett’s Dog Grooming website FAQ section'
         background: '#ECEEE9'
         border: false
         rounded: true
@@ -140,9 +140,9 @@ sections:
     testimonial:
       image:
         src: '@/assets/images/popletts-review-photo-desktop.jpg'
-        alt: ''
+        alt: 'Shelly with a dog'
       quote: '“Great results! Jordan handled the structure while Daniela fine-tuned the visual details. The site is fast, modern, and easy for us to update.”'
-      citation: 'Shelley R - Founder of Poplett’s Dog Grooming'
+      citation: 'Shelley - Founder of Poplett’s Dog Grooming'
   - label: 'Ongoing partnership'
     heading: 'Supporting growth beyond launch.'
     text:

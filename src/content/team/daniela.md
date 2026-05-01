@@ -12,10 +12,15 @@ bio:
 marquee:
   images:
     - src: '@/assets/images/daniela-marquee-1.jpg'
+      alt: 'Daniela and Jordan in front of Angkor Wat in Cambodia'
     - src: '@/assets/images/daniela-marquee-2.jpg'
+      alt: 'Daniela scuba-diving in San Andres, Colombia'
     - src: '@/assets/images/daniela-marquee-3.jpg'
+      alt: 'Daniela admiring the landscape on a mountain bike ride in La Carbonera, Colombia'
     - src: '@/assets/images/daniela-marquee-4.jpg'
+      alt: 'Daniela decorating the garden in Colombia'
     - src: '@/assets/images/daniela-marquee-5.jpg'
+      alt: 'Daniela photographing buffalo in Thailand'
 roles:
   - heading: 'Visual Design'
     text: 'Create the overall look and layout of the website.'

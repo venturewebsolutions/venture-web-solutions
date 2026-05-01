@@ -10,8 +10,8 @@ const blog = defineCollection({
       summary: z.string(),
       topic: z.string(),
       thumbnail: z.object({
-        image: image(),
-        description: z.string(),
+        src: image(),
+        alt: z.string(),
       }),
       author: z.object({
         name: z.string(),
@@ -55,6 +55,7 @@ const team = defineCollection({
         images: z.array(
           z.object({
             src: image(),
+            alt: z.string(),
           }),
         ),
       }),
@@ -183,7 +184,10 @@ const testimonials = defineCollection({
     z.object({
       order: z.number(),
       client: z.string(),
-      image: image(),
+      image: z.object({
+        src: image(),
+        alt: z.string(),
+      }),
       author: z.string(),
       position: z.string(),
       avatar: image(),

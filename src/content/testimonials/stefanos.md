@@ -1,7 +1,9 @@
 ---
 order: 2
 client: 'Stefano’s Pizzeria'
-image: '@/assets/images/stefanos-testimonial-image.png'
+image:
+  src: '@/assets/images/stefanos-testimonial-image.png'
+  alt: 'Stefano’s Pizzeria logo'
 author: 'Sally'
 position: 'Co-founder'
 avatar: '@/assets/images/stefanos-avatar.jpg'

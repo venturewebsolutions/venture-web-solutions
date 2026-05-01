@@ -72,7 +72,7 @@ sections:
       - 'SOS Party Rental offers both individual equipment hire and full event support, serving a diverse client base in English and Spanish. The challenge was to present this broad range of services without overwhelming users, while ensuring both language audiences received the same level of clarity and detail. At the same time, the website needed to feel polished and professional without losing the personal, service-driven character of the brand.'
     media:
       - type: 'video'
-        src: '/videos/sos-party-rental-desktop-video-desktop.mp4'
+        src: '/videos/sos-party-rental-desktop-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -94,7 +94,7 @@ sections:
         - text: 'Responsive, fast, and user-friendly experience across devices.'
     media:
       - type: 'video'
-        src: '/videos/sos-party-rental-short-video-desktop.mp4'
+        src: '/videos/sos-party-rental-short-video.mp4'
         autoplay: true
         thumbnail: false
         background: false

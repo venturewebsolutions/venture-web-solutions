@@ -156,6 +156,8 @@ const { section, class: className, ...props } = Astro.props
                     autoplay={item.autoplay || undefined}
                     playsinline
                     loop={item.thumbnail !== true || undefined}
+                    disablepictureinpicture
+                    controlslist="nodownload nofullscreen noremoteplayback noplaybackrate nocasting"
                     class="video"
                   />
                 </VideoWrapper>

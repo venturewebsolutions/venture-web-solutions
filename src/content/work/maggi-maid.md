@@ -67,7 +67,7 @@ sections:
       - 'Before the launch, Maggi Maid had no clear digital presence. Potential clients struggled to find reliable information, understand the services, or feel confident making contact. The challenge was to translate a highly personal, offline service into a clear and reassuring online experience — without feeling clinical, generic, or overly emotional.'
     media:
       - type: 'video'
-        src: '/videos/maggi-maid-desktop-video-desktop.mp4'
+        src: '/videos/maggi-maid-desktop-video.mp4'
         thumbnail: true
         background: true
         border: false
@@ -89,7 +89,7 @@ sections:
         - text: 'Structured content and calls to action to reduce friction and encourage enquiries.'
     media:
       - type: 'video'
-        src: '/videos/maggi-maid-short-video-desktop.mp4'
+        src: '/videos/maggi-maid-short-video.mp4'
         autoplay: true
         thumbnail: false
         background: false

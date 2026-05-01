@@ -14,7 +14,7 @@ const { groups, class: className, ...props } = Astro.props
   range(Math.max(0, groups ?? 1)).map((i) => (
     <div
       class:list={cn('marquee-group', className)}
-      aria-hidden={i > 0}
+      aria-hidden={i > 0 ? 'true' : undefined}
       {...props}
     >
       <slot />

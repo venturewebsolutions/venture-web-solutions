@@ -16,23 +16,28 @@ type Props = Omit<HTMLAttributes<'video'>, 'src'> & {
 }
 
 const { sources, hash = '0.001', lazy, ...props } = Astro.props
+
+async function getSrc(source: VideoSource) {
+  const src =
+    typeof source.src === 'string'
+      ? source.src
+      : source.src instanceof Promise
+        ? (await source.src)?.default
+        : source.src?.default
+
+  if (hash) {
+    return `${src}#${hash}`
+  }
+
+  return src
+}
 ---
 
 <video {...props} data-lazy={lazy}>
   {
     sources.map(async (source) => {
       const { src: _, ...rest } = source
-
-      let src =
-        typeof source.src === 'string'
-          ? source.src
-          : source.src instanceof Promise
-            ? (await source.src)?.default
-            : source.src?.default
-
-      if (hash) {
-        src += `#${hash}`
-      }
+      const src = await getSrc(source)
 
       return (
         <source

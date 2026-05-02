@@ -66,6 +66,9 @@ const { class: className, ...props } = Astro.props
       aria-hidden="true"
       class="video"
     />
+
+    <div class="overlay-1"></div>
+    <div class="overlay-2"></div>
   </div>
 
   <div class="container">
@@ -120,11 +123,6 @@ const { class: className, ...props } = Astro.props
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    background: linear-gradient(
-      0deg,
-      color-mix(in srgb, var(--colour-surface-base) 75%, transparent),
-      color-mix(in srgb, var(--colour-surface-base) 75%, transparent)
-    );
   }
 
   .background {
@@ -133,26 +131,13 @@ const { class: className, ...props } = Astro.props
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: -1;
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(
-        180deg,
-        color-mix(in srgb, var(--colour-surface-base) 0%, transparent),
-        color-mix(in srgb, var(--colour-surface-base) 100%, transparent)
-      );
-    }
   }
 
   .image {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -160,9 +145,38 @@ const { class: className, ...props } = Astro.props
 
   .video {
     position: absolute;
+    left: 0;
+    top: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
+
+    // Forces GPU compositing layer so overlays blend correctly on AMD iGPUs.
+    // Do not remove — without this, the overlay appears incorrectly transparent
+    // on AMD integrated GPUs in Chrome and Firefox.
+    opacity: 0.99;
+  }
+
+  .overlay-1 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: color-mix(in srgb, var(--colour-surface-base) 75%, transparent);
+  }
+
+  .overlay-2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--colour-surface-base) 0%, transparent),
+      color-mix(in srgb, var(--colour-surface-base) 100%, transparent)
+    );
   }
 
   .container {

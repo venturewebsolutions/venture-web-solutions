@@ -58,5 +58,5 @@ const posts = take(
 
   <TeamMemberProfile member={member} />
 
-  <BlogShowcaseCarousel posts={posts} />
+  {posts.length > 0 && <BlogShowcaseCarousel posts={posts} />}
 </Layout>

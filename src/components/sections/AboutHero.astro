@@ -98,17 +98,15 @@ const images = take(
   }
 
   .wheel-track {
-    --scale: #{fluid(0.5, 1)};
-
-    --item-width: calc(295px * var(--scale));
-    --item-height: calc(303px * var(--scale));
+    --item-width: #{fluid(rem(147.5px), rem(295px))};
+    --item-height: #{fluid(rem(151.5px), rem(303px))};
 
     height: var(--item-height);
     position: relative;
   }
 
   .wheel {
-    --radius: calc(1536px * var(--scale));
+    --radius: #{fluid(rem(1536px / 2), rem(1536px))};
 
     // --angular-gap must be a multiple of 360deg to avoid gaps at the end
     --angular-gap: calc(360deg / var(--items));

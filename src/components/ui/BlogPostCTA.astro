@@ -2,6 +2,7 @@
 import { cn } from '@/lib/class-names'
 import type { HTMLAttributes } from 'astro/types'
 import Button from './Button.astro'
+import { url } from '@/lib/url'
 
 type Props = HTMLAttributes<'div'> & {
   heading: string
@@ -17,7 +18,9 @@ const { heading, text, class: className, ...props } = Astro.props
     <p class="text">{text}</p>
   </div>
 
-  <Button variant="primary" arrow class="button"> Let’s Talk </Button>
+  <Button href={url('/contact/')} variant="primary" arrow class="button">
+    Let’s Talk
+  </Button>
 </div>
 
 <style lang="scss">

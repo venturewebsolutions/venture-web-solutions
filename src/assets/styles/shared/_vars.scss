@@ -1,0 +1,176 @@
+@use 'sass:map';
+@use 'functions' as *;
+
+$spacing: (
+  '3xs': (
+    'mobile': rem(4px),
+    'desktop': rem(4px),
+  ),
+  '2xs': (
+    'mobile': rem(6px),
+    'desktop': rem(6px),
+  ),
+  'xs': (
+    'mobile': rem(8px),
+    'desktop': rem(8px),
+  ),
+  's': (
+    'mobile': rem(10px),
+    'desktop': rem(10px),
+  ),
+  'm': (
+    'mobile': rem(16px),
+    'desktop': rem(16px),
+  ),
+  'l': (
+    'mobile': rem(20px),
+    'desktop': rem(20px),
+  ),
+  'xl': (
+    'mobile': rem(24px),
+    'desktop': rem(24px),
+  ),
+  '2xl': (
+    'mobile': rem(28px),
+    'desktop': rem(32px),
+  ),
+  '3xl': (
+    'mobile': rem(32px),
+    'desktop': rem(40px),
+  ),
+  '4xl': (
+    'mobile': rem(40px),
+    'desktop': rem(56px),
+  ),
+  '5xl': (
+    'mobile': rem(48px),
+    'desktop': rem(64px),
+  ),
+  '6xl': (
+    'mobile': rem(56px),
+    'desktop': rem(80px),
+  ),
+  '7xl': (
+    'mobile': rem(72px),
+    'desktop': rem(104px),
+  ),
+  '8xl': (
+    'mobile': rem(88px),
+    'desktop': rem(120px),
+  ),
+  '9xl': (
+    'mobile': rem(96px),
+    'desktop': rem(128px),
+  ),
+  '10xl': (
+    'mobile': rem(120px),
+    'desktop': rem(160px),
+  ),
+);
+
+$spacing-pairs: (
+  'xs-3xl': (
+    'mobile': map.get($spacing, 'xs', 'mobile'),
+    'desktop': map.get($spacing, '3xl', 'desktop'),
+  ),
+  'xs-5xl': (
+    'mobile': map.get($spacing, 'xs', 'mobile'),
+    'desktop': map.get($spacing, '5xl', 'desktop'),
+  ),
+  'xs-6xl': (
+    'mobile': map.get($spacing, 'xs', 'mobile'),
+    'desktop': map.get($spacing, '6xl', 'desktop'),
+  ),
+  'xs-8xl': (
+    'mobile': map.get($spacing, 'xs', 'mobile'),
+    'desktop': map.get($spacing, '8xl', 'desktop'),
+  ),
+  'm-xl': (
+    'mobile': map.get($spacing, 'm', 'mobile'),
+    'desktop': map.get($spacing, 'xl', 'desktop'),
+  ),
+  'm-3xl': (
+    'mobile': map.get($spacing, 'm', 'mobile'),
+    'desktop': map.get($spacing, '3xl', 'desktop'),
+  ),
+  'm-4xl': (
+    'mobile': map.get($spacing, 'm', 'mobile'),
+    'desktop': map.get($spacing, '4xl', 'desktop'),
+  ),
+  'xl-4xl': (
+    'mobile': map.get($spacing, 'xl', 'mobile'),
+    'desktop': map.get($spacing, '4xl', 'desktop'),
+  ),
+  '2xl-7xl': (
+    'mobile': map.get($spacing, '2xl', 'mobile'),
+    'desktop': map.get($spacing, '7xl', 'desktop'),
+  ),
+  '3xl-4xl': (
+    'mobile': map.get($spacing, '3xl', 'mobile'),
+    'desktop': map.get($spacing, '4xl', 'desktop'),
+  ),
+  '4xl-5xl': (
+    'mobile': map.get($spacing, '4xl', 'mobile'),
+    'desktop': map.get($spacing, '5xl', 'desktop'),
+  ),
+  '4xl-6xl': (
+    'mobile': map.get($spacing, '4xl', 'mobile'),
+    'desktop': map.get($spacing, '6xl', 'desktop'),
+  ),
+  '5xl-7xl': (
+    'mobile': map.get($spacing, '5xl', 'mobile'),
+    'desktop': map.get($spacing, '7xl', 'desktop'),
+  ),
+  '5xl-8xl': (
+    'mobile': map.get($spacing, '5xl', 'mobile'),
+    'desktop': map.get($spacing, '8xl', 'desktop'),
+  ),
+);
+
+$font-size: (
+  '2xs': rem(10px),
+  'xs': rem(12px),
+  's': rem(14px),
+  'm': rem(16px),
+  'l': rem(20px),
+  'xl': rem(24px),
+  '2xl': rem(32px),
+  '3xl': rem(48px),
+  '4xl': rem(50px),
+  '5xl': rem(60px),
+  '6xl': rem(68px),
+  '7xl': rem(72px),
+  '8xl': rem(75px),
+  '9xl': rem(78px),
+  '10xl': rem(106px),
+  '11xl': rem(118px),
+  '12xl': rem(168px),
+);
+
+$line-height: (
+  '3xs': 90%,
+  '2xs': 100%,
+  'xs': 110%,
+  's': 112%,
+  'm': 120%,
+  'l': 121%,
+  'xl': 123%,
+  '2xl': 125%,
+  '3xl': 130%,
+  '4xl': 131%,
+  '5xl': 135%,
+  '6xl': 136%,
+  '7xl': 140%,
+  '8xl': 150%,
+  '9xl': 160%,
+);
+
+$letter-spacing: (
+  's': em(-1.2%),
+  'm': em(0%),
+  'l': em(1%),
+  'xl': em(1.5%),
+  '2xl': em(1.6%),
+  '3xl': em(2%),
+  '4xl': em(3%),
+);

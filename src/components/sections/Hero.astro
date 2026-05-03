@@ -271,7 +271,7 @@ const { class: className, ...props } = Astro.props
   @media screen and (min-width: rem(506px)) {
     .buttons {
       grid-template-columns: repeat(2, auto);
-      gap: #{fluid(var(--spacing-m), var(--spacing-xl))};
+      gap: var(--spacing-m-xl);
     }
 
     .button {

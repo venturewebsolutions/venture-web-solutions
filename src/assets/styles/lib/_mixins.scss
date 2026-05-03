@@ -1,4 +1,8 @@
 @mixin font($name) {
-  font: var(--font-#{$name});
+  font-family: var(--font-family-#{$name});
+  font-weight: var(--font-weight-#{$name});
+  font-style: var(--font-style-#{$name});
+  font-size: var(--font-size-#{$name});
+  line-height: var(--line-height-#{$name});
   letter-spacing: var(--letter-spacing-#{$name});
 }

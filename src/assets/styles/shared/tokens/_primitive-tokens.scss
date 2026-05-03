@@ -1,4 +1,6 @@
+@use 'sass:map';
 @use 'functions' as *;
+@use '../vars' as *;
 
 :root {
   // Colours
@@ -23,23 +25,9 @@
   --font-family-sans: 'Zalando Sans', sans-serif;
   --font-family-serif: 'Libre Caslon Text', serif;
 
-  --font-size-2xs: #{rem(10px)};
-  --font-size-xs: #{rem(12px)};
-  --font-size-s: #{rem(14px)};
-  --font-size-m: #{rem(16px)};
-  --font-size-l: #{rem(20px)};
-  --font-size-xl: #{rem(24px)};
-  --font-size-2xl: #{rem(32px)};
-  --font-size-3xl: #{rem(48px)};
-  --font-size-4xl: #{rem(50px)};
-  --font-size-5xl: #{rem(60px)};
-  --font-size-6xl: #{rem(68px)};
-  --font-size-7xl: #{rem(72px)};
-  --font-size-8xl: #{rem(75px)};
-  --font-size-9xl: #{rem(78px)};
-  --font-size-10xl: #{rem(106px)};
-  --font-size-11xl: #{rem(118px)};
-  --font-size-12xl: #{rem(168px)};
+  @each $key, $value in $font-size {
+    --font-size-#{$key}: #{$value};
+  }
 
   --font-weight-regular: 400;
   --font-weight-medium: 500;
@@ -47,29 +35,13 @@
   --font-weight-bold: 700;
   --font-weight-black: 900;
 
-  --line-height-3xs: 90%;
-  --line-height-2xs: 100%;
-  --line-height-xs: 110%;
-  --line-height-s: 112%;
-  --line-height-m: 120%;
-  --line-height-l: 121%;
-  --line-height-xl: 123%;
-  --line-height-2xl: 125%;
-  --line-height-3xl: 130%;
-  --line-height-4xl: 131%;
-  --line-height-5xl: 135%;
-  --line-height-6xl: 136%;
-  --line-height-7xl: 140%;
-  --line-height-8xl: 150%;
-  --line-height-9xl: 160%;
+  @each $key, $value in $line-height {
+    --line-height-#{$key}: #{$value};
+  }
 
-  --letter-spacing-s: #{em(-1.2%)};
-  --letter-spacing-m: #{em(0%)};
-  --letter-spacing-l: #{em(1%)};
-  --letter-spacing-xl: #{em(1.5%)};
-  --letter-spacing-2xl: #{em(1.6%)};
-  --letter-spacing-3xl: #{em(2%)};
-  --letter-spacing-4xl: #{em(3%)};
+  @each $key, $value in $letter-spacing {
+    --letter-spacing-#{$key}: #{$value};
+  }
 
   // Borders
   --border-width-s: 1px;
@@ -83,34 +55,17 @@
   --border-radius-2xl: 56px;
 
   // Spacing
-  --spacing-3xs: #{rem(4px)};
-  --spacing-2xs: #{rem(6px)};
-  --spacing-xs: #{rem(8px)};
-  --spacing-s: #{rem(10px)};
-  --spacing-m: #{rem(16px)};
-  --spacing-l: #{rem(20px)};
-  --spacing-xl: #{rem(24px)};
-  --spacing-2xl: #{fluid(rem(28px), rem(32px))};
-  --spacing-3xl: #{fluid(rem(32px), rem(40px))};
-  --spacing-4xl: #{fluid(rem(40px), rem(56px))};
-  --spacing-5xl: #{fluid(rem(48px), rem(64px))};
-  --spacing-6xl: #{fluid(rem(56px), rem(80px))};
-  --spacing-7xl: #{fluid(rem(72px), rem(104px))};
-  --spacing-8xl: #{fluid(rem(88px), rem(120px))};
-  --spacing-9xl: #{fluid(rem(96px), rem(128px))};
-  --spacing-10xl: #{fluid(rem(120px), rem(160px))};
+  @each $key, $value in $spacing {
+    --spacing-#{$key}: #{fluid(
+        map.get($value, 'mobile'),
+        map.get($value, 'desktop')
+      )};
+  }
 
-  --spacing-xs-3xl: #{fluid(rem(8px), rem(40px))};
-  --spacing-xs-5xl: #{fluid(rem(8px), rem(64px))};
-  --spacing-xs-6xl: #{fluid(rem(8px), rem(80px))};
-  --spacing-xs-8xl: #{fluid(rem(8px), rem(120px))};
-  --spacing-m-xl: #{fluid(rem(16px), rem(24px))};
-  --spacing-m-3xl: #{fluid(rem(16px), rem(40px))};
-  --spacing-m-4xl: #{fluid(rem(16px), rem(56px))};
-  --spacing-xl-4xl: #{fluid(rem(24px), rem(56px))};
-  --spacing-2xl-7xl: #{fluid(rem(28px), rem(104px))};
-  --spacing-3xl-4xl: #{fluid(rem(32px), rem(56px))};
-  --spacing-4xl-5xl: #{fluid(rem(40px), rem(64px))};
-  --spacing-4xl-6xl: #{fluid(rem(40px), rem(80px))};
-  --spacing-5xl-7xl: #{fluid(rem(64px), rem(104px))};
+  @each $key, $value in $spacing-pairs {
+    --spacing-#{$key}: #{fluid(
+        map.get($value, 'mobile'),
+        map.get($value, 'desktop')
+      )};
+  }
 }

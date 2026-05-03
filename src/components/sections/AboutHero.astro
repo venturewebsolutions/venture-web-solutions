@@ -84,10 +84,10 @@ const images = take(
   @use 'mixins' as *;
 
   .section {
-    --padding-bottom: #{fluid(var(--spacing-5xl), var(--spacing-8xl))};
+    --padding-bottom: #{var(--spacing-5xl-8xl)};
 
     display: grid;
-    gap: #{fluid(var(--spacing-5xl), var(--spacing-8xl))};
+    gap: #{var(--spacing-5xl-8xl)};
     overflow: hidden;
   }
 

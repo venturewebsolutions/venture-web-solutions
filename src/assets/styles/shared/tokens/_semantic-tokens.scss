@@ -1,4 +1,6 @@
+@use 'sass:map';
 @use 'functions' as *;
+@use '../vars' as *;
 
 :root {
   // Colours
@@ -41,8 +43,14 @@
     color-mix(in srgb, var(--colour-slate) 25%, transparent);
 
   // Spacing
-  --spacing-container: #{fluid(var(--spacing-m), var(--spacing-5xl))};
-  --spacing-section: #{fluid(var(--spacing-4xl), var(--spacing-6xl))};
+  --spacing-container: #{fluid(
+      map.get($spacing, 'm', 'mobile'),
+      map.get($spacing, '5xl', 'desktop')
+    )};
+  --spacing-section: #{fluid(
+      map.get($spacing, '4xl', 'mobile'),
+      map.get($spacing, '6xl', 'desktop')
+    )};
 
   // Transitions
   --transition-duration-default: 0.6s;

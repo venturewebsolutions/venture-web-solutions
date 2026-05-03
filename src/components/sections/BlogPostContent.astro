@@ -25,7 +25,7 @@ type Heading = {
 const headings = (post.rendered?.metadata?.headings ?? []) as Heading[]
 
 const links = headings.map((heading) => ({
-  href: `#${heading.slug}`,
+  slug: heading.slug,
   text: heading.text,
 }))
 ---

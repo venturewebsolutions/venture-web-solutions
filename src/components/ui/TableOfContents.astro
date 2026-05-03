@@ -9,7 +9,7 @@ type Props = HTMLAttributes<'div'> & {
 const { links, class: className, ...props } = Astro.props
 
 type Link = {
-  href: string
+  slug: string
   text: string
 }
 ---
@@ -21,7 +21,7 @@ type Link = {
     {
       links.map((link) => (
         <li>
-          <a href={link.href} class="toc-link" data-href={link.href}>
+          <a href={`#${link.slug}`} class="toc-link" data-target={link.slug}>
             {link.text}
           </a>
         </li>
@@ -96,8 +96,7 @@ type Link = {
     )
 
     for (const link of links) {
-      const href = link.dataset.href!
-      const target = document.querySelector<HTMLElement>(href)!
+      const target = document.getElementById(link.dataset.target!)!
 
       observer.observe(target)
     }

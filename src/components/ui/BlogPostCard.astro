@@ -59,7 +59,7 @@ const { post, level, image } = Astro.props
     <Eyebrow class="post-read-time">
       {post.data.readTimeMinutes} mins read
     </Eyebrow>
-    <a href={`/blog/${post.id}/`}>
+    <a href={url(`/blog/${post.id}/`)}>
       <Heading level={level} class="post-title">
         {post.data.summary}
       </Heading>

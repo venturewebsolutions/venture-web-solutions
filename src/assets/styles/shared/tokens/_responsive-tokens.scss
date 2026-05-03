@@ -101,6 +101,10 @@ $spacing-pairs: (
     'mobile': map.get($spacing, 'm', 'mobile'),
     'desktop': map.get($spacing, '4xl', 'desktop'),
   ),
+  'l-6xl': (
+    'mobile': map.get($spacing, 'l', 'mobile'),
+    'desktop': map.get($spacing, '6xl', 'desktop'),
+  ),
   'xl-4xl': (
     'mobile': map.get($spacing, 'xl', 'mobile'),
     'desktop': map.get($spacing, '4xl', 'desktop'),

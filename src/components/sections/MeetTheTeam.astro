@@ -73,22 +73,25 @@ const { minimal = false, level = 2, class: className, ...props } = Astro.props
       members.map((member) => (
         <div class="member-card">
           <Thumbnail>
-            <Image
-              src={member.thumbnail.src}
-              alt={member.thumbnail.alt}
-              widths={{
-                min: 288,
-                max: 708,
-                mobile: 378,
-                desktop: 551,
-              }}
-              sizes={[
-                '(min-width: 90rem) 38rem',
-                '(min-width: 48rem) 50vw',
-                '100vw',
-              ]}
-              class="member-image"
-            />
+            <a href={url(member.url)} aria-label={member.name}>
+              <Image
+                src={member.thumbnail.src}
+                alt={member.thumbnail.alt}
+                widths={{
+                  min: 288,
+                  max: 708,
+                  mobile: 378,
+                  desktop: 551,
+                }}
+                sizes={[
+                  '(min-width: 90rem) 38rem',
+                  '(min-width: 48rem) 50vw',
+                  '100vw',
+                ]}
+                style={`--cursor-url: url(${url('/cursor.svg')});`}
+                class="member-image"
+              />
+            </a>
 
             <ThumbnailCaption
               position="top right"
@@ -154,6 +157,9 @@ const { minimal = false, level = 2, class: className, ...props } = Astro.props
 
   .member-image {
     border-radius: var(--border-radius-m);
+    cursor:
+      var(--cursor-url) 56.5 56.5,
+      pointer;
   }
 
   .thumbnail-caption {

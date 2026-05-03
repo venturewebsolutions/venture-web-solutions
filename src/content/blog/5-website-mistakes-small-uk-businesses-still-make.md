@@ -1,7 +1,7 @@
 ---
 title: '5 Website mistakes small UK businesses still make'
 meta:
-  description: 'TODO'
+  description: 'Discover 5 website mistakes small UK businesses still make in 2026 — from slow loading speed and poor mobile UX to weak trust signals costing you enquiries.'
 summary: '5 Website mistakes small UK businesses still make: Why your website is costing you more than it’s giving back'
 topic: 'UX / Website Performance'
 thumbnail:

@@ -1,7 +1,7 @@
 ---
 title: 'Your website is live, but is it actually working?'
 meta:
-  description: 'TODO'
+  description: 'Your website going live is just the start. Discover 6 mistakes small business owners make after launch — and how to fix them before they cost you clients.'
 summary: 'Your website is live, but is it actually working?: Why going live was just the beginning'
 topic: 'UX / Website Performance'
 thumbnail:

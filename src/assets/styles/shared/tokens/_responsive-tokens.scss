@@ -89,6 +89,10 @@ $spacing-pairs: (
     'mobile': map.get($spacing, 'xs', 'mobile'),
     'desktop': map.get($spacing, '8xl', 'desktop'),
   ),
+  's-xl': (
+    'mobile': map.get($spacing, 's', 'mobile'),
+    'desktop': map.get($spacing, 'xl', 'desktop'),
+  ),
   'm-xl': (
     'mobile': map.get($spacing, 'm', 'mobile'),
     'desktop': map.get($spacing, 'xl', 'desktop'),

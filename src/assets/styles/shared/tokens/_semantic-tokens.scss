@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'functions' as *;
-@use '../vars' as *;
+@use 'responsive-tokens' as *;
 
 :root {
   // Colours
@@ -37,6 +37,171 @@
   // Typography
   --font-family-base: var(--font-family-sans);
   --font-family-display: var(--font-family-serif);
+
+  --font-family-body: var(--font-family-base);
+  --font-weight-body: var(--font-weight-regular);
+  --font-style-body: normal;
+  --font-size-body: var(--font-size-m);
+  --line-height-body: #{map.get($line-height, '8xl')};
+  --letter-spacing-body: var(--letter-spacing-m);
+
+  --font-family-body-medium: var(--font-family-base);
+  --font-weight-body-medium: var(--font-weight-medium);
+  --font-style-body-medium: normal;
+  --font-size-body-medium: var(--font-size-m);
+  --line-height-body-medium: #{map.get($line-height, '8xl')};
+  --letter-spacing-body-medium: var(--letter-spacing-m);
+
+  --font-family-body-italic: var(--font-family-base);
+  --font-weight-body-italic: var(--font-weight-regular);
+  --font-style-body-italic: normal;
+  --font-size-body-italic: var(--font-size-m);
+  --line-height-body-italic: #{map.get($line-height, '8xl')};
+  --letter-spacing-body-italic: var(--letter-spacing-m);
+  --font-style-body-italic: italic;
+
+  --font-family-caption: var(--font-family-base);
+  --font-weight-caption: var(--font-weight-medium);
+  --font-style-caption: normal;
+  --font-size-caption: var(--font-size-m);
+  --line-height-caption: var(--line-height-8xl);
+  --letter-spacing-caption: #{map.get($letter-spacing, 'l')};
+
+  --font-family-action: var(--font-family-base);
+  --font-weight-action: var(--font-weight-semibold);
+  --font-style-action: normal;
+  --font-size-action: var(--font-size-m);
+  --line-height-action: var(--line-height-8xl);
+  --letter-spacing-action: var(--letter-spacing-3xl);
+
+  --font-family-meta-primary: var(--font-family-base);
+  --font-weight-meta-primary: var(--font-weight-medium);
+  --font-style-meta-primary: normal;
+  --font-size-meta-primary: var(--font-size-s);
+  --line-height-meta-primary: var(--line-height-8xl);
+  --letter-spacing-meta-primary: var(--letter-spacing-m);
+
+  --font-family-meta-secondary: var(--font-family-base);
+  --font-weight-meta-secondary: var(--font-weight-medium);
+  --font-style-meta-secondary: normal;
+  --font-size-meta-secondary: #{fluid(
+      map.get($font-size, 'xs'),
+      map.get($font-size, '2xs')
+    )};
+  --line-height-meta-secondary: #{map.get($line-height, '3xl')};
+  --letter-spacing-meta-secondary: var(--letter-spacing-m);
+
+  --font-family-h1: var(--font-family-base);
+  --font-weight-h1: var(--font-weight-black);
+  --font-style-h1: normal;
+  --font-size-h1: #{fluid(
+      map.get($font-size, '4xl'),
+      map.get($font-size, '7xl')
+    )};
+  --line-height-h1: #{map.get($line-height, 'xs')};
+  --letter-spacing-h1: var(--letter-spacing-m);
+
+  --font-family-h2: var(--font-family-base);
+  --font-weight-h2: var(--font-weight-medium);
+  --font-style-h2: normal;
+  --font-size-h2: #{fluid(
+      map.get($font-size, '2xl'),
+      map.get($font-size, '3xl')
+    )};
+  --line-height-h2: #{map.get($line-height, '2xs')};
+  --letter-spacing-h2: #{map.get($letter-spacing, 's')};
+
+  --font-family-h2-italic: var(--font-family-base);
+  --font-weight-h2-italic: var(--font-weight-medium);
+  --font-style-h2-italic: normal;
+  --font-size-h2-italic: #{fluid(
+      map.get($font-size, '2xl'),
+      map.get($font-size, '3xl')
+    )};
+  --line-height-h2-italic: #{map.get($line-height, '2xs')};
+  --letter-spacing-h2-italic: #{map.get($letter-spacing, 's')};
+  --font-style-h2-italic: italic;
+
+  --font-family-h3: var(--font-family-base);
+  --font-weight-h3: var(--font-weight-medium);
+  --font-style-h3: normal;
+  --font-size-h3: #{fluid(
+      map.get($font-size, 'xl'),
+      map.get($font-size, '2xl')
+    )};
+  --line-height-h3: #{map.get($line-height, 'm')};
+  --letter-spacing-h3: #{map.get($letter-spacing, '4xl')};
+
+  --font-family-h4: var(--font-family-base);
+  --font-weight-h4: var(--font-weight-medium);
+  --font-style-h4: normal;
+  --font-size-h4: var(--font-size-l);
+  --line-height-h4: var(--line-height-5xl);
+  --letter-spacing-h4: var(--letter-spacing-4xl);
+
+  --font-family-link-md: var(--font-family-base);
+  --font-weight-link-md: var(--font-weight-medium);
+  --font-style-link-md: normal;
+  --font-size-link-md: var(--font-size-m);
+  --line-height-link-md: var(--line-height-8xl);
+  --letter-spacing-link-md: #{map.get($letter-spacing, 'l')};
+
+  --font-family-link-lg: var(--font-family-base);
+  --font-weight-link-lg: var(--font-weight-medium);
+  --font-style-link-lg: normal;
+  --font-size-link-lg: var(--font-size-xl);
+  --line-height-link-lg: var(--line-height-m);
+  --letter-spacing-link-lg: var(--letter-spacing-m);
+
+  --font-family-display-numeral-xl: var(--font-family-display);
+  --font-weight-display-numeral-xl: var(--font-weight-bold);
+  --font-style-display-numeral-xl: normal;
+  --font-size-display-numeral-xl: #{fluid(
+      map.get($font-size, '9xl'),
+      map.get($font-size, '10xl')
+    )};
+  --line-height-display-numeral-xl: #{map.get($line-height, '3xl')};
+  --letter-spacing-display-numeral-xl: var(--letter-spacing-m);
+
+  --font-family-display-numeral-m: var(--font-family-base);
+  --font-weight-display-numeral-m: var(--font-weight-medium);
+  --font-style-display-numeral-m: normal;
+  --font-size-display-numeral-m: #{fluid(
+      map.get($font-size, '4xl'),
+      map.get($font-size, '5xl')
+    )};
+  --line-height-display-numeral-m: #{map.get($line-height, '2xs')};
+  --letter-spacing-display-numeral-m: #{map.get($letter-spacing, '3xl')};
+
+  --font-family-display-expressive-xl: var(--font-family-base);
+  --font-weight-display-expressive-xl: var(--font-weight-semibold);
+  --font-style-display-expressive-xl: normal;
+  --font-size-display-expressive-xl: #{fluid(
+      map.get($font-size, '8xl'),
+      map.get($font-size, '12xl')
+    )};
+  --line-height-display-expressive-xl: #{map.get($line-height, '5xl')};
+  --letter-spacing-display-expressive-xl: #{map.get($letter-spacing, '3xl')};
+
+  --font-family-footer-brand-display: var(--font-family-base);
+  --font-weight-footer-brand-display: var(--font-weight-black);
+  --font-style-footer-brand-display: normal;
+  --font-size-footer-brand-display: #{fluid(
+      map.get($font-size, '6xl'),
+      map.get($font-size, '11xl')
+    )};
+  --line-height-footer-brand-display: #{map.get($line-height, '2xs')};
+  --letter-spacing-footer-brand-display: #{map.get($letter-spacing, 's')};
+
+  --font-family-footer-legal: var(--font-family-base);
+  --font-weight-footer-legal: var(--font-weight-regular);
+  --font-style-footer-legal: normal;
+  --font-size-footer-legal: #{fluid(
+      map.get($font-size, '2xs'),
+      map.get($font-size, 's')
+    )};
+  --line-height-footer-legal: #{map.get($line-height, 'm')};
+  --letter-spacing-footer-legal: var(--letter-spacing-m);
 
   // Box Shadows
   --shadow-subtle: 1px -1px 12px 0

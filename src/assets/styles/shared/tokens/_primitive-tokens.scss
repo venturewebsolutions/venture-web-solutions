@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'functions' as *;
-@use '../vars' as *;
+@use 'responsive-tokens' as *;
 
 :root {
   // Colours

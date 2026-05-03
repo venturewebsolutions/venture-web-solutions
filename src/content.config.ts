@@ -23,6 +23,10 @@ const blog = defineCollection({
       readTimeMinutes: z.number(),
       publishedDate: z.coerce.date(),
       featured: z.boolean().optional(),
+      cta: z.object({
+        heading: z.string(),
+        text: z.string(),
+      }),
     }),
 })
 

@@ -11,9 +11,13 @@ import WhyUs from '@/components/sections/WhyUs.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts, getTestimonials } from '@/lib/collections'
 import { url } from '@/lib/url'
+import take from 'lodash/take'
 
 const testimonials = await getTestimonials()
-const posts = await getBlogPosts()
+const posts = take(
+  (await getBlogPosts()).filter((post) => post.data.featured),
+  6,
+)
 
 const steps = [
   {

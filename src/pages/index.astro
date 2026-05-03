@@ -14,6 +14,7 @@ import WhatWeOffer from '@/components/sections/WhatWeOffer.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts, getFaqTopics, getTestimonials } from '@/lib/collections'
 import { url } from '@/lib/url'
+import take from 'lodash/take'
 
 const faqs = (await getFaqTopics())
   .flatMap((topic) => topic.data.faqs)
@@ -23,7 +24,10 @@ const faqs = (await getFaqTopics())
     answer: faq.answer,
   }))
 
-const posts = (await getBlogPosts()).filter((posts) => posts.data.featured)
+const posts = take(
+  (await getBlogPosts()).filter((posts) => posts.data.featured),
+  6,
+)
 
 const testimonials = await getTestimonials()
 ---

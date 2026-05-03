@@ -3,10 +3,11 @@ import BlogPostContent from '@/components/sections/BlogPostContent.astro'
 import BlogPostHero from '@/components/sections/BlogPostHero.astro'
 import BlogShowcaseCarousel from '@/components/sections/BlogShowcaseCarousel.astro'
 import Layout from '@/layouts/Layout.astro'
-import { getCollection } from 'astro:content'
+import { getBlogPosts } from '@/lib/collections'
+import take from 'lodash/take'
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog')
+  const posts = await getBlogPosts()
 
   return posts.map((post) => ({
     params: { id: post.id },
@@ -16,7 +17,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props
 
-const otherPosts = (await getCollection('blog')).filter((p) => p.id !== post.id)
+const posts = take(await getBlogPosts(), 6)
 ---
 
 <Layout
@@ -25,5 +26,5 @@ const otherPosts = (await getCollection('blog')).filter((p) => p.id !== post.id)
 >
   <BlogPostHero post={post} />
   <BlogPostContent post={post} />
-  <BlogShowcaseCarousel posts={otherPosts} />
+  <BlogShowcaseCarousel posts={posts} />
 </Layout>

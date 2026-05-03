@@ -7,6 +7,7 @@ import TeamMemberRole from '@/components/sections/TeamMemberRole.astro'
 import Divider from '@/components/ui/Divider.astro'
 import Layout from '@/layouts/Layout.astro'
 import { getBlogPosts } from '@/lib/collections'
+import take from 'lodash/take'
 
 export async function getStaticPaths() {
   const team = await getCollection('team')
@@ -19,8 +20,9 @@ export async function getStaticPaths() {
 
 const { member } = Astro.props
 
-const posts = (await getBlogPosts()).filter(
-  (p) => p.data.author.name === member.data.name,
+const posts = take(
+  (await getBlogPosts()).filter((p) => p.data.author.name === member.data.name),
+  6,
 )
 ---
 

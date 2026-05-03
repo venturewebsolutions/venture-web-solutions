@@ -1,0 +1,47 @@
+---
+import { cn } from '@/lib/class-names'
+import type { HTMLAttributes } from 'astro/types'
+import Button from './Button.astro'
+
+type Props = HTMLAttributes<'div'> & {
+  heading: string
+  text: string
+}
+
+const { heading, text, class: className, ...props } = Astro.props
+---
+
+<div class:list={cn('cta', className)} {...props}>
+  <div class="content">
+    <p class="heading h3">{heading}</p>
+    <p class="text">{text}</p>
+  </div>
+
+  <Button variant="primary" arrow class="button"> Let’s Talk </Button>
+</div>
+
+<style lang="scss">
+  @use 'functions' as *;
+  @use 'mixins' as *;
+
+  .cta {
+    display: grid;
+    justify-items: center;
+    gap: var(--spacing-xl);
+    padding-block: var(--spacing-3xl);
+    padding-inline: var(--spacing-xl);
+    background-color: var(--colour-surface-100);
+    border-radius: var(--border-radius-l);
+  }
+
+  .content {
+    display: grid;
+    gap: var(--spacing-2xs);
+    text-align: center;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 280px;
+  }
+</style>

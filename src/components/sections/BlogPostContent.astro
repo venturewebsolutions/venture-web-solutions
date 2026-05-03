@@ -8,6 +8,7 @@ import TableOfContents from '@/components/ui/TableOfContents.astro'
 import type { CollectionEntry } from 'astro:content'
 import { cn } from '@/lib/class-names'
 import Divider from '../ui/Divider.astro'
+import BlogPostCTA from '../ui/BlogPostCTA.astro'
 
 type Props = HTMLAttributes<'section'> & {
   post: CollectionEntry<'blog'>
@@ -43,7 +44,9 @@ const links = headings.map((heading) => ({
   <div class="article">
     <BlogPostBody id="blog-post-body" post={post} />
 
-    <Divider size="s" class="divider" />
+    <BlogPostCTA heading={post.data.cta.heading} text={post.data.cta.text} />
+
+    <Divider size="s" />
 
     <BlogPostInfo post={post} />
   </div>
@@ -65,11 +68,9 @@ const links = headings.map((heading) => ({
   }
 
   .article {
+    display: grid;
+    gap: var(--spacing-3xl);
     max-width: rem(720px);
-  }
-
-  .divider {
-    margin-block: var(--spacing-3xl);
   }
 
   @media screen and (min-width: rem(768px)) {

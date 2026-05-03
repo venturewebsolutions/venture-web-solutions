@@ -118,7 +118,7 @@ const { minimal = false, level = 2, class: className, ...props } = Astro.props
               <p class="member-summary">{member.summary}</p>
 
               <Button
-                href={member.url}
+                href={url(member.url)}
                 variant="secondary-outline"
                 arrow
                 class="member-link"

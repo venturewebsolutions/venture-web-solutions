@@ -1,25 +1,58 @@
 ---
-type Props = {
-  type: 'faq'
-  faqs: {
-    question: string
-    answer: string
-  }[]
+type Props =
+  | {
+      type: 'organisation'
+    }
+  | {
+      type: 'faq'
+      faqs: {
+        question: string
+        answer: string
+      }[]
+    }
+
+const { type } = Astro.props
+
+let schema
+
+if (type === 'organisation') {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Venture Web Solutions',
+    url: 'https://venturewebsolutions.co.uk',
+    logo: 'https://venturewebsolutions.co.uk/web-app-manifest-512x512.png',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        email: 'hello@venturewebsolutions.co.uk',
+        telephone: '07454747488',
+        contactType: 'customer service',
+        areaServed: 'GB',
+        availableLanguage: 'en',
+      },
+    ],
+    sameAs: [
+      'https://www.facebook.com/venturewebsolutions/',
+      'https://www.instagram.com/venturewebsolutions/',
+      'https://www.linkedin.com/company/venturewebsolutions/',
+    ],
+  }
 }
 
-const { faqs } = Astro.props
-
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((faq) => ({
-    '@type': 'Question',
-    name: faq.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: faq.answer,
-    },
-  })),
+if (type === 'faq') {
+  schema = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: Astro.props.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  }
 }
 ---
 

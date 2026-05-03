@@ -1,4 +1,5 @@
 ---
+import Schema from '@/components/headless/Schema.astro'
 import AboutHero from '@/components/sections/AboutHero.astro'
 import AboutUs from '@/components/sections/AboutUs.astro'
 import BlogShowcaseCarousel from '@/components/sections/BlogShowcaseCarousel.astro'
@@ -44,6 +45,10 @@ const steps = [
   description="Learn about Venture Web Solutions, a York web design agency helping small businesses get fast, professional, hand-coded websites without big-agency costs."
   flush
 >
+  <Fragment>
+    <Schema type="organisation" />
+  </Fragment>
+
   <AboutHero class="hero" />
   <AboutUs class="about-us">
     <p slot="heading" class="h3">

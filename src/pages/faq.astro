@@ -1,4 +1,5 @@
 ---
+import Schema from '@/components/headless/Schema.astro'
 import ContactUs from '@/components/sections/ContactUs.astro'
 import FAQ from '@/components/sections/FAQ.astro'
 import Layout from '@/layouts/Layout.astro'
@@ -11,12 +12,18 @@ const groups = (await getFaqTopics()).map((topic) => ({
     answer: faq.answer,
   })),
 }))
+
+const faqs = groups.flatMap((group) => group.faqs)
 ---
 
 <Layout
   title="FAQ | Web Design York | Venture Web Solutions"
   description="Got questions about our web design services? Find answers about our subscription plan, what's included, unlimited edits, 24/7 support, and more — or just get in touch."
 >
+  <Fragment slot="head">
+    <Schema type="faq" faqs={faqs} />
+  </Fragment>
+
   <FAQ groups={groups} heading="The not-so-boring FAQ" level={1}>
     Got questions? We’ve got answers! Dive into our FAQ to discover how our web
     design services work and what we can create for you. Wondering about

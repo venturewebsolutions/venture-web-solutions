@@ -1,4 +1,5 @@
 ---
+import Schema from '@/components/headless/Schema.astro'
 import AboutUs from '@/components/sections/AboutUs.astro'
 import BlogShowcaseGrid from '@/components/sections/BlogShowcaseGrid.astro'
 import ContactUs from '@/components/sections/ContactUs.astro'
@@ -37,6 +38,10 @@ const testimonials = await getTestimonials()
   description="Custom web design in York for UK small businesses. Fast, hand-coded websites from £100/month with unlimited edits, 24/7 support, and a money-back guarantee."
   flush
 >
+  <Fragment slot="head">
+    <Schema type="faq" faqs={faqs} />
+  </Fragment>
+
   <Hero class="hero" />
   <AboutUs reversed links />
   <WhatWeOffer />

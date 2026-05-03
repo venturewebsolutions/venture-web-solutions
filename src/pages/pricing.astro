@@ -1,10 +1,11 @@
 ---
-import Layout from '@/layouts/Layout.astro'
+import Schema from '@/components/headless/Schema.astro'
 import ContactUs from '@/components/sections/ContactUs.astro'
 import FAQ from '@/components/sections/FAQ.astro'
+import HowItWorks from '@/components/sections/HowItWorks.astro'
 import PricingSection from '@/components/sections/Pricing.astro'
 import Testimonials from '@/components/sections/Testimonials.astro'
-import HowItWorks from '@/components/sections/HowItWorks.astro'
+import Layout from '@/layouts/Layout.astro'
 import { getFaqTopics, getTestimonials } from '@/lib/collections'
 
 const faqs = (await getFaqTopics())
@@ -22,6 +23,10 @@ const testimonials = await getTestimonials()
   title="Web Design Pricing | From £100/Month | Venture Web Solutions"
   description="Simple, transparent web design pricing for small businesses. From £100/month — including hosting, copywriting, unlimited edits, and 24/7 support."
 >
+  <Fragment slot="head">
+    <Schema type="faq" faqs={faqs} />
+  </Fragment>
+
   <PricingSection level={1} fullWidth />
   <Testimonials testimonials={testimonials} />
   <HowItWorks />
